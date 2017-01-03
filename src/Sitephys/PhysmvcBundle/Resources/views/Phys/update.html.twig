@@ -1,0 +1,21 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier un élément - {{ parent() }}
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+
+  <h2>Modifier un élément</h2>
+  {{ physupdatetitle }}
+  {{ physupdateleveltab[0] }}
+  {{ physupdateleveltab[1] }}
+
+    <h2>Modification de cet élément</h2>
+
+  {{ include("SitephysPhysmvcBundle:Phys:formupdate.html.twig") }}
+  <p>
+    Déjà existant.
+  </p>
+
+{% endblock %}

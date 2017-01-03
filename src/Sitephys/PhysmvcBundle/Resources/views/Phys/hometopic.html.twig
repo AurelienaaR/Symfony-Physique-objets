@@ -1,0 +1,55 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Home des éléments du thème {{ idtop }}
+{% endblock %}
+
+{% block sitephysphysmvc_section %}
+  <h3 style = "color:#a4a1a1; text-align:center;"><i>Home des éléments du thème {{ idtop }}</i></h3>
+{% endblock %}
+
+
+{% block sitephysphysmvc_image %}
+<div>
+{% for ib in [1,2,3,6,5,4] %}
+  <div id={{ 'image' ~ ib }}>
+  {% if tabboolbase[ib] %}
+    <a href="{{ path('sitephys_physmvc_phys_global', {'idTopic': idtop, 'intLevel': ib}) }}">
+      <img align="left" margin: "0" padding: "0" src="{{ asset( 'bundles/sitephysphysmvc/images/schemaphysmvcglobal' ~ ib ~ '.png' ) }}" alt="Schéma de l'élément du modèle global" width="30%" onmouseover="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcglobalsombre' ~ ib ~ '.png' }}'" onmouseout="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcglobal' ~ ib ~ '.png' }}'" />
+    </a>
+  {% else %}
+    <img align="left" margin: "0" padding: "0" src="{{ asset( 'bundles/sitephysphysmvc/images/schemaphysmvcglobalclair' ~ ib ~ '.png' ) }}" alt="Schéma de l'élément du modèle global" width="30%" />
+  {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+
+  <div class="well">
+    
+    {% for cp in range(0, cptMax - 1) %}
+      {{ phystitle[cp] }}
+      {{ levelcontent[cp] }}
+      {{ physcontent[cp] }}{% if not loop.last %}, {% endif %}
+      <i>Par {{ physauthor[cp] }}, le {{ physdate[cp]|date('d/m/Y') }}</i>
+    {% endfor %}
+  </div>
+
+  <p>
+    <a href="{{ path('sitephys_physmvc_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à l'accueil
+    </a>
+    <a href="{{ path('sitephys_physmvc_topic') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Thèmes et domaines
+    </a>
+    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Niveaux et symbolisations
+    </a>
+  </p>
+
+{% endblock %}

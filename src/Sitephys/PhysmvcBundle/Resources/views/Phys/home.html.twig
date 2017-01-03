@@ -1,0 +1,35 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Home des éléments 
+{% endblock %}
+
+{% block sitephysphysmvc_image %}
+<div>
+</ div>
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+  
+  <div>
+      <ul>
+        {% for eltglobal in tabglobal %}
+          <li><a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': eltglobal[0]}) }}">{{ eltglobal[1] }}</li></a>
+        {% endfor %}
+      </ul>
+  </div>
+
+  <div class="well">
+  </div>
+  <p>
+    <a href="{{ path('sitephys_physmvc_topic') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Thèmes et domaines
+    </a>
+    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Niveaux et symbolisations
+    </a>
+  </p>
+
+{% endblock %}

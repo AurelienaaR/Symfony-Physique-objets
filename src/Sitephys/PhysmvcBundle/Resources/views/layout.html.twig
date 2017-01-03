@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %} Eléments de physique en méthodes et langages objet {% endblock %}</title>
+
+  {% block stylesheets %}
+    {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/bootstrap.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/reset.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/style.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/main.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+  {% endblock %}
+  
+</head>
+
+<body>
+  <div class="containert" style="background-color:#c9d6d4;">
+    <div id="header" class="jumbotron">
+      <h2 style = "text-align:center;">Objets en physique</h2>
+      {% block sitephysphysmvc_section %}
+        <h3 style = "color:#c6bebe; text-align:center;"><i>Méthodes et langage objet pour la physique</i></h3>
+      {% endblock %}
+      
+      {% block sitephysphysmvc_image %}
+      <p></p>
+      {% endblock %}
+    </div>
+
+    <div class="row">
+      <div id="menu" class="col-md-3">
+        <h3>Menu</h3>
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href="{{ path('sitephys_physmvc_home') }}">Accueil</a></li>
+          <li><a href="{{ path('sitephys_physmvc_edition_add') }}">Ajout</a></li>
+        </ul>
+        <br />
+      </div>
+      <div id="content" class="col-md-9">
+        {% block sitephysphysmvc_body %}
+        {% endblock %}
+      </div>
+    </div>
+
+    <hr>
+
+    <footer>
+    <p style = "text-align:center;"><br />
+        <a class="btn btn-primary btn-lg" href="http://enseignant_postbac.nexgate.ch/index.html">
+          Autre site
+        </a>
+      </p>
+      <p style = "text-align:center;">Elements - SitephysPhysmvcBundle © {{ 'now'|date('Y') }} </p>
+    </footer>
+  </div>
+
+    {% block javascripts %}
+      {% javascripts 'bundles/sitephysphysmvc/js/bootstrap.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+      {% endjavascripts %}
+      {% javascripts 'bundles/sitephysphysmvc/js/jquery-3.1.1.min.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+      {% endjavascripts %}
+      {% javascripts 'bundles/sitephysphysmvc/js/main.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+      {% endjavascripts %}
+    {% endblock %}
+
+</body>
+</html>

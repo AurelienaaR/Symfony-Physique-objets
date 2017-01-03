@@ -1,0 +1,3 @@
+sitephys_physmvc:
+    resource: "@SitephysPhysmvcBundle/Resources/config/routing.yml"
+    prefix:   /

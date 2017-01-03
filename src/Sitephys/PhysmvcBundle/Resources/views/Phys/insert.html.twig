@@ -1,0 +1,17 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Elément - {{ parent() }}
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+
+  <h2>Insertion</h2>
+
+  {{ include("SitephysPhysmvcBundle:Phys:form.html.twig") }}
+
+  <p>
+    Déjà existant.
+  </p>
+
+{% endblock %}

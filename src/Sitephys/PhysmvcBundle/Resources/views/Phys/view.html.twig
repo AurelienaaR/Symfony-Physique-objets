@@ -1,0 +1,63 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture d'un élément - {{ parent() }}
+{% endblock %}
+
+{% block sitephysphysmvc_section %}
+  <h3 style = "color:#a4a1a1; text-align:center;"><i>Lecture de l'élément - {{ phystitle }}</i></h3>
+{% endblock %}
+
+{% block sitephysphysmvc_image %}
+{#
+  <img src="{{ asset('bundles/sitephysphysmvc/images/photo.png') }}" alt="Schéma global du système du thème" width="1000px" height="465px" />
+#}
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+
+  <h2>{{ phystitle }}</h2>
+  <h3>Niveau : {{ physlevel }}, soit : </h3>
+  <h3>Niveau 1 : {{ physleveltab[0] }}</h3>
+  <h3>Niveau 2 : {{ physleveltab[1] }}</h3>
+  <h3>Description du niveau : {{ levelcontent }}</h3>
+  <h3>Domaine : {{ domaincontent }}</h3>
+  <h3>Thème : {{ topiccontent }}</h3>
+
+  {% set cptsym = 0 %}
+  {% for symcontent in symbolizationcontent %}
+    {% set cptsym = cptsym + 1 %}
+    <h3>Symbolisation {{ cptsym }} : {{ symcontent }}</h3>
+  {% endfor %}
+  
+  <i>Par {{ physauthor }}, le {{ physdate|date('d/m/Y') }}</i>
+
+  <div class="well">
+    {{ physcontent }}
+  </div>
+
+    <p>
+      Cet élément {{ phystitle }} a pour contenu {{ physcontent }}, 
+      et est situé au niveau {{ physlevel }}. 
+    </p>
+  
+  <p>
+    <a href="{{ path('sitephys_physmvc_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à l'accueil
+    </a>
+    <a href="{{ path('sitephys_physmvc_topic') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Thèmes et domaines
+    </a>
+    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Niveaux et symbolisations
+    </a>
+    <a href="{{ path('sitephys_physmvc_edition', {'id': id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'élément
+    </a>
+  </p>
+
+{% endblock %}
