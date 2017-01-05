@@ -2,7 +2,6 @@
 
 namespace Sitephys\PhysmvcBundle\Controller;
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -18,6 +17,10 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Doctrine\ORM\EntityRepository;
 use Sitephys\PhysmvcBundle\Entity\Phys;
+use Sitephys\PhysmvcBundle\Entity\Domain;
+use Sitephys\PhysmvcBundle\Entity\Topic;
+use Sitephys\PhysmvcBundle\Entity\Level;
+use Sitephys\PhysmvcBundle\Entity\Symbolization;
 use Sitephys\PhysmvcBundle\Form\PhysType;
 use Doctrine\ORM\QueryBuilder;
 
@@ -208,6 +211,70 @@ class PhysController extends Controller
     } 
   }
 
+  public function evalAction($idTopic)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys');
+    $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
+    $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
+
+    $cptEval = 0;
+    for ($ibool=1; $ibool <= 6 ; $ibool++) { 
+    	for ($jbool=1; $jbool <= 6 ; $jbool++) { 
+    		$tabBool[$ibool][$jbool] = false;
+    	}
+    }
+    $physEval = $physRep->findBy(
+    	array('topicId' => $idTopic), 
+        array(),
+        50,
+        0
+    	);
+
+    foreach ($physEval as $keyEv => $physEv) {
+    	$idEval = $physEv->getId();
+    	$eva = $physEv->getEvaluation();
+    	if ($eva) {
+    		$levEv = $physEv->getLevel();
+    		if ($levEv) {
+    			$levTab = unserialize($levEv);
+    			$levb = $levTab[0];
+    			$levs = $levTab[1];
+    			$levObject = $levelRep->findBy(
+    				array (
+    					'levelBase' => $levb,
+    					'levelSub' => $levs,
+    					));
+    			$levContent = $levObject[0]->getContent();
+    			$levId = $levObject[0]->getId();
+    			$symObject = $symbolizationRep->findBy(
+    				array (
+    					'levelkey' => $levId
+    					)
+    				);
+    			$tabSym[$levb][$levs] = $symObject[0]->getContent();
+    			$tabBool[$levb][$levs] = true;
+    			$tabEval[$levb][$levs] = $eva;
+    			$tabLevel[$levb][$levs] = $levContent;
+    			$cptEval ++;
+    		}
+    	}
+    }
+
+    if ($cptEval == 0) {
+      throw new NotFoundHttpException('Base sans évaluation.');
+    } else {
+      $dataEval = array("Exp. in", "Theory", "Exp. out", "Return Exp. in", "Return Theory", "Return Exp. out");
+      $cptEval --;
+
+      return $this->render('SitephysPhysmvcBundle:Phys:eval.html.twig', array(
+        'tabbool' => $tabBool,
+        'tablevel' => $tabLevel,
+        'tabsym' => $tabSym,
+        'tabeval' => $tabEval,
+        ));
+    } 
+  }
 
   public function viewAction($id,Request $request)
   {

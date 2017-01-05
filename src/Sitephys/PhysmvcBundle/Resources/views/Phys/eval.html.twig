@@ -1,0 +1,62 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Evaluations des éléments de physique 
+{% endblock %}
+
+{% block sitephysphysmvc_image %}
+  <section id="global">
+    <img align="center" margin: "0" padding: "0" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" alt="Schéma du modèle global et ses évaluations" width="40%" height="200px" />
+  </section>
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+
+  <div style="float: left; margin-right: 1em;"></div>
+  <h2></h2>
+
+  <div class="well">
+    <section id="descriptions">
+
+      <h2><i class="fa fa-gift"></i>Description par niveau des évaluations du thème</h2>
+      <nav id="tabs-nav" class="clearfix">
+        {% for intevali in 1..6 %}
+          {% for intevalj in 1..6 %}
+            {% if (tabbool[intevali][intevalj]) %}
+              <a href="{{ "#eval" ~ intevali ~ "-" ~ intevalj }}" class="selected"> {{ intevali }} - {{ intevalj }} </a>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </nav>
+      
+      <div id="tabs-container">
+        {% for intevalic in 1..6 %}
+          {% for intevaljc in 1..6 %}
+            {% if (tabbool[intevalic][intevaljc]) %}
+              <article id="{{ "eval" ~ intevalic ~ "-" ~ intevaljc }}" >
+                <h3> Niveau : </h3>
+                <h3> {{ tablevel[intevalic][intevaljc] }} </h3>
+                <h3> Evaluation : </h3>
+                <h3> {{ tabeval[intevalic][intevaljc] }} </h3>
+                <h3> Symbolisation : </h3>
+                <h3> {{ tabsym[intevalic][intevaljc] }} </h3>
+              </article>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+
+  <p>
+    <a href="{{ path('sitephys_physmvc_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à l'accueil
+    </a>
+    <a href="{{ path('sitephys_physmvc_topic') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Thèmes et domaines
+    </a>
+  </p>
+
+{% endblock %}

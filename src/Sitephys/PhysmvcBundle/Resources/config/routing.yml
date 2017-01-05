@@ -13,6 +13,11 @@ sitephys_physmvc_symbolization:
     defaults:
         _controller: SitephysPhysmvcBundle:Phys:sym
 
+sitephys_physmvc_evaluation:
+    path:      /evaluation/{idTopic}
+    defaults:
+        _controller: SitephysPhysmvcBundle:Phys:eval
+
 sitephys_physmvc_phys_view:
     path:      /phys/{id}
     defaults:
