@@ -19,17 +19,19 @@
       </ul>
   </div>
 
+{% endblock %}
+
+{% block sitephysphysmvc_low %}
+
   <div class="well">
+    <p>
+      <a href="{{ path('sitephys_physmvc_topic') }}" class="button">
+        Thèmes et domaines
+      </a>
+      <a href="{{ path('sitephys_physmvc_symbolization') }}" class="button">
+        Niveaux et symbolisations
+      </a>
+    </p>
   </div>
-  <p>
-    <a href="{{ path('sitephys_physmvc_topic') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Thèmes et domaines
-    </a>
-    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Niveaux et symbolisations
-    </a>
-  </p>
 
 {% endblock %}

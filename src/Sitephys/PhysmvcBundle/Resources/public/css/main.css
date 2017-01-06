@@ -7,10 +7,11 @@ background: -ms-linear-gradient(left, DarkSlateGray, Silver);
 }
 
 .containert {
-	width: 90%;
+	width: 80%;
 	padding: 3px 35px;
 	margin: auto;
-	background-color: rgba(155,200,200,0.90);
+	float:left;
+	background-color: rgba(125,200,180,0.60);
 }
 
 section {
@@ -25,7 +26,11 @@ section {
 
 #content {
     width: 85%;
-    margin: 0 auto;
+    margin: auto;
+    display: block;
+    float: left;
+    clear:both;
+    box-sizing: border-box;
 }
 
 #content pre {
@@ -85,23 +90,48 @@ text-align:left;
 
 #global  { 
 
-    background-color: rgba(45, 100, 110, 0.3);
+    background-color: rgba(145, 200, 210, 0.3);
     width: 40%;
     display: block;
     clear:both;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
     margin: auto;
 }
 
 
-#footer {
+footer {
 margin-left:1%;
-width:99%;
-background-color:rgba(145, 130, 190, 0.3);
+width:80%;
+background-color:rgba(105, 160, 180, 0.3);
 text-align:center;
-clear:both;
+display: block;
+box-sizing: border-box;
+float: left;
 }
 
+.menu_navx {
+	background-color: rgba(105, 180, 140, 0.4);
+    width: 20%;
+    display: block;
+    clear:both;
+    box-sizing: border-box;
+    margin: auto;
+    float:left;
+}
+
+#menu_nav {
+	background-color: rgba(105, 180, 140, 0.4);
+	padding: 0; margin: 0;
+	text-align: center; /* centrer le texte */
+}
+#menu_nav li {
+	display: inline;
+	list-style: none;
+}
+#menu_nav a {
+	display:inline-block;
+	margin: 0 30px;
+}
 
 .images {
   float:top;
@@ -110,7 +140,30 @@ clear:both;
   width: 150px;
 }
 
+#container {
+    width: 80%;
+    display: block;
+    margin: auto;
+    box-sizing: border-box;
+    background-color: rgba(135,190,150,0.30);
+}
 
-.container {
-  width: 80%;
+.well {
+	width: 80%;
+    clear:both;
+    display: block;
+    margin: auto;
+    box-sizing: border-box;
+    background-color: rgba(145,130,150,0.20);
+}
+
+.button {
+    background-color: rgba(55,100,80,0.60);
+    color: rgba(255,255,255,0.90);
+    text-align:center;
+    border:1px solid #376450;
+    padding:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
 }

@@ -10,9 +10,12 @@
     <section id="descriptions">
       <h2><i class="fa fa-gift"></i> Descriptions</h2>
       <nav id="tabs-nav" class="clearfix">
-        {% for ttii in 0..cptdom - 1 %}
-          <a href= {{"#" ~ "domaintopic" ~ ttii }} class="selected"> {{ listdomain[ttii] }} </a>
-        {% endfor %}
+        <a href= {{"#" ~ "domaintopic" ~ "0" }} class="selected"> {{ listdomain[0] }} </a>
+        {% if cptdom > 1 %}
+          {% for ttii in 1..cptdom - 1 %}
+            <a href= {{"#" ~ "domaintopic" ~ ttii }}> {{ listdomain[ttii] }} </a>
+          {% endfor %}
+        {% endif %}
       </nav>
       <div id="tabs-container">
         {% for ttii in 0..cptdom - 1 %}
@@ -30,13 +33,15 @@
     </section>
   </div>
 
+{% endblock %}
+
+{% block sitephysphysmvc_low %}
+
   <p>
-    <a href="{{ path('sitephys_physmvc_home') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
+    <a href="{{ path('sitephys_physmvc_home') }}" class="button"">
       Retour à l'accueil
     </a>
-    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
+    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="button">
       Niveaux et symbolisations
     </a>
   </p>

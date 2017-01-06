@@ -1,11 +1,4 @@
 
-.container {
-	width: 1200px;
-	padding: 3px 35px;
-	margin: auto;
-	background-color: rgba(200,155,255,0.80);
-}
-
 section {
 	margin: 10px 0;
 }
@@ -137,18 +130,3 @@ header a:hover {
 	color: #000;
 }
 
-
-footer, footer .container {
-	text-align: center;
-	background-color: #16a085;
-}
-
-footer {
-	padding: 30px 0 20px 0;
-}
-
-footer h2 {
-	color: #FFF;
-	margin-top: 0;
-	background-color: transparent;
-}

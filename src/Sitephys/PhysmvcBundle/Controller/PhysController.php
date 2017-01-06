@@ -91,6 +91,7 @@ class PhysController extends Controller
       $physDate = [];
       $physTopicContent = [];
       $physContent = [];
+      $topicTitle = $topicRep->find($idTopic)->getTitle();
       $tabBoolBase = [];
       for ($iBase=1; $iBase <= 6; $iBase++) {
         $tabBoolBase[$iBase] = false;
@@ -120,6 +121,7 @@ class PhysController extends Controller
 
       return $this->render('SitephysPhysmvcBundle:Phys:hometopic.html.twig', array(
         'idtop' => $idTopic,
+        'toptitle' => $topicTitle,
         'physauthor' => $physAuthor,
         'physdate' => $physDate,
         'tabboolbase' => $tabBoolBase,
@@ -352,6 +354,7 @@ class PhysController extends Controller
     $physSymbolizationContent = [];
     $physTopicContent = [];
     $physDomainContent = [];
+    $topicTitle = $topicRep->find($idTopic)->getTitle();
 
     $physGal = $levelRep->findBy(
       array(
@@ -407,6 +410,7 @@ class PhysController extends Controller
     }
       return $this->render('SitephysPhysmvcBundle:Phys:global.html.twig', array(
         'idtop' => $idTopic,
+        'toptitle' => $topicTitle,
         'intlevel' => $intLevel,
         'physiniglobalcontent' => $physIniGlobalContent,
         'tabboolelt' => $tabBoolElt,

@@ -20,8 +20,9 @@
 
       <h2><i class="fa fa-gift"></i>Description de niveaux et symbolisations par niveau de base</h2>
       <nav id="tabs-nav" class="clearfix">
-        {% for intBase in 1..6 %}
-          <a href="{{ "#symbol" ~ intBase }}" class="selected"> {{ datalevel[intBase - 1] }} </a>
+        <a href="{{ "#symbol" ~ "1" }}" class="selected"> {{ datalevel[0] }} </a>
+        {% for intBase in 2..6 %}
+          <a href="{{ "#symbol" ~ intBase }}"> {{ datalevel[intBase - 1] }} </a>
         {% endfor %}
       </nav>
       
@@ -38,13 +39,15 @@
     </section>
   </div>
 
+{% endblock %}
+
+{% block sitephysphysmvc_low %}
+
   <p>
-    <a href="{{ path('sitephys_physmvc_home') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
+    <a href="{{ path('sitephys_physmvc_home') }}" class="button">
       Retour à l'accueil
     </a>
-    <a href="{{ path('sitephys_physmvc_topic') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
+    <a href="{{ path('sitephys_physmvc_topic') }}" class="button">
       Thèmes et domaines
     </a>
   </p>

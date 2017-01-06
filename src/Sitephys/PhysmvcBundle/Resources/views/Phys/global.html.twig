@@ -1,11 +1,11 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Lecture de l'élément global du thème - {{ idtop }}
+  Lecture de l'élément global du thème - {{ toptitle }}
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h3 style = "color:#a4a1a1; text-align:center;"><i>Lecture de l'élément global du thème - {{ idtop }}</i></h3>
+  <h3 style = "color:#a4a1a1; text-align:center;"><i>Lecture de l'élément global du thème - {{ toptitle }}</i></h3>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -26,67 +26,72 @@
 
 {% block sitephysphysmvc_body %}
 
+<div class="well">
+
   <h3>Niveau de base <i>(global)</i> : {{ intlevel }} </h3>
   <h3>Description du niveau : {{ physiniglobalcontent }} </h3>
 
-{#
-  {% set cptsym = 0 %}
-  {% for symcontent in symbolizationcontent %}
-    {% set cptsym = cptsym + 1 %}
-    <h3>Symbolisation {{ cptsym }} : {{ symcontent }}</h3>
-  {% endfor %}
-#}
-  <div class="well">
-  <section id="descriptions">
-        <h2><i class="fa fa-gift"></i> Descriptions</h2>
-        <nav id="tabs-nav" class="clearfix">
-          <a href="#domaine" class="selected">Domaine et thème</a>
-          <a href="#contenu">Contenu</a>
-          <a href="#evaluation">Evaluation</a>
-        </nav>
-        <div id="tabs-container">
-          
-<article id="domaine">
-  {% for intEltLevelPossible in 1..6 %}
-    {% if tabboolelt[intEltLevelPossible] %}
-      <h3>Titre : {{ phystitle[intEltLevelPossible] }} </h3>
-      <h3>Domaine : {{ domaincontent[intEltLevelPossible] }} </h3>
-      <h3>Thème : {{ topiccontent[intEltLevelPossible] }} </h3>
-    {% endif %}
-  {% endfor %}
-</article>
-<article id="contenu">
-  {% for intEltLevelPossible in 1..6 %}
-    {% if tabboolelt[intEltLevelPossible] %}
-      <h3>Titre : {{ phystitle[intEltLevelPossible] }} </h3>
-      <h3>Contenu : {{ physcontent[intEltLevelPossible] }} </h3>
-    {% endif %}
-  {% endfor %}
-</article>
-<article id="evaluation">
-  {% for intEltLevelPossible in 1..6 %}
-    {% if tabboolelt[intEltLevelPossible] %}
-      <h3>Titre : {{ phystitle[intEltLevelPossible] }} </h3>
-      <h3>Evaluation : {{ physevaluation[intEltLevelPossible] }} </h3>
-    {% endif %}
-  {% endfor %}
-</article>
-        </div>
-      </section>
+  
+    <section id="descriptions">
+      <h2><i class="fa fa-gift"></i> Descriptions</h2>
+      <nav id="tabs-nav" class="clearfix">
+        <a href="#domaine" class="selected">Domaine et thème</a>
+        <a href="#contenu">Contenu</a>
+        <a href="#evaluation">Evaluation</a>
+        <a href="#symbolisation">Symbolisation</a>
+      </nav>
+
+      <div id="tabs-container">      
+      <article id="domaine">
+        {% for intEltLevelPossible in 1..6 %}
+          {% if tabboolelt[intEltLevelPossible] %}
+            <h3>Titre : {{ phystitle[intEltLevelPossible] }} </h3>
+            <h3>Domaine : {{ domaincontent[intEltLevelPossible] }} </h3>
+            <h3>Thème : {{ topiccontent[intEltLevelPossible] }} </h3>
+          {% endif %}
+        {% endfor %}
+      </article>
+      <article id="contenu">
+        {% for intEltLevelPossible in 1..6 %}
+          {% if tabboolelt[intEltLevelPossible] %}
+            <h3>Titre : {{ phystitle[intEltLevelPossible] }} </h3>
+            <h3>Contenu : {{ physcontent[intEltLevelPossible] }} </h3>
+          {% endif %}
+        {% endfor %}
+      </article>
+      <article id="evaluation">
+        {% for intEltLevelPossible in 1..6 %}
+          {% if tabboolelt[intEltLevelPossible] %}
+            <h3>Titre : {{ phystitle[intEltLevelPossible] }} </h3>
+            <h3>Evaluation : {{ physevaluation[intEltLevelPossible] }} </h3>
+          {% endif %}
+        {% endfor %}
+      </article>
+      <article id="symbolisation">
+        {% set cptsym = 0 %}
+        {% for symcontent in symbolizationcontent %}
+          {% set cptsym = cptsym + 1 %}
+          <h3>Symbolisation {{ cptsym }} : {{ symcontent }} </h3>
+        {% endfor %}
+      </article>
+    </div>
+    </section>
   </div>
 
+{% endblock %}
+
+{% block sitephysphysmvc_low %}
+
   <p>
-    <a href="{{ path('sitephys_physmvc_home') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
+    <a href="{{ path('sitephys_physmvc_home') }}" class="button">
       Retour à l'accueil
     </a>
-    <a href="{{ path('sitephys_physmvc_topic') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
+    <a href="{{ path('sitephys_physmvc_topic') }}" class="button">
       Thèmes et domaines
     </a>
-    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
+    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="button">
       Niveaux et symbolisations
     </a>
   </p>
+
 {% endblock %}

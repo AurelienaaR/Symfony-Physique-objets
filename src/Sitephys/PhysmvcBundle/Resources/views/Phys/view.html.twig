@@ -40,22 +40,22 @@
       Cet élément {{ phystitle }} a pour contenu {{ physcontent }}, 
       et est situé au niveau {{ physlevel }}. 
     </p>
+
+{% endblock %}
   
+{% block sitephysphysmvc_low %}
+
   <p>
-    <a href="{{ path('sitephys_physmvc_home') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
+    <a href="{{ path('sitephys_physmvc_home') }}" class="button">
       Retour à l'accueil
     </a>
-    <a href="{{ path('sitephys_physmvc_topic') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
+    <a href="{{ path('sitephys_physmvc_topic') }}" class="button">
       Thèmes et domaines
     </a>
-    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
+    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="button">
       Niveaux et symbolisations
     </a>
-    <a href="{{ path('sitephys_physmvc_edition', {'id': id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
+    <a href="{{ path('sitephys_physmvc_edition', {'id': id}) }}" class="button">
       Modifier l'élément
     </a>
   </p>
