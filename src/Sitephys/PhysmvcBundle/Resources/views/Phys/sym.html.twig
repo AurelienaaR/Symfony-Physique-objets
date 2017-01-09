@@ -11,13 +11,8 @@
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
-
-  <div style="float: left; margin-right: 1em;"></div>
-  <h2></h2>
-
   <div class="well">
     <section id="descriptions">
-
       <h2><i class="fa fa-gift"></i>Description de niveaux et symbolisations par niveau de base</h2>
       <nav id="tabs-nav" class="clearfix">
         <a href="{{ "#symbol" ~ "1" }}" class="selected"> {{ datalevel[0] }} </a>
@@ -25,24 +20,21 @@
           <a href="{{ "#symbol" ~ intBase }}"> {{ datalevel[intBase - 1] }} </a>
         {% endfor %}
       </nav>
-      
-      <div id="tabs-container">
+      <div id="tabs-container" onload="initTab()">
         {% for intBase in 1..3 %}
           <article id="{{ "symbol" ~ intBase }}" >
             {% for intSub in 1..3 %}
-              <h3>Niveau {{ intBase }} - {{ intSub }} : {{ bslevel[intBase][intSub] }}</h3>
-              <h3>Symbolisation : {{ bssymb[intBase][intSub] }}</h3>
+              Niveau {{ intBase }} - {{ intSub }} : {{ bslevel[intBase][intSub] }}
+              <br />Symbolisation : {{ bssymb[intBase][intSub] }}<br />
             {% endfor %}
           </article>
         {% endfor %}
       </div>
     </section>
   </div>
-
 {% endblock %}
 
 {% block sitephysphysmvc_low %}
-
   <p>
     <a href="{{ path('sitephys_physmvc_home') }}" class="button">
       Retour à l'accueil
@@ -51,5 +43,4 @@
       Thèmes et domaines
     </a>
   </p>
-
 {% endblock %}

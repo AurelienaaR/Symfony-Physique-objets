@@ -11,37 +11,30 @@
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
-
   <div style="float: left; margin-right: 1em;"></div>
   <h2></h2>
-
   <div class="well">
     <section id="descriptions">
-
       <h2><i class="fa fa-gift"></i>Description par niveau des évaluations du thème</h2>
       <nav id="tabs-nav" class="clearfix">
       {% set btnclass = "selected" %}
         {% for intevali in 1..6 %}
           {% for intevalj in 1..6 %}
             {% if (tabbool[intevali][intevalj]) %}
-              <a href="{{ "#eval" ~ intevali ~ "-" ~ intevalj }}" class=btnclass> {{ intevali }} - {{ intevalj }} </a>
+              <a href="{{ "#eval" ~ intevali ~ "-" ~ intevalj }}" class = btnclass> {{ intevali }} - {{ intevalj }} </a>
             {% endif %}
             {% set btnclass = "" %}
           {% endfor %}
         {% endfor %}
       </nav>
-      
-      <div id="tabs-container">
+      <div id="tabs-container"  onload="initTab()">
         {% for intevalic in 1..6 %}
           {% for intevaljc in 1..6 %}
             {% if (tabbool[intevalic][intevaljc]) %}
               <article id="{{ "eval" ~ intevalic ~ "-" ~ intevaljc }}" >
-                <h3> Niveau : </h3>
-                <h3> {{ tablevel[intevalic][intevaljc] }} </h3>
-                <h3> Evaluation : </h3>
-                <h3> {{ tabeval[intevalic][intevaljc] }} </h3>
-                <h3> Symbolisation : </h3>
-                <h3> {{ tabsym[intevalic][intevaljc] }} </h3>
+                Niveau : {{ tablevel[intevalic][intevaljc] }}
+                <br /> Evaluation : {{ tabeval[intevalic][intevaljc] }}
+                <br />Symbolisation : {{ tabsym[intevalic][intevaljc] }} <br />
               </article>
             {% endif %}
           {% endfor %}
@@ -49,11 +42,9 @@
       </div>
     </section>
   </div>
-
 {% endblock %}
 
 {% block sitephysphysmvc_low %}
-
   <p></p>
     <a href="{{ path('sitephys_physmvc_home') }}" class="button">
       Retour à l'accueil
@@ -62,5 +53,4 @@
       Thèmes et domaines
     </a>
   <p></p>
-
 {% endblock %}

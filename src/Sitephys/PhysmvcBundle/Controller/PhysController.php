@@ -5,16 +5,6 @@ namespace Sitephys\PhysmvcBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Doctrine\ORM\EntityRepository;
 use Sitephys\PhysmvcBundle\Entity\Phys;
 use Sitephys\PhysmvcBundle\Entity\Domain;
@@ -38,28 +28,27 @@ class PhysController extends Controller
 
     $topicAll = $topicRep->findAll();
     $domainAll = $domainRep->findAll();
+
       if (!$topicAll OR !$domainAll) {
       throw new NotFoundHttpException('Aucun élément dans la base.');
     } else {
       foreach ($domainAll as $ke => $physDom) {
         $physDomId = $physDom->getId();
         $physDomContent = $physDom->getContent();
+        $tabDom[] = [$physDomId, $physDomContent];
         $physTopObject = $topicRep->findBy(
         	array(
         		'domainId' => $physDomId,
         	));
-        $tabTopId = ''; 
-        $tabDomTop = '';
         foreach ($physTopObject as $key => $physTopi) {
           $idTopicElt = $physTopi->getId();
-          $tabTopId[] = $idTopicElt;
         	$physTopiContent = $physTopi->getContent();
-        	$tabDomTop = 'Domaine : ' . $physDomContent . ' - Thème : ' . $physTopiContent;
-          $tabGlobal[] = [$idTopicElt, $tabDomTop];
+          $tabTopDomContent[$physDomId][] = [$idTopicElt, $physTopiContent];
         }
-    }
+      }
       return $this->render('SitephysPhysmvcBundle:Phys:home.html.twig', array(
-        'tabglobal' => $tabGlobal,
+        'tabdom' => $tabDom,
+        'tabtopperdom' => $tabTopDomContent,
         )
       );
     } 
@@ -135,7 +124,6 @@ class PhysController extends Controller
       );
     }
   } 
-
 
   public function topAction(Request $request)
   {

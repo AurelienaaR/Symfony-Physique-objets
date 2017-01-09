@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %} Eléments de physique en méthodes et langages objet {% endblock %}</title>
-    
+    <title>
+      {% block title %}
+         Eléments de physique en méthodes et langages objet 
+      {% endblock %}
+    </title>
     {% block stylesheets %}
+  {#    {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/reset.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+      {% endstylesheets %}  #}
       {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/style.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
       {% endstylesheets %}
@@ -14,7 +19,6 @@
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
       {% endstylesheets %}
     {% endblock %}
-
   </head>
 
   <body>
@@ -33,11 +37,10 @@
       {% endblock %}
     </div>
       
-    <div class="containert" style="background-color:#c9d6d4;">
+    
         {% block sitephysphysmvc_image %}
-        <p></p>
         {% endblock %}
-    </div>
+    
 
     <div id="container">  
       
@@ -47,7 +50,7 @@
     </div>
 
       <p></p>
-      <div class="containert" style="background-color:#c9d6d4;">
+      <div class="containert">
       {% block sitephysphysmvc_low %}
       {% endblock %}
       </div>
@@ -69,6 +72,6 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
       {% endjavascripts %}
     {% endblock %}
-    
+
   </body>
 </html>

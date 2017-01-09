@@ -5,25 +5,35 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-<div>
-</ div>
+  <div class="containerthome">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/photoelectrohome.jpg') }}" class="homephoto" alt="Image de Home" />
+  </div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
-  
-  <div>
-      <ul>
-        {% for eltglobal in tabglobal %}
-          <li><a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': eltglobal[0]}) }}">{{ eltglobal[1] }}</li></a>
+  <div class="well">
+    <section id="descriptions">
+      <h2><i class="fa fa-gift"></i>Liste des thèmes enregistrés pour chaque domaine</h2>
+      <nav id="tabs-nav" class="clearfix">
+        {% for tabdo in tabdom %}
+          <a href="{{ "#dom" ~ tabdo[0] }}"> {{ tabdo[1] }} </a>
         {% endfor %}
-      </ul>
+      </nav>
+      <div id="tabs-container" onload="initTab()">
+        {% for tabd in tabdom %}
+          <article id="{{ "dom" ~ tabd[0] }}" >
+            {% for tabtoppdom in tabtopperdom[tabd[0]] %}
+              <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': tabtoppdom[0]}) }}"><div> {{ tabtoppdom[1] }} </div></a>
+            {% endfor %}
+          </article>
+        {% endfor %}
+      </div>
+    </section>
   </div>
-
 {% endblock %}
 
 {% block sitephysphysmvc_low %}
-
-  <div class="well">
+  <div>
     <p>
       <a href="{{ path('sitephys_physmvc_topic') }}" class="button">
         Thèmes et domaines
@@ -33,5 +43,4 @@
       </a>
     </p>
   </div>
-
 {% endblock %}

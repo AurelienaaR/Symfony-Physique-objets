@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
-
   <div class="well">
     <section id="descriptions">
       <h2><i class="fa fa-gift"></i> Descriptions</h2>
@@ -17,26 +16,24 @@
           {% endfor %}
         {% endif %}
       </nav>
-      <div id="tabs-container">
+      <div id="tabs-container" onload="initTab()">
         {% for ttii in 0..cptdom - 1 %}
           <article id={{ "domaintopic" ~ ttii }}>
-          <h2> {{ listdomain[ttii] }} </h2>
+          {{ listdomain[ttii] }} <br />
             {% for ttid in listtopic[ttii + 1] %}
               <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': ttid.id}) }}">
-              <h3> {{ ttid.title }} </h3>
+              {{ ttid.title }} <br />
               </a>
-              <h3> {{ ttid.content }} </h3>
+              {{ ttid.content }} <br />
             {% endfor %}
           </article>
         {% endfor %}
       </div>
     </section>
   </div>
-
 {% endblock %}
 
 {% block sitephysphysmvc_low %}
-
   <p>
     <a href="{{ path('sitephys_physmvc_home') }}" class="button"">
       Retour à l'accueil
@@ -45,5 +42,4 @@
       Niveaux et symbolisations
     </a>
   </p>
-
 {% endblock %}

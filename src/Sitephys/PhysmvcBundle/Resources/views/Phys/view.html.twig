@@ -15,7 +15,6 @@
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
-
   <h2>{{ phystitle }}</h2>
   <h3>Niveau : {{ physlevel }}, soit : </h3>
   <h3>Niveau 1 : {{ physleveltab[0] }}</h3>
@@ -23,28 +22,22 @@
   <h3>Description du niveau : {{ levelcontent }}</h3>
   <h3>Domaine : {{ domaincontent }}</h3>
   <h3>Thème : {{ topiccontent }}</h3>
-
   {% set cptsym = 0 %}
   {% for symcontent in symbolizationcontent %}
     {% set cptsym = cptsym + 1 %}
     <h3>Symbolisation {{ cptsym }} : {{ symcontent }}</h3>
   {% endfor %}
-  
   <i>Par {{ physauthor }}, le {{ physdate|date('d/m/Y') }}</i>
-
   <div class="well">
     {{ physcontent }}
   </div>
-
     <p>
       Cet élément {{ phystitle }} a pour contenu {{ physcontent }}, 
       et est situé au niveau {{ physlevel }}. 
     </p>
-
 {% endblock %}
   
 {% block sitephysphysmvc_low %}
-
   <p>
     <a href="{{ path('sitephys_physmvc_home') }}" class="button">
       Retour à l'accueil
@@ -59,5 +52,4 @@
       Modifier l'élément
     </a>
   </p>
-
 {% endblock %}

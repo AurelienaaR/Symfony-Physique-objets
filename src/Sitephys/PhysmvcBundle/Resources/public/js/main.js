@@ -1,13 +1,21 @@
+
+function initTab(){
+	$("#tabs-container").hide();
+}
+
+
 function showTab(e){
 	e.preventDefault();
 	var linkedTab = $(this).attr("href");
 	$("#tabs-nav a").removeClass("selected");
 	$(this).addClass("selected");
 	$("#tabs-container article").hide();
+	$(linkedTab).removeClass("fontarticleini");
+	$(linkedTab).addClass("fontarticle");
 	$(linkedTab).show();
 }
 $("#tabs-nav a").on("click", showTab);
-$("#tabs-container article:nth-child(1n+2)").hide();
+// $("#tabs-container article:nth-child(1n+2)").hide();
 
 
 //validation du formulaire

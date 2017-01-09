@@ -9,29 +9,27 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-  <section id="global">
+  <div class="containertglobal">
     {% for jb in [1,2,3,6,5,4] %}
-      <div id={{ 'image' ~ jb }}>
-        {% if (tabboolelt[jb]) %}
-          <a href="{{ path('sitephys_physmvc_phys_element', {'idTopic': idtop, 'intLevel': intlevel, 'intEltLevel': jb}) }}">
-            <img align="left" margin: "0" padding: "0" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png') }}" alt="Schéma de l'élément du modèle global" width="30%" height="130px" onmouseover="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimplesombre' ~ jb ~ '.png' }}'" onmouseout="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png' }}'" />
-          </a>
-        {% else %}
-          <img align="left" margin: "0" padding: "0" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcsimpleclair' ~ jb ~ '.png') }}" alt="Schéma de élément du modèle global" width="30%" height="130px" />
-        {% endif %}
+      {% if (tabboolelt[jb]) %}
+      <div>
+        <a href="{{ path('sitephys_physmvc_phys_element', {'idTopic': idtop, 'intLevel': intlevel, 'intEltLevel': jb}) }}">
+          <img align="left" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png') }}" alt="Schéma de l'élément du modèle global" margin: "0" padding: "0" width="30%" height="115px" onmouseover="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimplesombre' ~ jb ~ '.png' }}'" onmouseout="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png' }}'" />
+        </a>
       </div>
+      {% else %}
+      <div>
+        <img align="left" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcsimpleclair' ~ jb ~ '.png') }}" margin: "0" padding: "0" width="30%" height="115px" alt="Schéma élément non enregistré" />
+      </div>
+      {% endif %}
     {% endfor %}
-  </section>
+  </div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
-
 <div class="well">
-
   <h3>Niveau de base <i>(global)</i> : {{ intlevel }} </h3>
   <h3>Description du niveau : {{ physiniglobalcontent }} </h3>
-
-  
     <section id="descriptions">
       <h2><i class="fa fa-gift"></i> Descriptions</h2>
       <nav id="tabs-nav" class="clearfix">
@@ -40,48 +38,46 @@
         <a href="#evaluation">Evaluation</a>
         <a href="#symbolisation">Symbolisation</a>
       </nav>
-
-      <div id="tabs-container">      
+      <div id="tabs-container" onload="initTab()">      
       <article id="domaine">
         {% for intEltLevelPossible in 1..6 %}
           {% if tabboolelt[intEltLevelPossible] %}
-            <h3>Titre : {{ phystitle[intEltLevelPossible] }} </h3>
-            <h3>Domaine : {{ domaincontent[intEltLevelPossible] }} </h3>
-            <h3>Thème : {{ topiccontent[intEltLevelPossible] }} </h3>
+            Titre : {{ phystitle[intEltLevelPossible] }}
+            <br />Domaine : {{ domaincontent[intEltLevelPossible] }}
+            <br />Thème : {{ topiccontent[intEltLevelPossible] }} <br />
           {% endif %}
         {% endfor %}
       </article>
       <article id="contenu">
         {% for intEltLevelPossible in 1..6 %}
           {% if tabboolelt[intEltLevelPossible] %}
-            <h3>Titre : {{ phystitle[intEltLevelPossible] }} </h3>
-            <h3>Contenu : {{ physcontent[intEltLevelPossible] }} </h3>
+            Titre : {{ phystitle[intEltLevelPossible] }}
+            <br />Contenu : {{ physcontent[intEltLevelPossible] }} <br />
           {% endif %}
         {% endfor %}
       </article>
       <article id="evaluation">
         {% for intEltLevelPossible in 1..6 %}
           {% if tabboolelt[intEltLevelPossible] %}
-            <h3>Titre : {{ phystitle[intEltLevelPossible] }} </h3>
-            <h3>Evaluation : {{ physevaluation[intEltLevelPossible] }} </h3>
+            Titre : {{ phystitle[intEltLevelPossible] }}
+            <br />Evaluation : {{ physevaluation[intEltLevelPossible] }} <br />
           {% endif %}
         {% endfor %}
       </article>
       <article id="symbolisation">
-        {% set cptsym = 0 %}
-        {% for symcontent in symbolizationcontent %}
-          {% set cptsym = cptsym + 1 %}
-          <h3>Symbolisation {{ cptsym }} : {{ symcontent }} </h3>
+        {% for intEltLevelPossible in 1..6 %}
+          {% if tabboolelt[intEltLevelPossible] %}
+            Titre : {{ phystitle[intEltLevelPossible] }}
+            <br />Symbolisation : {{ symbolizationcontent[intEltLevelPossible] }} <br />
+          {% endif %}
         {% endfor %}
       </article>
     </div>
     </section>
   </div>
-
 {% endblock %}
 
 {% block sitephysphysmvc_low %}
-
   <p>
     <a href="{{ path('sitephys_physmvc_home') }}" class="button">
       Retour à l'accueil
@@ -93,5 +89,4 @@
       Niveaux et symbolisations
     </a>
   </p>
-
 {% endblock %}
