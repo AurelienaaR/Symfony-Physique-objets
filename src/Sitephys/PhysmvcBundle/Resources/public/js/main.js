@@ -3,7 +3,6 @@ function initTab(){
 	$("#tabs-container").hide();
 }
 
-
 function showTab(e){
 	e.preventDefault();
 	var linkedTab = $(this).attr("href");
@@ -16,6 +15,25 @@ function showTab(e){
 }
 $("#tabs-nav a").on("click", showTab);
 // $("#tabs-container article:nth-child(1n+2)").hide();
+
+
+function preloader() 
+{
+     var i = 0;
+     imageObj = new Image();
+     images = new Array();
+     images[0]="bundles/sitephysphysmvc/images/schemaphysmvcsimple1.png";
+     images[1]="bundles/sitephysphysmvc/images/schemaphysmvcsimple2.png";
+     images[2]="bundles/sitephysphysmvc/images/schemaphysmvcsimple3.png";
+     images[3]="bundles/sitephysphysmvc/images/schemaphysmvcsimple4.png";
+     images[4]="bundles/sitephysphysmvc/images/schemaphysmvcsimple5.png";
+     images[5]="bundles/sitephysphysmvc/images/schemaphysmvcsimple6.png";
+     
+     for(i=0; i<=5; i++) 
+     {
+          imageObj.src=images[i];
+     }
+} 
 
 
 //validation du formulaire

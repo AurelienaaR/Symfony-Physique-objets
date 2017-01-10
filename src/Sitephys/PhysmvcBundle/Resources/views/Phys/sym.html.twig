@@ -15,7 +15,7 @@
     <section id="descriptions">
       <h2><i class="fa fa-gift"></i>Description de niveaux et symbolisations par niveau de base</h2>
       <nav id="tabs-nav" class="clearfix">
-        <a href="{{ "#symbol" ~ "1" }}" class="selected"> {{ datalevel[0] }} </a>
+        <a href="{{ "#symbol" ~ "1" }}"> {{ datalevel[0] }} </a>
         {% for intBase in 2..6 %}
           <a href="{{ "#symbol" ~ intBase }}"> {{ datalevel[intBase - 1] }} </a>
         {% endfor %}
