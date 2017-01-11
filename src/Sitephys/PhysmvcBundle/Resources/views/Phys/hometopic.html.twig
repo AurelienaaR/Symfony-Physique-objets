@@ -9,8 +9,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-  <div id="containertop">
-  <p>
+  <div id="containerimghometopic">
     {% for ib in [1,2,3,6,5,4] %}
       {% if tabboolbase[ib] %}
       <div>
@@ -24,7 +23,6 @@
         </div>
       {% endif %}
     {% endfor %}
-    </p>
   </div>
 {% endblock %}
 
@@ -37,18 +35,6 @@
       <i>Par {{ physauthor[cp] }}, le {{ physdate[cp]|date('d/m/Y') }}</i>
     {% endfor %}
   </div>
-{% endblock %}
-
-{% block sitephysphysmvc_low %}
-  <p>
-    <a href="{{ path('sitephys_physmvc_home') }}" class="button">
-      Retour à l'accueil
-    </a>
-    <a href="{{ path('sitephys_physmvc_topic') }}" class="button">
-      Thèmes et domaines
-    </a>
-    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="button">
-      Niveaux et symbolisations
-    </a>
-  </p>
+  <br />
+  <a href="{{ path('sitephys_physmvc_evaluation', {'idTopic': idtop}) }}"><div> Evaluations du thème {{ toptitle }} </div></a>
 {% endblock %}

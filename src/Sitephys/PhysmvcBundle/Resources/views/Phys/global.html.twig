@@ -9,21 +9,23 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
+<div id="containerimgglobal">
   <div class="containertglobal">
     {% for jb in [1,2,3,6,5,4] %}
       {% if (tabboolelt[jb]) %}
         <div>
           <a href="{{ path('sitephys_physmvc_phys_element', {'idTopic': idtop, 'intLevel': intlevel, 'intEltLevel': jb}) }}">
-            <img align="left" src="{{ asset( 'bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png') }}" alt="Schéma de l'élément du modèle global" margin: "0" padding: "0" width="30%" height="115px" onmouseover="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimplesombre' ~ jb ~ '.png' }}'" onmouseout="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png' }}'" />
+            <img align="left" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png') }}" alt="Schéma de l'élément du modèle global" margin: "0" padding: "0" width="30%" height="115px" onmouseover="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimplesombre' ~ jb ~ '.png' }}'" onmouseout="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png' }}'" />
           </a>
         </div>
       {% else %}
         <div>
-          <img align="left" src="{{ asset( 'bundles/sitephysphysmvc/images/schemaphysmvcsimpleclair' ~ jb ~ '.png') }}" margin: "0" padding: "0" width="30%" height="115px" alt="Schéma élément non enregistré" />
+          <img align="left" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcsimpleclair' ~ jb ~ '.png') }}" margin: "0" padding: "0" width="30%" height="115px" alt="Schéma élément non enregistré" />
         </div>
       {% endif %}
     {% endfor %}
   </div>
+</div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
@@ -75,18 +77,4 @@
     </div>
     </section>
   </div>
-{% endblock %}
-
-{% block sitephysphysmvc_low %}
-  <p>
-    <a href="{{ path('sitephys_physmvc_home') }}" class="button">
-      Retour à l'accueil
-    </a>
-    <a href="{{ path('sitephys_physmvc_topic') }}" class="button">
-      Thèmes et domaines
-    </a>
-    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="button">
-      Niveaux et symbolisations
-    </a>
-  </p>
 {% endblock %}
