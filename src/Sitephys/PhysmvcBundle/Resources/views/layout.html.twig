@@ -30,13 +30,14 @@
         <li><a class="button" href="{{ path('sitephys_physmvc_topic') }}">Thèmes et domaines</a></li>
         <li><a class="button" href="{{ path('sitephys_physmvc_symbolization') }}">Niveaux et symbolisations</a></li>
         <li><a class="button" href="{{ path('sitephys_physmvc_edition_add') }}">Suggestions</a></li>
+        <li><a class="button" href="http://enseignant_postbac.nexgate.ch/index.html">Autre site</a></li>
+        <li><a class="button" href="http://enseignant_postbac.nexgate.ch/index.html">Liens</a></li>
       </ul>
     </div>
 
-    <div id="header" class="jumbotron">
-      <h2 style = "text-align:center;">Objets en physique</h2>
+    <div id="header">
       {% block sitephysphysmvc_section %}
-        <h3 style = "color:#c6bebe; text-align:center;"><i>Méthodes et langage objet pour la physique</i></h3>
+        <h3 style = "color:#336861; text-align:center;"><i>Méthodes et langage objet pour la physique</i></h3>
       {% endblock %}
     </div>
     <br />
@@ -60,10 +61,6 @@
     <p></p>
 
     <footer>
-      <p style = "text-align:center;"><br />
-        <a class="button" href="http://enseignant_postbac.nexgate.ch/index.html">Autre site</a>
-        <a class="button" href="http://enseignant_postbac.nexgate.ch/index.html">Liens</a>
-      </p>
       <p style = "text-align:center;"> Objets physiques © {{ 'now'|date('d/m/Y') }} </p>
     </footer>
 

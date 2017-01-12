@@ -4,6 +4,10 @@
   Home des éléments 
 {% endblock %}
 
+{% block sitephysphysmvc_section %}
+  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Accueil</i></h2>
+{% endblock %}
+
 {% block sitephysphysmvc_image %}
   <div id="containerimghome">
     <div class="containerthome">
@@ -14,22 +18,20 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <section id="descriptions">
-    <h2><i class="fa fa-gift"></i>Liste des thèmes enregistrés pour chaque domaine</h2>
-      <nav id="tabs-nav" class="clearfix">
-        {% for tabdo in tabdom %}
-          <a href="{{ "#dom" ~ tabdo[0] }}"> {{ tabdo[1] }} </a>
-        {% endfor %}
-      </nav>
-      <div id="tabs-container" onload="initTab()">
-        {% for tabd in tabdom %}
-          <article id="{{ "dom" ~ tabd[0] }}" >
-            {% for tabtoppdom in tabtopperdom[tabd[0]] %}
-              <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': tabtoppdom[0]}) }}"><div> {{ tabtoppdom[1] }} </div></a>
-            {% endfor %}
-          </article>
-        {% endfor %}
-      </div>
-    </section>
+    <h2>Liste des thèmes enregistrés pour chaque domaine</h2>
+    <nav id="tabs-nav" class="clearfix">
+      {% for tabdo in tabdom %}
+        <a href="{{ "#dom" ~ tabdo[0] }}"> {{ tabdo[1] }} </a>
+      {% endfor %}
+    </nav>
+    <div id="tabs-container" onload="initTab()">
+      {% for tabd in tabdom %}
+        <article id="{{ "dom" ~ tabd[0] }}" >
+          {% for tabtoppdom in tabtopperdom[tabd[0]] %}
+            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': tabtoppdom[0]}) }}"><div> {{ tabtoppdom[1] }} </div></a>
+          {% endfor %}
+        </article>
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}
