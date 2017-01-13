@@ -89,12 +89,13 @@ header a:hover {
 }
 
 #tabs-nav a {
-	display: block;
-	float: left;
+	/* display: block;
+	float: left; */
+	margin: auto;
 	padding: 5px 10px;
 	background-color: #16a085;
 	color: #FFF;
-	margin-right: 10px;
+	/* margin-right: 10px; */
 	border-radius: 2px;
 }
 

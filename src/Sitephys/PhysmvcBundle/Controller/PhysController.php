@@ -21,8 +21,6 @@ class PhysController extends Controller
   public function homeAction(Request $request)
   {
   	$em = $this->getDoctrine()->getManager();
-    $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
-    $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
     $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
 
@@ -53,6 +51,7 @@ class PhysController extends Controller
       );
     } 
   }
+
 
   public function hometopicAction($idTopic,Request $request)
   {
@@ -124,6 +123,7 @@ class PhysController extends Controller
       );
     }
   } 
+
 
   public function topAction(Request $request)
   {
@@ -201,6 +201,7 @@ class PhysController extends Controller
     } 
   }
 
+
   public function evalAction($idTopic)
   {
     $em = $this->getDoctrine()->getManager();
@@ -266,6 +267,7 @@ class PhysController extends Controller
     } 
   }
 
+
   public function viewAction($id,Request $request)
   {
     $em = $this->getDoctrine()->getManager();
@@ -325,6 +327,7 @@ class PhysController extends Controller
         ));
     } 
   }
+
 
   public function globalAction($idTopic,$intLevel,Request $request)
   {
@@ -413,6 +416,7 @@ class PhysController extends Controller
         ));
     } 
 
+
   public function elementAction($idTopic,$intLevel,$intEltLevel,Request $request)
   {
     $em = $this->getDoctrine()->getManager();
@@ -499,7 +503,7 @@ class PhysController extends Controller
       ->add('content',      TextareaType::class)
       ->add('contentreturn',      TextareaType::class)
       ->add('document',     FileType::class)
-      ->add('published',   CheckboxType::class)
+      ->add('evaluation',     TextareaType::class)
       ->add('updated_at',   DateType::class)
       ->add('web_links', UrlType::class)
       ->add('save',      SubmitType::class)
@@ -533,6 +537,7 @@ class PhysController extends Controller
     ));
   }
 
+
   public function updateAction($id, Request $request)
   {
   	$em = $this->getDoctrine()->getManager();
@@ -563,43 +568,28 @@ class PhysController extends Controller
     } 
   }
 
-  public function deleteAction($id,Request $request)
+
+  public function homeeditAction(Request $request)
   {
     $em = $this->getDoctrine()->getManager();
-    $phys = $em->getRepository('SitephysPhysmvcBundle:Phys')->find($id); // findBy(array('id' => $id));
-    if (!$phys) {
-      throw new NotFoundHttpException("L'élément " . $id . " n'existe pas.");
-    } else {
+    $physAll = $em->getRepository('SitephysPhysmvcBundle:Phys')->findAll();
 
-    $form = $this->get('form.factory')->create();
-
-    if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-      $em->remove($phys);
-      $em->flush();
-      $request->getSession()->getFlashBag()->add('info', "L'élément est supprimé.");
-      return $this->redirectToRoute('sitephys_physmvc_edition');
-    }
-    
-    return $this->render('SitephysPhysmvcBundle:Phys:delete.html.twig', array(
-      'id' => $id,
-          ));
-    }
-  }
-
-
-  public function homeeditAction($id, Request $request)
-  {
-    $em = $this->getDoctrine()->getManager();
-
-    $phys = $em->getRepository('SitephysPhysmvcBundle:Phys')->find($id);
-
-    if (null === $phys) {
+    if (null === $physAll) {
       throw new NotFoundHttpException("L'élément d'id ".$id." n'est pas dans la base.");
     }
-
+    $cptPhys = 0;
+    $physId = [];
+    $physEdit = [];
+    foreach ($physAll as $key => $physPhys) {
+        $physId[$cptPhys] = $physPhys->getId();
+        $physEdit[$cptPhys] = $physPhys->getTitle();
+        $cptPhys ++;
+      }
+    $cptPhys --;
     return $this->render('SitephysPhysmvcBundle:Phys:homeedit.html.twig', array(
-      'id' => $id,
-      'phys' => $phys,
+      'physid' => $physId,
+      'physedit' => $physEdit,
+      'cptedit' => $cptPhys,
     ));
   }
 

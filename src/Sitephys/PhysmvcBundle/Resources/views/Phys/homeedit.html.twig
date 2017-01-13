@@ -1,50 +1,40 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Elément - {{ parent() }}
+  Suggestion d'édition d'élément
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
+  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Suggestion d'édition d'élément</i></h2>
+{% endblock %}
 
-  <h2>Edition de l'élément {{ phys.title }} </h2>
-  <p>
-    Propositions d'édition de cet élément : 
-  </p>
-  <p>
-    <a href="{{ path('sitephys_physmvc_edition_add') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Ajout d'un élément
-    </a>
-  </p>
-  <p>
-    <a href="{{ path('sitephys_physmvc_edition_update', {'id': phys.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Modification de l'élément
-    </a>
-  </p>
-  <p>
-    <a href="{{ path('sitephys_physmvc_edition_delete', {'id': phys.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Suppression d'un élément
-    </a>
-  </p>
-
+{% block sitephysphysmvc_image %}
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
-  <p>
-    <a href="{{ path('sitephys_physmvc_home') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à l'accueil
-    </a>
-    <a href="{{ path('sitephys_physmvc_topic') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Thèmes et domaines
-    </a>
-    <a href="{{ path('sitephys_physmvc_symbolization') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Niveaux et symbolisations
-    </a>
-  </p>
-
+  <div class="well">
+    <h3>Propositions d'édition d'élément</h3>
+    <nav id="tabs-nav" class="clearfix">
+      <a href="#consult">Consultation</a>
+      <a href="#modif">Modification</a>
+      <a href="#add">Ajout</a>
+    </nav>
+    <div id="tabs-container" onload="initTab()">      
+      <article id="consult">
+        {% for idPossible in 0..cptedit %}
+          <a href="{{ path('sitephys_physmvc_phys_view', {'id': physid[idPossible]}) }}">
+          {{ physedit[idPossible] }} </a>
+        {% endfor %}
+      </article>
+      <article id="modif">
+        {% for idPossible in 0..cptedit %}
+          <a href="{{ path('sitephys_physmvc_edition_update', {'id': physid[idPossible]}) }}">
+          {{ physedit[idPossible] }} </a>
+        {% endfor %}
+      </article>
+      <article id="add">
+         {{ render(controller("SitephysPhysmvcBundle:Phys:add")) }}
+      </article>
+    </div>
+  </div>
 {% endblock %}

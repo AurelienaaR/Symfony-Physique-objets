@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +9,7 @@
          Eléments de physique en méthodes et langages objet 
       {% endblock %}
     </title>
+
     {% block stylesheets %}
   {#    {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/reset.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
@@ -19,22 +21,19 @@
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
       {% endstylesheets %}
     {% endblock %}
-    
   </head>
 
   <body>
-    
     <div>
       <ul id="menu_nav">
         <li><a class="button" href="{{ path('sitephys_physmvc_home') }}">Accueil</a></li>
         <li><a class="button" href="{{ path('sitephys_physmvc_topic') }}">Thèmes et domaines</a></li>
         <li><a class="button" href="{{ path('sitephys_physmvc_symbolization') }}">Niveaux et symbolisations</a></li>
-        <li><a class="button" href="{{ path('sitephys_physmvc_edition_add') }}">Suggestions</a></li>
+        <li><a class="button" href="{{ path('sitephys_physmvc_edition') }}">Suggestions</a></li>
         <li><a class="button" href="http://enseignant_postbac.nexgate.ch/index.html">Autre site</a></li>
         <li><a class="button" href="http://enseignant_postbac.nexgate.ch/index.html">Liens</a></li>
       </ul>
     </div>
-
     <div id="header">
       {% block sitephysphysmvc_section %}
         <h3 style = "color:#336861; text-align:center;"><i>Méthodes et langage objet pour la physique</i></h3>
@@ -74,4 +73,5 @@
     {% endblock %}
 
   </body>
+
 </html>

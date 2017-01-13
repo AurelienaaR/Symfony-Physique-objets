@@ -39,15 +39,9 @@ sitephys_physmvc_phys_element:
         _controller: SitephysPhysmvcBundle:Phys:element
 
 sitephys_physmvc_edition:
-    path:      /edition/{id}
+    path:      /edition/
     defaults:
         _controller: SitephysPhysmvcBundle:Phys:homeedit
-
-sitephys_physmvc_edition_insert:
-    path:      /edition/insert/{email}.{format}
-    defaults:
-        _controller: SitephysPhysmvcBundle:Phys:insert
-        format: email
 
 sitephys_physmvc_edition_add:
     path:      /edition/add/
@@ -58,12 +52,5 @@ sitephys_physmvc_edition_update:
     path:      /edition/update/{id}
     defaults:
         _controller: SitephysPhysmvcBundle:Phys:update
-    requirements:
-        id: \d+
-
-sitephys_physmvc_edition_delete:
-    path:      /edition/delete/{id}
-    defaults:
-        _controller: SitephysPhysmvcBundle:Phys:delete
     requirements:
         id: \d+
