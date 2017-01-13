@@ -5,6 +5,16 @@ namespace Sitephys\PhysmvcBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Doctrine\ORM\EntityRepository;
 use Sitephys\PhysmvcBundle\Entity\Phys;
 use Sitephys\PhysmvcBundle\Entity\Domain;
@@ -501,9 +511,8 @@ class PhysController extends Controller
       ->add('author',      EmailType::class)
       ->add('date',      DateType::class)
       ->add('content',      TextareaType::class)
-      ->add('contentreturn',      TextareaType::class)
-      ->add('document',     FileType::class)
       ->add('evaluation',     TextareaType::class)
+      ->add('document',     FileType::class)
       ->add('updated_at',   DateType::class)
       ->add('web_links', UrlType::class)
       ->add('save',      SubmitType::class)

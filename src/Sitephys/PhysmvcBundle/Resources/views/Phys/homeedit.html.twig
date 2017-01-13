@@ -23,17 +23,17 @@
       <article id="consult">
         {% for idPossible in 0..cptedit %}
           <a href="{{ path('sitephys_physmvc_phys_view', {'id': physid[idPossible]}) }}">
-          {{ physedit[idPossible] }} </a>
+          {{ physedit[idPossible] }} </a><br />
         {% endfor %}
       </article>
       <article id="modif">
         {% for idPossible in 0..cptedit %}
           <a href="{{ path('sitephys_physmvc_edition_update', {'id': physid[idPossible]}) }}">
-          {{ physedit[idPossible] }} </a>
+          {{ physedit[idPossible] }} </a><br />
         {% endfor %}
       </article>
       <article id="add">
-         {{ render(controller("SitephysPhysmvcBundle:Phys:add")) }}
+        <a href="{{ path('sitephys_physmvc_edition_add') }}">Ajouter un nouvel élément ?</a><br />
       </article>
     </div>
   </div>
