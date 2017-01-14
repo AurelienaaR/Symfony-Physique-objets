@@ -1,24 +1,21 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Ajout d'élément - {{ parent() }}
+  Ajout d'élément 
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
 
-  <h2>Homepage de Edition add</h2>
-
+  <h3>Ajout d'élément</h3>
+  <h3>Domaine : {{ domaintitle }}</h3>
+  <h3>Niveau : {{ levelcontent }}</h3>
+  <br />
   {{ include("SitephysPhysmvcBundle:Phys:form.html.twig") }}
 
   <p>
-    Déjà existant.
-  </p>
-{#
-  <p>
     <a href="{{ path('sitephys_physmvc_edition') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à l'élément
+      Retour à l'accueil de l'édition
     </a>
   </p>
-#}
+
 {% endblock %}

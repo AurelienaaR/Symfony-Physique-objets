@@ -21,19 +21,23 @@
     </nav>
     <div id="tabs-container" onload="initTab()">      
       <article id="consult">
-        {% for idPossible in 0..cptedit %}
-          <a href="{{ path('sitephys_physmvc_phys_view', {'id': physid[idPossible]}) }}">
-          {{ physedit[idPossible] }} </a><br />
+        {% for idPosPhys in 0..cptphys %}
+          <a href="{{ path('sitephys_physmvc_phys_view', {'id': physid[idPosPhys]}) }}">
+          {{ physedit[idPosPhys] }} </a><br />
         {% endfor %}
       </article>
       <article id="modif">
-        {% for idPossible in 0..cptedit %}
-          <a href="{{ path('sitephys_physmvc_edition_update', {'id': physid[idPossible]}) }}">
-          {{ physedit[idPossible] }} </a><br />
+        {% for idPosPhys in 0..cptphys %}
+          <a href="{{ path('sitephys_physmvc_edition_update', {'id': physid[idPosPhys]}) }}">
+          {{ physedit[idPosPhys] }} </a><br />
         {% endfor %}
       </article>
       <article id="add">
-        <a href="{{ path('sitephys_physmvc_edition_add') }}">Ajouter un nouvel élément ?</a><br />
+        {% for idPosDomain in 0..cptdomain %}
+          {% for idPosLevel in 0..cptlevel %}
+            <a href="{{ path('sitephys_physmvc_edition_add', {'idDomain': domainid[idPosDomain], 'idLevel' : levelid[idPosLevel]}) }}"> Domaine : {{ domainedit[idPosDomain] }} - Niveau : {{ leveledit[idPosLevel] }} </a><br />
+          {% endfor %}
+        {% endfor %}
       </article>
     </div>
   </div>

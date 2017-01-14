@@ -44,7 +44,7 @@ sitephys_physmvc_edition:
         _controller: SitephysPhysmvcBundle:Phys:homeedit
 
 sitephys_physmvc_edition_add:
-    path:      /edition/add/
+    path:      /edition/add/{idDomain}/{idLevel}
     defaults:
         _controller: SitephysPhysmvcBundle:Phys:add
 
