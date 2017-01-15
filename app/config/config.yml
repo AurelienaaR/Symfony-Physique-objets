@@ -68,7 +68,12 @@ swiftmailer:
     spool:     { type: memory }
 
 # app/config/config.yml
+twig:
+    form:
+        resources: ['bootstrap_3_layout.html.twig']
+        # resources: ['bootstrap_3_horizontal_layout.html.twig']
 
+# app/config/config.yml
 assetic:
   debug:          '%kernel.debug%'
   use_controller: '%kernel.debug%'

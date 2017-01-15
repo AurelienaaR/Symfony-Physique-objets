@@ -4,12 +4,22 @@
   Modifier l'élément {{ physupdatetitle }}
 {% endblock %}
 
+{% block sitephysphysmvc_section %}
+  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Suggestion de modification d'élément</i></h2>
+{% endblock %}
+
 {% block sitephysphysmvc_body %}
 
-  <h2>Modifier l'élément {{ physupdatetitle }} du domaine {{ physupdatedomain }} de thème {{ physupdatetopic }} de niveau de base {{ physupdateleveltab[0] }} et de niveau de précision {{ physupdateleveltab[1] }}, soit : {{ physupdatelevelcontent }}.</h2>
+  <h3 style = "color:#FFF; text-align:center; margin:10px;"><i>Modifier l'élément {{ physupdatetitle }} du domaine {{ physupdatedomain }} de thème {{ physupdatetopic }} de niveau de base {{ physupdateleveltab[0] }} et de niveau de précision {{ physupdateleveltab[1] }}, soit : {{ physupdatelevelcontent }}.</h3>
 
 <br />
 
   {{ include("SitephysPhysmvcBundle:Phys:formupdate.html.twig") }}
+
+  <p>
+    <a href="{{ path('sitephys_physmvc_edition') }}" class="btn btn-default">
+      Accueil de l'édition
+    </a>
+  </p>
 
 {% endblock %}

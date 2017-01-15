@@ -4,6 +4,24 @@
   Ajout d'élément 
 {% endblock %}
 
+{#
+{% block stylesheets %}
+  {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/bootstrap.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
+  {% endstylesheets %}
+  {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/style.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+  {% endstylesheets %}
+  {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/main.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+  {% endstylesheets %}
+{% endblock %}
+#}
+
+{% block sitephysphysmvc_section %}
+  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Suggestion d'ajout d'élément</i></h2>
+{% endblock %}
+
 {% block sitephysphysmvc_body %}
 
   <h3>Ajout d'élément</h3>
@@ -14,8 +32,16 @@
 
   <p>
     <a href="{{ path('sitephys_physmvc_edition') }}" class="btn btn-default">
-      Retour à l'accueil de l'édition
+      Accueil de l'édition
     </a>
   </p>
 
 {% endblock %}
+
+{#
+{% block javascripts %}
+  {% javascripts 'bundles/sitephysphysmvc/js/bootstrap.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+{% endblock %}
+#}
