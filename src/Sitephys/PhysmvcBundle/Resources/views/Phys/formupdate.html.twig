@@ -1,92 +1,47 @@
-<h3>Formulaire d'éléments</h3>
+<h3>Formulaire de modification de l'élément</h3>
 
 <div class="well">
 
-  {{ form_start(formtopic, {'attr': {'class': 'form-horizontal'}}) }}
+  {{ form_start(formphysupdate, {'attr': {'class': 'form-horizontal'}}) }}
 
   {# Les erreurs générales du formulaire. #}
-  {{ form_errors(formtopic) }}
+  {{ form_errors(formphysupdate) }}
 
   {# Génération manuelle et éclatée : #}
   <div class="form-group">
     {# Génération du label. #}
-    {{ form_label(formtopic.title, "Thème de l'élément", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+    {{ form_label(formphysupdate.title, "Modification de l'élément", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
 
     {# Affichage des erreurs pour ce champ précis. #}
-    {{ form_errors(formtopic.title) }}
+    {{ form_errors(formphysupdate.title) }}
 
     <div class="col-sm-10">
       {# Génération de l'input. #}
-      {{ form_widget(formtopic.title, {'attr': {'class': 'form-control'}}) }}
+      {{ form_widget(formphysupdate.title, {'attr': {'class': 'form-control'}}) }}
     </div>
   </div>
 
   {# Idem pour un autre champ. #}
   <div class="form-group">
-    {{ form_label(formtopic.content, "Contenu du thème", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-    {{ form_errors(formtopic.title) }}
+    {{ form_label(formphysupdate.content, "Contenu de l'élément", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+    {{ form_errors(formphysupdate.title) }}
     <div class="col-sm-10">
-      {{ form_widget(formtopic.content, {'attr': {'class': 'form-control'}}) }}
+      {{ form_widget(formphysupdate.content, {'attr': {'class': 'form-control'}}) }}
     </div>
   </div>
 
+  {{ form_row(formphysupdate.author) }}
+
   {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-  {{ form_widget(formtopic.save, {'attr': {'class': 'btn btn-primary'}}) }}
+  {{ form_widget(formphysupdate.save, {'attr': {'class': 'btn btn-primary'}}) }}
 
   {# Génération automatique des champs pas encore écrits.
      Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
      et tous les champs cachés (type « hidden »). #}
-  {{ form_rest(formtopic) }}
+  {{ form_rest(formphysupdate) }}
 
   {# Fermeture de la balise <form> du formulaire HTML #}
-  {{ form_end(formtopic) }}
-
-</div>
-
-<br />
-
-<div class="well">
-
-  {{ form_start(formphys, {'attr': {'class': 'form-horizontal'}}) }}
-
-  {# Les erreurs générales du formulaire. #}
-  {{ form_errors(formphys) }}
-
-  {# Génération manuelle et éclatée : #}
-  <div class="form-group">
-    {# Génération du label. #}
-    {{ form_label(formphys.title, "Thème de l'élément", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-
-    {# Affichage des erreurs pour ce champ précis. #}
-    {{ form_errors(formphys.title) }}
-
-    <div class="col-sm-10">
-      {# Génération de l'input. #}
-      {{ form_widget(formphys.title, {'attr': {'class': 'form-control'}}) }}
-    </div>
-  </div>
-
-  {# Idem pour un autre champ. #}
-  <div class="form-group">
-    {{ form_label(formphys.content, "Contenu de l'élément", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
-    {{ form_errors(formphys.title) }}
-    <div class="col-sm-10">
-      {{ form_widget(formphys.content, {'attr': {'class': 'form-control'}}) }}
-    </div>
-  </div>
-
-  {{ form_row(formphys.author) }}
-
-  {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-  {{ form_widget(formphys.save, {'attr': {'class': 'btn btn-primary'}}) }}
-
-  {# Génération automatique des champs pas encore écrits.
-     Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
-     et tous les champs cachés (type « hidden »). #}
-  {{ form_rest(formphys) }}
-
-  {# Fermeture de la balise <form> du formulaire HTML #}
-  {{ form_end(formphys) }}
+  {{ form_end(formphysupdate) }}
 
 </div>
 
@@ -94,8 +49,6 @@
 {# On charge la bibliothèque jQuery. Ici, depuis le CDN google
    mais si vous l'avez en local, changez simplement l'adresse. #}
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-#}
-<script src="bundles/sitephysphysmvc/js/jquery-3.1.1.min.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function() {

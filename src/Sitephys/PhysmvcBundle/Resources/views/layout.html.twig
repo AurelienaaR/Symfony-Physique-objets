@@ -11,9 +11,9 @@
     </title>
 
     {% block stylesheets %}
-  {#    {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/reset.css' %}
+      {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/reset.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-      {% endstylesheets %}  #}
+      {% endstylesheets %}  
       {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/style.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
       {% endstylesheets %}

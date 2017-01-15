@@ -643,6 +643,20 @@ class PhysController extends Controller
       $physupdatedomainContent = $physupdatedomainObject->getContent();
       $photo = "photoTopic";
 
+    $formPhysUpdate = new Phys();
+    $formPhysBuilderUpdate = $this->get('form.factory')->createBuilder(PhysType::class, $formPhysUpdate);
+    $formPhysBuilderUpdate
+      ->add('author',      EmailType::class)
+      ->add('date',      DateType::class)
+      ->add('content',      TextareaType::class)
+      ->add('evaluation',     TextareaType::class)
+      ->add('document',     FileType::class)
+      ->add('updated_at',   DateType::class)
+      ->add('web_links', UrlType::class)
+      ->add('save',      SubmitType::class)
+    ;
+    $formPhysUpdate = $formPhysBuilderUpdate->getForm();
+
       return $this->render('SitephysPhysmvcBundle:Phys:update.html.twig', array(
         'id' => $id,
         'physupdate' => $physupdate,
@@ -652,6 +666,7 @@ class PhysController extends Controller
         'physupdatelevelcontent' => $physupdatelevelContent,
         'physupdatedomain' => $physupdatedomainContent,
         'physupdatetopic' => $physupdatetopicContent,
+        'formphysupdate' => $formPhysUpdate->createView(),
         ));
     } 
   }
