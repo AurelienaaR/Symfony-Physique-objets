@@ -32,6 +32,7 @@ class PhysController extends Controller
   public function homeAction(Request $request)
   {
   	$em = $this->getDoctrine()->getManager();
+    $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys');
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
     $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
 
@@ -39,27 +40,72 @@ class PhysController extends Controller
     $domainAll = $domainRep->findAll();
 
       if (!$topicAll OR !$domainAll) {
-      throw new NotFoundHttpException('Aucun élément dans la base.');
-    } else {
-      foreach ($domainAll as $ke => $physDom) {
-        $physDomId = $physDom->getId();
-        $physDomContent = $physDom->getContent();
-        $tabDom[] = [$physDomId, $physDomContent];
-        $physTopObject = $topicRep->findBy(
-        	array(
-        		'domainId' => $physDomId,
-        	));
-        foreach ($physTopObject as $key => $physTopi) {
-          $idTopicElt = $physTopi->getId();
-        	$physTopiContent = $physTopi->getContent();
-          $tabTopDomContent[$physDomId][] = [$idTopicElt, $physTopiContent];
+        throw new NotFoundHttpException('Aucun thème dans la base.');
+      } else {
+        foreach ($domainAll as $ke => $physDom) {
+          $physDomId = $physDom->getId();
+          $physDomContent = $physDom->getContent();
+          $tabDom[] = [$physDomId, $physDomContent];
+          $physTopObject = $topicRep->findBy(
+            array(
+              'domainId' => $physDomId,
+            ));
+          foreach ($physTopObject as $key => $physTopi) {
+            $idTopicElt = $physTopi->getId();
+            $physTopiContent = $physTopi->getContent();
+            $tabTopDomContent[$physDomId][] = [$idTopicElt, $physTopiContent];
+          }
         }
+
+        $lastTwentyElt = $physRep->findBy(
+          array(), 
+          array('date' => 'desc'), 
+          20, 
+          0 
+          );
+        if (!$lastTwentyElt) {
+          throw new NotFoundHttpException('Aucun élément dans la base.');
+        } else {
+          $cptE = 0;
+          $idTwentyLastElt = [];
+          $titleElt = [];
+          foreach ($lastTwentyElt as $keyElt => $lastTElt) {
+            $idtw = $lastTElt->getId();
+            $idTwentyLastElt[$cptE] = $idtw;
+            $titleElt[$cptE] = $lastTElt->getTitle();
+            $cptE ++;
+          }
+          $cptE --;
+
+          $cptT = 0;
+          $lastTenTop = $topicRep->findBy(
+            array(), 
+            array('date' => 'desc'), 
+            10, 
+            0 
+            );
+          $idTenLastTop = [];
+          $titleTop = [];
+          foreach ($lastTenTop as $keyElt => $lastTTop) {
+            $idtt = $lastTTop->getId();
+            $idTenLastTop[$cptT] = $idtt;
+            $titleTop[$cptT] = $lastTTop->getTitle();
+            $cptT ++;
+          }
+          $cptT --;
+
+          return $this->render('SitephysPhysmvcBundle:Phys:home.html.twig', array(
+            'tabdom' => $tabDom,
+            'tabtopperdom' => $tabTopDomContent,
+            'idtwentylastelt' => $idTwentyLastElt,
+            'titleelt' => $titleElt,
+            'cpte' => $cptE,
+            'idtenlasttop' => $idTenLastTop,
+            'titletop' => $titleTop,
+            'cptt' => $cptT,
+          )
+        );
       }
-      return $this->render('SitephysPhysmvcBundle:Phys:home.html.twig', array(
-        'tabdom' => $tabDom,
-        'tabtopperdom' => $tabTopDomContent,
-        )
-      );
     } 
   }
 

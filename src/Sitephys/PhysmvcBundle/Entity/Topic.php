@@ -35,6 +35,13 @@ class Topic
   private $title;
 
   /**
+   * @var \DateTime
+   *
+   * @ORM\Column(name="date", type="datetime")
+   */
+  private $date;
+
+  /**
    * @var text
    *
    * @ORM\Column(name="content", type="text", nullable=true)
@@ -84,6 +91,22 @@ class Topic
   public function getTitle()
   {
     return $this->title;
+  }
+
+  /**
+   * @param \DateTime $date
+   */
+  public function setDate($date)
+  {
+    $this->date = $date;
+  }
+
+  /**
+   * @return \DateTime
+   */
+  public function getDate()
+  {
+    return $this->date;
   }
 
   /**

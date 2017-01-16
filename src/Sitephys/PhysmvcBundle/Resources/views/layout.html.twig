@@ -11,18 +11,17 @@
     </title>
 
     {% block stylesheets %}
-  {#     {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/reset.css' %}
+      {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/reset.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
       {% endstylesheets %}  
-  #}
-      {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/bootstrap.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-      {% endstylesheets %}
       {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/style.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
       {% endstylesheets %}
       {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/main.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+      {% endstylesheets %}
+      {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/bootstrap.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
       {% endstylesheets %}
     {% endblock %}
   </head>
@@ -68,10 +67,10 @@
     </footer>
 
     {% block javascripts %}
-      {% javascripts 'bundles/sitephysphysmvc/js/bootstrap.js' %}
+      {% javascripts 'bundles/sitephysphysmvc/js/jquery-3.1.1.min.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
       {% endjavascripts %}
-      {% javascripts 'bundles/sitephysphysmvc/js/jquery-3.1.1.min.js' %}
+      {% javascripts 'bundles/sitephysphysmvc/js/bootstrap.js' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
       {% endjavascripts %}
       {% javascripts 'bundles/sitephysphysmvc/js/main.js' %}
