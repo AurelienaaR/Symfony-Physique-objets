@@ -18,13 +18,13 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <h2>Liste des thèmes enregistrés pour chaque domaine</h2>
+    <h2><i class="fa fa-gift"></i>Liste des thèmes enregistrés pour chaque domaine</h2>
     <nav id="tabs-nav" class="clearfix">
       {% for tabdo in tabdom %}
-        <a href="{{ "#dom" ~ tabdo[0] }}"> {{ tabdo[1] }} </a>
+        <a href="{{ "#dom" ~ tabdo[0] }}">{{ tabdo[1] }}</a><span> </span>
       {% endfor %}
-      <a href="{{ "#lasttentop" }}"> 10 derniers thèmes </a>
-      <a href="{{ "#lasttwentyelt" }}"> 20 derniers éléments </a>
+      <a href="{{ "#lasttentop" }}">10 derniers thèmes</a>
+      <a href="{{ "#lasttwentyelt" }}">20 derniers éléments</a>
     </nav>
     <div id="tabs-container" onload="initTab()">
       {% for tabd in tabdom %}

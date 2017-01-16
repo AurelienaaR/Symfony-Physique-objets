@@ -9,6 +9,9 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
+<div class="containerthome">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/fond-cosmo.jpg') }}" class="homephoto" alt="Image de élément" />
+  </div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
@@ -30,8 +33,7 @@
           <br />Thème : {{ topiccontent }} <br />
         </article>
         <article id="niveau">
-          {{ phystitle }} 
-          <br />Niveau : {{ physlevel }}, soit : 
+          {{ phystitle }}  
           <br />Niveau de base <i>(global)</i> : {{ physleveltab[0] }} 
           <br />Niveau de précision <i>(élément)</i> : {{ physleveltab[1] }} 
           <br />Description du niveau : {{ levelcontent }} <br />

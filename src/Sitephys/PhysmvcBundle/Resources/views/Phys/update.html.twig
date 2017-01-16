@@ -8,6 +8,12 @@
   <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Suggestion de modification d'élément</i></h2>
 {% endblock %}
 
+{% block sitephysphysmvc_image %}
+<div class="containerthome">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/fond-cosmo.jpg') }}" class="homephoto" alt="Image de Suggestion - Modification" />
+  </div>
+{% endblock %}
+
 {% block sitephysphysmvc_body %}
 
   <h3 style = "color:#FFF; text-align:center; margin:10px;"><i>Modifier l'élément {{ physupdatetitle }} du domaine {{ physupdatedomain }} de thème {{ physupdatetopic }} de niveau de base {{ physupdateleveltab[0] }} et de niveau de précision {{ physupdateleveltab[1] }}, soit : {{ physupdatelevelcontent }}.</h3>

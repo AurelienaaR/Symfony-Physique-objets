@@ -4,19 +4,11 @@
   Ajout d'élément 
 {% endblock %}
 
-{#
-{% block stylesheets %}
-  {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/bootstrap.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
-  {% endstylesheets %}
-  {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/style.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-  {% endstylesheets %}
-  {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/main.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-  {% endstylesheets %}
+{% block sitephysphysmvc_image %}
+  <div class="containerthome">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcelement.png') }}" class="homephoto" alt="Image de Suggestion - Ajout" />
+  </div>
 {% endblock %}
-#}
 
 {% block sitephysphysmvc_section %}
   <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Suggestion d'ajout d'élément</i></h2>

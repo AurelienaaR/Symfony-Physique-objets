@@ -3,7 +3,6 @@
 namespace Sitephys\PhysmvcBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -29,7 +28,7 @@ use Doctrine\ORM\QueryBuilder;
 class PhysController extends Controller
 {
 
-  public function homeAction(Request $request)
+  public function homeAction()
   {
   	$em = $this->getDoctrine()->getManager();
     $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys');
@@ -110,7 +109,7 @@ class PhysController extends Controller
   }
 
 
-  public function hometopicAction($idTopic,Request $request)
+  public function hometopicAction($idTopic)
   {
     $em = $this->getDoctrine()->getManager();
     $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
@@ -182,7 +181,7 @@ class PhysController extends Controller
   } 
 
 
-  public function topAction(Request $request)
+  public function topAction()
   {
     $em = $this->getDoctrine()->getManager();
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
@@ -219,7 +218,7 @@ class PhysController extends Controller
   } 
 
 
-  public function symAction(Request $request)
+  public function symAction()
   {
     $em = $this->getDoctrine()->getManager();
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
@@ -325,7 +324,7 @@ class PhysController extends Controller
   }
 
 
-  public function viewAction($id,Request $request)
+  public function viewAction($id)
   {
     $em = $this->getDoctrine()->getManager();
     $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
@@ -386,7 +385,7 @@ class PhysController extends Controller
   }
 
 
-  public function globalAction($idTopic,$intLevel,Request $request)
+  public function globalAction($idTopic,$intLevel)
   {
     $em = $this->getDoctrine()->getManager();
     $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
@@ -474,7 +473,7 @@ class PhysController extends Controller
     } 
 
 
-  public function elementAction($idTopic,$intLevel,$intEltLevel,Request $request)
+  public function elementAction($idTopic,$intLevel,$intEltLevel)
   {
     $em = $this->getDoctrine()->getManager();
     $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
@@ -544,7 +543,7 @@ class PhysController extends Controller
     } 
 
 
-  public function homeeditAction(Request $request)
+  public function homeeditAction()
   {
     $em = $this->getDoctrine()->getManager();
     $physAll = $em->getRepository('SitephysPhysmvcBundle:Phys')->findAll();
@@ -585,7 +584,9 @@ class PhysController extends Controller
     $levelEdit = [];
     foreach ($levelAll as $key => $levelLevel) {
         $levelId[$cptLevel] = $levelLevel->getId();
-        $levelEdit[$cptLevel] = $levelLevel->getContent();
+        $levBase = $levelLevel->getLevelBase();
+        $levSub = $levelLevel->getLevelSub();
+        $levelEdit[$cptLevel] = $levBase . " - " . $levSub;
         $cptLevel ++;
       }
     $cptLevel --;
@@ -604,7 +605,7 @@ class PhysController extends Controller
   }
 
 
-  public function addAction($idDomain,$idLevel,Request $request)
+  public function addAction($idDomain,$idLevel)
   {
     $em = $this->getDoctrine()->getManager();
     $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
@@ -646,7 +647,7 @@ class PhysController extends Controller
   }
 
 
-  public function updateAction($id, Request $request)
+  public function updateAction($id)
   {
   	$em = $this->getDoctrine()->getManager();
     $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys');

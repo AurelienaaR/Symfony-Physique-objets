@@ -58,7 +58,7 @@ class Level
    */
   public function setLevelBase($levelBase)
   {
-    $this->base = $levelBase;
+    $this->levelBase = $levelBase;
   }
 
   /**
@@ -66,7 +66,7 @@ class Level
    */
   public function getLevelBase()
   {
-    return $this->base;
+    return $this->levelBase;
   }
 
   /**
@@ -74,7 +74,7 @@ class Level
    */
   public function setLevelSub($levelSub)
   {
-    $this->sub = $levelSub;
+    $this->levelSub = $levelSub;
   }
 
   /**
@@ -82,7 +82,7 @@ class Level
    */
   public function getLevelSub()
   {
-    return $this->sub;
+    return $this->levelSub;
   }
 
   /**

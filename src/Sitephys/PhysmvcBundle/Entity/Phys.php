@@ -116,7 +116,7 @@ class Phys
    */
   public function setTopicId($topicId)
   {
-    $this->topic_id = $topicId;
+    $this->topicId = $topicId;
   }
 
   /**
@@ -260,7 +260,7 @@ class Phys
    */
   public function setUpdatedAt(\Datetime $updatedAt = null)
   {
-      $this->updated_at = $updatedAt;
+      $this->updatedAt = $updatedAt;
   }
 
   /**
@@ -276,7 +276,7 @@ class Phys
    */
   public function setWebLinks($webLinks)
   {
-    $this->web_links = $webLinks;
+    $this->webLinks = $webLinks;
   }
 
   /**

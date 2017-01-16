@@ -36,5 +36,7 @@
     {% endfor %}
   </div>
   <br />
-  <a href="{{ path('sitephys_physmvc_evaluation', {'idTopic': idtop}) }}"><div> Evaluations du thème {{ toptitle }} </div></a>
+  <div class="button">
+    <a href="{{ path('sitephys_physmvc_evaluation', {'idTopic': idtop}) }}"><h3 style = "color:#0CF; text-align:center; margin:10px;">Evaluations du thème {{ toptitle }}</h3></a>
+  </div>
 {% endblock %}
