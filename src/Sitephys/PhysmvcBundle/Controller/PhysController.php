@@ -362,6 +362,7 @@ class PhysController extends Controller
       $physTopicId = $phys->getTopicId();
       $topicObject = $topicRep->find($physTopicId);
       $topicContent = $topicObject->getContent();
+      $topicMode = $topicObject->getMode();
       $topicDomainId = $topicObject->getDomainId();
       $domainObject = $domainRep->find($topicDomainId);
       $domainContent = $domainObject->getContent();
@@ -377,6 +378,7 @@ class PhysController extends Controller
         'physleveltab' => $physLevelTab,
         'domaincontent' => $domainContent,
         'topiccontent' => $topicContent,
+        'topicmode' => $topicMode,
         'levelcontent' => $levelContent,
         'symbolizationcontent' => $symbolizationContent,
         'photo' => $photo,
@@ -520,6 +522,7 @@ class PhysController extends Controller
         $physTopicId = $idTopic;
         $physTopic = $topicRep->find($physTopicId);
         $physTopicContent = $physTopic->getContent();
+        $physTopicMode = $physTopic->getMode();
         $physDomainId = $physTopic->getDomainId();
         $physDomain = $domainRep->find($physDomainId);
         $physDomainContent = $physDomain->getContent();
@@ -536,6 +539,7 @@ class PhysController extends Controller
         'physcontent' => $physContent,
         'domaincontent' => $physDomainContent,
         'topiccontent' => $physTopicContent,
+        'topicmode' => $physTopicMode,
         'levelcontent' => $physLevelContent,
         'symbolizationcontent' => $symbolizationContent,
         'physevaluation' => $physEvaluation,

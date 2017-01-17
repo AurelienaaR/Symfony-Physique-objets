@@ -26,7 +26,7 @@ body {
 
 #containerimghome {
     width: 90%;
-    height: 470px;
+    height: 90%; /* 470px; */
     padding: 2%;
     margin: auto;
     display: block;
@@ -36,9 +36,9 @@ body {
 
 #containerimghometopic {
     width: 90%;
-    height: 470px;
-    padding-top: 2%;
-    padding-left: 8%;
+    height: 470px; /* 90%; */
+    padding: 2%;
+    /* padding-left: 8%; */
     margin: auto;
     display: block;
     box-sizing: border-box;
@@ -47,7 +47,7 @@ body {
 
 #containerimgglobal {
     width: 90%;
-    height: 470px;
+    height: 90%; /* 470px; */
     padding: 2%;
     margin: auto;
     display: block;
@@ -75,7 +75,7 @@ body {
 
 #imgcontainerglobal {
     width: 90%;
-    height: 240px;
+    height: 50%; /* 240px; */
     padding-top: 2%;
     margin: auto;
     display: block;
@@ -94,6 +94,15 @@ body {
 
 .containerthome {
     width: 70%;
+    padding: 2%;
+    margin: auto;
+    display: block;
+    box-sizing: border-box; 
+    background-color: rgba(95,130,145,0.20);
+}
+
+.containertedit {
+    width: 50%;
     padding: 2%;
     margin: auto;
     display: block;
@@ -260,11 +269,18 @@ footer {
 
 .well {
 	width: 70%;
-    display: block;
-    clear:both;
     margin: auto;
+    display: block;
     box-sizing: border-box;
-    text-align: center;
+    text-align:center;
+    background-color: rgba(175,160,230,0.20);
+}
+
+.wellform {
+    width: 70%;
+    margin: auto;
+    display: block;
+    box-sizing: border-box;
     background-color: rgba(175,160,230,0.20);
 }
 

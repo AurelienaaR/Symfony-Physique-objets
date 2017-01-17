@@ -28,6 +28,13 @@ class Topic
   private $domainId;
 
   /**
+   * @var int
+   *
+   * @ORM\Column(name="mode", type="integer")
+   */
+  private $mode;
+
+  /**
    * @var string
    *
    * @ORM\Column(name="title", type="string", nullable=false)
@@ -75,6 +82,22 @@ class Topic
   public function getDomainId()
   {
     return $this->domainId;
+  }
+
+  /**
+   * @param int $mode
+   */
+  public function setMode($mode)
+  {
+    $this->mode = $mode;
+  }
+
+  /**
+   * @return int
+   */
+  public function getMode()
+  {
+    return $this->mode;
   }
 
   /**
