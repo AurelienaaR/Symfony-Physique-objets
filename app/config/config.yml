@@ -69,9 +69,8 @@ swiftmailer:
 
 # app/config/config.yml
 twig:
-    form:
-        resources: ['bootstrap_3_layout.html.twig']
-        # resources: ['bootstrap_3_horizontal_layout.html.twig']
+    form_themes:
+      - 'bootstrap_3_horizontal_layout.html.twig'
 
 # app/config/config.yml
 assetic:

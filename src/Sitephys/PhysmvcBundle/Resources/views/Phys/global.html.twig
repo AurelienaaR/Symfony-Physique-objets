@@ -15,12 +15,12 @@
       {% if (tabboolelt[jb]) %}
         <div>
           <a href="{{ path('sitephys_physmvc_phys_element', {'idTopic': idtop, 'intLevel': intlevel, 'intEltLevel': jb}) }}">
-            <img align="left" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png') }}" alt="Schéma de l'élément du modèle global" margin: "0" padding: "0" width="30%" height="105px" onmouseover="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimplesombre' ~ jb ~ '.png' }}'" onmouseout="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png' }}'" />
+            <img align="left" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png') }}" alt="Schéma de l'élément du modèle global" margin: "0" padding: "0" width="30%" height="140px" onmouseover="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimplesombre' ~ jb ~ '.png' }}'" onmouseout="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcsimple' ~ jb ~ '.png' }}'" />
           </a>
         </div>
       {% else %}
         <div>
-          <img align="left" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcsimpleclair' ~ jb ~ '.png') }}" margin: "0" padding: "0" width="30%" height="105px" alt="Schéma élément non enregistré" />
+          <img align="left" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcsimpleclair' ~ jb ~ '.png') }}" margin: "0" padding: "0" width="30%" height="140px" alt="Schéma élément non enregistré" />
         </div>
       {% endif %}
     {% endfor %}
