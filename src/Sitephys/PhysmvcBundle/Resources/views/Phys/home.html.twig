@@ -35,13 +35,13 @@
         </article>
       {% endfor %}
       <article id="{{ "lasttentop" }}">
-        {% for it in 0..cptt %}
-          <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': idtenlasttop[it]}) }}"><div> {{ titletop[it] }} </div></a>
+        {% for it in idtenlasttop %}
+          <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': it}) }}"><div> {{ titletop[it] }} </div></a>
         {% endfor %}
       </article>
       <article id="{{ "lasttwentyelt" }}">
-        {% for ie in 0..cpte %}
-          <a href="{{ path('sitephys_physmvc_phys_view', {'id': idtwentylastelt[ie] }) }}"><div> {{ titleelt[ie] }} </div></a>
+        {% for ie in idtwentylastelt %}
+          <a href="{{ path('sitephys_physmvc_phys_view', {'id': ie }) }}"><div> {{ titleelt[ie] }} </div></a>
         {% endfor %}
       </article>
     </div>

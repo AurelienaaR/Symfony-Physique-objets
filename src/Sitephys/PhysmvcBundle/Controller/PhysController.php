@@ -56,6 +56,20 @@ class PhysController extends Controller
           }
         }
 
+        $lastTenTop = $topicRep->findBy(
+          array(), 
+          array('date' => 'desc'), 
+          10, 
+          0 
+          );
+        $idTenLastTop = [];
+        $titleTop = [];
+        foreach ($lastTenTop as $keyElt => $lastTTop) {
+          $idtt = $lastTTop->getId();
+          $idTenLastTop[] = $idtt;
+          $titleTop[$idtt] = $lastTTop->getTitle();
+        }
+
         $lastTwentyElt = $physRep->findBy(
           array(), 
           array('date' => 'desc'), 
@@ -65,43 +79,21 @@ class PhysController extends Controller
         if (!$lastTwentyElt) {
           throw new NotFoundHttpException('Aucun élément dans la base.');
         } else {
-          $cptE = 0;
           $idTwentyLastElt = [];
           $titleElt = [];
           foreach ($lastTwentyElt as $keyElt => $lastTElt) {
             $idtw = $lastTElt->getId();
-            $idTwentyLastElt[$cptE] = $idtw;
-            $titleElt[$cptE] = $lastTElt->getTitle();
-            $cptE ++;
+            $idTwentyLastElt[] = $idtw;
+            $titleElt[$idtw] = $lastTElt->getTitle();
           }
-          $cptE --;
-
-          $cptT = 0;
-          $lastTenTop = $topicRep->findBy(
-            array(), 
-            array('date' => 'desc'), 
-            10, 
-            0 
-            );
-          $idTenLastTop = [];
-          $titleTop = [];
-          foreach ($lastTenTop as $keyElt => $lastTTop) {
-            $idtt = $lastTTop->getId();
-            $idTenLastTop[$cptT] = $idtt;
-            $titleTop[$cptT] = $lastTTop->getTitle();
-            $cptT ++;
-          }
-          $cptT --;
 
           return $this->render('SitephysPhysmvcBundle:Phys:home.html.twig', array(
             'tabdom' => $tabDom,
             'tabtopperdom' => $tabTopDomContent,
-            'idtwentylastelt' => $idTwentyLastElt,
-            'titleelt' => $titleElt,
-            'cpte' => $cptE,
             'idtenlasttop' => $idTenLastTop,
             'titletop' => $titleTop,
-            'cptt' => $cptT,
+            'idtwentylastelt' => $idTwentyLastElt,
+            'titleelt' => $titleElt,
           )
         );
       }
@@ -263,63 +255,71 @@ class PhysController extends Controller
     $em = $this->getDoctrine()->getManager();
     $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys');
     $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
+    $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
 
-    $cptEval = 0;
-    for ($ibool=1; $ibool <= 6 ; $ibool++) { 
-    	for ($jbool=1; $jbool <= 6 ; $jbool++) { 
-    		$tabBool[$ibool][$jbool] = false;
-    	}
-    }
-    $physEval = $physRep->findBy(
-    	array('topicId' => $idTopic), 
-        array(),
-        50,
-        0
-    	);
-
-    foreach ($physEval as $keyEv => $physEv) {
-    	$idEval = $physEv->getId();
-    	$eva = $physEv->getEvaluation();
-    	if ($eva) {
-    		$levEv = $physEv->getLevel();
-    		if ($levEv) {
-    			$levTab = unserialize($levEv);
-    			$levb = $levTab[0];
-    			$levs = $levTab[1];
-    			$levObject = $levelRep->findBy(
-    				array (
-    					'levelBase' => $levb,
-    					'levelSub' => $levs,
-    					));
-    			$levContent = $levObject[0]->getContent();
-    			$levId = $levObject[0]->getId();
-    			$symObject = $symbolizationRep->findBy(
-    				array (
-    					'levelkey' => $levId
-    					)
-    				);
-    			$tabSym[$levb][$levs] = $symObject[0]->getContent();
-    			$tabBool[$levb][$levs] = true;
-    			$tabEval[$levb][$levs] = $eva;
-    			$tabLevel[$levb][$levs] = $levContent;
-    			$cptEval ++;
-    		}
-    	}
-    }
-
-    if ($cptEval == 0) {
-      throw new NotFoundHttpException('Base sans évaluation.');
+    $topEvalObject = $topicRep->find($idTopic);
+    if (!$topEvalObject) {
+      throw new NotFoundHttpException('Base sans ce thème.');
     } else {
-      $dataEval = array("Exp. in", "Theory", "Exp. out", "Return Exp. in", "Return Theory", "Return Exp. out");
-      $cptEval --;
+      $topTitle = $topEvalObject->getTitle();
+      $cptEval = 0;
+      for ($ibool=1; $ibool <= 6 ; $ibool++) { 
+        for ($jbool=1; $jbool <= 6 ; $jbool++) { 
+          $tabBool[$ibool][$jbool] = false;
+        }
+      }
+      $physEval = $physRep->findBy(
+        array(
+          'topicId' => $idTopic
+        ) 
+      );
 
-      return $this->render('SitephysPhysmvcBundle:Phys:eval.html.twig', array(
-        'tabbool' => $tabBool,
-        'tablevel' => $tabLevel,
-        'tabsym' => $tabSym,
-        'tabeval' => $tabEval,
-        ));
+      foreach ($physEval as $keyEv => $physEv) {
+        $idEval = $physEv->getId();
+        $eva = $physEv->getEvaluation();
+        if ($eva) {
+          $levEv = $physEv->getLevel();
+          if ($levEv) {
+            $levTab = unserialize($levEv);
+            $levb = $levTab[0];
+            $levs = $levTab[1];
+            $levObject = $levelRep->findBy(
+              array (
+                'levelBase' => $levb,
+                'levelSub' => $levs,
+              )
+            );
+            $levContent = $levObject[0]->getContent();
+            $levId = $levObject[0]->getId();
+            $symObject = $symbolizationRep->findBy(
+              array (
+                'levelkey' => $levId
+              )
+            );
+            $tabSym[$levb][$levs] = $symObject[0]->getContent();
+            $tabBool[$levb][$levs] = true;
+            $tabEval[$levb][$levs] = $eva;
+            $tabLevel[$levb][$levs] = $levContent;
+            $cptEval ++;
+          }
+        }
+      }
+
+      if ($cptEval == 0) {
+        throw new NotFoundHttpException('Base sans évaluation.');
+      } else {
+        $dataEval = array("Exp. in", "Theory", "Exp. out", "Return Exp. in", "Return Theory", "Return Exp. out");
+        $cptEval --;
+
+        return $this->render('SitephysPhysmvcBundle:Phys:eval.html.twig', array(
+          'toptitle' => $topTitle,
+          'tabbool' => $tabBool,
+          'tablevel' => $tabLevel,
+          'tabsym' => $tabSym,
+          'tabeval' => $tabEval,
+          ));
+      }
     } 
   }
 

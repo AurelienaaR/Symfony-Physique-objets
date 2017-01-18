@@ -1,17 +1,17 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Evaluations des éléments de physique 
+  Evaluations du thème {{ toptitle }}
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Evaluations des éléments de physique</i></h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Evaluations du thème {{ toptitle }}</i></h2>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-  <section id="global">
-    <img align="center" margin: "0" padding: "0" src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" alt="Schéma du modèle global et ses évaluations" width="40%" height="200px" />
-  </section>
+  <div class="containertedit">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" class="homeeditphoto" alt="Image de Evaluations du thème" />
+  </div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
@@ -19,7 +19,7 @@
   <h2></h2>
   <div class="well">
     <section id="descriptions">
-      <h2><i class="fa fa-gift"></i>Description par niveau des évaluations du thème</h2>
+      <h3><i class="fa fa-gift"></i>Description par niveau des évaluations du thème {{ toptitle }}</h3>
       <nav id="tabs-nav" class="clearfix">
       {% set btnclass = "selected" %}
         {% for intevali in 1..6 %}
