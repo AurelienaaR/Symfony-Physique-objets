@@ -14,14 +14,17 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Doctrine\ORM\EntityRepository;
 use Sitephys\PhysmvcBundle\Entity\Phys;
 use Sitephys\PhysmvcBundle\Entity\Domain;
 use Sitephys\PhysmvcBundle\Entity\Topic;
 use Sitephys\PhysmvcBundle\Entity\Level;
 use Sitephys\PhysmvcBundle\Entity\Symbolization;
+use Sitephys\PhysmvcBundle\Entity\Physupdate;
 use Sitephys\PhysmvcBundle\Form\TopicType;
 use Sitephys\PhysmvcBundle\Form\PhysType;
+use Sitephys\PhysmvcBundle\Form\PhysupdateType;
 use Doctrine\ORM\QueryBuilder;
 
 
@@ -694,16 +697,14 @@ class PhysController extends Controller
       $physupdatedomainContent = $physupdatedomainObject->getContent();
       $photo = "photoTopic";
 
-    $formPhysUpdate = new Phys();
-    $formPhysBuilderUpdate = $this->get('form.factory')->createBuilder(PhysType::class, $formPhysUpdate);
+    $formPhysUpdate = new Physupdate();
+    $formPhysBuilderUpdate = $this->get('form.factory')->createBuilder(PhysupdateType::class, $formPhysUpdate);
     $formPhysBuilderUpdate
       ->add('author',      EmailType::class)
       ->add('date',      DateType::class)
       ->add('content',      TextareaType::class)
       ->add('evaluation',     TextareaType::class)
       ->add('document',     FileType::class)
-      ->add('updated_at',   DateType::class)
-      ->add('web_links', UrlType::class)
       ->add('save',      SubmitType::class)
     ;
     $formPhysUpdate = $formPhysBuilderUpdate->getForm();

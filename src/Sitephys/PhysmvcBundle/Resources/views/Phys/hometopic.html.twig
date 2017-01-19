@@ -9,34 +9,37 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
+<div class="groupphotos">
   <div id="containerimghometopic">
     {% for ib in [1,2,3,6,5,4] %}
       {% if tabboolbase[ib] %}
-      <div>
-        <a href="{{ path('sitephys_physmvc_phys_global', {'idTopic': idtop, 'intLevel': ib}) }}">
-          <img src="{{ asset( 'bundles/sitephysphysmvc/images/schemaphysmvcglobal' ~ ib ~ '.png' ) }}" align="left" margin: "0" padding: "0" width="30%" alt="Schéma élément du modèle global" onmouseover="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcglobalsombre' ~ ib ~ '.png' }}'" onmouseout="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcglobal' ~ ib ~ '.png' }}'" />
-        </a>
+        <div>
+          <a href="{{ path('sitephys_physmvc_phys_global', {'idTopic': idtop, 'intLevel': ib}) }}">
+            <img src="{{ asset( 'bundles/sitephysphysmvc/images/schemaphysmvcglobal' ~ ib ~ '.png' ) }}" align="left" margin: "0" padding: "0" width="33%" alt="Schéma élément du modèle global" onmouseover="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcglobalsombre' ~ ib ~ '.png' }}'" onmouseout="this.src='{{ '/bundles/sitephysphysmvc/images/schemaphysmvcglobal' ~ ib ~ '.png' }}'" />
+          </a>
         </div>
       {% else %}
-      <div>
-        <img src="{{ asset( 'bundles/sitephysphysmvc/images/schemaphysmvcglobalclair' ~ ib ~ '.png' ) }}" align="left" margin: "0" padding: "0" width="30%" alt="Schéma élément non enregistré" />
+        <div>
+          <img src="{{ asset( 'bundles/sitephysphysmvc/images/schemaphysmvcglobalclair' ~ ib ~ '.png' ) }}" align="left" margin: "0" padding: "0" width="33%" alt="Schéma élément non enregistré" />
         </div>
       {% endif %}
     {% endfor %}
   </div>
+</div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
+  <br />
   <div class="well">
     {% for cp in range(0, cptMax - 1) %}
       {{ phystitle[cp] }}
       {{ levelcontent[cp] }}
-      {{ physcontent[cp] }}{% if not loop.last %}, {% endif %}
+    {#  {% if not loop.last %}, {% endif %} #}
       <i>Par {{ physauthor[cp] }}, le {{ physdate[cp]|date('d/m/Y') }}</i>
     {% endfor %}
   </div>
   <br />
   <div class="button">
-    <a href="{{ path('sitephys_physmvc_evaluation', {'idTopic': idtop}) }}"><h3 style = "color:#0CF; text-align:center; margin:10px;">Evaluations du thème {{ toptitle }}</h3></a>
+    <a href="{{ path('sitephys_physmvc_evaluation', {'idTopic': idtop}) }}"><h3 style = "color:#2CF; text-align:center; margin:10px;">Evaluations du thème {{ toptitle }}</h3></a>
   </div>
 {% endblock %}

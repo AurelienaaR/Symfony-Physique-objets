@@ -16,29 +16,24 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <section id="descriptions">
-      <h2><i class="fa fa-gift"></i> Descriptions</h2>
-      <nav id="tabs-nav" class="clearfix">
-        <a href= {{"#" ~ "domaintopic" ~ "0" }}> {{ listdomain[0] }} </a>
-        {% if cptdom > 1 %}
-          {% for ttii in 1..cptdom - 1 %}
-            <a href= {{"#" ~ "domaintopic" ~ ttii }}> {{ listdomain[ttii] }} </a>
-          {% endfor %}
-        {% endif %}
-      </nav>
-      <div id="tabs-container" onload="initTab()">
-        {% for ttii in 0..cptdom - 1 %}
-          <article id={{ "domaintopic" ~ ttii }}>
-          {{ listdomain[ttii] }} <br />
-            {% for ttid in listtopic[ttii + 1] %}
-              <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': ttid.id}) }}">
-              {{ ttid.title }} <br />
-              </a>
-              {{ ttid.content }} <br />
-            {% endfor %}
-          </article>
+    <h2><i class="fa fa-gift">Descriptions</h2>
+    <nav id="tabs-nav" class="clearfix">
+      <a href= {{"#" ~ "domaintopic" ~ "0" }}> {{ listdomain[0] }} </a><span> </span>
+      {% if cptdom > 1 %}
+        {% for ttii in 1..cptdom - 1 %}
+          <a href= {{"#" ~ "domaintopic" ~ ttii }}> {{ listdomain[ttii] }} </a><span> </span>
         {% endfor %}
-      </div>
-    </section>
+      {% endif %}
+    </nav>
+    <div id="tabs-container" onload="initTab()">
+      {% for ttii in 0..cptdom - 1 %}
+        <article id={{ "domaintopic" ~ ttii }}>
+          {{ listdomain[ttii] }} <br />
+          {% for ttid in listtopic[ttii + 1] %}
+            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': ttid.id}) }}"> {{ ttid.title }} </a><br /> {{ ttid.content }} <br />
+          {% endfor %}
+        </article>
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}

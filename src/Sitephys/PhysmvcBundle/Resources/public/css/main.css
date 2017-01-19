@@ -35,20 +35,16 @@ body {
 }
 
 #containerimghometopic {
-    width: 90%;
-    height: 470px; /* 90%; */
-    padding: 2%;
-    /* padding-left: 8%; */
     margin: auto;
+    width: 90%;
     display: block;
     box-sizing: border-box;
-    background-color: rgba(105,175,205,0.20);
+    background-color: rgba(135,185,225,0.20);
 }
 
 #containerimgglobal {
     width: 90%;
     height: 90%; /* 470px; */
-    padding: 2%;
     margin: auto;
     display: block;
     box-sizing: border-box;
@@ -111,13 +107,12 @@ body {
 }
 
 .containertglobal {
-    width: 40%;
-    height: 380px;
-    padding: 2%;
+    width: 36%;
+    height: 270px;
     margin: auto;
     display: block;
     box-sizing: border-box; 
-    background-color: rgba(95,130,145,0.20);
+    background-color: rgba(75,130,145,0.10);
 }
 
 .photo {
@@ -132,6 +127,14 @@ body {
     padding: 1%;
     margin: auto;
     display: block;
+}
+
+.groupphotos {
+    width: 90%;
+    height: 470px;
+    margin: auto;
+    display: block;
+    box-sizing: border-box; 
 }
 
 .homeeditphoto {
@@ -268,20 +271,21 @@ footer {
 }
 
 .well {
-	width: 70%;
+    clear: both;
+    text-align: center;
     margin: auto;
+	width: 80%;
     display: block;
     box-sizing: border-box;
-    text-align:center;
-    background-color: rgba(175,160,230,0.20);
+    background-color: rgba(165,220,210,0.20);
 }
 
 .wellform {
-    width: 70%;
     margin: auto;
+    width: 80%;
     display: block;
     box-sizing: border-box;
-    background-color: rgba(175,160,230,0.20);
+    background-color: rgba(175,160,230,0.10);
 }
 
 .button {
@@ -296,9 +300,10 @@ footer {
 }
 
 #tabs-nav {
+    margin:auto;
     width: 90%;
-    background-color: rgba(85,120,140,0.60);
-    color: rgba(255,255,255,0.90);
-    margin: 3px;
+    background-color: rgba(165,220,210,0.20)
+    color: rgba(20,45,75,0.90);
+    /* margin: 3px; */
     padding: 4px;
 }

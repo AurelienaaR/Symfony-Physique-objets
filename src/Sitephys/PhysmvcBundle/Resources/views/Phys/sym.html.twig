@@ -16,12 +16,11 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <section id="descriptions">
       <h2><i class="fa fa-gift"></i>Description de niveaux et symbolisations par niveau de base</h2>
       <nav id="tabs-nav" class="clearfix">
-        <a href="{{ "#symbol" ~ "1" }}"> {{ datalevel[0] }} </a>
+        <a href="{{ "#symbol" ~ "1" }}"> {{ datalevel[0] }} </a><span> </span>
         {% for intBase in 2..6 %}
-          <a href="{{ "#symbol" ~ intBase }}"> {{ datalevel[intBase - 1] }} </a>
+          <a href="{{ "#symbol" ~ intBase }}"> {{ datalevel[intBase - 1] }} </a><span> </span>
         {% endfor %}
       </nav>
       <div id="tabs-container" onload="initTab()">
@@ -34,6 +33,5 @@
           </article>
         {% endfor %}
       </div>
-    </section>
   </div>
 {% endblock %}

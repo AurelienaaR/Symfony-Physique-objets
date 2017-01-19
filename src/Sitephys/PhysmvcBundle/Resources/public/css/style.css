@@ -1,13 +1,13 @@
 
 
 body {
-	/*font-family: Verdana, Geneva, sans-serif; font-family: 'Dosis', sans-serif; */
+	/*font-family: Verdana, Geneva, sans-serif; */ font-family: 'Dosis', sans-serif; 
 	font-size: 18px;
 }
 
 h1, h2, h3 {
-	/*font-family: Verdana, Geneva, sans-serif; font-family: 'Play'; */
-	color: #333; 
+	/*font-family: Verdana, Geneva, sans-serif; */ font-family: 'Play'; 
+	color: #122; 
 }
 
 h1 {
@@ -15,11 +15,11 @@ h1 {
 }
 
 h2 {
-	margin: 10px 0 10px 0;
+	margin: 0; /* 10px 0 10px 0; */
 	font-size: 32px;
-	background-color: rgba(130,145,155,0.90);
-	padding: 7px 10px 5px 10px;
-	color: #000;
+	/* background-color: rgba(130,145,155,0.90); */
+	padding: 0; /* 7px 10px 5px 10px; */
+	color: #122;
 }
 
 h3 {
@@ -89,13 +89,10 @@ header a:hover {
 }
 
 #tabs-nav a {
-	/* display: block;
-	float: left; */
 	margin: auto;
 	padding: 5px 10px;
 	background-color: #16a085;
 	color: #FFF;
-	/* margin-right: 10px; */
 	border-radius: 2px;
 }
 
