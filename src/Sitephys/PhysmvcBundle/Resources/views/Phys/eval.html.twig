@@ -18,16 +18,13 @@
   <div style="float: left; margin-right: 1em;"></div>
   <h2></h2>
   <div class="well">
-    <section id="descriptions">
       <h3><i class="fa fa-gift"></i>Description par niveau des évaluations du thème {{ toptitle }}</h3>
       <nav id="tabs-nav" class="clearfix">
-      {% set btnclass = "selected" %}
         {% for intevali in 1..6 %}
           {% for intevalj in 1..6 %}
             {% if (tabbool[intevali][intevalj]) %}
-              <a href="{{ "#eval" ~ intevali ~ "-" ~ intevalj }}" class = btnclass> {{ intevali }} - {{ intevalj }} </a>
+              <a href="{{ "#eval" ~ intevali ~ "-" ~ intevalj }}"> {{ intevali }} - {{ intevalj }} </a><span> </span>
             {% endif %}
-            {% set btnclass = "" %}
           {% endfor %}
         {% endfor %}
       </nav>
@@ -44,6 +41,5 @@
           {% endfor %}
         {% endfor %}
       </div>
-    </section>
   </div>
 {% endblock %}

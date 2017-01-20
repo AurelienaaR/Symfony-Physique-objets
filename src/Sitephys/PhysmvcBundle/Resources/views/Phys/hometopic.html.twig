@@ -34,12 +34,13 @@
     {% for cp in range(0, cptMax - 1) %}
       {{ phystitle[cp] }}
       {{ levelcontent[cp] }}
-    {#  {% if not loop.last %}, {% endif %} #}
       <i>Par {{ physauthor[cp] }}, le {{ physdate[cp]|date('d/m/Y') }}</i>
     {% endfor %}
   </div>
   <br />
-  <div class="button">
-    <a href="{{ path('sitephys_physmvc_evaluation', {'idTopic': idtop}) }}"><h3 style = "color:#2CF; text-align:center; margin:10px;">Evaluations du thème {{ toptitle }}</h3></a>
+  <div id="eval-th">
+    <div class="button-eval">
+      <a href="{{ path('sitephys_physmvc_evaluation', {'idTopic': idtop}) }}">Evaluations du thème {{ toptitle }}</a>
+    </div>
   </div>
 {% endblock %}

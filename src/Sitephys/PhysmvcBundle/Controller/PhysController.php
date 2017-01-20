@@ -327,69 +327,6 @@ class PhysController extends Controller
   }
 
 
-  public function viewAction($id)
-  {
-    $em = $this->getDoctrine()->getManager();
-    $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
-    $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
-    $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
-    $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
-    $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
-
-    $phys = $physRep->find($id); 
-    if (!$phys) {
-      throw new NotFoundHttpException('Elément "' . $id . '" pas dans la base.');
-    } else {
-      $physTitle = $phys->getTitle();
-      $physAuthor = $phys->getAuthor();
-      $physDate = $phys->getDate();
-      $physContent = $phys->getContent();
-      $physLevel = $phys->getLevel();
-      $physLevelTab = unserialize($physLevel);
-      $levelObject = $levelRep->findBy(
-        array (
-          'levelBase' => $physLevelTab[0],
-          'levelSub' => $physLevelTab[1],
-          ));
-      $levelContent = $levelObject[0]->getContent();
-      $levelId = $levelObject[0]->getId();
-      $symbolizationObject = $symbolizationRep->findBy(
-        array (
-          'levelkey' => $levelId,
-          ));
-      $symbolizationContent = [];
-      foreach ($symbolizationObject as $key => $symbol) {
-        $symbolizationContent[] = $symbol->getContent();
-      }
-
-      $physTopicId = $phys->getTopicId();
-      $topicObject = $topicRep->find($physTopicId);
-      $topicContent = $topicObject->getContent();
-      $topicMode = $topicObject->getMode();
-      $topicDomainId = $topicObject->getDomainId();
-      $domainObject = $domainRep->find($topicDomainId);
-      $domainContent = $domainObject->getContent();
-      $photo = "photoTopic";
-
-      return $this->render('SitephysPhysmvcBundle:Phys:view.html.twig', array(
-        'id' => $id,
-        'phystitle' => $physTitle,
-        'physauthor' => $physAuthor,
-        'physdate' => $physDate,
-        'physcontent' => $physContent,
-        'physlevel' => $physLevel,
-        'physleveltab' => $physLevelTab,
-        'domaincontent' => $domainContent,
-        'topiccontent' => $topicContent,
-        'topicmode' => $topicMode,
-        'levelcontent' => $levelContent,
-        'symbolizationcontent' => $symbolizationContent,
-        'photo' => $photo,
-        ));
-    } 
-  }
-
-
   public function globalAction($idTopic,$intLevel)
   {
     $em = $this->getDoctrine()->getManager();
@@ -475,7 +412,72 @@ class PhysController extends Controller
         'levelcontent' => $levelContent,
         'symbolizationcontent' => $symbolizationContent,
         ));
+    }
+
+
+  public function viewAction($id)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
+    $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
+    $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
+    $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
+    $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
+
+    $phys = $physRep->find($id); 
+    if (!$phys) {
+      throw new NotFoundHttpException('Elément "' . $id . '" pas dans la base.');
+    } else {
+      $physTitle = $phys->getTitle();
+      $physAuthor = $phys->getAuthor();
+      $physDate = $phys->getDate();
+      $physContent = $phys->getContent();
+      $physEvaluation = $phys->getEvaluation();
+      $physLevel = $phys->getLevel();
+      $physLevelTab = unserialize($physLevel);
+      $levelObject = $levelRep->findBy(
+        array (
+          'levelBase' => $physLevelTab[0],
+          'levelSub' => $physLevelTab[1],
+          ));
+      $levelContent = $levelObject[0]->getContent();
+      $levelId = $levelObject[0]->getId();
+      $symbolizationObject = $symbolizationRep->findBy(
+        array (
+          'levelkey' => $levelId,
+          ));
+      $symbolizationContent = [];
+      foreach ($symbolizationObject as $key => $symbol) {
+        $symbolizationContent[] = $symbol->getContent();
+      }
+
+      $physTopicId = $phys->getTopicId();
+      $topicObject = $topicRep->find($physTopicId);
+      $topicContent = $topicObject->getContent();
+      $topicMode = $topicObject->getMode();
+      $topicDomainId = $topicObject->getDomainId();
+      $domainObject = $domainRep->find($topicDomainId);
+      $domainContent = $domainObject->getContent();
+
+      return $this->render('SitephysPhysmvcBundle:Phys:element.html.twig', array(
+        'id' => $id,
+        'idtop' => $physTopicId,
+        'phystitle' => $physTitle,
+        'physauthor' => $physAuthor,
+        'physdate' => $physDate,
+        'physcontent' => $physContent,
+        'physlevel' => $physLevel,
+        'physleveltab' => $physLevelTab,
+        'intlevel' => $physLevelTab[0],
+        'domaincontent' => $domainContent,
+        'topiccontent' => $topicContent,
+        'topicmode' => $topicMode,
+        'levelcontent' => $levelContent,
+        'symbolizationcontent' => $symbolizationContent,
+        'physevaluation' => $physEvaluation,
+        ));
     } 
+  }
 
 
   public function elementAction($idTopic,$intLevel,$intEltLevel)
@@ -501,6 +503,7 @@ class PhysController extends Controller
     } else {
 
         $phys = $physGlobal[0];
+        $physId = $phys->getId();
         $physEvaluation = $phys->getEvaluation();
         $physTitle = $phys->getTitle();
         $physAuthor = $phys->getAuthor();
@@ -532,6 +535,7 @@ class PhysController extends Controller
       }
 
       return $this->render('SitephysPhysmvcBundle:Phys:element.html.twig', array(
+        'id' => $physId,
         'idtop' => $idTopic,
         'intlevel' => $intLevel,
         'physauthor' => $physAuthor,
