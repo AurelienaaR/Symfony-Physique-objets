@@ -22,9 +22,11 @@ use Sitephys\PhysmvcBundle\Entity\Topic;
 use Sitephys\PhysmvcBundle\Entity\Level;
 use Sitephys\PhysmvcBundle\Entity\Symbolization;
 use Sitephys\PhysmvcBundle\Entity\Physupdate;
+use Sitephys\PhysmvcBundle\Entity\Physadd;
 use Sitephys\PhysmvcBundle\Form\TopicType;
 use Sitephys\PhysmvcBundle\Form\PhysType;
 use Sitephys\PhysmvcBundle\Form\PhysupdateType;
+use Sitephys\PhysmvcBundle\Form\PhysaddType;
 use Doctrine\ORM\QueryBuilder;
 
 
@@ -616,44 +618,66 @@ class PhysController extends Controller
   }
 
 
-  public function addAction($idDomain,$idLevel)
+  public function addAction($idthing)
   {
     $em = $this->getDoctrine()->getManager();
-    $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
+    $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
+    $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
 
-    $domainTitleAdd = $domainRep->find($idDomain)->getTitle();
-    $levelContentAdd = $levelRep->find($idLevel)->getContent();
+    $titleDomain = [];
+    $titleTopic = [];
+    $titlePhys = [];
 
-    $topicAdd = new Topic();
-    $formTopicBuilder = $this->get('form.factory')->createBuilder(TopicType::class, $topicAdd);
-    $formTopicBuilder
-        ->add('title',      TextType::class)
-        ->add('content',      TextareaType::class)
-        ->add('save',      SubmitType::class)
-        ;
-    $formTopic = $formTopicBuilder->getForm();
-     
-    $physAdd = new Phys();
-    $formPhysBuilder = $this->get('form.factory')->createBuilder(PhysType::class, $physAdd);
-    $formPhysBuilder
-      ->add('title',      TextType::class)
+    switch ($idthing) {
+
+      case 'domain':
+        $domainExistObject = $domainRep->findAll();
+        foreach ($domainExistObject as $key => $domainExist) {
+          $titleDomain[] = $domainExist->getTitle();
+          $thing = "domaine";
+        }
+        break;
+
+      case 'topic':
+        $topicExistObject = $topicRep->findAll();
+        foreach ($topicExistObject as $key => $topicExist) {
+          $titleTopic[] = $topicExist->getTitle();
+          $thing = "thème";
+        }
+        break;
+
+      case 'element':
+        $physExistObject = $physRep->findAll();
+        foreach ($physExistObject as $key => $physExist) {
+          $titlePhys[] = $physExist->getTitle();
+          $thing = "élément";
+        }
+        break;
+
+      default:
+        break;
+
+    }
+
+    $physAdd = new Physadd();
+    $formAddBuilder = $this->get('form.factory')->createBuilder(PhysaddType::class, $physAdd);
+    $formAddBuilder
       ->add('author',      EmailType::class)
       ->add('date',      DateType::class)
       ->add('content',      TextareaType::class)
-      ->add('evaluation',     TextareaType::class)
       ->add('document',     FileType::class)
-      ->add('updated_at',   DateType::class)
-      ->add('web_links', UrlType::class)
+      ->add('weblinks', UrlType::class)
       ->add('save',      SubmitType::class)
-    ;
-    $formPhys = $formPhysBuilder->getForm();
-
+        ;
+    $formPhysAdd = $formAddBuilder->getForm();
+     
     return $this->render('SitephysPhysmvcBundle:phys:add.html.twig', array(
-      'domaintitle' => $domainTitleAdd,
-      'levelcontent' => $levelContentAdd,
-      'formtopic' => $formTopic->createView(),
-      'formphys' => $formPhys->createView(),
+      'thing' => $thing,
+      'domainexist' => $titleDomain,
+      'topicexist' => $titleTopic,
+      'physexist' => $titlePhys,
+      'formphysadd' => $formPhysAdd->createView(),
     ));
   }
 

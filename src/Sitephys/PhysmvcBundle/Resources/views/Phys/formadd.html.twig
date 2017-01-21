@@ -19,11 +19,6 @@
 
     <br />
     <div>
-      <span>  {{ form_row(formphysadd.thing, {'attr': {'class': 'form-control'}}) }}  </span>
-    </div>
-
-    <br />
-    <div>
       <span>  {{ form_row(formphysadd.content, {'attr': {'class': 'form-control'}}) }}  </span>
     </div>
     
@@ -34,6 +29,11 @@
         <span class="custom-file-control"></span>
       </div>
     </label>
+
+    <br /><br />
+    <div> 
+      <span>  {{ form_row(formphysadd.weblinks, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
 
     <br /><br />
     {{ form_widget(formphysadd.save, {'attr': {'class': 'btn btn-primary'}}) }}

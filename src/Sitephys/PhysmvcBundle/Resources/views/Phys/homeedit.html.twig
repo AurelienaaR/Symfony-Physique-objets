@@ -36,11 +36,9 @@
         {% endfor %}
       </article>
       <article id="add">
-        {% for idPosDomain in 0..cptdomain %}
-          {% for idPosLevel in 0..cptlevel %}
-            <a href="{{ path('sitephys_physmvc_edition_add', {'idDomain': domainid[idPosDomain], 'idLevel' : levelid[idPosLevel]}) }}"> Domaine : {{ domainedit[idPosDomain] }} - Niveau : {{ leveledit[idPosLevel] }} </a><span style = "color:#000;"> * </span>
-          {% endfor %}
-        {% endfor %}
+        <a href="{{ path('sitephys_physmvc_edition_add', {'idthing': "domain"}) }}"> Domaine </a>
+        <br /><a href="{{ path('sitephys_physmvc_edition_add', {'idthing': "topic"}) }}"> Thème </a>
+        <br /><a href="{{ path('sitephys_physmvc_edition_add', {'idthing': "element"}) }}"> Elément </a>
       </article>
     </div>
   </div>

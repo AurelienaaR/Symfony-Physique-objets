@@ -1,7 +1,7 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Ajout d'élément 
+  Ajout de {{ thing }}
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -11,29 +11,12 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Suggestion d'ajout d'élément</i></h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Suggestion d'ajout  de {{ thing }} </h2>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
-
-  <h3>Ajout d'élément</h3>
-  <h3>Domaine : {{ domaintitle }}</h3>
-  <h3>Niveau : {{ levelcontent }}</h3>
+  
   <br />
-  {{ include("SitephysPhysmvcBundle:Phys:form.html.twig") }}
-
-  <p>
-    <a href="{{ path('sitephys_physmvc_edition') }}" class="btn btn-default">
-      Accueil de l'édition
-    </a>
-  </p>
+  {{ include("SitephysPhysmvcBundle:Phys:formadd.html.twig") }}
 
 {% endblock %}
-
-{#
-{% block javascripts %}
-  {% javascripts 'bundles/sitephysphysmvc/js/bootstrap.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-  {% endjavascripts %}
-{% endblock %}
-#}

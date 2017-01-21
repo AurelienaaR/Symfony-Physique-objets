@@ -29,12 +29,12 @@
   <body>
     <div>
       <ul id="menu_nav">
-        <li><a class="button" href="{{ path('sitephys_physmvc_home') }}">Accueil</a></li>
-        <li><a class="button" href="{{ path('sitephys_physmvc_topic') }}">Thèmes et domaines</a></li>
-        <li><a class="button" href="{{ path('sitephys_physmvc_symbolization') }}">Niveaux et symbolisations</a></li>
-        <li><a class="button" href="{{ path('sitephys_physmvc_edition') }}">Suggestions</a></li>
-        <li><a class="button" href="http://enseignant_postbac.nexgate.ch/index.html">Autre site</a></li>
-        <li><a class="button" href="http://enseignant_postbac.nexgate.ch/index.html">Liens</a></li>
+        <li><a class="button-menu" href="{{ path('sitephys_physmvc_home') }}">Accueil</a></li>
+        <li><a class="button-menu" href="{{ path('sitephys_physmvc_topic') }}">Thèmes et domaines</a></li>
+        <li><a class="button-menu" href="{{ path('sitephys_physmvc_symbolization') }}">Niveaux et symbolisations</a></li>
+        <li><a class="button-menu" href="{{ path('sitephys_physmvc_edition') }}">Suggestions</a></li>
+        <li><a class="button-menu" href="http://enseignant_postbac.nexgate.ch/index.html">Autre site</a></li>
+        <li><a class="button-menu" href="http://enseignant_postbac.nexgate.ch/index.html">Liens</a></li>
       </ul>
     </div>
     <div id="header">
@@ -59,10 +59,6 @@
       {% endblock %}
     </div>
     <p></p><br />
-
-    <footer>
-      <p style = "text-align:center;"> Objets physiques © {{ 'now'|date('d/m/Y') }} </p>
-    </footer>
 
     {% block javascripts %}
       {% javascripts 'bundles/sitephysphysmvc/js/jquery-3.1.1.min.js' %}
