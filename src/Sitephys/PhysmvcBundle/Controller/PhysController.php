@@ -635,24 +635,24 @@ class PhysController extends Controller
         $domainExistObject = $domainRep->findAll();
         foreach ($domainExistObject as $key => $domainExist) {
           $titleDomain[] = $domainExist->getTitle();
-          $thing = "domaine";
         }
+        $thing = "domaine";
         break;
 
       case 'topic':
         $topicExistObject = $topicRep->findAll();
         foreach ($topicExistObject as $key => $topicExist) {
           $titleTopic[] = $topicExist->getTitle();
-          $thing = "thème";
         }
+        $thing = "thème";
         break;
 
       case 'element':
         $physExistObject = $physRep->findAll();
         foreach ($physExistObject as $key => $physExist) {
           $titlePhys[] = $physExist->getTitle();
-          $thing = "élément";
         }
+        $thing = "élément";
         break;
 
       default:
@@ -667,7 +667,7 @@ class PhysController extends Controller
       ->add('date',      DateType::class)
       ->add('content',      TextareaType::class)
       ->add('document',     FileType::class)
-      ->add('weblinks', UrlType::class)
+      ->add('weblink',     UrlType::class)
       ->add('save',      SubmitType::class)
         ;
     $formPhysAdd = $formAddBuilder->getForm();

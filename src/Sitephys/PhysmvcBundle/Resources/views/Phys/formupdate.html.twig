@@ -1,13 +1,13 @@
 <div class="wellform">
 
-  {{ form_start(formphysupdate, {'attr': {'class': 'form'}}) }}
-  {{ form_errors(formphysupdate) }}
-
   <div class="form-group">
   
-    <h3>Formulaire de modification de l'élément</h3>
+    <h3>Formulaire de modification de l'élément {{ physupdatetitle }}</h3>
     <br />
 
+    {{ form_start(formphysupdate, {'attr': {'class': 'form'}}) }}
+    {{ form_errors(formphysupdate) }}
+    
     <div> 
       {{ form_row(formphysupdate.author, {'attr': {'class': 'form-control'}}) }} 
     </div>
@@ -40,4 +40,5 @@
     {{ form_end(formphysupdate) }}
     
     <br />
+  </div>
 </div>

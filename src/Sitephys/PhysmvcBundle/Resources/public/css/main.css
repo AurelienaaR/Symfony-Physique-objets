@@ -148,6 +148,12 @@ article {
     display: block;
 }
 
+.addphoto {
+    padding: 1%;
+    margin: auto;
+    display: block;
+}
+
 .imageschema {
     clear: both;
     width: 30%;

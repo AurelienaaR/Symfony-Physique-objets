@@ -1,12 +1,12 @@
 <div class="wellform">
 
-  {{ form_start(formphysadd, {'attr': {'class': 'form'}}) }}
-  {{ form_errors(formphysadd) }}
-
   <div class="form-group">
   
-    <h3>Formulaire d'ajout</h3>
+    <h3>Formulaire d'ajout de {{ thing }}</h3>
     <br />
+
+    {{ form_start(formphysadd, {'attr': {'class': 'form'}}) }}
+    {{ form_errors(formphysadd) }}
 
     <div> 
       {{ form_row(formphysadd.author, {'attr': {'class': 'form-control'}}) }} 
@@ -31,8 +31,9 @@
     </label>
 
     <br /><br />
+
     <div> 
-      <span>  {{ form_row(formphysadd.weblinks, {'attr': {'class': 'form-control'}}) }}  </span>
+      <span>  {{ form_row(formphysadd.weblink, {'attr': {'class': 'form-control'}}) }}  </span>
     </div>
 
     <br /><br />
@@ -40,4 +41,7 @@
     {{ form_end(formphysadd) }}
     
     <br />
+    
+  </div>
+
 </div>

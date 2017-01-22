@@ -47,21 +47,16 @@ class Physadd
    */
   private $document;
 
-    /**
+  /**
    * @var string
    *
-   * @ORM\Column(name="web_links", type="string", nullable=true)
+   * @ORM\Column(name="weblink", type="string", nullable=true)
    */
-  private $webLinks;
+  private $weblink;
 
   public function __construct()
   {
     $this->date         = new \Datetime();
-  }
-
-  public function updateDate()
-  {
-    $this->setUpdatedAt(new \Datetime());
   }
 
   /**
@@ -137,19 +132,19 @@ class Physadd
   }
 
   /**
-   * @param string $webLinks
+   * @param string $weblink
    */
-  public function setWebLinks($webLinks)
+  public function setWeblink($weblink)
   {
-    $this->webLinks = $webLinks;
+    $this->weblink = $weblink;
   }
 
   /**
    * @return string
    */
-  public function getWebLinks()
+  public function getWeblink()
   {
-    return $this->webLinks;
+    return $this->weblink;
   }
 
 }

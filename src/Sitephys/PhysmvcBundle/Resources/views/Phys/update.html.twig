@@ -9,15 +9,15 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-  <div class="containerthome">
-    <img src="{{ asset('bundles/sitephysphysmvc/images/fond-cosmo.jpg') }}" class="homephoto" alt="Image de Suggestion - Modification" />
+  <div class="containertedit">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcmodif.png') }}" class="addphoto" alt="Image de Suggestion - Modification" />
   </div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
-
-  <h3 style = "font-style:italic; color:#312; text-align:center; margin:10px;">Proposition de modification de l'élément <strong>{{ physupdatetitle }}</strong> à la date actuelle, {{ 'now'|date('d/m/Y') }}, du domaine <strong>{{ physupdatedomain }}</strong> et du thème <strong>{{ physupdatetopic }}</strong> pour le niveau de base <strong>{{ physupdateleveltab[0] }}</strong> et le niveau de précision <strong>{{ physupdateleveltab[1] }}</strong>, soit : <strong>{{ physupdatelevelcontent }}</strong>.</h3>
-
+  <div class="containerthome">
+    <h3 style = "font-style:italic; color:#312; text-align:center; margin:10px;">Proposition de modification de l'élément <strong>{{ physupdatetitle }}</strong> à la date actuelle, {{ 'now'|date('d/m/Y') }}, du domaine <strong>{{ physupdatedomain }}</strong> et du thème <strong>{{ physupdatetopic }}</strong> pour le niveau de base <strong>{{ physupdateleveltab[0] }}</strong> et le niveau de précision <strong>{{ physupdateleveltab[1] }}</strong>, soit : <strong>{{ physupdatelevelcontent }}</strong>.</h3>
+  </div>
 <br />
 
   {{ include("SitephysPhysmvcBundle:Phys:formupdate.html.twig") }}

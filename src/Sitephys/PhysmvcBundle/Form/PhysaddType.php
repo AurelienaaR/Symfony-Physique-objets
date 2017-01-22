@@ -13,7 +13,7 @@ class PhysaddType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('author')->add('date')->add('content')->add('document')->add('webLinks')        ;
+        $builder->add('author')->add('date')->add('content')->add('document')->add('weblink')        ;
     }
     
     /**
