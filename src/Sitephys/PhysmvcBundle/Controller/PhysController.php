@@ -4,6 +4,7 @@ namespace Sitephys\PhysmvcBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -618,7 +619,7 @@ class PhysController extends Controller
   }
 
 
-  public function addAction($idthing)
+  public function addAction($idthing, Request $request)
   {
     $em = $this->getDoctrine()->getManager();
     $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
@@ -671,7 +672,17 @@ class PhysController extends Controller
       ->add('save',      SubmitType::class)
         ;
     $formPhysAdd = $formAddBuilder->getForm();
-     
+    $formPhysAdd->handleRequest($request);
+
+    if ($formPhysAdd->isSubmitted()) {
+      if ($formPhysAdd->isValid()) {
+        $physAddForm = $formPhysAdd->getData();
+        $em->persist($physAddForm);
+        $em->flush();
+        return $this->redirectToRoute('sitephys_physmvc_edition');            
+      }
+    }
+ 
     return $this->render('SitephysPhysmvcBundle:phys:add.html.twig', array(
       'thing' => $thing,
       'domainexist' => $titleDomain,
@@ -682,7 +693,7 @@ class PhysController extends Controller
   }
 
 
-  public function updateAction($id)
+  public function updateAction($id, Request $request)
   {
   	$em = $this->getDoctrine()->getManager();
     $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys');
@@ -726,8 +737,9 @@ class PhysController extends Controller
       $photo = "photoTopic";
 
     $formPhysUpdate = new Physupdate();
-    $formPhysBuilderUpdate = $this->get('form.factory')->createBuilder(PhysupdateType::class, $formPhysUpdate);
-    $formPhysBuilderUpdate
+    $formUpdateBuilder = $this->get('form.factory')->createBuilder(PhysupdateType::class, $formPhysUpdate);
+    $formUpdateBuilder
+      ->add('idphys',      IntegerType::class)
       ->add('author',      EmailType::class)
       ->add('date',      DateType::class)
       ->add('content',      TextareaType::class)
@@ -735,20 +747,30 @@ class PhysController extends Controller
       ->add('document',     FileType::class)
       ->add('save',      SubmitType::class)
     ;
-    $formPhysUpdate = $formPhysBuilderUpdate->getForm();
+    $formPhysUpdate = $formUpdateBuilder->getForm();
+    $formPhysUpdate->handleRequest($request);
 
-      return $this->render('SitephysPhysmvcBundle:Phys:update.html.twig', array(
-        'id' => $id,
-        'physupdate' => $physupdate,
-        'physupdatetitle' => $physupdateTitle,
-        'physupdatelevel' => $physupdateLevel,
-        'physupdateleveltab' => $physupdateLevelTab,
-        'physupdatelevelcontent' => $physupdatelevelContent,
-        'physupdatedomain' => $physupdatedomainContent,
-        'physupdatetopic' => $physupdatetopicContent,
-        'formphysupdate' => $formPhysUpdate->createView(),
-        ));
+    if ($formPhysUpdate->isSubmitted()) {
+      if ($formPhysUpdate->isValid()) {
+        $physupdateForm = $formPhysUpdate->getData();
+        $em->persist($physupdateForm);
+        $em->flush();
+        return $this->redirectToRoute('sitephys_physmvc_edition');            
+      }
+    }
+
+    return $this->render('SitephysPhysmvcBundle:Phys:update.html.twig', array(
+      'id' => $id,
+      'physupdate' => $physupdate,
+      'physupdatetitle' => $physupdateTitle,
+      'physupdatelevel' => $physupdateLevel,
+      'physupdateleveltab' => $physupdateLevelTab,
+      'physupdatelevelcontent' => $physupdatelevelContent,
+      'physupdatedomain' => $physupdatedomainContent,
+      'physupdatetopic' => $physupdatetopicContent,
+      'formphysupdate' => $formPhysUpdate->createView(),
+      ));
     } 
   }
-
+  
 }

@@ -20,6 +20,13 @@ class Physupdate
   private $id;
 
   /**
+   * @var int
+   *
+  * @ORM\Column(name="idphys", type="integer")
+   */
+  private $idphys;
+
+  /**
    * @var string
    *
    * @ORM\Column(name="author", type="string")
@@ -59,17 +66,28 @@ class Physupdate
     $this->date         = new \Datetime();
   }
 
-  public function updateDate()
-  {
-    $this->setUpdatedAt(new \Datetime());
-  }
-
   /**
    * @return int
    */
   public function getId()
   {
     return $this->id;
+  }
+
+  /**
+   * @param int $idphys
+   */
+  public function setIdphys($idphys)
+  {
+    $this->idphys = $idphys;
+  }
+
+  /**
+   * @return int
+   */
+  public function getIdphys()
+  {
+    return $this->idphys;
   }
 
   /**
