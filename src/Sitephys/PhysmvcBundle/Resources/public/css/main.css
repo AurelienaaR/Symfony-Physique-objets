@@ -1,14 +1,50 @@
 
 body {
-    margin: 0;
-    color:black;
-    background: -moz-linear-gradient(left, DarkSlateGray, Silver);
-    background: -webkit-linear-gradient(right top, #C0C0C0 0%, #2F4F4F 100%);
-    background: -ms-linear-gradient(left, DarkSlateGray, Silver);
+  margin: auto;
+  color:black;
+  background: -ms-linear-gradient(left, rgba(130, 40, 50, 1.0), rgba(40, 90, 120, 0.90));
+  background: -webkit-linear-gradient(left, rgba(130, 40, 50, 1.0) 25%, rgba(30, 80, 130, 1.0) 70%);
+  background: -moz-linear-gradient(left, rgba(10, 110, 130, 0.40), rgba(90, 60, 130, 0.0));
+  background: -o-linear-gradient(left, rgba(10, 110, 130, 0.40), rgba(90, 60, 130, 0.0));
 }
 
 article {
     background-color: #2c7699;
+}
+
+.cf:before, .cf:after {
+  content:" ";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+.cf {
+  *zoom: 1;
+}
+.menu {
+  list-style:none; 
+  width: 100%;
+  margin: 0;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: -ms-fit-content; 
+}
+.menu > li {
+  background: #34495e;
+  text-decoration: none;
+}
+.menu li a {
+  width:100%;
+  margin: 0;
+  color: #FFF;
+  text-decoration: none;
+  font-family: Arial, Helvetica;
+  font-size: 24px;
+}
+.menu li:hover {
+  background: #e74c3c;
+  text-decoration: none;
 }
 
 .container {
@@ -30,12 +66,12 @@ article {
 
 #containerimghome {
     width: 90%;
-    height: 90%; /* 470px; */
+    /* height: 90%; 470px; */
     padding: 2%;
     margin: auto;
     display: block;
     box-sizing: border-box; 
-    background-color: rgba(105,175,205,0.20);
+    background-color: rgba(105,175,205,0.00);
 }
 
 #containerimghometopic {
@@ -61,7 +97,7 @@ article {
 	margin: auto;
     display: block;
     box-sizing: border-box; 
-	background-color: rgba(125,140,165,0.20);
+	background-color: rgba(125,140,165,0.00);
 }
 
 #imgcontainer {
@@ -93,12 +129,12 @@ article {
 }
 
 .containerthome {
-    width: 70%;
+    width: 60%;
     padding: 2%;
     margin: auto;
     display: block;
     box-sizing: border-box; 
-    background-color: rgba(95,130,145,0.20);
+    background-color: rgba(95,130,145,0.00);
 }
 
 .containertedit {
@@ -116,7 +152,7 @@ article {
     margin: auto;
     display: block;
     box-sizing: border-box; 
-    background-color: rgba(75,130,145,0.10);
+    background-color: rgba(75,130,145,0.00);
 }
 
 .photo {
@@ -236,37 +272,26 @@ text-align:left;
     color: #000;
 }
 
-footer {
-    position: absolute;
-    bottom: 0px; 
-    width:90%;
-    margin:auto;
-    display: block;
-    box-sizing: border-box;
-    background-color:rgba(135, 190, 210, 0.20);
-    text-align:center;
-}
-
 #menu_nav {
-	background-color: rgba(140, 160, 180, 0.20);
-	padding: 3px;
+    width: 100%;
     margin: 0;
 	text-align: center;
 }
 
-#menu_nav li {
-	display: inline;
+#menu_nav ul {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+#menu_nav ul li {
+    width: 16%; 
+	display: inline-block; 
 	list-style: none;
     text-decoration: none;
 }
 
-#menu_nav a {
-	display:inline-block;
-	margin: 0 30px;
-    text-decoration: none;
-}
-
-#menu_nav li a:hover {
+#menu_nav ul li a:hover {
     text-decoration: none;
 }
 
@@ -294,13 +319,13 @@ footer {
 }
 
 .well {
-    clear: both;
+    /* clear: both; */
     text-align: center;
     margin: auto;
 	width: 80%;
     display: block;
     box-sizing: border-box;
-    background-color: rgba(165,220,210,0.20);
+    background-color: rgba(165,220,210,0.00);
 }
 
 .wellform {
@@ -308,34 +333,38 @@ footer {
     width: 80%;
     display: block;
     box-sizing: border-box;
-    background-color: rgba(175,160,230,0.10);
+    background-color: rgba(175,160,230,0.00);
+    color: #FFF;
 }
 
 .button {
     background-color: #07915c; /* rgba(60,90,110,0.70); */
     color: #FFF;
     text-align:center;
+    text-decoration: none;
     padding: 6px;
 }
 
 .button a.selected {
     background-color: #2c7699; /* rgba(40,70,90,0.70); */
     color: #FFF;
+    text-decoration: none;
 }
 
 .button a:hover {
     background-color: #2c7699; /* rgba(40,70,90,0.70); */
     color: rgb(180,205,250);
+    text-decoration: none;
 }
 
-.button-menu {
+.button-menux {
     background-color: #07915c; /* rgba(60,90,110,0.70); */
     color: #FFF;
     text-align:center;
     padding: 6px;
 }
 
-.button-menu a:hover {
+.button-menux a:hover {
     background-color: #2c7699; /* rgba(40,70,90,0.70); */
     color: rgb(180,205,250);
 }
@@ -374,6 +403,7 @@ footer {
     margin: auto;
     background-color: #07915c;
     color: #FFF;
+    text-decoration: none;
     text-align:center;
     border:1px solid #376450;
     padding:7px;

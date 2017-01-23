@@ -9,7 +9,6 @@
          Eléments de physique en méthodes et langages objet 
       {% endblock %}
     </title>
-
     {% block stylesheets %}
       {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/reset.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
@@ -27,38 +26,35 @@
   </head>
 
   <body>
-    <div>
-      <ul id="menu_nav">
+    <div id="menu_nav">
+      <ul class="menu cf">
         <li><a class="button-menu" href="{{ path('sitephys_physmvc_home') }}">Accueil</a></li>
-        <li><a class="button-menu" href="{{ path('sitephys_physmvc_topic') }}">Thèmes et domaines</a></li>
-        <li><a class="button-menu" href="{{ path('sitephys_physmvc_symbolization') }}">Niveaux et symbolisations</a></li>
+        <li><a class="button-menu" href="{{ path('sitephys_physmvc_topic') }}">Thèmes</a></li>
+        <li><a class="button-menu" href="{{ path('sitephys_physmvc_symbolization') }}">Niveaux</a></li>
         <li><a class="button-menu" href="{{ path('sitephys_physmvc_edition') }}">Suggestions</a></li>
         <li><a class="button-menu" href="http://enseignant_postbac.nexgate.ch/index.html">Autre site</a></li>
         <li><a class="button-menu" href="http://enseignant_postbac.nexgate.ch/index.html">Liens</a></li>
       </ul>
     </div>
-    <div id="header">
-      {% block sitephysphysmvc_section %}
-        <h3 style = "color:#336861; text-align:center;"><i>Méthodes et langage objet pour la physique</i></h3>
-      {% endblock %}
-    </div>
+    <br />
+    <h2 style = "color:#FA7; text-align:center;">Méthodes et langage objet pour la physique</h2>
+
     <br />
 
-      {% block sitephysphysmvc_image %}
-      {% endblock %}
+    {% block sitephysphysmvc_section %}
+    {% endblock %}
     
     <br />
+
+    {% block sitephysphysmvc_image %}
+    {% endblock %}
+
+    <p></p><br />
  
-      {% block sitephysphysmvc_body %}
-      {% endblock %}
+    {% block sitephysphysmvc_body %}
+    {% endblock %}
 
-    <p></p><br />
-    
-    <div id="containert">
-      {% block sitephysphysmvc_low %}
-      {% endblock %}
-    </div>
-    <p></p><br />
+    <br />
 
     {% block javascripts %}
       {% javascripts 'bundles/sitephysphysmvc/js/jquery-3.1.1.min.js' %}
@@ -73,5 +69,5 @@
     {% endblock %}
 
   </body>
-
+  
 </html>
