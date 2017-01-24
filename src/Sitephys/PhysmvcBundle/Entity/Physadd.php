@@ -22,6 +22,20 @@ class Physadd
   /**
    * @var string
    *
+   * @ORM\Column(name="thing", type="string")
+   */
+  private $thing;
+
+  /**
+   * @var string
+   *
+   * @ORM\Column(name="title", type="string")
+   */
+  private $title;
+
+  /**
+   * @var string
+   *
    * @ORM\Column(name="author", type="string")
    */
   private $author;
@@ -65,6 +79,38 @@ class Physadd
   public function getId()
   {
     return $this->id;
+  }
+
+  /**
+   * @param string $thing
+   */
+  public function setThing($thing)
+  {
+    $this->thing = $thing;
+  }
+
+  /**
+   * @return string
+   */
+  public function getThing()
+  {
+    return $this->thing;
+  }
+
+  /**
+   * @param string $title
+   */
+  public function setTitle($title)
+  {
+    $this->title = $title;
+  }
+
+  /**
+   * @return string
+   */
+  public function getTitle()
+  {
+    return $this->title;
   }
 
   /**

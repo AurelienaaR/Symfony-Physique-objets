@@ -563,58 +563,86 @@ class PhysController extends Controller
     $physAll = $em->getRepository('SitephysPhysmvcBundle:Phys')->findAll();
     $domainAll = $em->getRepository('SitephysPhysmvcBundle:Domain')->findAll();
     $levelAll = $em->getRepository('SitephysPhysmvcBundle:Level')->findAll();
+    $physAddAll = $em->getRepository('SitephysPhysmvcBundle:Physadd')->findAll();
+    $physUpdateAll = $em->getRepository('SitephysPhysmvcBundle:Physupdate')->findAll();
 
     if (null === $physAll) {
-      throw new NotFoundHttpException("L'élément d'id ".$id." n'est pas dans la base.");
+      throw new NotFoundHttpException("Aucun élément dans la base.");
     }
     $cptPhys = 0;
     $physId = [];
     $physEdit = [];
     foreach ($physAll as $key => $physPhys) {
-        $physId[$cptPhys] = $physPhys->getId();
-        $physEdit[$cptPhys] = $physPhys->getTitle();
-        $cptPhys ++;
-      }
+      $physId[$cptPhys] = $physPhys->getId();
+      $physEdit[$cptPhys] = $physPhys->getTitle();
+      $cptPhys ++;
+    }
     $cptPhys --;
 
     if (null === $domainAll) {
-      throw new NotFoundHttpException("L'élément d'id ".$id." n'est pas dans la base.");
+      throw new NotFoundHttpException("Aucun domaine dans la base.");
     }
     $cptDomain = 0;
     $domainId = [];
     $domainEdit = [];
     foreach ($domainAll as $key => $domainDomain) {
-        $domainId[$cptDomain] = $domainDomain->getId();
-        $domainEdit[$cptDomain] = $domainDomain->getTitle();
-        $cptDomain ++;
-      }
+      $domainId[$cptDomain] = $domainDomain->getId();
+      $domainEdit[$cptDomain] = $domainDomain->getTitle();
+      $cptDomain ++;
+    }
     $cptDomain --;
 
     if (null === $levelAll) {
-      throw new NotFoundHttpException("L'élément d'id ".$id." n'est pas dans la base.");
+      throw new NotFoundHttpException("Aucun niveau dans la base.");
     }
     $cptLevel = 0;
     $levelId = [];
     $levelEdit = [];
     foreach ($levelAll as $key => $levelLevel) {
-        $levelId[$cptLevel] = $levelLevel->getId();
-        $levBase = $levelLevel->getLevelBase();
-        $levSub = $levelLevel->getLevelSub();
-        $levelEdit[$cptLevel] = $levBase . " - " . $levSub;
-        $cptLevel ++;
-      }
+      $levelId[$cptLevel] = $levelLevel->getId();
+      $levBase = $levelLevel->getLevelBase();
+      $levSub = $levelLevel->getLevelSub();
+      $levelEdit[$cptLevel] = $levBase . " - " . $levSub;
+      $cptLevel ++;
+    }
     $cptLevel --;
+
+    $cptUpd = 0;
+    $updateId = [];
+    $updateEdit = [];
+    foreach ($physUpdateAll as $key => $updateUpdate) {
+      $updateId[$cptUpd] = $updateUpdate->getId();
+      $updateEdit[$cptUpd] = $updateUpdate->getTitle();
+      $cptUpd ++;
+    }
+    $cptUpd --;
+
+    $cptAdd = 0;
+    $addId = [];
+    $addEdit = [];
+    foreach ($physAddAll as $key => $addAdd) {
+      $addId[$cptAdd] = $addAdd->getId();
+      $addEdit[$cptAdd] = $addAdd->getTitle();
+      $cptAdd ++;
+    }
+    $cptAdd --;
 
     return $this->render('SitephysPhysmvcBundle:Phys:homeedit.html.twig', array(
       'physid' => $physId,
       'physedit' => $physEdit,
       'cptphys' => $cptPhys,
-      'domainid' => $domainId,
+  /*  'domainid' => $domainId,
       'domainedit' => $domainEdit,
       'cptdomain' => $cptDomain,
       'levelid' => $levelId,
       'leveledit' => $levelEdit,
-      'cptlevel' => $cptLevel,
+      'cptlevel' => $cptLevel,    */
+      'updateid' => $updateId,
+      'updateedit' => $updateEdit,
+      'cptupd' => $cptUpd,
+      'addid' => $addId,
+      'addedit' => $addEdit,
+      'cptadd' => $cptAdd,
     ));
   }
 
@@ -664,11 +692,13 @@ class PhysController extends Controller
     $physAdd = new Physadd();
     $formAddBuilder = $this->get('form.factory')->createBuilder(PhysaddType::class, $physAdd);
     $formAddBuilder
+      ->add('thing',   HiddenType::class, array('data' => $idthing,))
+      ->add('title',      TextType::class)
       ->add('author',      EmailType::class)
       ->add('date',      DateType::class)
       ->add('content',      TextareaType::class)
-      ->add('document',     FileType::class)
-      ->add('weblink',     UrlType::class)
+      ->add('document',     FileType::class, array('required' => false))
+      ->add('weblink',     UrlType::class, array('required' => false))
       ->add('save',      SubmitType::class)
         ;
     $formPhysAdd = $formAddBuilder->getForm();
@@ -739,12 +769,13 @@ class PhysController extends Controller
     $formPhysUpdate = new Physupdate();
     $formUpdateBuilder = $this->get('form.factory')->createBuilder(PhysupdateType::class, $formPhysUpdate);
     $formUpdateBuilder
-      ->add('idphys',      IntegerType::class)
+      ->add('idphys',      HiddenType::class, array('data' => $id,))
+      ->add('title',      TextType::class)
       ->add('author',      EmailType::class)
       ->add('date',      DateType::class)
       ->add('content',      TextareaType::class)
-      ->add('evaluation',     TextareaType::class)
-      ->add('document',     FileType::class)
+      ->add('evaluation',     TextareaType::class, array('required' => false))
+      ->add('document',     FileType::class, array('required' => false))
       ->add('save',      SubmitType::class)
     ;
     $formPhysUpdate = $formUpdateBuilder->getForm();
@@ -773,4 +804,114 @@ class PhysController extends Controller
     } 
   }
   
+  public function viewupdAction($idupd)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $physupdRep = $em->getRepository('SitephysPhysmvcBundle:Physupdate'); 
+    $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys');
+    $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
+    $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
+    $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
+    $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
+
+    $physupd = $physupdRep->find($idupd); 
+    if (!$physupd) {
+      throw new NotFoundHttpException('Elément updated "' . $idupd . '" pas dans la base.');
+    } else {
+      $physupdTitle = $physupd->getTitle();
+      $physupdDate = $physupd->getDate();
+      $physupdAuthor = $physupd->getAuthor();
+      $physupdContent = $physupd->getContent();
+      $physupdId = $physupd->getIdphys();
+
+      $phys = $physRep->find($physupdId); 
+      if (!$phys) {
+        throw new NotFoundHttpException('Elément "' . $id . '" pas dans la base.');
+      } else {
+        $physTitle = $phys->getTitle();
+        $physAuthor = $phys->getAuthor();
+        $physDate = $phys->getDate();
+        $physContent = $phys->getContent();
+        $physEvaluation = $phys->getEvaluation();
+        $physLevel = $phys->getLevel();
+        $physLevelTab = unserialize($physLevel);
+        $levelObject = $levelRep->findBy(
+          array (
+            'levelBase' => $physLevelTab[0],
+            'levelSub' => $physLevelTab[1],
+            ));
+        $levelContent = $levelObject[0]->getContent();
+        $levelId = $levelObject[0]->getId();
+        $symbolizationObject = $symbolizationRep->findBy(
+          array (
+            'levelkey' => $levelId,
+            ));
+        $symbolizationContent = [];
+        foreach ($symbolizationObject as $key => $symbol) {
+          $symbolizationContent[] = $symbol->getContent();
+        }
+
+        $physTopicId = $phys->getTopicId();
+        $topicObject = $topicRep->find($physTopicId);
+        $topicContent = $topicObject->getContent();
+        $topicMode = $topicObject->getMode();
+        $topicDomainId = $topicObject->getDomainId();
+        $domainObject = $domainRep->find($topicDomainId);
+        $domainContent = $domainObject->getContent();
+
+        return $this->render('SitephysPhysmvcBundle:Phys:viewupd.html.twig', array(
+          'id' => $physupdId,
+          'idtop' => $physTopicId,
+          'phystitle' => $physTitle,
+          'physauthor' => $physAuthor,
+          'physdate' => $physDate,
+          'physcontent' => $physContent,
+          'physevaluation' => $physEvaluation,
+          'physlevel' => $physLevel,
+          'physleveltab' => $physLevelTab,
+          'intlevel' => $physLevelTab[0],
+          'domaincontent' => $domainContent,
+          'topiccontent' => $topicContent,
+          'topicmode' => $topicMode,
+          'levelcontent' => $levelContent,
+          'symbolizationcontent' => $symbolizationContent,
+          'physevaluation' => $physEvaluation,
+          'physupdtitle' => $physupdTitle,
+          'physupddate' => $physupdDate,
+          'physupdauthor' => $physupdAuthor,
+          'physupdcontent' => $physupdContent,
+        ));
+      }
+    } 
+  }
+
+  public function viewaddAction($idadd)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $physaddRep = $em->getRepository('SitephysPhysmvcBundle:Physadd');
+
+    $physadd = $physaddRep->find($idadd); 
+    if (!$physadd) {
+      throw new NotFoundHttpException('Elément "' . $idadd . '" pas dans la base.');
+    } else {
+      $physaddTitle = $physadd->getTitle();
+      $physaddAuthor = $physadd->getAuthor();
+      $physaddDate = $physadd->getDate()->format('Y-m-d H:i:s');
+      $physaddContent = $physadd->getContent();
+      $physaddThing = $physadd->getThing();
+      $physaddDocument = $physadd->getDocument();
+      $physaddWeblink = $physadd->getWeblink();
+
+      return $this->render('SitephysPhysmvcBundle:Phys:viewadd.html.twig', array(
+        'physaddtitle' => $physaddTitle,
+        'physaddauthor' => $physaddAuthor,
+        'physadddate' => $physaddDate,
+        'physaddcontent' => $physaddContent,
+        'physaddthing' => $physaddThing,
+        'physadddocument' => $physaddDocument,
+        'physaddweblink' => $physaddWeblink,
+      ));
+    } 
+  }
+
 }

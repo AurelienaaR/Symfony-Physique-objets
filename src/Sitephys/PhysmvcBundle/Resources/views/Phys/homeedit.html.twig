@@ -18,27 +18,39 @@
   <div class="well">
     <h3>Propositions d'édition</h3>
     <nav id="tabs-nav" class="clearfix">
-      <a href="#consult">Consultation</a>
-      <a href="#modif">Modification</a>
-      <a href="#add">Ajout</a>
+      <a href="#consultelt">Consultation des éléments</a>
+      <a href="#modif">Modification d'un élément</a>
+      <a href="#consultupd">Consultation des éléments modifiés</a>
+      <a href="#add">Ajout d'un objet</a>
+      <a href="#consultadd">Consultation des objets ajoutés</a>
     </nav>
-    <div id="tabs-container" onload="initTab()">      
-      <article id="consult">
-        {% for idPosPhys in 0..cptphys %}
-          <a href="{{ path('sitephys_physmvc_phys_view', {'id': physid[idPosPhys]}) }}">
-          {{ physedit[idPosPhys] }} </a><span style = "color:#000;"> * </span>
+    <div id="tabs-container" onload="initTab()">
+      <article id="consultelt">
+        {% for idposphys in 0..cptphys %}
+          <a href="{{ path('sitephys_physmvc_phys_view', {'id': physid[idposphys]}) }}">
+          {{ physedit[idposphys] }} </a><span style = "color:#000;"> * </span>
         {% endfor %}
       </article>
       <article id="modif">
-        {% for idPosPhys in 0..cptphys %}
-          <a href="{{ path('sitephys_physmvc_edition_update', {'id': physid[idPosPhys]}) }}">
-          {{ physedit[idPosPhys] }} </a><span style = "color:#000;"> * </span>
+        {% for idposphys in 0..cptphys %}
+          <a href="{{ path('sitephys_physmvc_edition_update', {'id': physid[idposphys]}) }}">
+          {{ physedit[idposphys] }} </a><span style = "color:#000;"> - </span>
+        {% endfor %}
+      </article>
+      <article id="consultupd">
+        {% for idposupd in 0..cptupd %}
+          <a href="{{ path('sitephys_physmvc_edition_viewupd', {'idupd': updateid[idposupd]}) }}"> {{ updateedit[idposupd] }} </a><span style = "color:#000;"> - </span>
         {% endfor %}
       </article>
       <article id="add">
         <a href="{{ path('sitephys_physmvc_edition_add', {'idthing': "domain"}) }}"> Domaine </a>
         <br /><a href="{{ path('sitephys_physmvc_edition_add', {'idthing': "topic"}) }}"> Thème </a>
         <br /><a href="{{ path('sitephys_physmvc_edition_add', {'idthing': "element"}) }}"> Elément </a>
+      </article>
+      <article id="consultadd">
+        {% for idposadd in 0..cptadd %}
+          <a href="{{ path('sitephys_physmvc_edition_viewadd', {'idadd': addid[idposadd]}) }}"> {{ addedit[idposadd] }} </a><span style = "color:#000;"> * </span>
+        {% endfor %}
       </article>
     </div>
   </div>

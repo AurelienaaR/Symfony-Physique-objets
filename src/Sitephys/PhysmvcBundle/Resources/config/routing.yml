@@ -54,3 +54,13 @@ sitephys_physmvc_edition_update:
         _controller: SitephysPhysmvcBundle:Phys:update
     requirements:
         id: \d+
+
+sitephys_physmvc_edition_viewadd:
+    path:      /edition/viewadd/{idadd}
+    defaults:
+        _controller: SitephysPhysmvcBundle:Phys:viewadd
+
+sitephys_physmvc_edition_viewupd:
+    path:      /edition/viewupd/{idupd}
+    defaults:
+        _controller: SitephysPhysmvcBundle:Phys:viewupd

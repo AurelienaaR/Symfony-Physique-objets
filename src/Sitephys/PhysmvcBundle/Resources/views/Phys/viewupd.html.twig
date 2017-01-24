@@ -1,0 +1,79 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Modification de l'élément du thème {{ phystitle }} avec le thème {{ physupdtitle }}. 
+{% endblock %}
+
+{% block sitephysphysmvc_section %}
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Modification de l'élément {{ phystitle }} </h2>
+{% endblock %}
+
+{% block sitephysphysmvc_image %}
+<div class="containerthome">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/fond-cosmo.jpg') }}" class="homephoto" alt="Image de élément" />
+  </div>
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+  <div class="well">
+    <section id="descriptions">
+      <h2><i class="fa fa-gift"></i> Descriptions</h2>
+
+      <nav id="tabs-nav" class="clearfix">
+        <a href="#domaine">Domaine et thème</a>
+        <a href="#niveau">Niveau</a>
+        <a href="#contenus">Contenu</a>
+        <a href="#evaluation">Evaluation</a>
+        <a href="#symbolisation">Symbolisation</a>
+        <a href="#auteurs">Création</a>
+      </nav>
+
+      <div id="tabs-container" onload="initTab()">
+        <article id="domaine">
+          {{ phystitle }}
+          <br />Domaine : {{ domaincontent }}
+          <br />Thème : {{ topiccontent }}
+          <br />Mode du thème : {{ topicmode }} <br />
+        </article>
+
+        <article id="niveau">
+          {{ phystitle }}  
+          <br />Niveau de base <i>(global)</i> : {{ physleveltab[0] }} 
+          <br />Niveau de précision <i>(élément)</i> : {{ physleveltab[1] }} 
+          <br />Description du niveau : {{ levelcontent }} <br />
+        </article>
+
+        <article id="contenus">
+          Contenu (current) de {{ phystitle }} :
+          <br /> {{ physcontent }} <br />
+          Contenu (update) {{ physupdtitle }}
+          <br /> {{ physupdcontent }} <br />
+        </article>
+
+        <article id="evaluation">
+          {{ phystitle }} 
+          <br />Evaluation : {{ physevaluation }} <br />
+        </article>
+
+        <article id="symbolisation">
+          {{ phystitle }} <br />
+          {% set cptsym = 0 %}
+          {% for symcontent in symbolizationcontent %}
+            {% set cptsym = cptsym + 1 %}
+            Symbolisation {{ cptsym }} : {{ symcontent }} <br />
+          {% endfor %}
+        </article>
+
+        <article id="auteurs">
+          {{ phystitle }} 
+          <br />Par (current) {{ physauthor }}, 
+          <br />Modification proposée par {{ physupdauthor }}.
+          <br />Date (current) : {{ physdate|date('d/m/Y') }}, 
+          <br />Date (update) : {{ physupddate|date('d/m/Y') }} <br />
+        </article>
+      </div>
+    </section>
+
+  </div>
+
+{% endblock %}

@@ -29,6 +29,13 @@ class Physupdate
   /**
    * @var string
    *
+   * @ORM\Column(name="title", type="string")
+   */
+  private $title;
+
+  /**
+   * @var string
+   *
    * @ORM\Column(name="author", type="string")
    */
   private $author;
@@ -88,6 +95,22 @@ class Physupdate
   public function getIdphys()
   {
     return $this->idphys;
+  }
+
+  /**
+   * @param string $title
+   */
+  public function setTitle($title)
+  {
+    $this->title = $title;
+  }
+
+  /**
+   * @return string
+   */
+  public function getTitle()
+  {
+    return $this->title;
   }
 
   /**
