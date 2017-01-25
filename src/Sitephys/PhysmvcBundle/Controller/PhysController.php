@@ -222,22 +222,16 @@ class PhysController extends Controller
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
     $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
 
-    for ($intBase=1; $intBase <= 3; $intBase++) { 
-      for ($intSub=1; $intSub <= 3; $intSub++) {
+    for ($intBase = 1; $intBase <= 3; $intBase++) { 
+      for ($intSub = 0; $intSub <= 3; $intSub++) {
         $bsLevel = $levelRep->findBy(
           array('levelBase' => $intBase, 'levelSub' => $intSub),
-          array('id' => 'asc'),
-          50,
-          0
+          array('id' => 'asc')
           );
-
         $bsLevelContent[$intBase][$intSub] = $bsLevel[0]->getContent();
         $levsym = $bsLevel[0]->getId();
         $symbolizationLevel = $symbolizationRep->findBy(
-          array('levelkey' => $levsym), 
-          array(),
-          50,
-          0
+          array('levelkey' => $levsym)
           );
         $bsSymbolContent[$intBase][$intSub] = $symbolizationLevel[0]->getContent();
       }
@@ -250,7 +244,7 @@ class PhysController extends Controller
       return $this->render('SitephysPhysmvcBundle:Phys:sym.html.twig', array(
         'bslevel' => $bsLevelContent,
         'bssymb' => $bsSymbolContent,
-        'datalevel' => $dataLevel
+        'datalevel' => $dataLevel,
         ));
     } 
   }
@@ -392,14 +386,17 @@ class PhysController extends Controller
         foreach ($symbolizationObject as $key => $symbol) {
           $symbolizationContent[$intEltLevelPos] .= $symbol->getContent();
         }
-        $physTopicId = $physg->getTopicId();
-        $physTopic = $topicRep->find($physTopicId);
-        $physTopicContent[$intEltLevelPos] = $physTopic->getContent();
-        $physDomainId = $physTopic->getDomainId();
-        $physDomain = $domainRep->find($physDomainId);
-        $physDomainContent[$intEltLevelPos] = $physDomain->getContent();
       }
     }
+
+    $physTopicId = $idTopic; // $physg->getTopicId();
+    $physTopic = $topicRep->find($physTopicId);
+    $physTopicContent = $physTopic->getContent();
+    $physTopicMode = $physTopic->getMode();
+    $physDomainId = $physTopic->getDomainId();
+    $physDomain = $domainRep->find($physDomainId);
+    $physDomainContent = $physDomain->getContent();
+
       return $this->render('SitephysPhysmvcBundle:Phys:global.html.twig', array(
         'idtop' => $idTopic,
         'toptitle' => $topicTitle,
@@ -412,6 +409,7 @@ class PhysController extends Controller
         'physevaluation' => $physEvaluation,
         'domaincontent' => $physDomainContent,
         'topiccontent' => $physTopicContent,
+        'topicmode' => $physTopicMode,
         'levelcontent' => $levelContent,
         'symbolizationcontent' => $symbolizationContent,
         ));

@@ -18,17 +18,20 @@
   <div class="well">
       <h2><i class="fa fa-gift"></i>Description de niveaux et symbolisations par niveau de base</h2>
       <nav id="tabs-nav" class="clearfix">
-        <a href="{{ "#symbol" ~ "1" }}"> {{ datalevel[0] }} </a><span> </span>
-        {% for intBase in 2..6 %}
+        {% for intBase in 1..6 %}
           <a href="{{ "#symbol" ~ intBase }}"> {{ datalevel[intBase - 1] }} </a><span> </span>
         {% endfor %}
       </nav>
       <div id="tabs-container" onload="initTab()">
-        {% for intBase in 1..3 %}
+        {% for intBase in 1..6 %}
           <article id="{{ "symbol" ~ intBase }}" >
-            {% for intSub in 1..3 %}
-              Niveau {{ intBase }} - {{ intSub }} : {{ bslevel[intBase][intSub] }}
-              <br />Symbolisation : {{ bssymb[intBase][intSub] }}<br />
+            {% for intSub in 0..6 %}
+              {% if bslevel[intBase][intSub] is defined %}
+                Niveau {{ intBase }} - {{ intSub }} : {{ bslevel[intBase][intSub] }}
+              {% endif %}
+              {% if bssymb[intBase][intSub] is defined %}
+                <br />Symbolisation : {{ bssymb[intBase][intSub] }}<br />
+              {% endif %}
             {% endfor %}
           </article>
         {% endfor %}

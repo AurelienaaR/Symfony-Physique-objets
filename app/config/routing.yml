@@ -1,3 +1,14 @@
 sitephys_physmvc:
     resource: "@SitephysPhysmvcBundle/Resources/config/routing.yml"
     prefix:   /
+
+login:
+    path: /login
+    defaults:
+        _controller: SitephysUserBundle:Security:login
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout

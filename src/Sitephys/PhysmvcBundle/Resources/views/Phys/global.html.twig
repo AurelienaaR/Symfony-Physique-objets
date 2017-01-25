@@ -32,18 +32,19 @@
     <h3>Description du niveau : {{ physiniglobalcontent }} </h3>
     <h3><i class="fa fa-gift"></i> Descriptions</h3>
     <nav id="tabs-nav" class="clearfix">
-      <a href="#domaine">Domaine et thème</a>
-      <a href="#contenu">Contenu</a>
-      <a href="#evaluation">Evaluation</a>
-      <a href="#symbolisation">Symbolisation</a>
+      <a href="#titre">Titre(s) du thème</a>
+      <a href="#contenu">Contenu(s)</a>
+      <a href="#evaluation">Evaluation(s)</a>
+      <a href="#symbolisation">Symbolisation(s)</a>
     </nav>
     <div id="tabs-container" onload="initTab()">      
-      <article id="domaine">
+      <article id="titre">
         {% for intEltLevelPossible in 1..6 %}
           {% if tabboolelt[intEltLevelPossible] %}
-            Titre : {{ phystitle[intEltLevelPossible] }}
-            <br />Domaine : {{ domaincontent[intEltLevelPossible] }}
-            <br />Thème : {{ topiccontent[intEltLevelPossible] }} <br />
+            Domaine : {{ domaincontent }} <br />
+            Thème : {{ topiccontent }} <br />
+            Mode du thème : {{ topicmode }} <br />
+            Titre : {{ phystitle[intEltLevelPossible] }} <br />
           {% endif %}
         {% endfor %}
       </article>
