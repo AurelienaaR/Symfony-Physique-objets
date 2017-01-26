@@ -16,21 +16,21 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <h3>Propositions d'édition</h3>
+    <h3>Types d'édition</h3>
     <nav id="tabs-nav" class="clearfix">
-      <a href="#consultelt">Consultation des éléments</a>
+      <a href="#consultelt">Eléments</a>
       {% if is_granted('ROLE_AUTHOR') %}
-        <a href="#modif">Modification d'un élément</a>
+        <a href="#modif">Modification d'élément</a>
       {% else %}
-        Modification d'un élément <span class="italique">(auteurs)</span>
+        Modification d'élément <span class="italique">(auteurs)</span>
       {% endif %}
-      <a href="#consultupd">Consultation des éléments modifiés</a>
+      <a href="#consultupd">Eléments modifiés</a>
       {% if is_granted('ROLE_AUTHOR') %}
-        <a href="#add">Ajout d'un objet</a>
+        <a href="#add">Ajout d'objet</a>
       {% else %}
-        Ajout d'un objet <span class="italique">(auteurs)</span>
+        Ajout d'objet <span class="italique">(auteurs)</span>
       {% endif %}
-      <a href="#consultadd">Consultation des objets ajoutés</a>
+      <a href="#consultadd">Objets ajoutés</a>
     </nav>
     <div id="tabs-container" onload="initTab()">
       <article id="consultelt">

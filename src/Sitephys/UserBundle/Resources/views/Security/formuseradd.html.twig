@@ -1,0 +1,39 @@
+<div class="wellform">
+
+  <div class="form-group">
+  
+    <h3>Formulaire d'inscription</h3>
+    <br />
+
+    {{ form_start(formuseradd, {'attr': {'class': 'form'}}) }}
+    {{ form_errors(formuseradd) }}
+
+    <div> 
+      {{ form_row(formuseradd.username, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <div> 
+      {{ form_row(formuseradd.email, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    <div>
+      <span>  {{ form_row(formuseradd.plainpassword, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+
+    <br />
+    <div>
+      <span>  {{ form_row(formuseradd.roles, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+
+    <br /><br />
+
+    <br /><br />
+    {{ form_widget(formuseradd.save, {'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_end(formuseradd) }}
+    
+    <br />
+    
+  </div>
+
+</div>

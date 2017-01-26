@@ -629,12 +629,6 @@ class PhysController extends Controller
       'physid' => $physId,
       'physedit' => $physEdit,
       'cptphys' => $cptPhys,
-  /*  'domainid' => $domainId,
-      'domainedit' => $domainEdit,
-      'cptdomain' => $cptDomain,
-      'levelid' => $levelId,
-      'leveledit' => $levelEdit,
-      'cptlevel' => $cptLevel,    */
       'updateid' => $updateId,
       'updateedit' => $updateEdit,
       'cptupd' => $cptUpd,
@@ -711,7 +705,7 @@ class PhysController extends Controller
       }
     }
  
-    return $this->render('SitephysPhysmvcBundle:phys:add.html.twig', array(
+    return $this->render('SitephysPhysmvcBundle:Phys:add.html.twig', array(
       'thing' => $thing,
       'domainexist' => $titleDomain,
       'topicexist' => $titleTopic,

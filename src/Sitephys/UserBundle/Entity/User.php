@@ -3,28 +3,51 @@
 namespace Sitephys\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Table(name="physdb_user")
- * @ORM\Entity(repositoryClass="Sitephys\UserBundle\Entity\UserRepository")
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="Sitephys\UserBundle\Repository\UserRepository")
+ * @UniqueEntity(fields="email", message="Email already taken")
+ * @UniqueEntity(fields="username", message="Username already taken")
  */
 class User implements UserInterface
 {
-  /**
-   * @ORM\Column(name="id", type="integer")
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="AUTO")
-   */
-  private $id;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
   /**
    * @ORM\Column(name="username", type="string", length=255, unique=true)
+   * @Assert\NotBlank()
    */
   private $username;
 
   /**
-   * @ORM\Column(name="password", type="string", length=255)
+   * @ORM\Column(name="email", type="string", length=255, unique=true)
+   * @Assert\NotBlank()
+   * @Assert\Email()
+   */
+  private $email;
+
+  /**
+   * @Assert\NotBlank()
+   * @Assert\Length(max=4096)
+   */
+  private $plainPassword;
+
+  /**
+   *
+   * @ORM\Column(name="password", type="string", length=64)
    */
   private $password;
 
@@ -47,106 +70,70 @@ class User implements UserInterface
     /**
      * Get id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
     public function getUsername()
     {
         return $this->username;
     }
 
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return User
-     */
-    public function setPassword($password)
+    public function setUsername($username)
     {
-        $this->password = $password;
-
-        return $this;
+        $this->username = $username;
     }
 
-    /**
-     * Get password
-     *
-     * @return string
-     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
     public function getPassword()
     {
         return $this->password;
     }
 
-    /**
-     * Set salt
-     *
-     * @param string $salt
-     *
-     * @return User
-     */
-    public function setSalt($salt)
+    public function setPassword($password)
     {
-        $this->salt = $salt;
-
-        return $this;
+        $this->password = $password;
     }
 
-    /**
-     * Get salt
-     *
-     * @return string
-     */
     public function getSalt()
     {
-        return $this->salt;
+        // The bcrypt algorithm doesn't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
     }
 
-    /**
-     * Set roles
-     *
-     * @param array $roles
-     *
-     * @return User
-     */
-    public function setRoles($roles)
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * Get roles
-     *
-     * @return array
-     */
-    public function getRoles()
+        public function getRoles()
     {
         return $this->roles;
     }
+
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+    }
+
+
 }
+

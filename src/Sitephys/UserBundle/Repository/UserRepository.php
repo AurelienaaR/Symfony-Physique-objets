@@ -1,6 +1,6 @@
 <?php
 
-namespace Sitephys\UserBundle\Entity;
+namespace Sitephys\UserBundle\Repository;
 
 /**
  * UserRepository

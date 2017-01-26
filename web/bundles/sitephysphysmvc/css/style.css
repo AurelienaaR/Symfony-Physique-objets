@@ -1,0 +1,101 @@
+
+
+body {
+	/*font-family: Verdana, Geneva, sans-serif; */ font-family: 'Dosis', sans-serif; 
+	font-size: 18px;
+}
+
+h1, h2, h3 {
+	/*font-family: Verdana, Geneva, sans-serif; */ font-family: 'Play'; 
+	color: #122; 
+}
+
+h1 {
+	font-size: 48px;
+}
+
+h2 {
+	margin: 0; /* 10px 0 10px 0; */
+	font-size: 32px;
+	/* background-color: rgba(130,145,155,0.90); */
+	padding: 0; /* 7px 10px 5px 10px; */
+	color: #122;
+}
+
+h3 {
+	font-size: 20px;
+	margin-top: 1px;
+}
+
+a {
+	text-decoration: none;
+	color: #555;
+}
+
+
+em, b {
+	font-weight: bold;
+}
+
+
+header, header .container {
+	background-color: #2c7699; /* #3498db; */
+}
+
+header .container {
+	padding-top: 0;
+}
+
+header {
+	margin: auto;
+}
+
+header h1 {
+	float: left;
+	margin-top: 2px;
+	color: #FFF;
+}
+
+header ul {
+	float: right;
+}
+
+header li {
+	float: left;
+}
+
+header a {
+	font-size: 24px;
+	display: block;
+	padding: 0 15px;
+}
+
+header a:hover {
+	background-color: #FFF;
+}
+
+
+#taglines {
+	text-align: center;
+}
+
+#taglines em {
+	font-size: 36px;
+	color: #16a085;
+}
+
+#taglines em i {
+	margin: 0 20px;
+}
+
+.fontarticleini {
+	margin-top: 0px;
+	font-size: 0px;
+}
+
+.fontarticle {
+	margin-top: 5px;
+	font-size: 20px;
+	color: #FFF;
+	background-color: #9dc6c1;
+}
