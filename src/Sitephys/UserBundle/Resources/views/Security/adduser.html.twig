@@ -1,17 +1,21 @@
 {% extends "SitephysUserBundle::layoutuser.html.twig" %}
 
 {% block title %}
-  Inscription
+  Inscription (nouveau compte)
 {% endblock %}
 
 {% block sitephysuser_image %}
   <div class="containertedit">
-    <img src="{{ asset('bundles/sitephysuser/images/geo-photo.jpg') }}" class="addphoto" alt="Image de Suggestion - Ajout" />
+    <img src="{{ asset('bundles/sitephysuser/images/geo-photo.jpg') }}" class="addphoto" alt="Image de Ajout de compte Utilisateur" />
   </div>
 {% endblock %}
 
 {% block sitephysuser_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Inscription </h2>
+  {% if (roleuser == "author") %}
+    <h2 style = "color:#FFF; text-align:center; margin:10px;">Inscription (nouveau compte Auteur)</h2>
+  {% else %}
+    <h2 style = "color:#FFF; text-align:center; margin:10px;">Inscription (nouveau compte Utilisateur)</h2>
+  {% endif %}
 {% endblock %}
 
 {% block sitephysuser_body %}

@@ -391,21 +391,33 @@ text-align:left;
     text-decoration: none;
 }
 
-#eval-th {
-    width: 20%;
+#home-user {
     margin: auto;
+    width: 90%;
+    display: block;
+    box-sizing: border-box;
+    background-color: rgba(165,220,210,0.10);
+     padding:5px;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+}
+
+#eval-th {
+    margin: auto;
+    width: 30%;
     display: block;
     box-sizing: border-box;
 }
 
 .button-eval a {
     margin: auto;
+    padding:10px;
     background-color: #07915c;
     color: #FFF;
     text-decoration: none;
     text-align:center;
     border:1px solid #376450;
-    padding:7px;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;

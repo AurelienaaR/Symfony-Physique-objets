@@ -796,6 +796,7 @@ class PhysController extends Controller
     } 
   }
   
+
   public function viewupdAction($idupd)
   {
     $em = $this->getDoctrine()->getManager();
@@ -876,6 +877,7 @@ class PhysController extends Controller
       }
     } 
   }
+
 
   public function viewaddAction($idadd)
   {

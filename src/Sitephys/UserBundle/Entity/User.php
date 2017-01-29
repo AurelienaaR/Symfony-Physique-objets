@@ -40,19 +40,13 @@ class User implements UserInterface
   private $email;
 
   /**
-   * @Assert\NotBlank()
-   * @Assert\Length(max=4096)
-   */
-  private $plainPassword;
-
-  /**
    *
-   * @ORM\Column(name="password", type="string", length=64)
+   * @ORM\Column(name="password", type="string", length=255)
    */
   private $password;
 
   /**
-   * @ORM\Column(name="salt", type="string", length=255)
+   * @ORM\Column(name="salt", type="string", length=255, nullable=true)
    */
   private $salt;
 
@@ -95,16 +89,6 @@ class User implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword($password)
-    {
-        $this->plainPassword = $password;
     }
 
     public function getPassword()

@@ -5,22 +5,25 @@
 {% block sitephysuser_body %}
 
   {% if error %}
-    <div class="alert alert-danger">{{ error.message }}</div>
+    <div class="alert alert-danger"> {{ error.message }} </div>
   {% endif %}
-  <br />
-  <a href="{{ path('sitephys_user_add') }}"><h3> Création d'un compte</h3></a>
-  
-  <br />
-  <h3> Connexion à votre compte : </h3>
-  <form action="{{ path('login_check') }}" method="post">
-    <label for="username"> Login : </label><br />
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
-    <br />
+  <br /><br />
 
-    <label for="password"> Mot de passe : </label><br />
-    <input type="password" id="password" name="_password" />
+  <div class="well">
+    <h3 style="text-align:center; color:#000">Connexion à votre compte : </h3>
+    <form action="{{ path('login_check') }}" method="post">
+      <span style="text-align:center; color:#000"><label for="username"> Pseudo : </label></span><br />
+      <span style="text-align:center; color:#000"><input type="text" id="username" name="_username" value="{{ last_username }}" /></span><br /><br />
+      <span style="text-align:center; color:#000"><label for="password"> Mot de passe : </label></span><br />
+      <span style="text-align:center; color:#000"><input type="password" id="password" name="_password" /></span><br /><br />
+      <span style="text-align:center; color:#000"><input type="submit" value="Connexion" /></span><br />
+    </form>
     <br />
-    <input type="submit" value="Connexion" />
-  </form>
+    <div style="text-align:center; color:#000; ">
+      Ou bien : <br />
+      <a href="{{ path('sitephys_user_add', {'roleuser': 'user'}) }}">Création d'un nouveau compte utilisateur</a> ?<br />
+      <a href="{{ path('sitephys_user_add', {'roleuser': 'author'}) }}">Création d'un nouveau compte auteur</a> ?
+    </div>
+  </div>
 
 {% endblock %}

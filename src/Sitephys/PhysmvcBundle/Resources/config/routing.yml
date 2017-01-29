@@ -75,13 +75,8 @@ sitephys_user_account:
     defaults:
         _controller: SitephysUserBundle:Security:homeuser
 
-sitephys_user_view:
-    path:      /user/view/{iduser}
-    defaults:
-        _controller: SitephysUserBundle:Security:viewuser
-
 sitephys_user_add:
-    path:      /user/add
+    path:      /user/add/{roleuser}
     defaults:
         _controller: SitephysUserBundle:Security:adduser
 
