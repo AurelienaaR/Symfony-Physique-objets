@@ -4,6 +4,10 @@
   Inscription (nouveau compte)
 {% endblock %}
 
+{% block menu %}
+  {{ parent() }}
+{% endblock %}
+
 {% block sitephysuser_image %}
   <div class="containertedit">
     <img src="{{ asset('bundles/sitephysuser/images/geo-photo.jpg') }}" class="addphoto" alt="Image de Ajout de compte Utilisateur" />

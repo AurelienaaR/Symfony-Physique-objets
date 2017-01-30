@@ -37,6 +37,7 @@ class SecurityController extends Controller
     $authenticationUtils = $this->get('security.authentication_utils');
 
     return $this->render('SitephysUserBundle:Security:login.html.twig', array(
+      'userconnect' => 'Connexion',
       'last_username' => $authenticationUtils->getLastUsername(),
       'error'         => $authenticationUtils->getLastAuthenticationError(),
     ));
@@ -56,10 +57,34 @@ class SecurityController extends Controller
     } else {
 
       $userObjectArray = $userObject->getRoles();
-      $userRoles = $userObjectArray[0];
+      $userRolesX = $userObjectArray[0];
+
+      switch ($userRolesX) {
+
+      case 'ROLE_USER':
+        $userRoles = 'utilisateur (consultation)';
+        break;
+      case 'ROLE_AUTHOR':
+        $userRoles = 'auteur (consultation, modification et ajout)';
+        break;
+      case 'ROLE_ADMIN':
+        $userRoles = 'administrateur (édition complète)';
+        break;
+      default:
+        $userRoles = 'non connecté';
+        break;
+        
+    }
+
+    $userconnectx = $this->getUser();
+      if (null === $userconnectx) {
+        $userconnect = 'Connexion';
+      } else {
+        $userconnect = $userconnectx->getUsername();
+      }
 
       return $this->render('SitephysUserBundle:Security:homeuser.html.twig', array(
-        // 'passworduser' => $passwordUser,
+        'userconnect' => $userconnect,
         'userobject' => $userObject,
         'userroles' => $userRoles,
       ));
@@ -115,10 +140,19 @@ class SecurityController extends Controller
         return $this->redirectToRoute('sitephys_physmvc_home');            
       }
     }
+
+    $userconnectx = $this->getUser();
+      if (null === $userconnectx) {
+        $userconnect = 'Connexion';
+      } else {
+        $userconnect = $userconnectx->getUsername();
+      }
  
-    return $this->render('SitephysUserBundle:Security:adduser.html.twig', array(
-      'roleuser' => $roleuser,
-      'formuseradd' => $formUserAdd->createView(),
+    return $this->render('SitephysUserBundle:Security:adduser.html.twig', 
+      array(
+        'userconnect' => $userconnect,
+        'roleuser' => $roleuser,
+        'formuseradd' => $formUserAdd->createView(),
     ));
   }
 
@@ -129,13 +163,72 @@ class SecurityController extends Controller
     $userRep = $em->getRepository('SitephysUserBundle:User');
 
     $userObject = $userRep->find($iduser); 
+    $usernameDeletedAccount = $userObject->getUsername();
+    $tabRolesDeletedAccount = $userObject->getRoles();
+    $roleDeletedAccountX = $tabRolesDeletedAccount[0];
+
+    switch ($roleDeletedAccountX) {
+
+      case 'ROLE_USER':
+        $roleDeletedAccount = 'utilisateur (consultation)';
+        break;
+      case 'ROLE_AUTHOR':
+        $roleDeletedAccount = 'auteur (consultation, modification et ajout)';
+        break;
+      case 'ROLE_ADMIN':
+        $roleDeletedAccount = 'administrateur (édition complète)';
+        break;
+      default:
+        $roleDeletedAccount = 'non connecté';
+        break;
+
+    }
+
     if (!$userObject) {
       throw new NotFoundHttpException('Utilisateur "' . $iduser . '" pas dans la base.');
     } else {
       $em->remove($userObject);
       $em->flush();
-      return $this->render('SitephysUserBundle:Security:deleteuser.html.twig');
+
+      $userconnectx = $this->getUser();
+      if (null === $userconnectx) {
+        $userconnect = 'Connexion';
+      } else {
+        $userconnect = $userconnectx->getUsername();
+      }
+      return $this->render('SitephysUserBundle:Security:deleteuser.html.twig', array(
+        'userconnect' => $userconnect,
+        'usernamedeletedaccount' => $usernameDeletedAccount,
+        'roledeletedaccount' => $roleDeletedAccount,
+        ));
     }
   }
+
+public function emailuserAction($name)
+{
+    $message = \Swift_Message::newInstance()
+        ->setSubject('Demande de compte auteur')
+        ->setFrom('xxx@xxx.com')
+        ->setTo('yyy@xxx.com')
+        ->setBody(
+            $this->renderView(
+                'Emails/registration.html.twig',
+                array('name' => $name)
+            ),
+            'text/html'
+        )
+        /*
+        ->addPart(
+            $this->renderView(
+                'Emails/registration.txt.twig',
+                array('name' => $name)
+            ),
+            'text/plain'
+        ) */
+    ;
+
+    $this->get('mailer')->send($message);
+    return $this->redirectToRoute('sitephys_physmvc_home');
+}
 
 }

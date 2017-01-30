@@ -84,3 +84,8 @@ sitephys_user_delete:
     path:      /user/delete/{iduser}
     defaults:
         _controller: SitephysUserBundle:Security:deleteuser
+
+sitephys_user_email:
+    path:      /user/email/{name}
+    defaults:
+        _controller: SitephysUserBundle:Security:emailuser

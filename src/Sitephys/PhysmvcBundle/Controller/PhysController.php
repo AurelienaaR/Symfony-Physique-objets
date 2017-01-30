@@ -93,7 +93,15 @@ class PhysController extends Controller
             $titleElt[$idtw] = $lastTElt->getTitle();
           }
 
+          $userconnectx = $this->getUser();
+          if (null === $userconnectx) {
+            $userconnect = 'Connexion';
+          } else {
+            $userconnect = $userconnectx->getUsername();
+          }
+
           return $this->render('SitephysPhysmvcBundle:Phys:home.html.twig', array(
+            'userconnect' => $userconnect,
             'tabdom' => $tabDom,
             'tabtopperdom' => $tabTopDomContent,
             'idtenlasttop' => $idTenLastTop,
@@ -161,7 +169,15 @@ class PhysController extends Controller
         $cpt ++;
       }
 
+      $userconnectx = $this->getUser();
+        if (null === $userconnectx) {
+          $userconnect = 'Connexion';
+        } else {
+          $userconnect = $userconnectx->getUsername();
+        }
+
       return $this->render('SitephysPhysmvcBundle:Phys:hometopic.html.twig', array(
+        'userconnect' => $userconnect,
         'idtop' => $idTopic,
         'toptitle' => $topicTitle,
         'physauthor' => $physAuthor,
@@ -207,13 +223,22 @@ class PhysController extends Controller
         $cptDom ++;        
       }
     }
+
+    $userconnectx = $this->getUser();
+      if (null === $userconnectx) {
+        $userconnect = 'Connexion';
+      } else {
+        $userconnect = $userconnectx->getUsername();
+      }
+
     return $this->render('SitephysPhysmvcBundle:Phys:top.html.twig', array(
+      'userconnect' => $userconnect,
       'listdomain' => $domTitle,
       'listtopic' => $topicId,
       'cptdom' => $cptDom,
       )
     );
-  } 
+  }
 
 
   public function symAction()
@@ -241,7 +266,16 @@ class PhysController extends Controller
       throw new NotFoundHttpException('Base incomplète en niveaux ou en symbolisations.');
     } else {
       $dataLevel = array("Exp. in", "Theory", "Exp. out", "Return Exp. in", "Return Theory", "Return Exp. out");
+
+      $userconnectx = $this->getUser();
+      if (null === $userconnectx) {
+        $userconnect = 'Connexion';
+      } else {
+        $userconnect = $userconnectx->getUsername();
+      }
+
       return $this->render('SitephysPhysmvcBundle:Phys:sym.html.twig', array(
+        'userconnect' => $userconnect,
         'bslevel' => $bsLevelContent,
         'bssymb' => $bsSymbolContent,
         'datalevel' => $dataLevel,
@@ -312,7 +346,15 @@ class PhysController extends Controller
         $dataEval = array("Exp. in", "Theory", "Exp. out", "Return Exp. in", "Return Theory", "Return Exp. out");
         $cptEval --;
 
+        $userconnectx = $this->getUser();
+        if (null === $userconnectx) {
+          $userconnect = 'Connexion';
+        } else {
+          $userconnect = $userconnectx->getUsername();
+        }
+
         return $this->render('SitephysPhysmvcBundle:Phys:eval.html.twig', array(
+          'userconnect' => $userconnect,
           'toptitle' => $topTitle,
           'tabbool' => $tabBool,
           'tablevel' => $tabLevel,
@@ -397,7 +439,15 @@ class PhysController extends Controller
     $physDomain = $domainRep->find($physDomainId);
     $physDomainContent = $physDomain->getContent();
 
+    $userconnectx = $this->getUser();
+    if (null === $userconnectx) {
+      $userconnect = 'Connexion';
+    } else {
+      $userconnect = $userconnectx->getUsername();
+    }
+
       return $this->render('SitephysPhysmvcBundle:Phys:global.html.twig', array(
+        'userconnect' => $userconnect,
         'idtop' => $idTopic,
         'toptitle' => $topicTitle,
         'intlevel' => $intLevel,
@@ -460,7 +510,15 @@ class PhysController extends Controller
       $domainObject = $domainRep->find($topicDomainId);
       $domainContent = $domainObject->getContent();
 
+      $userconnectx = $this->getUser();
+      if (null === $userconnectx) {
+        $userconnect = 'Connexion';
+      } else {
+        $userconnect = $userconnectx->getUsername();
+      }
+
       return $this->render('SitephysPhysmvcBundle:Phys:element.html.twig', array(
+        'userconnect' => $userconnect,
         'id' => $id,
         'idtop' => $physTopicId,
         'phystitle' => $physTitle,
@@ -535,7 +593,15 @@ class PhysController extends Controller
         $physDomainContent = $physDomain->getContent();
       }
 
+      $userconnectx = $this->getUser();
+      if (null === $userconnectx) {
+        $userconnect = 'Connexion';
+      } else {
+        $userconnect = $userconnectx->getUsername();
+      }
+
       return $this->render('SitephysPhysmvcBundle:Phys:element.html.twig', array(
+        'userconnect' => $userconnect,
         'id' => $physId,
         'idtop' => $idTopic,
         'intlevel' => $intLevel,
@@ -552,7 +618,7 @@ class PhysController extends Controller
         'symbolizationcontent' => $symbolizationContent,
         'physevaluation' => $physEvaluation,
         ));
-    } 
+    }
 
 
   public function homeeditAction()
@@ -625,7 +691,15 @@ class PhysController extends Controller
     }
     $cptAdd --;
 
+    $userconnectx = $this->getUser();
+    if (null === $userconnectx) {
+      $userconnect = 'Connexion';
+    } else {
+      $userconnect = $userconnectx->getUsername();
+    }
+
     return $this->render('SitephysPhysmvcBundle:Phys:homeedit.html.twig', array(
+      'userconnect' => $userconnect,
       'physid' => $physId,
       'physedit' => $physEdit,
       'cptphys' => $cptPhys,
@@ -704,8 +778,16 @@ class PhysController extends Controller
         return $this->redirectToRoute('sitephys_physmvc_edition');            
       }
     }
+
+    $userconnectx = $this->getUser();
+    if (null === $userconnectx) {
+      $userconnect = 'Connexion';
+    } else {
+      $userconnect = $userconnectx->getUsername();
+    }
  
     return $this->render('SitephysPhysmvcBundle:Phys:add.html.twig', array(
+      'userconnect' => $userconnect,
       'thing' => $thing,
       'domainexist' => $titleDomain,
       'topicexist' => $titleTopic,
@@ -782,7 +864,15 @@ class PhysController extends Controller
       }
     }
 
+    $userconnectx = $this->getUser();
+    if (null === $userconnectx) {
+      $userconnect = 'Connexion';
+    } else {
+      $userconnect = $userconnectx->getUsername();
+    }
+
     return $this->render('SitephysPhysmvcBundle:Phys:update.html.twig', array(
+      'userconnect' => $userconnect,
       'id' => $id,
       'physupdate' => $physupdate,
       'physupdatetitle' => $physupdateTitle,
@@ -852,7 +942,15 @@ class PhysController extends Controller
         $domainObject = $domainRep->find($topicDomainId);
         $domainContent = $domainObject->getContent();
 
+        $userconnectx = $this->getUser();
+        if (null === $userconnectx) {
+          $userconnect = 'Connexion';
+        } else {
+          $userconnect = $userconnectx->getUsername();
+        }
+
         return $this->render('SitephysPhysmvcBundle:Phys:viewupd.html.twig', array(
+          'userconnect' => $userconnect,
           'id' => $physupdId,
           'idtop' => $physTopicId,
           'phystitle' => $physTitle,
@@ -896,7 +994,15 @@ class PhysController extends Controller
       $physaddDocument = $physadd->getDocument();
       $physaddWeblink = $physadd->getWeblink();
 
+      $userconnectx = $this->getUser();
+      if (null === $userconnectx) {
+        $userconnect = 'Connexion';
+      } else {
+        $userconnect = $userconnectx->getUsername();
+      }
+
       return $this->render('SitephysPhysmvcBundle:Phys:viewadd.html.twig', array(
+        'userconnect' => $userconnect,
         'physaddtitle' => $physaddTitle,
         'physaddauthor' => $physaddAuthor,
         'physadddate' => $physaddDate,

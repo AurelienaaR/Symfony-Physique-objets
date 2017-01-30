@@ -47,6 +47,11 @@ article {
   text-decoration: none;
 }
 
+.menu-color {
+  background: #88BB55;
+  text-decoration: none;
+}
+
 .container {
     width: 80%;
     height: 500px;
@@ -271,6 +276,11 @@ text-align:left;
     color: #000;
 }
 
+#tabs-container article {
+    background-color: rgba(115, 140, 130, 0.20);
+    color:#046;
+}
+
 #menu_nav {
     width: 100%;
     margin: 0;
@@ -318,7 +328,6 @@ text-align:left;
 }
 
 .well {
-    /* clear: both; */
     text-align: center;
     margin: auto;
 	width: 80%;
@@ -404,8 +413,25 @@ text-align:left;
 }
 
 #eval-th {
-    margin: auto;
     width: 30%;
+    margin: auto;
+    display: block;
+    box-sizing: border-box;
+}
+
+.deltext {
+    text-align:center;
+    margin: auto;
+    display: block;
+    box-sizing: border-box;
+    font-style: italic;
+    font-size: 32px;
+    color: #057;
+}
+
+.button-eval {
+    text-align:center;
+    margin: auto;
     display: block;
     box-sizing: border-box;
 }

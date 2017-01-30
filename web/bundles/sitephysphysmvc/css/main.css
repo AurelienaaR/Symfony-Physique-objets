@@ -47,6 +47,11 @@ article {
   text-decoration: none;
 }
 
+.menu-color {
+  background: #88BB55;
+  text-decoration: none;
+}
+
 .container {
     width: 80%;
     height: 500px;
@@ -269,6 +274,11 @@ text-align:left;
 #tabs-container h1 {
     font-size: 24px;
     color: #000;
+}
+
+#tabs-container article {
+    background-color: rgba(115, 140, 130, 0.20);
+    color:#046;
 }
 
 #menu_nav {

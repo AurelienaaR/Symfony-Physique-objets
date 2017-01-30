@@ -1,0 +1,18 @@
+{% extends "SitephysUserBundle::layoutuser.html.twig" %}
+
+{% block title %}
+  Compte d'auteur
+{% endblock %}
+
+{% block menu %}
+  {{ parent() }}
+{% endblock %}
+
+{% block sitephysuser_section %}
+  <div id="eval-th">
+    <div class="button-eval">
+      <a href="{{ asset('../logout') }}">Retour à l'accueil</a>
+    </div>
+  </div>
+   
+{% endblock %}

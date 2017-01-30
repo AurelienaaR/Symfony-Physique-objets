@@ -1,6 +1,12 @@
-{# src/Sitephys/UserBundle/Resources/views/Security/login.html.twig #}
-
 {% extends "SitephysUserBundle::layoutuser.html.twig" %}
+
+{% block title %}
+  Connexion au compte
+{% endblock %}
+
+{% block menu %}
+  {{ parent() }}
+{% endblock %}
 
 {% block sitephysuser_body %}
 
@@ -20,9 +26,10 @@
     </form>
     <br />
     <div style="text-align:center; color:#000; ">
+      <br />
       Ou bien : <br />
-      <a href="{{ path('sitephys_user_add', {'roleuser': 'user'}) }}">Création d'un nouveau compte utilisateur</a> ?<br />
-      <a href="{{ path('sitephys_user_add', {'roleuser': 'author'}) }}">Création d'un nouveau compte auteur</a> ?
+      <a href="{{ path('sitephys_user_add', {'roleuser': 'user'}) }}">Création d'un nouveau compte utilisateur</a><br />
+      <a href="{{ path('sitephys_user_email', {'name': 'author'}) }}">Création d'un nouveau compte auteur</a><br />
     </div>
   </div>
 

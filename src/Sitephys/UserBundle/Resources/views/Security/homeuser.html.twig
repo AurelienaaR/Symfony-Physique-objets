@@ -4,13 +4,17 @@
   Accueil du compte
 {% endblock %}
 
+{% block menu %}
+  {{ parent() }}
+{% endblock %}
+
 {% block sitephysuser_section %}
   <h2 style = "color:#FFF; text-align:center; margin:10px;"><span class="italique">Compte de {{ userobject.username }}</span></h2>
 {% endblock %}
 
 {% block sitephysuser_image %}
   <div class="containerthome">
-    <img src="{{ asset('bundles/sitephysphysmvc/images/fond-cosmo.jpg') }}" class="homephoto" alt="Image de l'accueil du compte" />
+    <img src="{{ asset('bundles/sitephysuser/images/fond-cosmo.jpg') }}" class="homephoto" alt="Image de l'accueil du compte" />
   </div>
 {% endblock %}
 
@@ -30,14 +34,14 @@
         <br />Role : {{ userroles }}
       </article>
       <article id="{{ "suppression" }}">
-          <a href="{{ path('sitephys_user_delete', {'iduser': userobject.id}) }}">Suppression</a> ?
+          <a href="{{ path('sitephys_user_delete', {'iduser': userobject.id}) }}">Suppression</a>
       </article>
       <article id="{{ "creation" }}">
-        <a href="{{ path('sitephys_user_add', {'roleuser': 'user'}) }}">Création d'un nouveau compte utilisateur</a> ?<br />
-        <a href="{{ path('sitephys_user_add', {'roleuser': 'author'}) }}">Création d'un nouveau compte auteur</a> ?
+        <a href="{{ path('sitephys_user_add', {'roleuser': 'user'}) }}">Création d'un compte utilisateur</a><br />
+        <a href="{{ path('sitephys_user_email', {'name': 'author'}) }}">Création d'un compte auteur</a>
       </article>
       <article id="{{ "deconnexion" }}">
-        <a href="{{ asset('../logout') }}">Déconnexion</a> ?
+        <a href="{{ asset('../logout') }}">Déconnexion</a>
       </article>
     </div>
   </div>

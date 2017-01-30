@@ -1,0 +1,26 @@
+{% extends "SitephysUserBundle::layoutuser.html.twig" %}
+
+{% block title %}
+  Courriel
+{% endblock %}
+
+{% block menu %}
+  {{ parent() }}
+{% endblock %}
+
+{% block sitephysuser_section %}
+  <h2 style = "color:#FFF; text-align:center; margin:10px;"><span class="italique">Courriel</span></h2>
+{% endblock %}
+
+{% block sitephysuser_image %}
+  <div class="containerthome">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/fond-cosmo.jpg') }}" class="homephoto" alt="Image de l'accueil du compte" />
+  </div>
+{% endblock %}
+
+{% block sitephysuser_body %}
+  <div>
+    <h2>Envoi de courriel</h2>
+    Hi {{ name }}! You're successfully registered.
+  </div>
+{% endblock %}

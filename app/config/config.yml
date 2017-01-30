@@ -66,6 +66,7 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    # delivery_addresses: ['xyz@yyy.com']
 
 # app/config/config.yml
 twig:
