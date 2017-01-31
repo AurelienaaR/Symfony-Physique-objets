@@ -18,10 +18,11 @@
   <div class="well">
     <h2>Descriptions et liens par domaine</h2><br />
     <nav id="tabs-nav" class="clearfix">
-      <span> </span><a href= {{"#" ~ "domaintopic" ~ "0" }}> {{ listdomain[0] }} </a><span> </span>
+      <span> </span><a href="{{"#" ~ "domaintopic" ~ "0" }}"> {{ listdomain[0] }} </a><span> </span>
       {% if cptdom > 1 %}
+        <span> </span>
         {% for ttii in 1..cptdom - 1 %}
-          <span> </span><a href= {{"#" ~ "domaintopic" ~ ttii }}> {{ listdomain[ttii] }} </a><span> </span>
+          <span> </span><a href="{{"#" ~ "domaintopic" ~ ttii }}"> {{ listdomain[ttii] }} </a><span> </span>
         {% endfor %}
       {% endif %}
     </nav>
@@ -29,7 +30,8 @@
       {% for ttii in 0..cptdom - 1 %}
         <article id={{ "domaintopic" ~ ttii }}>
           {% for ttid in listtopic[ttii + 1] %}
-            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': ttid.id}) }}"> {{ ttid.title }} </a><br /> {{ ttid.content }} <br />
+            {{ ttid.content }} <br />
+            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': ttid.id}) }}"> {{ ttid.title }} </a><br /> 
           {% endfor %}
         </article>
       {% endfor %}

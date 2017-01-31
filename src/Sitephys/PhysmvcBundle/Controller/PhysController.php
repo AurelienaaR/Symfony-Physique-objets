@@ -47,18 +47,24 @@ class PhysController extends Controller
       if (!$topicAll OR !$domainAll) {
         throw new NotFoundHttpException('Aucun thème dans la base.');
       } else {
-        foreach ($domainAll as $ke => $physDom) {
-          $physDomId = $physDom->getId();
-          $physDomContent = $physDom->getContent();
-          $tabDom[] = [$physDomId, $physDomContent];
-          $physTopObject = $topicRep->findBy(
-            array(
-              'domainId' => $physDomId,
-            ));
-          foreach ($physTopObject as $key => $physTopi) {
-            $idTopicElt = $physTopi->getId();
-            $physTopiContent = $physTopi->getContent();
-            $tabTopDomContent[$physDomId][] = [$idTopicElt, $physTopiContent];
+        $evolutionBy = ['Questions en multiple','Questions en linéaire', 'Etats', 'Réponses en linéaire', 'Réponses en multiple'];
+        foreach ($evolutionBy as $keyType => $typeTop) {
+          foreach ($domainAll as $ke => $physDom) {
+            $physDomId = $physDom->getId();
+            $physTopObject = $topicRep->findBy(
+              array(
+                'domainId' => $physDomId,
+                'mode' => $keyType,
+              ));
+            if (null != $physTopObject) {
+              $physDomContent = $physDom->getContent();
+              $tabDom[$keyType][] = [$physDomId, $physDomContent];
+              foreach ($physTopObject as $key => $physTopi) {
+                $idTopicElt = $physTopi->getId();
+                $physTopiContent = $physTopi->getContent();
+                $tabTopDomContent[$keyType][$physDomId][] = [$idTopicElt, $physTopiContent];
+              }
+            }
           }
         }
 
@@ -104,6 +110,7 @@ class PhysController extends Controller
             'userconnect' => $userconnect,
             'tabdom' => $tabDom,
             'tabtopperdom' => $tabTopDomContent,
+            'evol' => $evolutionBy,
             'idtenlasttop' => $idTenLastTop,
             'titletop' => $titleTop,
             'idtwentylastelt' => $idTwentyLastElt,
@@ -653,16 +660,6 @@ class PhysController extends Controller
     }
     $cptLevel --;
 
-    $cptUpd = 0;
-    $updateId = [];
-    $updateEdit = [];
-    foreach ($physUpdateAll as $key => $updateUpdate) {
-      $updateId[$cptUpd] = $updateUpdate->getId();
-      $updateEdit[$cptUpd] = $updateUpdate->getTitle();
-      $cptUpd ++;
-    }
-    $cptUpd --;
-
     $cptAdd = 0;
     $addId = [];
     $addEdit = [];
@@ -685,9 +682,6 @@ class PhysController extends Controller
       'physid' => $physId,
       'physedit' => $physEdit,
       'cptphys' => $cptPhys,
-      'updateid' => $updateId,
-      'updateedit' => $updateEdit,
-      'cptupd' => $cptUpd,
       'addid' => $addId,
       'addedit' => $addEdit,
       'cptadd' => $cptAdd,

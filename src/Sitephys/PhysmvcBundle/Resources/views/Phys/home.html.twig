@@ -15,26 +15,29 @@
 {% block sitephysphysmvc_image %}
   <div id="containerimghome">
     <div class="containerthome">
-      <img src="{{ asset('bundles/sitephysphysmvc/images/photoelectrohome.jpg') }}" class="homephoto" alt="Image de Home" />
+      <img src="{{ asset('bundles/sitephysphysmvc/images/photoelectrohome.jpg') }}" class="homephoto" alt="Image de Accueil" />
     </div>
   </div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <h2>Liste des thèmes enregistrés pour chaque domaine</h2><br />
+    <h2>Domaines - thèmes enregistrés pour chaque type d'évolution</h2><br />
     <nav id="tabs-nav" class="clearfix">
-      {% for tabdo in tabdom %}
-        <a href="{{ "#dom" ~ tabdo[0] }}">{{ tabdo[1] }}</a><span> </span>
+      <span> </span>
+      {% for kex, typex in evol %}
+        <span> </span><a href="{{ "#evol" ~ kex }}"> {{ typex }} </a><span> </span>
       {% endfor %}
-      <a href="{{ "#lasttentop" }}">Dix derniers thèmes</a>
-      <a href="{{ "#lasttwentyelt" }}">Vingt derniers éléments</a>
+      <a href="{{ "#lasttentop" }}">Dix derniers thèmes</a><span> </span>
+      <a href="{{ "#lasttwentyelt" }}">Vingt derniers éléments</a><span> </span>
     </nav>
     <div id="tabs-container" onload="initTab()">
-      {% for tabd in tabdom %}
-        <article id="{{ "dom" ~ tabd[0] }}">
-          {% for tabtoppdom in tabtopperdom[tabd[0]] %}
-            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': tabtoppdom[0]}) }}"><div> {{ tabtoppdom[1] }} </div></a>
+      {% for key, typey in evol %}
+        <article id="{{ "evol" ~ key }}">
+          {% for tabd in tabdom[key] %}
+            {% for tabtoppdom in tabtopperdom[key][tabd[0]] %}
+              <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': tabtoppdom[0]}) }}"><div> {{ tabd[1] }} - {{ tabtoppdom[1] }} </div></a>
+            {% endfor %}  
           {% endfor %}
         </article>
       {% endfor %}
