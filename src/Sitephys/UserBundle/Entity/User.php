@@ -29,6 +29,12 @@ class User implements UserInterface
   /**
    * @ORM\Column(name="username", type="string", length=255, unique=true)
    * @Assert\NotBlank()
+   * @Assert\Length(
+   *      min = 3,
+   *      max = 10,
+   *      minMessage = "Pseudo de longueur minimale {{ limit }} caractères.",
+   *      maxMessage = "Pseudo de longueur maximale {{ limit }} caractères."
+   * )
    */
   private $username;
 

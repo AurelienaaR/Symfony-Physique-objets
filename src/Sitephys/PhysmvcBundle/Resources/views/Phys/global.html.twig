@@ -28,14 +28,15 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <h3>Niveau de base (global) : {{ intlevel }} </h3>
-    <h3>Description du niveau : {{ physiniglobalcontent }} </h3>
-    <h3><i class="fa fa-gift"></i> Descriptions</h3>
+    <h2>Descriptions</h2>
+    <h3>Pour le niveau de base (global) : {{ intlevel }}, soit : {{ physiniglobalcontent }}.</h3>
+    <br />
     <nav id="tabs-nav" class="clearfix">
-      <a href="#titre">Titre(s) du thème</a>
-      <a href="#contenu">Contenu(s)</a>
-      <a href="#evaluation">Evaluation(s)</a>
-      <a href="#symbolisation">Symbolisation(s)</a>
+      <span> </span>
+      <a href="#titre">Titre(s) du thème</a><span> </span>
+      <a href="#contenu">Contenu(s)</a><span> </span>
+      <a href="#evaluation">Evaluation(s)</a><span> </span>
+      <a href="#symbolisation">Symbolisation(s)</a><span> </span>
     </nav>
     <div id="tabs-container" onload="initTab()">      
       <article id="titre">

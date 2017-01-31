@@ -1,11 +1,11 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Modifier l'élément {{ physupdatetitle }}
+  Modifier l'élément {{ physupdate.title }}
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "font-style:italic; color:#FFF; text-align:center; margin:10px;">Suggestion de modification de l'élément <strong>{{ physupdatetitle }}</strong>.</h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Suggestion de modification de l'élément <strong>{{ physupdate.title }}</strong>.</h2>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -16,7 +16,7 @@
 
 {% block sitephysphysmvc_body %}
   <div class="containerthome">
-    <h3 style = "font-style:italic; color:#FFF; text-align:center; margin:10px;">Proposition de modification de l'élément <strong>{{ physupdatetitle }}</strong> à la date actuelle, {{ 'now'|date('d/m/Y') }}, du domaine <strong>{{ physupdatedomain }}</strong> et du thème <strong>{{ physupdatetopic }}</strong> pour le niveau de base <strong>{{ physupdateleveltab[0] }}</strong> et le niveau de précision <strong>{{ physupdateleveltab[1] }}</strong>, soit : <strong>{{ physupdatelevelcontent }}</strong>.</h3>
+    <h3 style = "font-style:italic; color:#FFF; text-align:center; margin:10px;">Proposition de modification à la date actuelle, {{ 'now'|date('d/m/Y H:i') }}, de l'élément <strong>{{ physupdate.title }}</strong> créé par {{ physupdate.author }} le {{ physupdate.date }} du domaine <strong>{{ physupdatedomain }}</strong> et du thème <strong>{{ physupdatetopic }}</strong> pour le niveau de base <strong>{{ physupdateleveltab[0] }}</strong> et le niveau de précision <strong>{{ physupdateleveltab[1] }}</strong>, soit : <strong>{{ physupdatelevelcontent }}</strong>.<br /><strong>Contenu actuel : {{ physupdate.content }}<br />Evaluation actuelle : {{ physupdate.evaluation }}</strong></h3>
   </div>
 <br />
 

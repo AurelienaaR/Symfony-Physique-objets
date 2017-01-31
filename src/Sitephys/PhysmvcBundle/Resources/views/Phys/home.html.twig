@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Accueil</i></h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Accueil</h2>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -22,7 +22,7 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <h2><i class="fa fa-gift"></i>Liste des thèmes enregistrés pour chaque domaine</h2>
+    <h2>Liste des thèmes enregistrés pour chaque domaine</h2><br />
     <nav id="tabs-nav" class="clearfix">
       {% for tabdo in tabdom %}
         <a href="{{ "#dom" ~ tabdo[0] }}">{{ tabdo[1] }}</a><span> </span>

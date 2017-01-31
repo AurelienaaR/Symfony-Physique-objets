@@ -16,12 +16,12 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <h2><i class="fa fa-gift">Descriptions</h2>
+    <h2>Descriptions et liens par domaine</h2><br />
     <nav id="tabs-nav" class="clearfix">
-      <a href= {{"#" ~ "domaintopic" ~ "0" }}> {{ listdomain[0] }} </a><span> </span>
+      <span> </span><a href= {{"#" ~ "domaintopic" ~ "0" }}> {{ listdomain[0] }} </a><span> </span>
       {% if cptdom > 1 %}
         {% for ttii in 1..cptdom - 1 %}
-          <a href= {{"#" ~ "domaintopic" ~ ttii }}> {{ listdomain[ttii] }} </a><span> </span>
+          <span> </span><a href= {{"#" ~ "domaintopic" ~ ttii }}> {{ listdomain[ttii] }} </a><span> </span>
         {% endfor %}
       {% endif %}
     </nav>

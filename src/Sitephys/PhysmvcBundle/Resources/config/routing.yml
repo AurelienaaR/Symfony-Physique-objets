@@ -61,7 +61,7 @@ sitephys_physmvc_edition_viewadd:
         _controller: SitephysPhysmvcBundle:Phys:viewadd
 
 sitephys_physmvc_edition_viewupd:
-    path:      /edition/viewupd/{idupd}
+    path:      /edition/viewupd/{idphys}
     defaults:
         _controller: SitephysPhysmvcBundle:Phys:viewupd
 

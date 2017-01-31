@@ -1,11 +1,11 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Lecture de l'élément du thème ajouté {{ physaddtitle }} par {{ physaddauthor }} le {{ physadddate }}. 
+  Lecture de l'élément du thème ajouté {{ physadd.title }} par {{ physadd.author }}. 
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Elément ajouté : {{ physaddtitle }} </h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Elément ajouté : {{ physadd.title }} </h2>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -17,26 +17,24 @@
 {% block sitephysphysmvc_body %}
   <div class="well">
     <section id="descriptions">
-      <h2><i class="fa fa-gift"></i> Descriptions</h2>
+      <h2>Descriptions de l'objet ajouté, {{ physadd.title }}</h2><br />
       <nav id="tabs-nav" class="clearfix">
-        <a href="#chose">Objet ajouté</a>
-        <a href="#contenu">Contenu</a>
-        <a href="#auteur">Création</a>
+        <span> </span><a href="#chose">Objet ajouté</a>
+        <span> </span><a href="#contenu">Contenu</a>
+        <span> </span><a href="#auteur">Création</a><span> </span>
       </nav>
       <div id="tabs-container" onload="initTab()">
         <article id="chose">
-          {{ physaddtitle }}
-          <br />Objet : {{ physaddthing }}
+          Objet de type : {{ physadd.thing }}
         </article>
         <article id="contenu">
-          {{ physaddtitle }}
-          <br /> {{ physaddcontent }} <br />
+          Contenu :
+          <br /> {{ physadd.content }} <br />
         </article>
         <article id="auteur">
-          {{ physaddtitle }} 
-          <br />Par {{ physaddauthor }}, 
-          <br />le {{ physadddate|date('d/m/Y') }}
-          <br />Lien Internet : {{ physaddweblink }}.
+          Auteur : {{ physadd.author }}, 
+          <br />Date : {{ physadd.date|date('d/m/Y H:i:s') }}
+          <br />Lien Internet : {{ physadd.weblink }}
         </article>
       </div>
       </section>

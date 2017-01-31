@@ -1,11 +1,11 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Lecture de l'élément du thème {{ phystitle }} et du niveau {{ physleveltab[0] }} - {{ physleveltab[1] }}
+  Lecture de l'élément du thème {{ physelt.title }} et du niveau {{ physleveltab[0] }} - {{ physleveltab[1] }}
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Elément simple : {{ phystitle }} </h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Elément simple : {{ physelt.title }} </h2>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -17,7 +17,8 @@
 {% block sitephysphysmvc_body %}
   <div class="well">
     <section id="descriptions">
-      <h2><i class="fa fa-gift"></i> Descriptions</h2>
+      <h2>Descriptions de {{ physelt.title }}</h2>
+      <br />
       <nav id="tabs-nav" class="clearfix">
         <a href="#domaine">Domaine et thème</a>
         <a href="#niveau">Niveau</a>
@@ -28,37 +29,31 @@
       </nav>
       <div id="tabs-container" onload="initTab()">
         <article id="domaine">
-          {{ phystitle }}
-          <br />Domaine : {{ domaincontent }}
+          Domaine : {{ domaincontent }}
           <br />Thème : {{ topiccontent }}
           <br />Mode du thème : {{ topicmode }} <br />
         </article>
         <article id="niveau">
-          {{ phystitle }}  
-          <br />Niveau de base <i>(global)</i> : {{ physleveltab[0] }} 
+          Niveau de base <i>(global)</i> : {{ physleveltab[0] }} 
           <br />Niveau de précision <i>(élément)</i> : {{ physleveltab[1] }} 
           <br />Description du niveau : {{ levelcontent }} <br />
         </article>
         <article id="contenu">
-          {{ phystitle }}
-          <br /> {{ physcontent }} <br />
+          {{ physelt.content }} <br />
         </article>
         <article id="evaluation">
-          {{ phystitle }} 
-          <br />Evaluation : {{ physevaluation }} <br />
+          Evaluation : {{ physelt.evaluation }} <br />
         </article>
         <article id="symbolisation">
-          {{ phystitle }} <br />
           {% set cptsym = 0 %}
           {% for symcontent in symbolizationcontent %}
             {% set cptsym = cptsym + 1 %}
             Symbolisation {{ cptsym }} : {{ symcontent }} <br />
           {% endfor %}
         </article>
-        <article id="author">
-          {{ phystitle }} 
-          <br />Par {{ physauthor }}, 
-          <br />le {{ physdate|date('d/m/Y') }} <br />
+        <article id="author"> 
+          Auteur : {{ physelt.author }}, 
+          <br />Date : {{ physelt.date|date('d/m/Y H:i:s') }} <br />
         </article>
       </div>
       </section>

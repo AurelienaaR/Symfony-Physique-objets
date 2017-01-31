@@ -479,11 +479,6 @@ class PhysController extends Controller
     if (!$phys) {
       throw new NotFoundHttpException('Elément "' . $id . '" pas dans la base.');
     } else {
-      $physTitle = $phys->getTitle();
-      $physAuthor = $phys->getAuthor();
-      $physDate = $phys->getDate();
-      $physContent = $phys->getContent();
-      $physEvaluation = $phys->getEvaluation();
       $physLevel = $phys->getLevel();
       $physLevelTab = unserialize($physLevel);
       $levelObject = $levelRep->findBy(
@@ -521,10 +516,7 @@ class PhysController extends Controller
         'userconnect' => $userconnect,
         'id' => $id,
         'idtop' => $physTopicId,
-        'phystitle' => $physTitle,
-        'physauthor' => $physAuthor,
-        'physdate' => $physDate,
-        'physcontent' => $physContent,
+        'physelt' => $phys,
         'physlevel' => $physLevel,
         'physleveltab' => $physLevelTab,
         'intlevel' => $physLevelTab[0],
@@ -533,7 +525,6 @@ class PhysController extends Controller
         'topicmode' => $topicMode,
         'levelcontent' => $levelContent,
         'symbolizationcontent' => $symbolizationContent,
-        'physevaluation' => $physEvaluation,
         ));
     } 
   }
@@ -563,11 +554,6 @@ class PhysController extends Controller
 
         $phys = $physGlobal[0];
         $physId = $phys->getId();
-        $physEvaluation = $phys->getEvaluation();
-        $physTitle = $phys->getTitle();
-        $physAuthor = $phys->getAuthor();
-        $physDate = $phys->getDate();
-        $physContent = $phys->getContent();
         $physLevel = $strLevel;
         $physLevelTab = unserialize($physLevel);
         $physLevelObject = $levelRep->findBy(
@@ -605,18 +591,14 @@ class PhysController extends Controller
         'id' => $physId,
         'idtop' => $idTopic,
         'intlevel' => $intLevel,
-        'physauthor' => $physAuthor,
-        'physdate' => $physDate,
-        'phystitle' => $physTitle,
+        'physelt' => $phys,
         'physlevel' => $physLevel,
         'physleveltab' => $physLevelTab,
-        'physcontent' => $physContent,
         'domaincontent' => $physDomainContent,
         'topiccontent' => $physTopicContent,
         'topicmode' => $physTopicMode,
         'levelcontent' => $physLevelContent,
         'symbolizationcontent' => $symbolizationContent,
-        'physevaluation' => $physEvaluation,
         ));
     }
 
@@ -810,11 +792,7 @@ class PhysController extends Controller
     if (!$physupdate) {
       throw new NotFoundHttpException('Elément "' . $id . '" pas dans la base.');
     } else {
-      $physupdateTitle = $physupdate->getTitle();
       $physupdateLevel = $physupdate->getLevel();
-      $physupdateAuthor = $physupdate->getAuthor();
-      $physupdateDate = $physupdate->getDate();
-      $physupdateContent = $physupdate->getContent();
       $physupdateLevelTab = unserialize($physupdateLevel);
       $physupdatelevelObject = $levelRep->findBy(
         array (
@@ -875,7 +853,6 @@ class PhysController extends Controller
       'userconnect' => $userconnect,
       'id' => $id,
       'physupdate' => $physupdate,
-      'physupdatetitle' => $physupdateTitle,
       'physupdatelevel' => $physupdateLevel,
       'physupdateleveltab' => $physupdateLevelTab,
       'physupdatelevelcontent' => $physupdatelevelContent,
@@ -887,7 +864,7 @@ class PhysController extends Controller
   }
   
 
-  public function viewupdAction($idupd)
+  public function viewupdAction($idphys)
   {
     $em = $this->getDoctrine()->getManager();
     $physupdRep = $em->getRepository('SitephysPhysmvcBundle:Physupdate'); 
@@ -897,25 +874,19 @@ class PhysController extends Controller
     $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
 
-    $physupd = $physupdRep->find($idupd); 
-    if (!$physupd) {
-      throw new NotFoundHttpException('Elément updated "' . $idupd . '" pas dans la base.');
-    } else {
-      $physupdTitle = $physupd->getTitle();
-      $physupdDate = $physupd->getDate();
-      $physupdAuthor = $physupd->getAuthor();
-      $physupdContent = $physupd->getContent();
-      $physupdId = $physupd->getIdphys();
+    $physupdObject = $physupdRep->findBy(
+      array (
+        'idphys' => $idphys,
+        ));
 
-      $phys = $physRep->find($physupdId); 
+    if (!$physupdObject) {
+      throw new NotFoundHttpException('Aucun élément modifié dans la base.');
+    } else {
+
+      $phys = $physRep->find($idphys); 
       if (!$phys) {
-        throw new NotFoundHttpException('Elément "' . $id . '" pas dans la base.');
+        throw new NotFoundHttpException('Elément "' . $idphys . '" pas dans la base.');
       } else {
-        $physTitle = $phys->getTitle();
-        $physAuthor = $phys->getAuthor();
-        $physDate = $phys->getDate();
-        $physContent = $phys->getContent();
-        $physEvaluation = $phys->getEvaluation();
         $physLevel = $phys->getLevel();
         $physLevelTab = unserialize($physLevel);
         $levelObject = $levelRep->findBy(
@@ -951,13 +922,8 @@ class PhysController extends Controller
 
         return $this->render('SitephysPhysmvcBundle:Phys:viewupd.html.twig', array(
           'userconnect' => $userconnect,
-          'id' => $physupdId,
-          'idtop' => $physTopicId,
-          'phystitle' => $physTitle,
-          'physauthor' => $physAuthor,
-          'physdate' => $physDate,
-          'physcontent' => $physContent,
-          'physevaluation' => $physEvaluation,
+          'physupd' => $physupdObject,
+          'phys' => $phys,
           'physlevel' => $physLevel,
           'physleveltab' => $physLevelTab,
           'intlevel' => $physLevelTab[0],
@@ -966,11 +932,6 @@ class PhysController extends Controller
           'topicmode' => $topicMode,
           'levelcontent' => $levelContent,
           'symbolizationcontent' => $symbolizationContent,
-          'physevaluation' => $physEvaluation,
-          'physupdtitle' => $physupdTitle,
-          'physupddate' => $physupdDate,
-          'physupdauthor' => $physupdAuthor,
-          'physupdcontent' => $physupdContent,
         ));
       }
     } 
@@ -986,14 +947,6 @@ class PhysController extends Controller
     if (!$physadd) {
       throw new NotFoundHttpException('Elément "' . $idadd . '" pas dans la base.');
     } else {
-      $physaddTitle = $physadd->getTitle();
-      $physaddAuthor = $physadd->getAuthor();
-      $physaddDate = $physadd->getDate()->format('Y-m-d H:i:s');
-      $physaddContent = $physadd->getContent();
-      $physaddThing = $physadd->getThing();
-      $physaddDocument = $physadd->getDocument();
-      $physaddWeblink = $physadd->getWeblink();
-
       $userconnectx = $this->getUser();
       if (null === $userconnectx) {
         $userconnect = 'Connexion';
@@ -1003,13 +956,7 @@ class PhysController extends Controller
 
       return $this->render('SitephysPhysmvcBundle:Phys:viewadd.html.twig', array(
         'userconnect' => $userconnect,
-        'physaddtitle' => $physaddTitle,
-        'physaddauthor' => $physaddAuthor,
-        'physadddate' => $physaddDate,
-        'physaddcontent' => $physaddContent,
-        'physaddthing' => $physaddThing,
-        'physadddocument' => $physaddDocument,
-        'physaddweblink' => $physaddWeblink,
+        'physadd' => $physadd,
       ));
     } 
   }

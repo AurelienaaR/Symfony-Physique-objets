@@ -18,11 +18,13 @@
   <div style="float: left; margin-right: 1em;"></div>
   <h2></h2>
   <div class="well">
-      <h3><i class="fa fa-gift"></i>Description par niveau des évaluations du thème {{ toptitle }}</h3>
+      <h3>Description par niveau des évaluations du thème {{ toptitle }}</h3><br />
       <nav id="tabs-nav" class="clearfix">
+        <span> </span>
         {% for intevali in 1..6 %}
           {% for intevalj in 1..6 %}
             {% if (tabbool[intevali][intevalj]) %}
+              <span> </span>
               <a href="{{ "#eval" ~ intevali ~ "-" ~ intevalj }}"> {{ intevali }} - {{ intevalj }} </a><span> </span>
             {% endif %}
           {% endfor %}
