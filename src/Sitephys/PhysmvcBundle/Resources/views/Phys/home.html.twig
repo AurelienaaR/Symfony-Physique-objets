@@ -24,12 +24,11 @@
   <div class="well">
     <h2>Domaines - thèmes enregistrés pour chaque type d'évolution</h2><br />
     <nav id="tabs-nav" class="clearfix">
-      <span> </span>
       {% for kex, typex in evol %}
-        <span> </span><a href="{{ "#evol" ~ kex }}"> {{ typex }} </a><span> </span>
+        <a href="{{ "#evol" ~ kex }}"> {{ typex }} </a><span>&nbsp;</span>
       {% endfor %}
-      <a href="{{ "#lasttentop" }}">Dix derniers thèmes</a><span> </span>
-      <a href="{{ "#lasttwentyelt" }}">Vingt derniers éléments</a><span> </span>
+      <a href="{{ "#lasttentop" }}">Dix derniers thèmes</a><span>&nbsp;</span>
+      <a href="{{ "#lasttwentyelt" }}">Vingt derniers éléments</a>
     </nav>
     <div id="tabs-container" onload="initTab()">
       {% for key, typey in evol %}

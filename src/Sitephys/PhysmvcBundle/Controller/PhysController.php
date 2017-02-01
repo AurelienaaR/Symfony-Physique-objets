@@ -47,7 +47,7 @@ class PhysController extends Controller
       if (!$topicAll OR !$domainAll) {
         throw new NotFoundHttpException('Aucun thème dans la base.');
       } else {
-        $evolutionBy = ['Questions en multiple','Questions en linéaire', 'Etats', 'Réponses en linéaire', 'Réponses en multiple'];
+        $evolutionBy = ['Questions (mode < -1)','Questions (mode = -1)', 'Etats (mode = 0)', 'Solutions (mode = 1)', 'Solutions (mode > 1)'];
         foreach ($evolutionBy as $keyType => $typeTop) {
           foreach ($domainAll as $ke => $physDom) {
             $physDomId = $physDom->getId();
@@ -617,7 +617,9 @@ class PhysController extends Controller
     $domainAll = $em->getRepository('SitephysPhysmvcBundle:Domain')->findAll();
     $levelAll = $em->getRepository('SitephysPhysmvcBundle:Level')->findAll();
     $physAddAll = $em->getRepository('SitephysPhysmvcBundle:Physadd')->findAll();
-    $physUpdateAll = $em->getRepository('SitephysPhysmvcBundle:Physupdate')->findAll();
+    $physUpdatedIdPhys = $em->getRepository('SitephysPhysmvcBundle:Physupdate')
+    ->findAllPhysUpdated();
+
 
     if (null === $physAll) {
       throw new NotFoundHttpException("Aucun élément dans la base.");
@@ -631,6 +633,22 @@ class PhysController extends Controller
       $cptPhys ++;
     }
     $cptPhys --;
+
+
+    if (null === $physUpdatedIdPhys) {
+      throw new NotFoundHttpException("Aucun élément modifié dans la base.");
+    }
+    $cptPhysUp = 0;
+    $physUpId = [];
+    $physUpEdit = [];
+    foreach ($physUpdatedIdPhys as $key => $physUpdId) {
+      $physUpId[$cptPhysUp] = $physUpdId['idphys'];
+      $physUpd = $em->getRepository('SitephysPhysmvcBundle:Phys')->find($physUpdId['idphys']);
+      $physUpEdit[$cptPhysUp] = $physUpd->getTitle();
+      $cptPhysUp ++;
+    }
+    $cptPhysUp --;
+
 
     if (null === $domainAll) {
       throw new NotFoundHttpException("Aucun domaine dans la base.");
@@ -682,6 +700,9 @@ class PhysController extends Controller
       'physid' => $physId,
       'physedit' => $physEdit,
       'cptphys' => $cptPhys,
+      'physupid' => $physUpId,
+      'physupedit' => $physUpEdit,
+      'cptphysup' => $cptPhysUp,
       'addid' => $addId,
       'addedit' => $addEdit,
       'cptadd' => $cptAdd,

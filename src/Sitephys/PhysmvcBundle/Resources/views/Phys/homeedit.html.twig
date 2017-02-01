@@ -18,44 +18,38 @@
   <div class="well">
     <h2>Types d'édition</h2><br />
     <nav id="tabs-nav" class="clearfix">
-      <span> </span>
-      <a href="#consultelt">Eléments</a>
+      <a href="#consultelt">Eléments</a><span>&nbsp;</span>
       {% if is_granted('ROLE_AUTHOR') %}
-        <span> </span><a href="#modif">Modification d'élément</a>
+        <a href="#modif">Modification d'élément</a><span>&nbsp;</span>
       {% else %}
-        <span> Modification d'élément </span><span class="italique">(auteurs)</span>
+        <span class="italique">Modification d'élément (auteurs)</span><span>&nbsp;</span>
       {% endif %}
-      <span> </span><a href="#consultupd">Eléments modifiés</a><span> </span>
+      <a href="#consultupd">Eléments modifiés</a><span>&nbsp;</span>
       {% if is_granted('ROLE_AUTHOR') %}
-        <span> </span><a href="#add">Ajout d'objet</a>
+        <a href="#add">Ajout d'objet</a><span>&nbsp;</span>
       {% else %}
-        <span> Ajout d'objet </span><span class="italique">(auteurs)</span>
+        <span class="italique">Ajout d'objet (auteurs)</span><span>&nbsp;</span>
       {% endif %}
-      <span> </span><a href="#consultadd">Objets ajoutés</a>
+      <a href="#consultadd">Objets ajoutés</a>
     </nav>
     <div id="tabs-container" onload="initTab()">
       <article id="consultelt">
-        <span> </span>
         {% for idposphys in 0..cptphys %}
-          <span> </span><a href="{{ path('sitephys_physmvc_phys_view', {'id': physid[idposphys]}) }}">
-          {{ physedit[idposphys] }} </a><span> </span>
+          <a href="{{ path('sitephys_physmvc_phys_view', {'id': physid[idposphys]}) }}">
+          {{ physedit[idposphys] }} </a><span>&nbsp;</span>
         {% endfor %}
       </article>
       {% if is_granted('ROLE_AUTHOR') %}
         <article id="modif">
-          <span> </span>
           {% for idposphys in 0..cptphys %}
-            <span> </span>
             <a href="{{ path('sitephys_physmvc_edition_update', {'id': physid[idposphys]}) }}">
-            {{ physedit[idposphys] }} </a><span> </span>
+            {{ physedit[idposphys] }} </a><span>&nbsp;</span>
           {% endfor %} 
         </article>
       {% endif %} 
       <article id="consultupd">
-        <span> </span>
-        {% for idposphysu in 0..cptphys %}
-          <span> </span>
-          <a href="{{ path('sitephys_physmvc_edition_viewupd', {'idphys': physid[idposphysu]}) }}"> {{ physedit[idposphysu] }} </a><span> </span>
+        {% for idposphysup in 0..cptphysup %}
+          <a href="{{ path('sitephys_physmvc_edition_viewupd', {'idphys': physupid[idposphysup]}) }}"> {{ physupedit[idposphysup] }} </a><span>&nbsp;</span>
         {% endfor %}
       </article>
       {% if is_granted('ROLE_AUTHOR') %}
@@ -66,9 +60,8 @@
         </article>
       {% endif %} 
       <article id="consultadd">
-        <span> </span>
         {% for idposadd in 0..cptadd %}
-          <span> </span><a href="{{ path('sitephys_physmvc_edition_viewadd', {'idadd': addid[idposadd]}) }}"> {{ addedit[idposadd] }} </a><span> </span>
+          <a href="{{ path('sitephys_physmvc_edition_viewadd', {'idadd': addid[idposadd]}) }}"> {{ addedit[idposadd] }} </a><span>&nbsp;</span>
         {% endfor %}
       </article>
     </div>

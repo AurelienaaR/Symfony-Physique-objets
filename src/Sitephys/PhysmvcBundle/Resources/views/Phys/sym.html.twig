@@ -18,9 +18,8 @@
   <div class="well">
     <h2>Description de niveaux et symbolisations par niveau de base</h2><br />
       <nav id="tabs-nav" class="clearfix">
-        <span> </span>
         {% for intBase in 1..6 %}
-          <span> </span><a href="{{ "#symbol" ~ intBase }}"> {{ datalevel[intBase - 1] }} </a><span> </span>
+          <a href="{{ "#symbol" ~ intBase }}"> {{ datalevel[intBase - 1] }} </a><span>&nbsp;</span>
         {% endfor %}
       </nav>
       <div id="tabs-container" onload="initTab()">
