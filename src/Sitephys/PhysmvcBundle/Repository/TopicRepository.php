@@ -11,7 +11,7 @@ class TopicRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT t.id FROM SitephysPhysmvcBundle:Topic t'
+                'SELECT t.id FROM SitephysPhysmvcBundle:Topic t ORDER BY t.id ASC'
             )
             ->getResult();
     }
@@ -31,6 +31,33 @@ class TopicRepository extends EntityRepository
             ->createQuery(
                 'SELECT t.content FROM SitephysPhysmvcBundle:Topic t'
             )
+            ->getResult();
+    }
+
+public function findIdTitleModeTopic()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT t.id, t.title, t.mode FROM SitephysPhysmvcBundle:Topic t ORDER BY t.id ASC'
+            )
+            ->getResult();
+    }
+
+public function findIdTitleLastTopic()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT t.id, t.title FROM SitephysPhysmvcBundle:Topic t ORDER BY t.date DESC'
+            )
+            ->setMaxResults(10)
+            ->getResult();
+    }
+
+public function findIdContentTopic($ktype, $domid)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT t.id, t.content FROM SitephysPhysmvcBundle:Topic t WHERE (t.domainId = ' . $domid . ' AND t.mode = ' . $ktype . ')')
             ->getResult();
     }
 

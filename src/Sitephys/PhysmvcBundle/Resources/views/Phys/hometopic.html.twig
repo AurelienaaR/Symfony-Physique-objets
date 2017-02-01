@@ -1,11 +1,11 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Accueil des éléments du thème {{ toptitle }}
+  Accueil des éléments du thème {{ topi.title }}
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Accueil des éléments du thème {{ toptitle }}</i></h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Accueil des éléments du thème {{ topi.title }}</i></h2>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -30,16 +30,16 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    {% for cp in range(0, cptMax - 1) %}
-      {{ phystitle[cp] }}
-      {{ levelcontent[cp] }}
-      <i>Par {{ physauthor[cp] }}, le {{ physdate[cp]|date('d/m/Y') }}</i>
+    {% for listphysx in listphys %}
+      {{ listphysx.title }}
+      {{ levelcontent[listphysx.id] }}
+      <i>Par {{ listphysx.author }}, le {{ listphysx.date|date('d/m/Y') }}</i>
     {% endfor %}
   </div>
   <br />
   <div id="eval-th">
     <div class="button-eval">
-      <a href="{{ path('sitephys_physmvc_evaluation', {'idTopic': idtop}) }}">Evaluations du thème {{ toptitle }}</a>
+      <a href="{{ path('sitephys_physmvc_evaluation', {'idTopic': idtop}) }}">Evaluations du thème {{ topi.title }}</a>
     </div>
   </div>
 {% endblock %}

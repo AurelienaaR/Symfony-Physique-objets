@@ -11,7 +11,7 @@ class DomainRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT d.id FROM SitephysPhysmvcBundle:Domain d'
+                'SELECT d.id FROM SitephysPhysmvcBundle:Domain d ORDER BY d.id ASC'
             )
             ->getResult();
     }
@@ -34,4 +34,21 @@ class DomainRepository extends EntityRepository
             ->getResult();
     }
 
+public function findIdTitleDomain()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT d.id, d.title FROM SitephysPhysmvcBundle:Domain d ORDER BY d.id ASC'
+            )
+            ->getResult();
+    }
+
+public function findIdContentDomain()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT d.id, d.content FROM SitephysPhysmvcBundle:Domain d ORDER BY d.id ASC'
+            )
+            ->getResult();
+    }
 }

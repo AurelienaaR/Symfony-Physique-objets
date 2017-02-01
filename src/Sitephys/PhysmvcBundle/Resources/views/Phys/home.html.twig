@@ -23,6 +23,7 @@
 {% block sitephysphysmvc_body %}
   <div class="well">
     <h2>Domaines - thèmes enregistrés pour chaque type d'évolution</h2><br />
+    
     <nav id="tabs-nav" class="clearfix">
       {% for kex, typex in evol %}
         <a href="{{ "#evol" ~ kex }}"> {{ typex }} </a><span>&nbsp;</span>
@@ -30,26 +31,28 @@
       <a href="{{ "#lasttentop" }}">Dix derniers thèmes</a><span>&nbsp;</span>
       <a href="{{ "#lasttwentyelt" }}">Vingt derniers éléments</a>
     </nav>
+
     <div id="tabs-container" onload="initTab()">
       {% for key, typey in evol %}
         <article id="{{ "evol" ~ key }}">
-          {% for tabd in tabdom[key] %}
-            {% for tabtoppdom in tabtopperdom[key][tabd[0]] %}
-              <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': tabtoppdom[0]}) }}"><div> {{ tabd[1] }} - {{ tabtoppdom[1] }} </div></a>
+          {% for domcontentx in domcontent %}
+            {% for tabtopperdomx in tabtopperdom[key][domcontentx.id] %}
+              <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': tabtopperdomx.id}) }}"><div> {{ domcontentx.content }} - {{ tabtopperdomx.content }} </div></a>
             {% endfor %}  
           {% endfor %}
         </article>
       {% endfor %}
       <article id="{{ "lasttentop" }}">
-        {% for it in idtenlasttop %}
-          <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': it}) }}"><div> {{ titletop[it] }} </div></a>
+        {% for lasttentopx in lasttentop %}
+          <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': lasttentopx.id}) }}"><div> {{ lasttentopx.title }} </div></a>
         {% endfor %}
       </article>
       <article id="{{ "lasttwentyelt" }}">
-        {% for ie in idtwentylastelt %}
-          <a href="{{ path('sitephys_physmvc_phys_view', {'id': ie }) }}"><div> {{ titleelt[ie] }} </div></a>
+        {% for lasttwentyeltx in lasttwentyelt %}
+          <a href="{{ path('sitephys_physmvc_phys_view', {'id': lasttwentyeltx.id }) }}"><div> {{ lasttwentyeltx.title }} </div></a>
         {% endfor %}
       </article>
     </div>
+
   </div>
 {% endblock %}
