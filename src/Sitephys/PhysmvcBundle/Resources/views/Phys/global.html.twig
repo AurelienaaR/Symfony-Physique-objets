@@ -1,11 +1,11 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Lecture de l'élément global du thème - {{ toptitle }}
+  Lecture de l'élément global du thème - {{ topic.title }}
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Lecture de l'élément global du thème <strong>{{ toptitle }}</strong></h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Lecture de l'élément global du thème <strong>{{ topic.title }}</strong></h2>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -39,36 +39,36 @@
     </nav>
     <div id="tabs-container" onload="initTab()">      
       <article id="titre">
-        {% for intEltLevelPossible in 1..6 %}
-          {% if tabboolelt[intEltLevelPossible] %}
-            Domaine : {{ domaincontent }} <br />
-            Thème : {{ topiccontent }} <br />
-            Mode du thème : {{ topicmode }} <br />
-            Titre : {{ phystitle[intEltLevelPossible] }} <br />
+        {% for iEltLPos in 1..6 %}
+          {% if tabboolelt[iEltLPos] %}
+            Domaine : {{ domain.content }} <br />
+            Thème : {{ topic.content }} <br />
+            Mode du thème : {{ topic.mode }} <br />
+            Titre : {{ phys[iEltLPos].title }} <br />
           {% endif %}
         {% endfor %}
       </article>
       <article id="contenu">
-        {% for intEltLevelPossible in 1..6 %}
-          {% if tabboolelt[intEltLevelPossible] %}
-            Titre : {{ phystitle[intEltLevelPossible] }}
-            <br />Contenu : {{ physcontent[intEltLevelPossible] }} <br />
+        {% for iEltLPos in 1..6 %}
+          {% if tabboolelt[iEltLPos] %}
+            Titre : {{ phys[iEltLPos].title }}
+            <br />Contenu : {{ phys[iEltLPos].content }} <br />
           {% endif %}
         {% endfor %}
       </article>
       <article id="evaluation">
-        {% for intEltLevelPossible in 1..6 %}
-          {% if tabboolelt[intEltLevelPossible] %}
-            Titre : {{ phystitle[intEltLevelPossible] }}
-            <br />Evaluation : {{ physevaluation[intEltLevelPossible] }} <br />
+        {% for iEltLPos in 1..6 %}
+          {% if tabboolelt[iEltLPos] %}
+            Titre : {{ phys[iEltLPos].title }}
+            <br />Evaluation : {{ phys[iEltLPos].evaluation }} <br />
           {% endif %}
         {% endfor %}
       </article>
       <article id="symbolisation">
-        {% for intEltLevelPossible in 1..6 %}
-          {% if tabboolelt[intEltLevelPossible] %}
-            Titre : {{ phystitle[intEltLevelPossible] }}
-            <br />Symbolisation : {{ symbolizationcontent[intEltLevelPossible] }} <br />
+        {% for iEltLPos in 1..6 %}
+          {% if tabboolelt[iEltLPos] %}
+            Titre : {{ phys[iEltLPos].title }}
+            <br />Symbolisation : {{ symbol[iEltLPos] }} <br />
           {% endif %}
         {% endfor %}
       </article>

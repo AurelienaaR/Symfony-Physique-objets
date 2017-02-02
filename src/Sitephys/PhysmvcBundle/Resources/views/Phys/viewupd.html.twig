@@ -31,15 +31,15 @@
 
       <div id="tabs-container" onload="initTab()">
         <article id="domaine">
-          Domaine : {{ domaincontent }}
-          <br />Thème : {{ topiccontent }}
-          <br />Mode du thème : {{ topicmode }} <br />
+          Domaine : {{ domain.content }}
+          <br />Thème : {{ topic.content }}
+          <br />Mode du thème : {{ topic.mode }} <br />
         </article>
 
         <article id="niveau">  
-          Niveau de base <i>(global)</i> : {{ physleveltab[0] }} 
-          <br />Niveau de précision <i>(élément)</i> : {{ physleveltab[1] }} 
-          <br />Description du niveau : {{ levelcontent }} <br />
+          Niveau de base <i>(global)</i> : {{ physlevel.levelBase }} 
+          <br />Niveau de précision <i>(élément)</i> : {{ physlevel.levelSub }} 
+          <br />Description du niveau : {{ physlevel.content }} <br />
         </article>
 
         <article id="contenus">
@@ -58,17 +58,17 @@
 
         <article id="symbolisation">
           {% set cptsym = 0 %}
-          {% for symcontent in symbolizationcontent %}
+          {% for symbolx in symbol %}
             {% set cptsym = cptsym + 1 %}
-            Symbolisation {{ cptsym }} : {{ symcontent }} <br />
+            Symbolisation {{ cptsym }} : {{ symbolx }} <br />
           {% endfor %}
         </article>
 
         <article id="auteurs">
-          Par (actuel) {{ phys.author }}, le {{ phys.date|date('d/m/Y H:i:s') }}. 
+          Par (actuel) {{ phys.author }}, le {{ phys.date }}. 
           {% for physupdy in physupd %}
             <br />Modification proposée : {{ physupdy.title }}
-            <br />Par {{ physupdy.author }}, le {{ physupdy.date|date('d/m/Y H:i:s') }}.
+            <br />Par {{ physupdy.author }}, le {{ physupdy.date|date('d/m/Y H:i:s') }}. 
           {% endfor %}
         </article>
       </div>

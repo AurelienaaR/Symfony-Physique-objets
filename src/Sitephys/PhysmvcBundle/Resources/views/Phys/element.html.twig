@@ -1,7 +1,7 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Lecture de l'élément du thème {{ physelt.title }} et du niveau {{ physleveltab[0] }} - {{ physleveltab[1] }}
+  Lecture de l'élément du thème {{ physelt.title }} et du niveau {{ level.levelBase }} - {{ level.levelSub }}
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
@@ -16,7 +16,6 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <section id="descriptions">
       <h2>Descriptions de {{ physelt.title }}</h2>
       <br />
       <nav id="tabs-nav" class="clearfix">
@@ -29,14 +28,14 @@
       </nav>
       <div id="tabs-container" onload="initTab()">
         <article id="domaine">
-          Domaine : {{ domaincontent }}
-          <br />Thème : {{ topiccontent }}
-          <br />Mode du thème : {{ topicmode }} <br />
+          Domaine : {{ domain.content }}
+          <br />Thème : {{ topic.content }}
+          <br />Mode du thème : {{ topic.mode }} <br />
         </article>
         <article id="niveau">
-          Niveau de base <i>(global)</i> : {{ physleveltab[0] }} 
-          <br />Niveau de précision <i>(élément)</i> : {{ physleveltab[1] }} 
-          <br />Description du niveau : {{ levelcontent }} <br />
+          Niveau de base <i>(global)</i> : {{ level.levelBase }} 
+          <br />Niveau de précision <i>(élément)</i> : {{ level.levelSub }} 
+          <br />Description du niveau : {{ level.content }} <br />
         </article>
         <article id="contenu">
           {{ physelt.content }} <br />
@@ -46,9 +45,9 @@
         </article>
         <article id="symbolisation">
           {% set cptsym = 0 %}
-          {% for symcontent in symbolizationcontent %}
+          {% for symcontentx in symcontent %}
             {% set cptsym = cptsym + 1 %}
-            Symbolisation {{ cptsym }} : {{ symcontent }} <br />
+            Symbolisation {{ cptsym }} : {{ symcontentx }} <br />
           {% endfor %}
         </article>
         <article id="author"> 
@@ -56,6 +55,5 @@
           <br />Date : {{ physelt.date|date('d/m/Y H:i:s') }} <br />
         </article>
       </div>
-      </section>
   </div>
 {% endblock %}
