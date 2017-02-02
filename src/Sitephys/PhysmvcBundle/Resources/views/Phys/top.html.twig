@@ -17,23 +17,24 @@
 {% block sitephysphysmvc_body %}
   <div class="well">
     <h2>Descriptions et liens par domaine</h2><br />
+
     <nav id="tabs-nav" class="clearfix">
-      <a href="{{"#" ~ "domaintopic" ~ "0" }}"> {{ listdomain[0] }} </a><span>&nbsp;</span>
-      {% if cptdom > 1 %}
-        {% for ttii in 1..cptdom - 1 %}
-          <span> </span><a href="{{"#" ~ "domaintopic" ~ ttii }}"> {{ listdomain[ttii] }} </a><span>&nbsp;</span>
-        {% endfor %}
-      {% endif %}
+      {% for tti in iddomobject %}
+        <a href="{{"#" ~ "domaintopic" ~ tti["id"] }}"> {{ tti["title"] }} </a><span>&nbsp;</span>
+      {% endfor %}
     </nav>
+
     <div id="tabs-container" onload="initTab()">
-      {% for ttii in 0..cptdom - 1 %}
+      {% for tti in iddomobject %}
+        {% set ttii = tti["id"] %}
         <article id={{ "domaintopic" ~ ttii }}>
-          {% for ttid in listtopic[ttii + 1] %}
+          {% for ttid in listtopic[ttii] %}
             {{ ttid.content }} <br />
             <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': ttid.id}) }}"> {{ ttid.title }} </a><br /> 
           {% endfor %}
         </article>
       {% endfor %}
     </div>
+
   </div>
 {% endblock %}

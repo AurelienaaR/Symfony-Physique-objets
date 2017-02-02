@@ -100,7 +100,7 @@ class PhysController extends Controller
       $domTopId = $physTopic->getDomainId();
       $physDomain = $domainRep->find($domTopId);
       $tabBoolBase = [];
-      for ($iBase=1; $iBase <= 6; $iBase++) {
+      for ($iBase = 1; $iBase <= 6; $iBase++) {
         $tabBoolBase[$iBase] = false;
       }
       foreach ($listPhys as $phys) {
@@ -129,7 +129,7 @@ class PhysController extends Controller
         )
       );
     }
-  } 
+  }
 
 
   public function topAction()
@@ -137,42 +137,29 @@ class PhysController extends Controller
     $em = $this->getDoctrine()->getManager();
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
     $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic'); 
-    $domObject = $domainRep->findAll();
-    foreach (range(1, count($domObject)) as $i)
-    { 
-      $topObject = $topicRep->findBy(
-          array(
-            'domainId' => $i
-          ));
 
-    if ($topObject) {
-      foreach ($topObject as $key => $topObj) {
-        $topicId[$i][] = $topObj;
-      }
-    }
-  }
-  $cptDom = 0;
-  if (!$domObject) {
-      throw new NotFoundHttpException('Aucun élément dans la base.');
-    } else {
-      foreach ($domObject as $ke => $domObj) {
-        $domTitle[] = $domObj->getTitle();
-        $cptDom ++;        
-      }
+    $idDomObject = $domainRep->findDomIdTitle();
+
+    foreach ($idDomObject as $key => $idD)
+    {
+      $idDo = $idD["id"];
+      $listTopic[$idDo] = $topicRep->findBy(
+          array(
+            'domainId' => $idDo
+          ));
     }
 
     $userconnectx = $this->getUser();
       if (null === $userconnectx) {
         $userconnect = 'Connexion';
-      } else {
+      } else { 
         $userconnect = $userconnectx->getUsername();
       }
 
     return $this->render('SitephysPhysmvcBundle:Phys:top.html.twig', array(
       'userconnect' => $userconnect,
-      'listdomain' => $domTitle,
-      'listtopic' => $topicId,
-      'cptdom' => $cptDom,
+      'iddomobject' => $idDomObject,
+      'listtopic' => $listTopic,
       )
     );
   }
@@ -199,26 +186,22 @@ class PhysController extends Controller
       }
     }
 
-    if (!$bsLevelContent) {
-      throw new NotFoundHttpException('Base incomplète en niveaux ou en symbolisations.');
+    $dataLevel = array("Exp. in", "Theory", "Exp. out", "Return Exp. in", "Return Theory", "Return Exp. out");
+
+    $userconnectx = $this->getUser();
+    if (null === $userconnectx) {
+      $userconnect = 'Connexion';
     } else {
-      $dataLevel = array("Exp. in", "Theory", "Exp. out", "Return Exp. in", "Return Theory", "Return Exp. out");
+      $userconnect = $userconnectx->getUsername();
+    }
 
-      $userconnectx = $this->getUser();
-      if (null === $userconnectx) {
-        $userconnect = 'Connexion';
-      } else {
-        $userconnect = $userconnectx->getUsername();
-      }
-
-      return $this->render('SitephysPhysmvcBundle:Phys:sym.html.twig', array(
-        'userconnect' => $userconnect,
-        'bslevel' => $bsLevelContent,
-        'bssymb' => $bsSymbolContent,
-        'datalevel' => $dataLevel,
-        ));
-    } 
-  }
+    return $this->render('SitephysPhysmvcBundle:Phys:sym.html.twig', array(
+      'userconnect' => $userconnect,
+      'bslevel' => $bsLevelContent,
+      'bssymb' => $bsSymbolContent,
+      'datalevel' => $dataLevel,
+    ));
+  } 
 
 
   public function evalAction($idTopic)
@@ -234,7 +217,6 @@ class PhysController extends Controller
       throw new NotFoundHttpException('Base sans ce thème.');
     } else {
       $topTitle = $topEvalObject->getTitle();
-      $cptEval = 0;
       for ($ibool=1; $ibool <= 6 ; $ibool++) { 
         for ($jbool=1; $jbool <= 6 ; $jbool++) { 
           $tabBool[$ibool][$jbool] = false;
@@ -249,39 +231,27 @@ class PhysController extends Controller
       foreach ($physEval as $keyEv => $physEv) {
         $idEval = $physEv->getId();
         $eva = $physEv->getEvaluation();
-        if ($eva) {
+        if (null != $eva) {
           $levEv = $physEv->getLevel();
-          if ($levEv) {
-            $levTab = unserialize($levEv);
-            $levb = $levTab[0];
-            $levs = $levTab[1];
-            $levObject = $levelRep->findBy(
-              array (
-                'levelBase' => $levb,
-                'levelSub' => $levs,
-              )
-            );
-            $levContent = $levObject[0]->getContent();
-            $levId = $levObject[0]->getId();
+          if (null != $levEv) {
+            $levObj = $levelRep->findPhysLevelIdContent($levEv);
+            $levObject = $levObj[0];
             $symObject = $symbolizationRep->findBy(
               array (
-                'levelkey' => $levId
+                'levelkey' => $levObject["id"]
               )
             );
+            $levb = $levObject["levelBase"];
+            $levs = $levObject["levelSub"];
             $tabSym[$levb][$levs] = $symObject[0]->getContent();
             $tabBool[$levb][$levs] = true;
             $tabEval[$levb][$levs] = $eva;
-            $tabLevel[$levb][$levs] = $levContent;
-            $cptEval ++;
+            $tabLevel[$levb][$levs] = $levObject["content"];
           }
         }
       }
 
-      if ($cptEval == 0) {
-        throw new NotFoundHttpException('Base sans évaluation.');
-      } else {
         $dataEval = array("Exp. in", "Theory", "Exp. out", "Return Exp. in", "Return Theory", "Return Exp. out");
-        $cptEval --;
 
         $userconnectx = $this->getUser();
         if (null === $userconnectx) {
@@ -300,7 +270,6 @@ class PhysController extends Controller
           ));
       }
     } 
-  }
 
 
   public function globalAction($idTopic,$intLevel)

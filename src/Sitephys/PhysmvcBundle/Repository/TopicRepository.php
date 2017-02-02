@@ -34,7 +34,7 @@ class TopicRepository extends EntityRepository
             ->getResult();
     }
 
-public function findIdTitleModeTopic()
+    public function findIdTitleModeTopic()
     {
         return $this->getEntityManager()
             ->createQuery(
@@ -43,7 +43,7 @@ public function findIdTitleModeTopic()
             ->getResult();
     }
 
-public function findIdTitleLastTopic()
+    public function findIdTitleLastTopic()
     {
         return $this->getEntityManager()
             ->createQuery(
@@ -53,7 +53,7 @@ public function findIdTitleLastTopic()
             ->getResult();
     }
 
-public function findIdContentTopic($ktype, $domid)
+    public function findIdContentTopic($ktype, $domid)
     {
         return $this->getEntityManager()
             ->createQuery(

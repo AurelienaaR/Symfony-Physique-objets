@@ -34,4 +34,17 @@ public function findPhysLevelContent($physlevel)
             ->getResult();
     }
 
+public function findPhysLevelIdContent($physlevel)
+    {
+        $physLevelArray = unserialize($physlevel);
+        $bas = $physLevelArray[0];
+        $sub = $physLevelArray[1];
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT l.id, l.content, l.levelBase, l.levelSub FROM SitephysPhysmvcBundle:Level l WHERE (l.levelBase = ' . $bas . '  AND l.levelSub = ' . $sub . ')'
+            )
+            ->setMaxResults(1)
+            ->getResult();
+    }
+
 }

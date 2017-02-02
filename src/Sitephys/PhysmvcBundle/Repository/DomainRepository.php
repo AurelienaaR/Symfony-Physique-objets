@@ -25,6 +25,24 @@ class DomainRepository extends EntityRepository
             ->getResult();
     }
 
+public function findDomIdTitle()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT d.id, d.title FROM SitephysPhysmvcBundle:Domain d ORDER BY d.id ASC'
+            )
+            ->getResult();
+    }
+
+   public function findDomTitleById($id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT d.title FROM SitephysPhysmvcBundle:Domain d WHERE d.id = ' . $id
+            )
+            ->getResult();
+    }
+
    public function findDomContent()
     {
         return $this->getEntityManager()
