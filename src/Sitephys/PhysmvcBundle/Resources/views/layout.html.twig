@@ -33,7 +33,7 @@
         <li><a href="{{ path('sitephys_physmvc_topic') }}">Thèmes</a></li>
         <li><a href="{{ path('sitephys_physmvc_symbolization') }}">Niveaux</a></li>
         <li><a href="{{ path('sitephys_physmvc_edition') }}">Edition</a></li>
-        <li><a href="{{ asset('/login') }}"> {{ userconnect }} </a></li>
+        <li><a href="{{ asset('/login') }}"> {% if userconnect is defined %} {{ userconnect }} {% else %} {{ "Connexion" }} {% endif %} </a></li>
         <li><a href="{{ asset('/logout') }}">Déconnexion</a></li>
         <li><a href="{{ path('sitephys_user_account') }}">Compte</a></li>
         <li><a href="http://enseignant_postbac.nexgate.ch/index.html">Liens</a></li>

@@ -646,7 +646,7 @@ class PhysController extends Controller
     return $this->render('SitephysPhysmvcBundle:Phys:update.html.twig', array(
       'userconnect' => $userconnect,
       'physupdate' => $physupdate,
-      'physupdatelevel' => $physupdateLevel,
+      'physupdatelevel' => $physupdatelevelObject,
       'physupdatedomain' => $physupdatedomainObject,
       'physupdatetopic' => $physupdatetopicObject,
       'formphysupdate' => $formPhysUpdate->createView(),
@@ -694,7 +694,6 @@ class PhysController extends Controller
         $topicObject = $topicRep->find($physTopicId);
         $topicDomainId = $topicObject->getDomainId();
         $domainObject = $domainRep->find($topicDomainId);
-        // $physDate = $phys->getDate()->format('Y-m-d H:i:s');
 
         $userconnectx = $this->getUser();
         if (null === $userconnectx) {

@@ -18,7 +18,7 @@
   <div class="well">
   
     <section id="descriptions">
-      <h2>Descriptions de la modification de {{ phys.title }}</h2><br />
+      <h2>Descriptions de modification de {{ phys.title }}</h2><br />
 
       <nav id="tabs-nav" class="clearfix">
         <a href="#domaine">Domaine et thème</a><span>&nbsp;</span>
@@ -53,7 +53,10 @@
         </article>
 
         <article id="evaluation">
-          Evaluation : {{ phys.evaluation }} <br />
+          Evaluation (actuelle) : {{ phys.evaluation }} 
+          {% for physupdz in physupd %}
+            <br />Modification proposée : {{ physupdz.evaluation }}
+          {% endfor %}
         </article>
 
         <article id="symbolisation">
@@ -65,10 +68,10 @@
         </article>
 
         <article id="auteurs">
-          Par (actuel) {{ phys.author }}, le {{ phys.date }}. 
+          Par (actuel) {{ phys.author }}, le {{ phys.date|date('Y-m-d H:i:s') }}. 
           {% for physupdy in physupd %}
             <br />Modification proposée : {{ physupdy.title }}
-            <br />Par {{ physupdy.author }}, le {{ physupdy.date|date('d/m/Y H:i:s') }}. 
+            <br />Par {{ physupdy.author }}, le {{ physupdy.date|date('Y-m-d H:i:s') }}. 
           {% endfor %}
         </article>
       </div>

@@ -2,7 +2,7 @@
 
   <div class="form-group">
   
-    <h3>Formulaire de modification de l'élément {{ physupdatetitle }}</h3>
+    <h3>Formulaire de modification de l'élément {{ physupdate.title }}</h3>
     <br />
 
     {{ form_start(formphysupdate, {'attr': {'class': 'form'}}) }}
@@ -12,6 +12,7 @@
       {{ form_row(formphysupdate.title, {'attr': {'class': 'form-control'}}) }} 
     </div>
     
+    <br />
     <div> 
       {{ form_row(formphysupdate.author, {'attr': {'class': 'form-control'}}) }} 
     </div>
