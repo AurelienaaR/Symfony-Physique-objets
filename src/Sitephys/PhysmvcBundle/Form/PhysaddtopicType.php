@@ -6,14 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PhysaddType extends AbstractType
+class PhysaddtopicType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('username')->add('email')->add('date')->add('content')->add('document')->add('weblink')        ;
+        $builder->add('title')->add('username')->add('email')->add('date')->add('contentexpin')->add('contentth')->add('contentexpout')->add('contentretexpin')->add('contentretth')->add('contentretexpout')->add('document')->add('weblink')        ;
     }
     
     /**
@@ -22,7 +22,7 @@ class PhysaddType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sitephys\PhysmvcBundle\Entity\Physadd'
+            'data_class' => 'Sitephys\PhysmvcBundle\Entity\Physaddtopic'
         ));
     }
 
@@ -31,7 +31,7 @@ class PhysaddType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'sitephys_physmvcbundle_physadd';
+        return 'sitephys_physmvcbundle_physaddtopic';
     }
 
 

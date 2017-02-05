@@ -1,0 +1,22 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Ajout de thème du domaine {{ domtop.title }}
+{% endblock %}
+
+{% block sitephysphysmvc_image %}
+  <div class="containertedit">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/geo-photo.jpg') }}" class="addphoto" alt="Image de Ajout de thème" />
+  </div>
+{% endblock %}
+
+{% block sitephysphysmvc_section %}
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Ajout de thème du domaine {{ domtop.title }}</h2>
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+  
+  <br />
+  {{ include("SitephysPhysmvcBundle:Edit:formaddtopic.html.twig") }}
+
+{% endblock %}

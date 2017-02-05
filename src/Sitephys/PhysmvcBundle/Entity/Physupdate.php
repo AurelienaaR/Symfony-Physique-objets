@@ -3,6 +3,7 @@
 namespace Sitephys\PhysmvcBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="physdb_physupdate")
@@ -34,11 +35,23 @@ class Physupdate
   private $title;
 
   /**
-   * @var string
-   *
-   * @ORM\Column(name="author", type="string")
+   * @ORM\Column(name="username", type="string", length=255)
+   * @Assert\NotBlank()
+   * @Assert\Length(
+   *      min = 3,
+   *      max = 10,
+   *      minMessage = "Pseudo de longueur minimale {{ limit }} caractères.",
+   *      maxMessage = "Pseudo de longueur maximale {{ limit }} caractères."
+   * )
    */
-  private $author;
+  private $username;
+
+  /**
+   * @ORM\Column(name="email", type="string", length=255)
+   * @Assert\NotBlank()
+   * @Assert\Email()
+   */
+  private $email;
 
   /**
    * @var \DateTime
@@ -114,19 +127,29 @@ class Physupdate
   }
 
   /**
-   * @param string $author
+   * @param string $username
    */
-  public function setAuthor($author)
+  public function setUsername($username)
   {
-    $this->author = $author;
+    $this->username = $username;
   }
 
   /**
    * @return string
    */
-  public function getAuthor()
+  public function getUsername()
   {
-    return $this->author;
+    return $this->username;
+  }
+
+  public function setEmail($email)
+  {
+    $this->email = $email;
+  }
+
+  public function getEmail()
+  {
+    return $this->email;
   }
 
   /**

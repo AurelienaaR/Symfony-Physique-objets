@@ -1,0 +1,39 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Lecture du domaine ajouté {{ physadd.title }} par {{ physadd.username }}. 
+{% endblock %}
+
+{% block sitephysphysmvc_section %}
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Domaine ajouté : {{ physadd.title }} </h2>
+{% endblock %}
+
+{% block sitephysphysmvc_image %}
+<div class="containerthome">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/fond-cosmo.jpg') }}" class="homephoto" alt="Image du domaine ajouté" />
+  </div>
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+  <div class="well">
+      <h2>Descriptions du domaine ajouté, {{ physadd.title }}</h2><br />
+
+      <nav id="tabs-nav" class="clearfix">
+        <a href="#contenu">Contenu</a><span>&nbsp;</span>
+        <a href="#auteur">Création</a><span>&nbsp;</span>
+      </nav>
+
+      <div id="tabs-container" onload="initTab()">
+        <article id="contenu">
+          Contenu :
+          <br /> {{ physadd.content }} <br />
+        </article>
+        <article id="auteur">
+          Auteur : {{ physadd.username }}, 
+          <br />Date : {{ physadd.date|date('d/m/Y H:i:s') }}
+          <br />Lien Internet : {{ physadd.weblink }}
+        </article>
+      </div>
+
+  </div>
+{% endblock %}

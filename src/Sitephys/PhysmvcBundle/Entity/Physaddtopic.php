@@ -6,10 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="physdb_physadd")
- * @ORM\Entity(repositoryClass="Sitephys\PhysmvcBundle\Repository\PhysaddRepository")
+ * @ORM\Table(name="physdb_physaddtopic")
+ * @ORM\Entity(repositoryClass="Sitephys\PhysmvcBundle\Repository\PhysaddtopicRepository")
  */
-class Physadd
+class Physaddtopic
 {
   /**
    * @var int
@@ -56,9 +56,44 @@ class Physadd
   /**
    * @var text
    *
-   * @ORM\Column(name="content", type="text")
+   * @ORM\Column(name="contentexpin", type="text")
    */
-  private $content;
+  private $contentexpin;
+
+  /**
+   * @var text
+   *
+   * @ORM\Column(name="contentth", type="text")
+   */
+  private $contentth;
+
+  /**
+   * @var text
+   *
+   * @ORM\Column(name="contentexpout", type="text")
+   */
+  private $contentexpout;
+
+  /**
+   * @var text
+   *
+   * @ORM\Column(name="contentretexpin", type="text")
+   */
+  private $contentretexpin;
+
+  /**
+   * @var text
+   *
+   * @ORM\Column(name="contentretth", type="text")
+   */
+  private $contentretth;
+
+  /**
+   * @var text
+   *
+   * @ORM\Column(name="contentretexpout", type="text")
+   */
+  private $contentretexpout;
 
   /**
    * @var string
@@ -146,19 +181,99 @@ class Physadd
   }
 
   /**
-   * @param text $content
+   * @param text $contentexpin
    */
-  public function setContent($content)
+  public function setContentexpin($contentexpin)
   {
-    $this->content = $content;
+    $this->contentexpin = $contentexpin;
   }
 
   /**
    * @return text
    */
-  public function getContent()
+  public function getContentexpin()
   {
-    return $this->content;
+    return $this->contentexpin;
+  }
+
+    /**
+   * @param text $contentth
+   */
+  public function setContentth($contentth)
+  {
+    $this->contentth = $contentth;
+  }
+
+  /**
+   * @return text
+   */
+  public function getContentth()
+  {
+    return $this->contentth;
+  }
+
+  /**
+   * @param text $contentexpout
+   */
+  public function setContentexpout($contentexpout)
+  {
+    $this->contentexpout = $contentexpout;
+  }
+
+  /**
+   * @return text
+   */
+  public function getContentexpout()
+  {
+    return $this->contentexpout;
+  }
+
+  /**
+   * @param text $contentretexpin
+   */
+  public function setContentretexpin($contentretexpin)
+  {
+    $this->contentretexpin = $contentretexpin;
+  }
+
+  /**
+   * @return text
+   */
+  public function getContentretexpin()
+  {
+    return $this->contentretexpin;
+  }
+
+    /**
+   * @param text $contentretth
+   */
+  public function setContentretth($contentretth)
+  {
+    $this->contentretth = $contentretth;
+  }
+
+  /**
+   * @return text
+   */
+  public function getContentretth()
+  {
+    return $this->contentretth;
+  }
+
+  /**
+   * @param text $contentretexpout
+   */
+  public function setContentretexpout($contentretexpout)
+  {
+    $this->contentretexpout = $contentretexpout;
+  }
+
+  /**
+   * @return text
+   */
+  public function getContentretexpout()
+  {
+    return $this->contentretexpout;
   }
 
   /**

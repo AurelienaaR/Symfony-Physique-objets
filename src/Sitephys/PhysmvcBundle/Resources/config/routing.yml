@@ -41,29 +41,39 @@ sitephys_physmvc_phys_element:
 sitephys_physmvc_edition:
     path:      /edition/
     defaults:
-        _controller: SitephysPhysmvcBundle:Phys:homeedit
+        _controller: SitephysPhysmvcBundle:Edit:homeedit
 
 sitephys_physmvc_edition_add:
-    path:      /edition/add/{idthing}
+    path:      /edition/add/
     defaults:
-        _controller: SitephysPhysmvcBundle:Phys:add
+        _controller: SitephysPhysmvcBundle:Edit:add
+
+sitephys_physmvc_edition_addtopic:
+    path:      /edition/addtopic/{iddom}
+    defaults:
+        _controller: SitephysPhysmvcBundle:Edit:addtopic
 
 sitephys_physmvc_edition_update:
     path:      /edition/update/{id}
     defaults:
-        _controller: SitephysPhysmvcBundle:Phys:update
+        _controller: SitephysPhysmvcBundle:Edit:update
     requirements:
         id: \d+
 
 sitephys_physmvc_edition_viewadd:
     path:      /edition/viewadd/{idadd}
     defaults:
-        _controller: SitephysPhysmvcBundle:Phys:viewadd
+        _controller: SitephysPhysmvcBundle:Edit:viewadd
+
+sitephys_physmvc_edition_viewaddtopic:
+    path:      /edition/viewaddtopic/{idaddtopic}
+    defaults:
+        _controller: SitephysPhysmvcBundle:Edit:viewaddtopic
 
 sitephys_physmvc_edition_viewupd:
     path:      /edition/viewupd/{idphys}
     defaults:
-        _controller: SitephysPhysmvcBundle:Phys:viewupd
+        _controller: SitephysPhysmvcBundle:Edit:viewupd
 
 sitephys_user_login:
     path:      /login

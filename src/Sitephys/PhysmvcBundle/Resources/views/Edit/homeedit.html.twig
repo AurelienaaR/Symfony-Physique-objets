@@ -1,0 +1,98 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Edition
+{% endblock %}
+
+{% block sitephysphysmvc_section %}
+  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Edition</i></h2>
+{% endblock %}
+
+{% block sitephysphysmvc_image %}
+  <div class="containerthome">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/fond-cosmo.jpg') }}" class="homephoto" alt="Image de Accueil - Edition" />
+  </div>
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+  <div class="well">
+    <h2>Types d'édition</h2><br />
+
+    <nav id="tabs-nav" class="clearfix">
+      <a href="#consultelt">Eléments</a><span>&nbsp;</span>
+      {% if is_granted('ROLE_AUTHOR') %}
+        <a href="#modif">Modification d'élément</a><span>&nbsp;</span>
+      {% else %}
+        <span>Modification d'élément (auteurs)</span><span>&nbsp;</span>
+      {% endif %}
+      {% if is_granted('ROLE_USER') or is_granted('ROLE_AUTHOR') %}
+        <a href="#consultupd">Eléments modifiés</a><span>&nbsp;</span>
+      {% else %}
+        <span>Eléments modifiés (utilisateurs)</span><span>&nbsp;</span>
+      {% endif %}
+      {% if is_granted('ROLE_AUTHOR') %}
+        <a href="#add">Ajout de domaine</a><span>&nbsp;</span>
+      {% else %}
+        <span>Ajout de domaine (auteurs)</span><span>&nbsp;</span>
+      {% endif %}
+      {% if is_granted('ROLE_AUTHOR') %}
+        <a href="#addtopic">Ajout de thème</a><span>&nbsp;</span>
+      {% else %}
+        <span>Ajout de thème (auteurs)</span><span>&nbsp;</span>
+      {% endif %}
+      {% if is_granted('ROLE_USER') or is_granted('ROLE_AUTHOR') %}
+        <a href="#consultadd">Domaines ajoutés</a><span>&nbsp;</span>
+      {% else %}
+        <span>Domaines ajoutés (utilisateurs)</span><span>&nbsp;</span>
+      {% endif %}
+      {% if is_granted('ROLE_USER') or is_granted('ROLE_AUTHOR') %}
+        <a href="#consultaddtopic">Thèmes ajoutés</a>
+      {% else %}
+        <span>Thèmes ajoutés (utilisateurs)
+      {% endif %}
+    </nav>
+
+    <div id="tabs-container" onload="initTab()">
+      <article id="consultelt">
+        {% for physphyssx in physphyss %}
+          <a href="{{ path('sitephys_physmvc_phys_view', {'id': physphyssx.id}) }}">
+          {{ physphyssx.title }} </a><span>&nbsp;</span>
+        {% endfor %}
+      </article>
+      <article id="modif">
+        {% for physphyssy in physphyss %}
+          <a href="{{ path('sitephys_physmvc_edition_update', {'id': physphyssy.id}) }}">
+          {{ physphyssy.title }} </a><span>&nbsp;</span>
+        {% endfor %} 
+      </article> 
+      <article id="consultupd">
+        {% set idprec = 0 %}
+        {% for physupphysx in physupphys %}
+          {% if idprec != physupphysx.id %}
+            <a href="{{ path('sitephys_physmvc_edition_viewupd', {'idphys': physupphysx.id}) }}"> {{ physupphysx.title }} </a><span>&nbsp;</span>
+          {% endif %}
+          {% set idprec = physupphysx.id %}
+        {% endfor %}
+      </article>
+      <article id="add">
+        <a href="{{ path('sitephys_physmvc_edition_add') }}"> Domaine </a>
+      </article>
+      <article id="addtopic">
+      {% for physdomainsx in physdomains %}
+        <a href="{{ path('sitephys_physmvc_edition_addtopic', {'iddom': physdomainsx.id}) }}"> {{ physdomainsx.title }} </a>
+      {% endfor %}
+      </article>
+      <article id="consultadd">
+        {% for physphysaddsx in physphysadds %}
+          <a href="{{ path('sitephys_physmvc_edition_viewadd', {'idadd': physphysaddsx.id}) }}"> {{ physphysaddsx.title }} </a><span>&nbsp;</span>
+        {% endfor %}
+      </article>
+      <article id="consultaddtopic">
+        {% for physphysaddtopicsx in physphysaddtopics %}
+          <a href="{{ path('sitephys_physmvc_edition_viewaddtopic', {'idaddtopic': physphysaddtopicsx.id}) }}"> {{ physphysaddtopicsx.title }} </a><span>&nbsp;&nbsp;</span>
+        {% endfor %}
+      </article>
+    </div>
+
+  </div>
+{% endblock %}

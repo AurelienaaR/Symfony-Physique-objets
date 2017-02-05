@@ -1,0 +1,91 @@
+<div class="wellform">
+
+  <div class="form-group">
+  
+    <h3>Formulaire d'ajout du thème</h3>
+    <br />
+
+    {{ form_start(formphysaddtopic, {'attr': {'class': 'form'}}) }}
+    {{ form_errors(formphysaddtopic) }}
+
+    <div> 
+      {{ form_row(formphysaddtopic.title, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    <div> 
+      {{ form_row(formphysaddtopic.username, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    <div> 
+      {{ form_row(formphysaddtopic.email, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    <div> 
+      {{ form_row(formphysaddtopic.date, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    Elément exp in (1) du thème
+    <br />
+    <div>
+      <span>  {{ form_row(formphysaddtopic.contentexpin, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+
+    <br />
+    Elément th (2) du thème
+    <br />
+    <div>
+      <span>  {{ form_row(formphysaddtopic.contentth, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+
+    <br />
+    Elément exp out (3) du thème
+    <br />
+    <div>
+      <span>  {{ form_row(formphysaddtopic.contentexpout, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+
+    <br />
+    Elément return exp in (4) du thème
+    <br />
+    <div>
+      <span>  {{ form_row(formphysaddtopic.contentretexpin, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+
+    <br />
+    Elément return th (5) du thème
+    <br />
+    <div>
+      <span>  {{ form_row(formphysaddtopic.contentretth, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+
+    <br />
+    Elément return exp out (6) du thème
+    <br />
+    <div>
+      <span>  {{ form_row(formphysaddtopic.contentretexpout, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+
+    <br />
+    <label class="custom-file">
+      <div class="custom-file-input">
+        <span>  {{ form_row(formphysaddtopic.document) }}  </span>
+        <span class="custom-file-control"></span>
+      </div>
+    </label>
+
+    <br /><br />
+    <div> 
+      <span>  {{ form_row(formphysaddtopic.weblink, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+
+    <br /><br />
+    {{ form_widget(formphysaddtopic.save, {'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_end(formphysaddtopic) }}
+
+    <br />
+  </div>
+</div>

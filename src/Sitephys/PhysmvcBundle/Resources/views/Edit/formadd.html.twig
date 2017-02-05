@@ -1,0 +1,53 @@
+<div class="wellform">
+  <div class="form-group">
+  
+    <h3>Formulaire d'ajout de domaine</h3>
+    <br />
+
+    {{ form_start(formphysadd, {'attr': {'class': 'form'}}) }}
+    {{ form_errors(formphysadd) }}
+
+    <div> 
+      {{ form_row(formphysadd.title, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    <div> 
+      {{ form_row(formphysadd.username, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    <div> 
+      {{ form_row(formphysadd.email, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    <div> 
+      {{ form_row(formphysadd.date, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    <div>
+      <span>  {{ form_row(formphysadd.content, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+
+    <br />
+    <label class="custom-file">
+      <div class="custom-file-input">
+        <span>  {{ form_row(formphysadd.document) }}  </span>
+        <span class="custom-file-control"></span>
+      </div>
+    </label>
+
+    <br /><br />
+    <div> 
+      <span>  {{ form_row(formphysadd.weblink, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+
+    <br /><br />
+    {{ form_widget(formphysadd.save, {'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_end(formphysadd) }}
+    
+    <br />
+  </div>
+</div>

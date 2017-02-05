@@ -1,0 +1,54 @@
+<div class="wellform">
+
+  <div class="form-group">
+  
+    <h3>Formulaire de modification de l'élément {{ physupdate.title }}</h3>
+    <br />
+
+    {{ form_start(formphysupdate, {'attr': {'class': 'form'}}) }}
+    {{ form_errors(formphysupdate) }}
+    
+    <div> 
+      {{ form_row(formphysupdate.title, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+    
+    <br />
+    <div> 
+      {{ form_row(formphysupdate.username, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    <div> 
+      {{ form_row(formphysupdate.email, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    <div> 
+      {{ form_row(formphysupdate.date, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
+    <div>
+      <span>  {{ form_row(formphysupdate.content, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+    
+    <br />
+    <div>
+      <span>  {{ form_row(formphysupdate.evaluation, {'attr': {'class': 'form-control'}}) }}  </span>
+    </div>
+    
+    <br />
+    <label class="custom-file">
+      <div class="custom-file-input">
+        <span>  {{ form_row(formphysupdate.document) }}  </span>
+        <span class="custom-file-control"></span>
+      </div>
+    </label>
+
+    <br /><br />
+    {{ form_widget(formphysupdate.save, {'attr': {'class': 'btn btn-primary'}}) }}
+    {{ form_end(formphysupdate) }}
+
+    <br />
+  </div>
+</div>

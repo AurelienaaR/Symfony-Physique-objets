@@ -13,7 +13,7 @@ class PhysupdateType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('idphys')->add('title')->add('author')->add('date')->add('content')->add('evaluation')->add('document')        ;
+        $builder->add('idphys')->add('title')->add('username')->add('email')->add('date')->add('content')->add('evaluation')->add('document')        ;
     }
     
     /**
