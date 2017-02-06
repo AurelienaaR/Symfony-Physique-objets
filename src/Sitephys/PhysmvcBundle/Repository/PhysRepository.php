@@ -10,7 +10,6 @@ class PhysRepository extends EntityRepository
 
   public function getPhys()
   {
-
   }
 
 
@@ -24,7 +23,6 @@ public function findAllPhysUp()
     }
 
 
-
 public function findIdTitlePhys()
     {
         return $this->getEntityManager()
@@ -34,13 +32,4 @@ public function findIdTitlePhys()
             ->getResult();
     }
 
-public function findIdTitleLastPhys()
-    {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT p.id, p.title FROM SitephysPhysmvcBundle:Phys p ORDER BY p.date DESC'
-            )
-            ->setMaxResults(20)
-            ->getResult();
-    }
 }

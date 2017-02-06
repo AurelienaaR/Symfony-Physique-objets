@@ -56,11 +56,6 @@ class PhysController extends Controller
       throw new NotFoundHttpException('Aucun thème dans la base.');
     }
 
-    $lastTwentyElt = $physRep->findIdTitleLastPhys();
-    if (!$lastTwentyElt) {
-      throw new NotFoundHttpException('Aucun élément dans la base.');
-    }
-
     $userconnectx = $this->getUser();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
@@ -74,7 +69,6 @@ class PhysController extends Controller
       'tabtopperdom' => $tabTopPerDom,
       'evol' => $evolutionBy,
       'lasttentop' => $lastTenTop,
-      'lasttwentyelt' => $lastTwentyElt,
       )
     );
   }

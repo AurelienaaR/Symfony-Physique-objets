@@ -15,7 +15,7 @@
 {% block sitephysphysmvc_image %}
   <div id="containerimghome">
     <div class="containerthome">
-      <img src="{{ asset('bundles/sitephysphysmvc/images/photoelectrohome.jpg') }}" class="homephoto" alt="Image de Accueil" />
+      <img src="{{ asset('bundles/sitephysphysmvc/images/home-fond.jpg') }}" class="homephoto" alt="Image de Accueil" />
     </div>
   </div>
 {% endblock %}
@@ -29,7 +29,6 @@
         <a href="{{ "#evol" ~ kex }}"> {{ typex }} </a><span>&nbsp;</span>
       {% endfor %}
       <a href="{{ "#lasttentop" }}">Dix derniers thèmes</a><span>&nbsp;</span>
-      <a href="{{ "#lasttwentyelt" }}">Vingt derniers éléments</a>
     </nav>
 
     <div id="tabs-container" onload="initTab()">
@@ -45,11 +44,6 @@
       <article id="{{ "lasttentop" }}">
         {% for lasttentopx in lasttentop %}
           <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': lasttentopx.id}) }}"><div> {{ lasttentopx.title }} </div></a>
-        {% endfor %}
-      </article>
-      <article id="{{ "lasttwentyelt" }}">
-        {% for lasttwentyeltx in lasttwentyelt %}
-          <a href="{{ path('sitephys_physmvc_phys_view', {'id': lasttwentyeltx.id }) }}"><div> {{ lasttwentyeltx.title }} </div></a>
         {% endfor %}
       </article>
     </div>

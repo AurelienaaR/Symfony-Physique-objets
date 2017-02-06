@@ -348,11 +348,14 @@ class EditController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
     $physaddtopicRep = $em->getRepository('SitephysPhysmvcBundle:Physaddtopic');
+    $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
 
     $physaddtopic = $physaddtopicRep->find($idaddtopic); 
     if (null === $physaddtopic) {
       throw new NotFoundHttpException('Thème "' . $idaddtopic . '" pas dans la base.');
     } else {
+      $idDom = $physaddtopic->getDomainid();
+      $domtopadded = $domainRep->findDomTitleById($idDom);
       $userconnectx = $this->getUser();
       if (null === $userconnectx) {
         $userconnect = 'Connexion';
@@ -363,6 +366,7 @@ class EditController extends Controller
       return $this->render('SitephysPhysmvcBundle:Edit:viewaddtopic.html.twig', array(
         'userconnect' => $userconnect,
         'physaddtopic' => $physaddtopic,
+        'domtopadded' => $domtopadded,
       ));
     } 
   }

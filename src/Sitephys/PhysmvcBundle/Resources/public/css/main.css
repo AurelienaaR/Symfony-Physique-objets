@@ -2,9 +2,9 @@
 body {
   margin: auto;
   color:black;
-  background: -ms-linear-gradient(left, rgba(130, 40, 50, 1.0), rgba(30, 90, 130, 0.90));
-  background: -webkit-linear-gradient(left, rgba(130, 40, 50, 1.0) 25%, rgba(30, 80, 130, 1.0) 70%);
-  background: -moz-linear-gradient(left, rgba(130, 40, 50, 1.0), rgba(30, 80, 130, 1.0));
+  background: -ms-linear-gradient(left, rgba(130, 40, 50, 0.95), rgba(30, 90, 130, 0.95));
+  background: -webkit-linear-gradient(left, rgba(130, 40, 50, 1.0) 75%, rgba(30, 80, 130, 1.0) 85%);
+  background: -moz-linear-gradient(left, rgba(130, 40, 50, 0.95), rgba(30, 80, 130, 0.95));
   background: -o-linear-gradient(left, rgba(10, 110, 130, 0.40), rgba(30, 80, 130, 1.0));
 }
 
@@ -61,7 +61,7 @@ article {
 }
 
 .containert {
-    width: 95%;
+    /* width: 95%; */
     padding: 0;
     margin: auto;
     display: block;
@@ -70,8 +70,8 @@ article {
 }
 
 #containerimghome {
-    width: 90%;
-    /* height: 90%; 470px; */
+    /*  width: 90%;
+    height: 90%; 470px; */
     padding: 0;
     margin: auto;
     display: block;
@@ -104,7 +104,7 @@ article {
     box-sizing: border-box; 
 	background-color: rgba(125,140,165,0.00);
 }
-
+/*
 #imgcontainer {
     width: 90%;
     padding: 0;
@@ -116,7 +116,7 @@ article {
 
 #imgcontainerglobal {
     width: 90%;
-    height: 50%; /* 240px; */
+    height: 50%;
     padding-top: 2%;
     margin: auto;
     display: block;
@@ -132,9 +132,9 @@ article {
     box-sizing: border-box;
     background-color: rgba(125,250,255,0.30);
 }
-
+*/
 .containerthome {
-    width: 60%;
+    /* width: 60%; */
     padding: 0%;
     margin: auto;
     display: block;
@@ -143,7 +143,7 @@ article {
 }
 
 .containertedit {
-    width: 45%;
+    /* width: 45%; */
     padding: 0;
     margin: auto;
     display: block;
@@ -158,16 +158,16 @@ article {
     box-sizing: border-box; 
     background-color: rgba(75,130,145,0.00);
 }
-
+/*
 .photo {
     width: 98%;
     padding: 1%;
     margin: auto;
     display: block;
 }
-
+*/
 .homephoto {
-    width: 98%;
+    /* width: 98%; */
     padding: 0;
     margin: auto;
     display: block;
@@ -180,14 +180,14 @@ article {
     display: block;
     box-sizing: border-box; 
 }
-
+/*
 .homeeditphoto {
     width: 75%;
     padding: 1%;
     margin: auto;
     display: block;
 }
-
+*/
 .addphoto {
     padding: 1%;
     margin: auto;
@@ -205,7 +205,7 @@ article {
 section {
 	margin: 10px 0;
 }
-
+/*
 #global  { 
     width: 38%;
     padding: 1%;
@@ -214,14 +214,14 @@ section {
     box-sizing: border-box;
     background-color: rgba(255, 190, 210, 0.5);
 }
-
+*/
 .clearfix::after {
 	display: block;
-	clear: both;
+	/* clear: both; */
 	content: "";
     margin:auto;
 }
-
+/*
 .schemagal {
     display: inline-block;
 }
@@ -265,7 +265,7 @@ text-align:left;
 
 #image  { 
 }
-
+*/
 #tabs-container {
     margin-top: 0px;
     font-size: 0px;
@@ -311,7 +311,7 @@ text-align:left;
 .btninv {
     visibility:hidden;
 }
-
+/*
 .images {
   float:top;
   float:left;
@@ -326,7 +326,7 @@ text-align:left;
     box-sizing: border-box;
     background-color: rgba(165,220,210,0.20);
 }
-
+*/
 .well {
     /* clear: both; */
     text-align: center;
@@ -403,6 +403,14 @@ text-align:left;
 
 #eval-th {
     width: 20%;
+    text-decoration: none;
+    margin: auto;
+    display: block;
+    box-sizing: border-box;
+}
+
+.button-eval {
+    text-decoration: none;
     margin: auto;
     display: block;
     box-sizing: border-box;

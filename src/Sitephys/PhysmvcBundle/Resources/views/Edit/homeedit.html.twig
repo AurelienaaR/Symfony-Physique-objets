@@ -10,7 +10,7 @@
 
 {% block sitephysphysmvc_image %}
   <div class="containerthome">
-    <img src="{{ asset('bundles/sitephysphysmvc/images/fond-cosmo.jpg') }}" class="homephoto" alt="Image de Accueil - Edition" />
+    <img src="{{ asset('bundles/sitephysphysmvc/images/BoseEinsteincondensation.jpg') }}" class="homephoto" alt="Image de Accueil - Edition" />
   </div>
 {% endblock %}
 
@@ -35,15 +35,15 @@
       {% else %}
         <span>Ajout de domaine (auteurs)</span><span>&nbsp;</span>
       {% endif %}
-      {% if is_granted('ROLE_AUTHOR') %}
-        <a href="#addtopic">Ajout de thème</a><span>&nbsp;</span>
-      {% else %}
-        <span>Ajout de thème (auteurs)</span><span>&nbsp;</span>
-      {% endif %}
       {% if is_granted('ROLE_USER') or is_granted('ROLE_AUTHOR') %}
         <a href="#consultadd">Domaines ajoutés</a><span>&nbsp;</span>
       {% else %}
         <span>Domaines ajoutés (utilisateurs)</span><span>&nbsp;</span>
+      {% endif %}
+      {% if is_granted('ROLE_AUTHOR') %}
+        <a href="#addtopic">Ajout de thème</a><span>&nbsp;</span>
+      {% else %}
+        <span>Ajout de thème (auteurs)</span><span>&nbsp;</span>
       {% endif %}
       {% if is_granted('ROLE_USER') or is_granted('ROLE_AUTHOR') %}
         <a href="#consultaddtopic">Thèmes ajoutés</a>
@@ -77,15 +77,15 @@
       <article id="add">
         <a href="{{ path('sitephys_physmvc_edition_add') }}"> Domaine </a>
       </article>
-      <article id="addtopic">
-      {% for physdomainsx in physdomains %}
-        <a href="{{ path('sitephys_physmvc_edition_addtopic', {'iddom': physdomainsx.id}) }}"> {{ physdomainsx.title }} </a>
-      {% endfor %}
-      </article>
       <article id="consultadd">
         {% for physphysaddsx in physphysadds %}
           <a href="{{ path('sitephys_physmvc_edition_viewadd', {'idadd': physphysaddsx.id}) }}"> {{ physphysaddsx.title }} </a><span>&nbsp;</span>
         {% endfor %}
+      </article>
+      <article id="addtopic">
+      {% for physdomainsx in physdomains %}
+        <a href="{{ path('sitephys_physmvc_edition_addtopic', {'iddom': physdomainsx.id}) }}"> {{ physdomainsx.title }} </a>
+      {% endfor %}
       </article>
       <article id="consultaddtopic">
         {% for physphysaddtopicsx in physphysaddtopics %}

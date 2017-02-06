@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Thème ajouté : {{ physaddtopic.title }} </h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Thème ajouté : {{ physaddtopic.title }} du domaine {{ domtopadded }}</h2>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -16,7 +16,7 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-      <h2>Descriptions du thème ajouté, {{ physaddtopic.title }}</h2><br />
+      <h2>Description du thème ajouté {{ physaddtopic.title }} du domaine {{ domtopadded }}</h2><br />
 
       <nav id="tabs-nav" class="clearfix">
         <a href="#contenuexpin">Exp in (1)</a><span>&nbsp;</span>
