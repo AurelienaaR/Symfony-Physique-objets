@@ -5,18 +5,18 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Thème ajouté : {{ physaddtopic.title }} du domaine {{ domtopadded }}</h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Thème ajouté : {{ physaddtopic.title }} du domaine {{ domtopadded.title }}</h2>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-<div class="containerthome">
+  <div class="containerthome">
     <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcelement.png') }}" class="homephoto" alt="Image du thème ajouté" />
   </div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-      <h2>Description du thème ajouté {{ physaddtopic.title }} du domaine {{ domtopadded }}</h2><br />
+      <h2>Description du thème ajouté {{ physaddtopic.title }} du domaine {{ domtopadded.title }}</h2><br />
 
       <nav id="tabs-nav" class="clearfix">
         <a href="#contenuexpin">Exp in (1)</a><span>&nbsp;</span>

@@ -22,14 +22,19 @@
       <span>  {{ form_row(formuseradd.password, {'attr': {'class': 'form-control'}}) }}  </span>
     </div>
 
-    <br /><br />
+    {% if (roleuser == "author") %}
+      <br />
+      <div>
+        <span>  {{ form_row(formuseradd.interest, {'attr': {'class': 'form-control'}}) }}  </span>
+      </div>
+    {% endif %}
 
     <br /><br />
     {{ form_widget(formuseradd.save, {'attr': {'class': 'btn btn-primary'}}) }}
     {{ form_end(formuseradd) }}
     
     <br />
-    
+        
   </div>
 
 </div>

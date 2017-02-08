@@ -38,7 +38,7 @@ public function findDomIdTitle()
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT d.title FROM SitephysPhysmvcBundle:Domain d WHERE d.id = ' . $id
+                'SELECT d.title FROM SitephysPhysmvcBundle:Domain d WHERE d.id = ' . $id . ''
             )
             ->getResult();
     }

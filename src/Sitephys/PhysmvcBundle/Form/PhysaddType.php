@@ -13,7 +13,7 @@ class PhysaddType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('username')->add('email')->add('date')->add('content')->add('document')->add('weblink')        ;
+      /*  $builder->add('title')->add('username')->add('email')->add('date')->add('content')->add('document')->add('weblink')        ; */
     }
     
     /**
@@ -21,9 +21,9 @@ class PhysaddType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+    /*    $resolver->setDefaults(array(
             'data_class' => 'Sitephys\PhysmvcBundle\Entity\Physadd'
-        ));
+        )); */
     }
 
     /**

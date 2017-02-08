@@ -30,10 +30,13 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
+    <h3>Liste des éléments disponibles pour le thème {{ topi.title }}</h3>
+    <br />
     {% for listphysx in listphys %}
-      {{ listphysx.title }}
+      <strong> {{ listphysx.title }} </strong> du niveau :<span>&nbsp;</span>
       {{ levelcontent[listphysx.id] }}
-      <i>Par {{ listphysx.author }}, le {{ listphysx.date|date('d/m/Y') }}</i>
+      <span class="italique"> par {{ listphysx.author }}, le {{ listphysx.date|date('d/m/Y') }}</span>
+      <br />
     {% endfor %}
   </div>
   <br />

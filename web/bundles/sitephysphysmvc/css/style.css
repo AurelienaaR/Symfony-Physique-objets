@@ -19,7 +19,7 @@ h2 {
 	font-size: 32px;
 	/* background-color: rgba(130,145,155,0.90); */
 	padding: 0; /* 7px 10px 5px 10px; */
-	color: #122;
+	color: #344;
 }
 
 h3 {
@@ -37,6 +37,9 @@ em, b {
 	font-weight: bold;
 }
 
+h2 .italique {
+	font-weight: italic;
+}
 
 header, header .container {
 	background-color: #2c7699; /* #3498db; */
@@ -98,4 +101,8 @@ header a:hover {
 	font-size: 20px;
 	color: #FFF;
 	background-color: #9dc6c1;
+}
+
+.italique {
+	font-style: italic;
 }

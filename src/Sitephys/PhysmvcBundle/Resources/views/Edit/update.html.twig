@@ -16,7 +16,7 @@
 
 {% block sitephysphysmvc_body %}
   <div class="containerthome">
-    <h3 style = "font-style:italic; color:#FA5; text-align:center; margin:6px;">Proposition de modification à la date actuelle, {{ 'now'|date('Y-m-d H:i:s') }}, de l'élément <strong>{{ physupdate.title }}</strong> créé par {{ physupdate.username }} le {{ physupdate.date|date('Y-m-d H:i:s') }} du domaine <strong>{{ physupdatedomain.content }}</strong> et du thème <strong>{{ physupdatetopic.content }}</strong> pour le niveau de base <strong>{{ physupdatelevel.levelBase }}</strong> et le niveau de précision <strong>{{ physupdatelevel.levelSub }}</strong>, soit : <strong>{{ physupdatelevel.content }}</strong>.<br /><strong>Contenu actuel : {{ physupdate.content }}<br />Evaluation actuelle : {{ physupdate.evaluation }}</strong></h3>
+    <h3 style = "font-style:italic; color:#FA5; text-align:center; margin:6px;">Proposition de modification à la date actuelle, {{ 'now'|date('Y-m-d H:i:s') }}, de l'élément <strong>{{ physupdate.title }}</strong> créé par {{ physupdate.author }} le {{ physupdate.date|date('Y-m-d H:i:s') }} du domaine <strong>{{ physupdatedomain.content }}</strong> et du thème <strong>{{ physupdatetopic.content }}</strong> pour le niveau de base <strong>{{ physupdatelevel.levelBase }}</strong> et le niveau de précision <strong>{{ physupdatelevel.levelSub }}</strong>, soit : <strong>{{ physupdatelevel.content }}</strong>.<br /><strong>Contenu actuel : {{ physupdate.content }}<br />Evaluation actuelle : {{ physupdate.evaluation }}</strong></h3>
   </div>
   <br />
   {{ include("SitephysPhysmvcBundle:Edit:formupdate.html.twig") }}

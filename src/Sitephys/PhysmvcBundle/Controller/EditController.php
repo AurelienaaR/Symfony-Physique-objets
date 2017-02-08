@@ -150,6 +150,7 @@ class EditController extends Controller
     $physAddtopic = new Physaddtopic();
     $formAddtopicBuilder = $this->get('form.factory')->createBuilder(PhysaddtopicType::class, $physAddtopic);
     $formAddtopicBuilder
+      ->add('domainid',      IntegerType::class)
       ->add('title',      TextType::class)
       ->add('username',      TextType::class, array('data' => $userconnect,))
       ->add('email',      EmailType::class, array('data' => $useremail,))
@@ -350,25 +351,33 @@ class EditController extends Controller
     $physaddtopicRep = $em->getRepository('SitephysPhysmvcBundle:Physaddtopic');
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
 
-    $physaddtopic = $physaddtopicRep->find($idaddtopic); 
+    $physaddtopic = $physaddtopicRep->findobj($idaddtopic); 
+    
     if (null === $physaddtopic) {
-      throw new NotFoundHttpException('Thème "' . $idaddtopic . '" pas dans la base.');
+      throw new NotFoundHttpException('Thème ' . $idaddtopic . ' pas dans la base.');
     } else {
-      $idDom = $physaddtopic->getDomainid();
-      $domtopadded = $domainRep->findDomTitleById($idDom);
-      $userconnectx = $this->getUser();
-      if (null === $userconnectx) {
-        $userconnect = 'Connexion';
+      
+      $paddtopic = $physaddtopic[0];
+      $idDom = $paddtopic->getDomainid();
+      if (null === $idDom) {
+        throw new NotFoundHttpException('Domaine inconnu.');
       } else {
-        $userconnect = $userconnectx->getUsername();
+        $domtopadd = $domainRep->findDomTitleById($idDom);
+        $domtopadded = $domtopadd[0];
       }
+    }
+    $userconnectx = $this->getUser();
+    if (null === $userconnectx) {
+      $userconnect = 'Connexion';
+    } else {
+      $userconnect = $userconnectx->getUsername();
+    }
 
-      return $this->render('SitephysPhysmvcBundle:Edit:viewaddtopic.html.twig', array(
-        'userconnect' => $userconnect,
-        'physaddtopic' => $physaddtopic,
-        'domtopadded' => $domtopadded,
-      ));
-    } 
-  }
+    return $this->render('SitephysPhysmvcBundle:Edit:viewaddtopic.html.twig', array(
+      'userconnect' => $userconnect,
+      'physaddtopic' => $paddtopic,
+      'domtopadded' => $domtopadded,
+    ));
+  } 
 
 }

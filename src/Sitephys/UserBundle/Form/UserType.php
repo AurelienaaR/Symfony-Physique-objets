@@ -13,7 +13,7 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username')->add('email')->add('password')->add('roles')        ;
+     /*   $builder->add('username')->add('email')->add('password')->add('interest')->add('roles')->add('salt')        ; */
     }
     
     /**
@@ -21,9 +21,10 @@ class UserType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+    /*    $resolver->setDefaults(array(
             'data_class' => 'Sitephys\UserBundle\Entity\User'
         ));
+        */
     }
 
     /**

@@ -28,6 +28,7 @@ use Sitephys\PhysmvcBundle\Form\TopicType;
 use Sitephys\PhysmvcBundle\Form\PhysType;
 use Sitephys\PhysmvcBundle\Form\PhysupdateType;
 use Sitephys\PhysmvcBundle\Form\PhysaddType;
+use Sitephys\PhysmvcBundle\Form\PhysaddtopicType;
 use Doctrine\ORM\QueryBuilder;
 
 

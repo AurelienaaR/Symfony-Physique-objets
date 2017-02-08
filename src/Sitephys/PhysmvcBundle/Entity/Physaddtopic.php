@@ -21,6 +21,13 @@ class Physaddtopic
   private $id;
 
   /**
+   * @var int
+   *
+   * @ORM\Column(name="domainid", type="integer")
+   */
+  private $domainid;
+
+  /**
    * @var string
    *
    * @ORM\Column(name="title", type="string")
@@ -109,6 +116,7 @@ class Physaddtopic
    */
   private $weblink;
 
+
   public function __construct()
   {
     $this->date         = new \Datetime();
@@ -120,6 +128,22 @@ class Physaddtopic
   public function getId()
   {
     return $this->id;
+  }
+
+  /**
+   * @param int $domainid
+   */
+  public function setDomainid($domainid)
+  {
+    $this->domainid = $domainid;
+  }
+
+  /**
+   * @return int
+   */
+  public function getDomainid()
+  {
+    return $this->domainid;
   }
 
   /**

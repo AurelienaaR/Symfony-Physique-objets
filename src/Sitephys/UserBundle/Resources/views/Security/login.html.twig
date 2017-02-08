@@ -8,6 +8,14 @@
   {{ parent() }}
 {% endblock %}
 
+{% block sitephysphysmvc_image %}
+  <div id="containerimghome">
+    <div class="containerthome">
+      <img src="{{ asset('bundles/sitephysphysmvc/images/home-fond.jpg') }}" class="homephoto" alt="Image de Accueil" />
+    </div>
+  </div>
+{% endblock %}
+
 {% block sitephysuser_body %}
 
   {% if error %}
@@ -29,7 +37,7 @@
       <br />
       Ou bien : <br />
       <a href="{{ path('sitephys_user_add', {'roleuser': 'user'}) }}">Création d'un nouveau compte utilisateur</a><br />
-      <a href="{{ path('sitephys_user_email', {'name': 'author'}) }}">Création d'un nouveau compte auteur</a><br />
+      <a href="{{ path('sitephys_user_add', {'roleuser': 'author'}) }}">Création d'un nouveau compte auteur</a><br />
     </div>
   </div>
 

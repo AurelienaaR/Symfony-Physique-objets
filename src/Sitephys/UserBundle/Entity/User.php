@@ -52,6 +52,12 @@ class User implements UserInterface
   private $password;
 
   /**
+   * @ORM\Column(name="interest", type="text", nullable=true)
+   *
+   */
+  private $interest;
+
+  /**
    * @ORM\Column(name="salt", type="string", length=255, nullable=true)
    */
   private $salt;
@@ -59,7 +65,7 @@ class User implements UserInterface
   /**
    * @ORM\Column(name="roles", type="array")
    */
-  private $roles = array();
+  private $roles = array(0 => 'ROLE_USER');
 
   // Les getters et setters
 
@@ -107,10 +113,18 @@ class User implements UserInterface
         $this->password = $password;
     }
 
+    public function getInterest()
+    {
+        return $this->interest;
+    }
+
+    public function setInterest($interest)
+    {
+        $this->interest = $interest;
+    }
+
     public function getSalt()
     {
-        // The bcrypt algorithm doesn't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
         return null;
     }
 

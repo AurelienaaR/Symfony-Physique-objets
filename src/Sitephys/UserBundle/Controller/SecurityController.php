@@ -53,9 +53,11 @@ class SecurityController extends Controller
   */
     $userObject = $this->getUser();
     if (null === $userObject) {
-      throw new NotFoundHttpException('Non connecté');
+      $userconnect = 'Connexion';
+      $userRoles = 'non connecté';
+      // throw new NotFoundHttpException('Non connecté');
     } else {
-
+      $userconnect = $userObject->getUsername();
       $userObjectArray = $userObject->getRoles();
       $userRolesX = $userObjectArray[0];
 
@@ -75,13 +77,6 @@ class SecurityController extends Controller
         break;
         
     }
-
-    $userconnectx = $this->getUser();
-      if (null === $userconnectx) {
-        $userconnect = 'Connexion';
-      } else {
-        $userconnect = $userconnectx->getUsername();
-      }
 
       return $this->render('SitephysUserBundle:Security:homeuser.html.twig', array(
         'userconnect' => $userconnect,
@@ -106,6 +101,7 @@ class SecurityController extends Controller
         ->add('username',   TextType::class)
         ->add('email',      EmailType::class)
         ->add('password',      PasswordType::class)
+        ->add('interest',   TextareaType::class)
         ->add('salt',      HiddenType::class)
         ->add('roles',    HiddenType::class, array('data' => 'a:1:{i:0;s:11:"ROLE_AUTHOR";}'))
         ->add('save',      SubmitType::class)
@@ -132,11 +128,22 @@ class SecurityController extends Controller
         $userAdd->setPassword($password);
         $roleArray = unserialize($formUserAdd->get('roles')->getData());
         $userAdd->setRoles($roleArray);
- 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($userAdd);
-        $em->flush();
- 
+
+        if ($roleuser == "author") {
+          $interest = $formUserAdd->get('interest')->getData();
+          if (strlen($interest) >= 400) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($userAdd);
+            $em->flush();
+          } else {
+            throw new NotFoundHttpException('Le champ Intérêts doit contenir au moins 400 caractères.');
+          }
+        } else {
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($userAdd);
+          $em->flush();
+        }
+
         return $this->redirectToRoute('sitephys_physmvc_home');            
       }
     }
