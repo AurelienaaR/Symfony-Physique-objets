@@ -15,7 +15,9 @@
 {% block sitephysphysmvc_image %}
   <div id="containerimghome">
     <div class="containerthome">
-      <img src="{{ asset('bundles/sitephysphysmvc/images/home-fond.jpg') }}" class="homephoto" alt="Image de Accueil" />
+      <a href="{{ path('sitephys_physmvc_presentation') }}">
+        <img src="{{ asset('bundles/sitephysphysmvc/images/home-fond.jpg') }}" class="homephoto" alt="Lien vers Présentation" />
+      </a>
     </div>
   </div>
 {% endblock %}

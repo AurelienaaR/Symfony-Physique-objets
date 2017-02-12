@@ -13,7 +13,6 @@ class PhysupdateType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-   /*     $builder->add('idphys')->add('title')->add('username')->add('email')->add('date')->add('content')->add('evaluation')->add('document')        ; */
     }
     
     /**
@@ -21,9 +20,6 @@ class PhysupdateType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-   /*     $resolver->setDefaults(array(
-            'data_class' => 'Sitephys\PhysmvcBundle\Entity\Physupdate'
-        )); */
     }
 
     /**
@@ -33,6 +29,5 @@ class PhysupdateType extends AbstractType
     {
         return 'sitephys_physmvcbundle_physupdate';
     }
-
 
 }

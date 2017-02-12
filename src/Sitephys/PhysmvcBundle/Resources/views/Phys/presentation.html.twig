@@ -1,0 +1,90 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Présentation 
+{% endblock %}
+
+{% block sitephysphysmvc_section %}
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Présentation du site</h2>
+{% endblock %}
+
+{% block sitephysphysmvc_image %}
+  <div class="containerthome">
+    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcelement.png') }}" class="homephoto" alt="Image de niveaux basiques" /><br />
+  </div>
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+
+  <div class="well">
+
+      <h2>Sujets du site</h2><br />
+      <nav id="tabs-nav" class="clearfix">
+        <a href="#modele">Modèles objets</a><span>&nbsp;</span>
+        <a href="#editions">Editions (fonctionnalités)</a><span>&nbsp;</span>
+        <a href="#appli">Applications</a><span>&nbsp;</span>
+        <a href="#niveaux">Niveaux</a><span>&nbsp;</span>
+        <a href="#modes">Modes</a><span>&nbsp;</span>
+        <a href="#symbolisation">Symbolisations</a><span>&nbsp;</span>
+      </nav>
+
+      <div id="tabs-container" onload="initTab()">
+
+        <article id="modele"> 
+          Modèles Objet : 
+          <br />Evolutions de projets : cycle en V, Agile, MVC  
+          <br />Modèle de base :  
+          <br />Modèles évolués : 
+        </article>
+
+        <article id="editions">
+          <ul>Edition (accès aux fonctionnalités) :  <br />
+            <li>* Visiteurs : lecture des éléments actuels.</li>
+            <li>* Utilisateurs (users) : gestion de compte, lecture des éléments actuels, éléments modifiés et ajoutés.</li>
+            <li>* Auteurs (authors) : gestion de compte, ajoût de domaine, lecture et modification des éléments actuels, éléments modifiés et ajoutés.</li>
+            <li>* Administrateurs (administrators) : gestion des utilisateurs, ajout de domaine et thèmes, lecture, modificationet ajoût des éléments actuels, éléments modifiés et ajoutés.</li>
+          </ul>
+        </article>
+
+        <article id="appli">
+        </article>
+
+        <article id="niveaux">
+          Domaines disponibles :
+          <br />
+          {% for domainx in domain %}
+            <br />{{ domainx.title }}
+          {% endfor %}
+          <br /><br />Niveaux : 
+          <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" class="homephoto" alt="Image de niveaux globaux" /><br />
+          Niveau de base <i>(global de 1 à 6)</i> : 
+          <br />Niveau de précision (de 0 (fondamental), 1 à 6) :
+          <br />Description formel du niveau : Cf. Niveaux.
+        </article>
+
+        <article id="modes">
+          <ul>Modes (dimension de l'étendue de recherche, solutions) :
+            <li>* 2 ou plus : évolution en un champ continu.</li>
+            <li>* 1 : évolution linéaire continue.</li>
+          </ul>
+          <ul>Mode (état de l'art) :
+            <li>* 0 : évolution causale discrète (états successifs).</li>
+          </ul>
+          <ul>Modes (dimension de l'étendue de recherche, questions) :
+            <li>* -1 : évolution linéaire continue.</li></li>
+            <li>* -2 ou moins : évolution dans un champ. </li>
+          </ul>
+        </article>
+
+        <article id="symbolisation">
+          Symbolisations disponibles : 
+          <br />
+          {% for symbolx in symbol %}
+            <br />{{ symbolx.content }}
+          {% endfor %}
+        </article>
+      </div>
+
+  </div>
+
+{% endblock %}

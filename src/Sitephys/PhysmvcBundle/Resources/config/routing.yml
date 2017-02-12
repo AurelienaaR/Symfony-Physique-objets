@@ -3,6 +3,11 @@ sitephys_physmvc_home:
     defaults:
         _controller: SitephysPhysmvcBundle:Phys:home
 
+sitephys_physmvc_presentation:
+    path:      /presentation/
+    defaults:
+        _controller: SitephysPhysmvcBundle:Phys:presentation
+
 sitephys_physmvc_topic:
     path:      /topic/
     defaults:

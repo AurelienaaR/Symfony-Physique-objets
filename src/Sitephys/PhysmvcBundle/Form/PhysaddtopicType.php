@@ -12,18 +12,14 @@ class PhysaddtopicType extends AbstractType
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    { /*
-        $builder->add('domainid')->add('title')->add('username')->add('email')->add('date')->add('contentexpin')->add('contentth')->add('contentexpout')->add('contentretexpin')->add('contentretth')->add('contentretexpout')->add('document')->add('weblink')        ;  */
+    {
     }
     
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
-    { /*
-        $resolver->setDefaults(array(
-            'data_class' => 'Sitephys\PhysmvcBundle\Entity\Physaddtopic'
-        ));  */
+    {
     }
 
     /**
@@ -33,6 +29,5 @@ class PhysaddtopicType extends AbstractType
     {
         return 'sitephys_physmvcbundle_physaddtopic';
     }
-
 
 }

@@ -22,13 +22,15 @@ use Sitephys\PhysmvcBundle\Entity\Domain;
 use Sitephys\PhysmvcBundle\Entity\Topic;
 use Sitephys\PhysmvcBundle\Entity\Level;
 use Sitephys\PhysmvcBundle\Entity\Symbolization;
-use Sitephys\PhysmvcBundle\Entity\Physupdate;
-use Sitephys\PhysmvcBundle\Entity\Physadd;
 use Sitephys\PhysmvcBundle\Form\TopicType;
 use Sitephys\PhysmvcBundle\Form\PhysType;
+/*
+use Sitephys\PhysmvcBundle\Entity\Physupdate;
+use Sitephys\PhysmvcBundle\Entity\Physadd;
 use Sitephys\PhysmvcBundle\Form\PhysupdateType;
 use Sitephys\PhysmvcBundle\Form\PhysaddType;
 use Sitephys\PhysmvcBundle\Form\PhysaddtopicType;
+*/
 use Doctrine\ORM\QueryBuilder;
 
 
@@ -70,6 +72,31 @@ class PhysController extends Controller
       'tabtopperdom' => $tabTopPerDom,
       'evol' => $evolutionBy,
       'lasttentop' => $lastTenTop,
+      )
+    );
+  }
+
+
+  public function presentationAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+    $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
+    $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
+
+    $presDomain = $domainRep->findAll();
+    $presSymbol = $symbolizationRep->findAll();
+
+    $userconnectx = $this->getUser();
+    if (null === $userconnectx) {
+      $userconnect = 'Connexion';
+    } else {
+      $userconnect = $userconnectx->getUsername();
+    }
+
+    return $this->render('SitephysPhysmvcBundle:Phys:presentation.html.twig', array(
+      'userconnect' => $userconnect,
+      'domain' => $presDomain,
+      'symbol' => $presSymbol,
       )
     );
   }

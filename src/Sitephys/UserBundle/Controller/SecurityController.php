@@ -55,7 +55,7 @@ class SecurityController extends Controller
     if (null === $userObject) {
       $userconnect = 'Connexion';
       $userRoles = 'non connecté';
-      // throw new NotFoundHttpException('Non connecté');
+      throw new NotFoundHttpException('Non connecté');
     } else {
       $userconnect = $userObject->getUsername();
       $userObjectArray = $userObject->getRoles();

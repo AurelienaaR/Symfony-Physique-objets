@@ -2,10 +2,10 @@
 body {
   margin: auto;
   color:black;
-  background: -ms-linear-gradient(left, rgba(130, 40, 50, 0.95), rgba(30, 90, 130, 0.95));
-  background: -webkit-linear-gradient(left, rgba(130, 40, 50, 1.0) 75%, rgba(30, 80, 130, 1.0) 85%);
-  background: -moz-linear-gradient(left, rgba(130, 40, 50, 0.95), rgba(30, 80, 130, 0.95));
-  background: -o-linear-gradient(left, rgba(10, 110, 130, 0.40), rgba(30, 80, 130, 1.0));
+  background: -ms-linear-gradient(left, rgba(100, 5, 5, 0.95), rgba(130, 50, 60, 0.95));
+  background: -webkit-linear-gradient(left, rgba(95, 10, 10, 1.0) 45%, rgba(140, 40, 50, 1.0) 70%);
+  background: -moz-linear-gradient(left, rgba(95, 10, 5, 0.95), rgba(140, 40, 50, 0.95));
+  background: -o-linear-gradient(left, rgba(95, 10, 5, 0.95), rgba(140, 40, 50, 0.95));
 }
 
 article {
@@ -70,8 +70,7 @@ article {
 }
 
 #containerimghome {
-    /*  width: 90%;
-    height: 90%; 470px; */
+    width: 80%;
     padding: 0;
     margin: auto;
     display: block;
@@ -104,37 +103,8 @@ article {
     box-sizing: border-box; 
 	background-color: rgba(125,140,165,0.00);
 }
-/*
-#imgcontainer {
-    width: 90%;
-    padding: 0;
-    margin: auto;
-    display: block;
-    box-sizing: border-box; 
-    background-color: rgba(135,190,230,0.20);
-}
 
-#imgcontainerglobal {
-    width: 90%;
-    height: 50%;
-    padding-top: 2%;
-    margin: auto;
-    display: block;
-    box-sizing: border-box; 
-    background-color: rgba(135,190,220,0.20);
-}
-
-#containertop {
-    width: 90%;
-    padding: 2%;
-    margin: auto;
-    display: block;
-    box-sizing: border-box;
-    background-color: rgba(125,250,255,0.30);
-}
-*/
 .containerthome {
-    /* width: 60%; */
     height: 5%;
     padding: 0%;
     margin: auto;
@@ -144,8 +114,6 @@ article {
 }
 
 .containertedit {
-    /* width: 45%; 
-    height: 70%;  */
     padding: 0;
     margin: auto;
     display: block;
@@ -160,16 +128,8 @@ article {
     box-sizing: border-box; 
     background-color: rgba(75,130,145,0.00);
 }
-/*
-.photo {
-    width: 98%;
-    padding: 1%;
-    margin: auto;
-    display: block;
-}
-*/
+
 .homephoto {
-    /* width: 98%; */
     padding: 0;
     margin: auto;
     display: block;
@@ -182,14 +142,7 @@ article {
     display: block;
     box-sizing: border-box; 
 }
-/*
-.homeeditphoto {
-    width: 75%;
-    padding: 1%;
-    margin: auto;
-    display: block;
-}
-*/
+
 .addphoto {
     padding: 1%;
     margin: auto;
@@ -207,67 +160,14 @@ article {
 section {
 	margin: 10px 0;
 }
-/*
-#global  { 
-    width: 38%;
-    padding: 1%;
-    margin: auto;
-    display: block; 
-    box-sizing: border-box;
-    background-color: rgba(255, 190, 210, 0.5);
-}
-*/
+
 .clearfix::after {
 	display: block;
 	/* clear: both; */
 	content: "";
     margin:auto;
 }
-/*
-.schemagal {
-    display: inline-block;
-}
 
-.schema {
-    float: left;
-    width: 30%;
-    height: 130px; 
-}
-
-.after-box { 
-}
-
-#content {
-    width: 85%;
-    margin: auto;
-    display: block;
-    float: left;
-    clear:both;
-    box-sizing: border-box;
-}
-
-#content pre {
-    white-space: normal;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#menu_principal  {
-width:99%;
-height:10%;
-border-radius:10px;
-margin-left:1%;
-margin-top:1%;
-margin-bottom:1%;
-border-radius: 10px;
-background: -moz-linear-gradient(left, LightCyan, White);
-background: -webkit-linear-gradient(right top, #C0C0C0 0%, #2F4F4F 100%);
-background: -ms-linear-gradient(left, LightCyan, White);
-text-align:left;
-}
-
-#image  { 
-}
-*/
 #tabs-container {
     margin-top: 0px;
     font-size: 0px;
@@ -313,22 +213,7 @@ text-align:left;
 .btninv {
     visibility:hidden;
 }
-/*
-.images {
-  float:top;
-  float:left;
-  height: 225px;
-  width: 150px;
-}
 
-#container {
-    width: 95%;
-    margin: auto;
-    display: block;
-    box-sizing: border-box;
-    background-color: rgba(165,220,210,0.20);
-}
-*/
 .well {
     /* clear: both; */
     text-align: center;
@@ -338,12 +223,6 @@ text-align:left;
     box-sizing: border-box;
     background-color: rgba(165,220,210,0.00);
 }
-
-/*
-.well .italique {
-    font-weight: italic;
-}
-*/
 
 .wellform {
     margin: auto;
@@ -410,7 +289,7 @@ text-align:left;
 }
 
 #eval-th {
-    width: 0%;
+    width: 15%;
     text-decoration: none;
     margin: auto;
     display: block;

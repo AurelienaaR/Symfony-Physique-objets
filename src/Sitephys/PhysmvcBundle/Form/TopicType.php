@@ -12,18 +12,14 @@ class TopicType extends AbstractType
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    { /*
-        $builder->add('title')->add('content')->add('domainId')        ;  */
+    { 
     }
     
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
-    { /*
-        $resolver->setDefaults(array(
-            'data_class' => 'Sitephys\PhysmvcBundle\Entity\Topic'
-        ));  */
+    {
     }
 
     /**

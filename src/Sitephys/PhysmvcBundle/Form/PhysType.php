@@ -12,8 +12,7 @@ class PhysType extends AbstractType
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add('level')->add('title')->add('author')->add('date')->add('content')->add('evaluation')->add('document')->add('published')->add('updatedAt')->add('webLinks')->add('topicId')        ;
+    { 
     }
     
     /**
@@ -21,9 +20,6 @@ class PhysType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Sitephys\PhysmvcBundle\Entity\Phys'
-        ));
     }
 
     /**
@@ -33,6 +29,5 @@ class PhysType extends AbstractType
     {
         return 'sitephys_physmvcbundle_phys';
     }
-
 
 }
