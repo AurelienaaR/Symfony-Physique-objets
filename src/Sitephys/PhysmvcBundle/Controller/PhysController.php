@@ -193,8 +193,8 @@ class PhysController extends Controller
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
     $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
 
-    for ($intBase = 1; $intBase <= 3; $intBase++) { 
-      for ($intSub = 0; $intSub <= 3; $intSub++) {
+    for ($intBase = 1; $intBase <= 6; $intBase++) { 
+      for ($intSub = 0; $intSub <= 6; $intSub++) {
         $bsLevel = $levelRep->findBy(
           array('levelBase' => $intBase, 'levelSub' => $intSub),
           array('id' => 'asc')
@@ -204,7 +204,11 @@ class PhysController extends Controller
         $symbolizationLevel = $symbolizationRep->findBy(
           array('levelkey' => $levsym)
           );
-        $bsSymbolContent[$intBase][$intSub] = $symbolizationLevel[0]->getContent();
+        if (null == $symbolizationLevel) {
+          $bsSymbolContent[$intBase][$intSub] = "Aucune symbolisation";
+        } else {
+          $bsSymbolContent[$intBase][$intSub] = $symbolizationLevel[0]->getContent();
+        }
       }
     }
 

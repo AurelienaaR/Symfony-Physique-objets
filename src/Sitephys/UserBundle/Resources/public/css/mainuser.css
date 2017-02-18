@@ -234,6 +234,7 @@ section {
 #tabs-container article {
     background-color: rgba(115, 140, 130, 0.20);
     color:#046;
+    text-align: left;
 }
 
 #menu_nav {

@@ -168,9 +168,11 @@ section {
     margin:auto;
 }
 
+
 #tabs-container {
     margin-top: 0px;
     font-size: 0px;
+    /* padding: 1%; */
 }
 
 #tabs-container h1 {
@@ -179,6 +181,7 @@ section {
 }
 
 #tabs-container article {
+    text-align: left;
     background-color: rgba(115, 140, 130, 0.20);
     color:#046;
 }
