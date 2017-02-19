@@ -30,6 +30,7 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
+
     <h3>Liste des éléments disponibles pour le thème {{ topi.title }}</h3>
     <br />
     {% for listphysx in listphys %}
@@ -44,5 +45,6 @@
     <div class="button-eval">
       <a href="{{ path('sitephys_physmvc_evaluation', {'idTopic': idtop}) }}">Evaluations du thème</a>
     </div>
+    
   </div>
 {% endblock %}

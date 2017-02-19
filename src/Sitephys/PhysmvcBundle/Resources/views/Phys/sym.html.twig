@@ -22,7 +22,7 @@
         {% for intBase in 1..6 %}
           <a href="{{ "#symbol" ~ intBase }}"> {{ datalevel[intBase - 1] }} </a><span>&nbsp;</span>
         {% endfor %}
-        <a href="{{ "#reference" }}"> Référence </a>
+        <a href="{{ "#reference" }}"> Références </a>
       </nav>
 
       <div id="tabs-container" onload="initTab()">
@@ -40,9 +40,8 @@
         {% endfor %}
         <article id="reference">
           {% for titlerefdomx in titlerefdom %}
-            <br />Domaine : {{ titlerefdomx.dtitle }} 
-            Référence : {{ titlerefdomx.rtitle }} 
-            <br />{{ titlerefdomx.rcontent }} <br />
+            Domaine : {{ titlerefdomx.dtitle }}. Référence : {{ titlerefdomx.rtitle }} <br />
+            Contenu : {{ titlerefdomx.rcontent }} <br /><br />
           {% endfor %}
         </article>
       </div>

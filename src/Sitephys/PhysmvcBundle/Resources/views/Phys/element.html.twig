@@ -24,11 +24,12 @@
         <a href="#contenu">Contenu</a><span>&nbsp;</span>
         <a href="#evaluation">Evaluation</a><span>&nbsp;</span>
         <a href="#symbolisation">Symbolisation</a><span>&nbsp;</span>
+        <a href="#reference">Références</a>
         <a href="#author">Création</a>
       </nav>
       <div id="tabs-container" onload="initTab()">
         <article id="domaine">
-          Domaine : {{ domain.content }}
+          Domaine : {{ domain.title }}
           <br />Thème : {{ topic.content }}
           <br />Mode du thème : {{ topic.mode }} <br />
         </article>
@@ -48,6 +49,12 @@
           {% for symcontentx in symcontent %}
             {% set cptsym = cptsym + 1 %}
             Symbolisation {{ cptsym }} : {{ symcontentx }} <br />
+          {% endfor %}
+        </article>
+        <article id="reference">
+          {% for titlecontrefx in titlecontref %}
+            Référence : {{ titlecontrefx.rtitle }} <br />
+            {{ titlecontrefx.rcontent }} <br /><br />
           {% endfor %}
         </article>
         <article id="author"> 

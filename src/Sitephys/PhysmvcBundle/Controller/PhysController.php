@@ -24,13 +24,6 @@ use Sitephys\PhysmvcBundle\Entity\Level;
 use Sitephys\PhysmvcBundle\Entity\Symbolization;
 use Sitephys\PhysmvcBundle\Form\TopicType;
 use Sitephys\PhysmvcBundle\Form\PhysType;
-/*
-use Sitephys\PhysmvcBundle\Entity\Physupdate;
-use Sitephys\PhysmvcBundle\Entity\Physadd;
-use Sitephys\PhysmvcBundle\Form\PhysupdateType;
-use Sitephys\PhysmvcBundle\Form\PhysaddType;
-use Sitephys\PhysmvcBundle\Form\PhysaddtopicType;
-*/
 use Doctrine\ORM\QueryBuilder;
 
 
@@ -159,6 +152,7 @@ class PhysController extends Controller
     $em = $this->getDoctrine()->getManager();
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
     $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic'); 
+    $referenceRep = $em->getRepository('SitephysPhysmvcBundle:Reference');
 
     $idDomObject = $domainRep->findDomIdTitle();
 
@@ -171,6 +165,8 @@ class PhysController extends Controller
           ));
     }
 
+    $titleContRef = $referenceRep->findTitleContentRefDom();
+
     $userconnectx = $this->getUser();
       if (null === $userconnectx) {
         $userconnect = 'Connexion';
@@ -182,6 +178,7 @@ class PhysController extends Controller
       'userconnect' => $userconnect,
       'iddomobject' => $idDomObject,
       'listtopic' => $listTopic,
+      'titlecontref' => $titleContRef,
       )
     );
   }
@@ -218,7 +215,7 @@ class PhysController extends Controller
       }
     }
 
-    $titleRefDom = $referenceRep->findTitleperDom();
+    $titleRefDom = $referenceRep->findTitleContentRefDom();
 
     $dataLevel = array("Exp. in", "Theory", "Exp. out", "Return - Exp. in", "Return - Theory", "Return - Exp. out");
 
@@ -386,6 +383,7 @@ class PhysController extends Controller
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
     $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
+    $referenceRep = $em->getRepository('SitephysPhysmvcBundle:Reference');
 
     $phys = $physRep->find($id); 
     if (null === $phys) {
@@ -409,6 +407,9 @@ class PhysController extends Controller
       $topicDomainId = $topicObject->getDomainId();
       $domainObject = $domainRep->find($topicDomainId);
 
+      $domTopicId = $domainObject->getId();
+      $titleContRef = $referenceRep->findTitleRefperDom($domTopicId);
+
       $userconnectx = $this->getUser();
       if (null === $userconnectx) {
         $userconnect = 'Connexion';
@@ -423,6 +424,7 @@ class PhysController extends Controller
         'topic' => $topicObject,
         'level' => $levelObject,
         'symcontent' => $symbolizationContent,
+        'titlecontref' => $titleContRef,
         ));
     } 
   }
@@ -436,6 +438,7 @@ class PhysController extends Controller
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
     $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
+    $referenceRep = $em->getRepository('SitephysPhysmvcBundle:Reference');
 
     $strLevel = 'a:2:{i:0;s:1:"' . $intLevel . '";i:1;s:1:"' . $intEltLevel . '";}';
     $physGlobal = $physRep->findBy(
@@ -468,6 +471,9 @@ class PhysController extends Controller
       $topicDomainId = $topicObject->getDomainId();
       $domainObject = $domainRep->find($topicDomainId);
 
+      $domTopicId = $domainObject->getId();
+      $titleContRef = $referenceRep->findTitleRefperDom($domTopicId);
+
       $userconnectx = $this->getUser();
       if (null === $userconnectx) {
         $userconnect = 'Connexion';
@@ -481,6 +487,7 @@ class PhysController extends Controller
         'topic' => $topicObject,
         'level' => $levelObject,
         'symcontent' => $symbolizationContent,
+        'titlecontref' => $titleContRef,
         ));
     }
   }

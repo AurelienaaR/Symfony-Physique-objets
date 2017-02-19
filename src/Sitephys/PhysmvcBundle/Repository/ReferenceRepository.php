@@ -16,7 +16,16 @@ public function findTitleperDom()
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT d.title dtitle, r.title rtitle, r.content rcontent FROM SitephysPhysmvcBundle:Reference r INNER JOIN SitephysPhysmvcBundle:Domain d WHERE r.domainId = d.id'
+                'SELECT d.title dtitle, r.title rtitle FROM SitephysPhysmvcBundle:Reference r INNER JOIN SitephysPhysmvcBundle:Domain d WHERE r.domainId = d.id ORDER BY d.id ASC'
+            )
+            ->getResult();
+    }
+
+public function findTitleContentRefDom()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT d.title dtitle, r.title rtitle, r.content rcontent FROM SitephysPhysmvcBundle:Reference r INNER JOIN SitephysPhysmvcBundle:Domain d WHERE r.domainId = d.id ORDER BY d.id ASC'
             )
             ->getResult();
     }
@@ -34,7 +43,7 @@ public function findTitleRefperDom($idDom)
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT r.title FROM SitephysPhysmvcBundle:Reference r WHERE r.domainId = 2'
+                'SELECT r.title rtitle, r.content rcontent FROM SitephysPhysmvcBundle:Reference r WHERE r.domainId = ' . $idDom
             )
             ->getResult();
     }
