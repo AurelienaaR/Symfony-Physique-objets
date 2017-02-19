@@ -191,6 +191,7 @@ class PhysController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
+    $referenceRep = $em->getRepository('SitephysPhysmvcBundle:Reference');
     $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
 
     for ($intBase = 1; $intBase <= 6; $intBase++) { 
@@ -207,12 +208,19 @@ class PhysController extends Controller
         if (null == $symbolizationLevel) {
           $bsSymbolContent[$intBase][$intSub] = "Aucune symbolisation";
         } else {
-          $bsSymbolContent[$intBase][$intSub] = $symbolizationLevel[0]->getContent();
+          $bsSymbolContent[$intBase][$intSub] = "";
+          $symCpt = 0;
+          foreach ($symbolizationLevel as $symbolizationLevelx) {
+            $symCpt ++;
+            $bsSymbolContent[$intBase][$intSub] .= 'Symbol' . $symCpt . ' : ' . $symbolizationLevelx->getContent() . '. ';
+          }
         }
       }
     }
 
-    $dataLevel = array("Exp. in", "Theory", "Exp. out", "Return Exp. in", "Return Theory", "Return Exp. out");
+    $titleRefDom = $referenceRep->findTitleperDom();
+
+    $dataLevel = array("Exp. in", "Theory", "Exp. out", "Return - Exp. in", "Return - Theory", "Return - Exp. out");
 
     $userconnectx = $this->getUser();
     if (null === $userconnectx) {
@@ -225,9 +233,10 @@ class PhysController extends Controller
       'userconnect' => $userconnect,
       'bslevel' => $bsLevelContent,
       'bssymb' => $bsSymbolContent,
+      'titlerefdom' => $titleRefDom,
       'datalevel' => $dataLevel,
     ));
-  } 
+  }
 
 
   public function evalAction($idTopic)
