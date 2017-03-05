@@ -30,7 +30,7 @@ use Doctrine\ORM\QueryBuilder;
 class PhysController extends Controller
 {
 
-  public function homeAction()
+  public function homeAction(Request $request)
   {
   	$em = $this->getDoctrine()->getManager();
     $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys');
@@ -52,12 +52,13 @@ class PhysController extends Controller
       throw new NotFoundHttpException('Aucun thème dans la base.');
     }
 
-    $userconnectx = $this->getUser();
+    $userconnectx = $this->get('security.token_storage')->getToken()->getUser();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
     } else {
-      $userconnect = $userconnectx->getUsername();
+      $userconnect = $userconnectx;
     }
+
 
     return $this->render('SitephysPhysmvcBundle:Phys:home.html.twig', array(
       'userconnect' => $userconnect,

@@ -1,11 +1,12 @@
 <?php
 
-namespace Sitephys\UserBundle\Form;
+namespace Sitephys\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class UserType extends AbstractType
 {
@@ -15,11 +16,11 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('username');
-        $builder->add('plainPassword'); // Rajout du mot de passe 
+        $builder->add('plainPassword', HiddenType::class); // Rajout du mot de passe 
         $builder->add('email', EmailType::class);
         $builder->add('roles');
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -35,5 +36,5 @@ class UserType extends AbstractType
         return 'sitephys_userbundle_user';
     }
 
-
+    // ...
 }

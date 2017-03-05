@@ -10,4 +10,12 @@ namespace Sitephys\UserBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findByApikey($apiKey)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT u.username, u.roles FROM SitephysUserBundle:User u WHERE u.apikey = ' . $apiKey
+            )
+            ->getResult();
+    }
 }

@@ -17,14 +17,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+  /**
+   * @var int
+   *
+   * @ORM\Column(name="id", type="integer")
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  protected $id;
 
   /**
    * @ORM\Column(name="username", type="string", length=255, unique=true)
@@ -36,42 +36,44 @@ class User implements UserInterface
    *      maxMessage = "Pseudo de longueur maximale {{ limit }} caractères."
    * )
    */
-  private $username;
+  protected $username;
 
   /**
    * @ORM\Column(name="email", type="string", length=255, unique=true)
    * @Assert\NotBlank()
    * @Assert\Email()
    */
-  private $email;
+  protected $email;
 
   /**
    *
    * @ORM\Column(name="password", type="string", length=255)
    */
-  private $password;
+  protected $password;
+
+  protected $plainPassword;
 
   /**
    * @ORM\Column(name="interest", type="text", nullable=true)
    *
    */
-  private $interest;
+  protected $interest;
 
   /**
    * @ORM\Column(name="salt", type="string", length=255, nullable=true)
    */
-  private $salt;
+  protected $salt;
 
   /**
    * @ORM\Column(name="roles", type="array")
    */
-  private $roles = array(0 => 'ROLE_USER');
+  protected $roles;
 
-  // Les getters et setters
+  /**
+   * @ORM\Column(name="apikey", type="string", nullable=true)
+   */
+  protected $apikey;
 
-  public function eraseCredentials()
-  {
-  }
 
     /**
      * Get id
@@ -113,6 +115,16 @@ class User implements UserInterface
         $this->password = $password;
     }
 
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
     public function getInterest()
     {
         return $this->interest;
@@ -128,16 +140,36 @@ class User implements UserInterface
         return null;
     }
 
-        public function getRoles()
+/*        public function getRoles()
     {
-        return $this->roles;
+        return array(0 => 'ROLE_USER'); // $this->roles;
     }
-
+*/
     public function setRoles($roles)
     {
         $this->roles = $roles;
     }
 
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function getApikey()
+    {
+        return $this->apikey;
+    }
+
+    public function setApikey($apikey)
+    {
+        $this->apikey = $apikey;
+    }
+
+    public function eraseCredentials()
+    {
+        // Suppression des données sensibles
+      //  $this->plainPassword = null;
+    }
 
 }
 

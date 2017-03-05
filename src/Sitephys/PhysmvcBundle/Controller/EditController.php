@@ -36,7 +36,7 @@ use Doctrine\ORM\QueryBuilder;
 class EditController extends Controller
 {  
 
-  public function homeeditAction()
+  public function homeeditAction(Request $request)
   {
     $em = $this->getDoctrine()->getManager();
     
@@ -70,11 +70,11 @@ class EditController extends Controller
       throw new NotFoundHttpException("Aucun ajout dans la base.");
     }
 
-    $userconnectx = $this->getUser();
+    $userconnectx = $this->get('security.token_storage')->getToken();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
     } else {
-      $userconnect = $userconnectx->getUsername();
+      $userconnect = $userconnectx->getUser();
     }
 
     return $this->render('SitephysPhysmvcBundle:Edit:homeedit.html.twig', array(
@@ -93,7 +93,7 @@ class EditController extends Controller
   { 
     $em = $this->getDoctrine()->getManager();
 
-    $userconnectx = $this->getUser();
+    $userconnectx = $this->get('security.token_storage')->getToken();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
     } else {
@@ -137,53 +137,52 @@ class EditController extends Controller
     $em = $this->getDoctrine()->getManager();
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
 
-    $userconnectx = $this->getUser();
-    if (null === $userconnectx) {
-      $userconnect = 'Connexion';
-    } else {
-      $userconnect = $userconnectx->getUsername();
-      $useremail = $userconnectx->getEmail();
-    }
-
     $domtopObject = $domainRep->find($iddom);
 
-    $physAddtopic = new Physaddtopic();
-    $formAddtopicBuilder = $this->get('form.factory')->createBuilder(PhysaddtopicType::class, $physAddtopic);
-    $formAddtopicBuilder
-      ->add('domainid',      IntegerType::class)
-      ->add('title',      TextType::class)
-      ->add('username',      TextType::class, array('data' => $userconnect,))
-      ->add('email',      EmailType::class, array('data' => $useremail,))
-      ->add('date',      DateType::class)
-      ->add('contentexpin',      TextareaType::class)
-      ->add('contentth',      TextareaType::class)
-      ->add('contentexpout',      TextareaType::class)
-      ->add('contentretexpin',      TextareaType::class)
-      ->add('contentretth',      TextareaType::class)
-      ->add('contentretexpout',      TextareaType::class)
-      ->add('document',     FileType::class, array('required' => false))
-      ->add('weblink',     UrlType::class, array('required' => false))
-      ->add('save',      SubmitType::class);
+    $userconnectx = $this->get('security.token_storage')->getToken();
+    if (null === $userconnectx) {
+      $userconnect = 'Connexion';
+      return $this->redirectToRoute('sitephys_physmvc_edition');
+    } else {
+      $userconnect = $userconnectx->getUser();
+      $useremail = $userconnect; // x->getEmail();
+      $physAddtopic = new Physaddtopic();
+      $formAddtopicBuilder = $this->get('form.factory')->createBuilder(PhysaddtopicType::class, $physAddtopic);
+      $formAddtopicBuilder
+        ->add('domainid',      IntegerType::class)
+        ->add('title',      TextType::class)
+        ->add('username',   TextType::class, array('required' => false))
+        ->add('email',      EmailType::class, array('data' => $useremail))
+        ->add('date',      DateType::class)
+        ->add('contentexpin',      TextareaType::class)
+        ->add('contentth',      TextareaType::class)
+        ->add('contentexpout',      TextareaType::class)
+        ->add('contentretexpin',      TextareaType::class)
+        ->add('contentretth',      TextareaType::class)
+        ->add('contentretexpout',      TextareaType::class)
+        ->add('document',     FileType::class, array('required' => false))
+        ->add('weblink',     UrlType::class, array('required' => false))
+        ->add('save',      SubmitType::class);
 
-    $formPhysAddtopic = $formAddtopicBuilder->getForm();
-    $formPhysAddtopic->handleRequest($request);
+      $formPhysAddtopic = $formAddtopicBuilder->getForm();
+      $formPhysAddtopic->handleRequest($request);
 
-    if ($formPhysAddtopic->isSubmitted()) {
-      if ($formPhysAddtopic->isValid()) {
-        $physAddtopicForm = $formPhysAddtopic->getData();
-        $em->persist($physAddtopicForm);
-        $em->flush();
-        return $this->redirectToRoute('sitephys_physmvc_edition');
+      if ($formPhysAddtopic->isSubmitted()) {
+        if ($formPhysAddtopic->isValid()) {
+          $physAddtopicForm = $formPhysAddtopic->getData();
+          $em->persist($physAddtopicForm);
+          $em->flush();
+          return $this->redirectToRoute('sitephys_physmvc_edition');
+        }
       }
-    }
 
-    return $this->render('SitephysPhysmvcBundle:Edit:addtopic.html.twig', array(
-      'userconnect' => $userconnect,
-      'domtop' => $domtopObject,
-      'formphysaddtopic' => $formPhysAddtopic->createView(),
-    ));
+        return $this->render('SitephysPhysmvcBundle:Edit:addtopic.html.twig', array(
+          'userconnect' => $userconnect,
+          'domtop' => $domtopObject,
+          'formphysaddtopic' => $formPhysAddtopic->createView(),
+        ));
+      }
   }
-  
 
   public function updateAction($id, Request $request)
   {

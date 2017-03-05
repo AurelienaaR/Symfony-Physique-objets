@@ -5,19 +5,15 @@ namespace Sitephys\UserBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
-class UserType extends AbstractType
+class AuthTokenType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username');
-        $builder->add('plainPassword'); // Rajout du mot de passe 
-        $builder->add('email', EmailType::class);
-        $builder->add('roles');
+        $builder->add('value')->add('createdAt')->add('user')        ;
     }
     
     /**
@@ -25,6 +21,9 @@ class UserType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setDefaults(array(
+            'data_class' => 'Sitephys\UserBundle\Entity\AuthToken'
+        ));
     }
 
     /**
@@ -32,7 +31,7 @@ class UserType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'sitephys_userbundle_user';
+        return 'sitephys_userbundle_authtoken';
     }
 
 

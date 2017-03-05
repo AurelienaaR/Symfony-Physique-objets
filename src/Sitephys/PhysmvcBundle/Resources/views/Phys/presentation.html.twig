@@ -32,11 +32,11 @@
       <div id="tabs-container" onload="initTab()">
 
         <article id="modele">
-          Modèles Objet pour la forme : méthodes d'évolution de projet, système organisationnel
-           <br />Modèles Objet pour le fond : méthodes d'évolution de thème de recherche, création
+          Modèles objet pour la forme : méthodes d'évolution de projet, système organisationnel, méthodes de méthodes... 
+           <br />Modèles objet pour le fond : méthodes d'évolution pour un thème de recherche, conception, évaluations, analyses, intéractions, comparaisons, vérifications, ... 
           <br />Evolutions de projets : méthodes du cycle en V, Agile et MVC. 
-          <br />Modèle de base :  
-          <br />Modèles évolués : 
+          <br />Modèles de base : empirique, causal discret (états successifs), aléatoire, modélisation aux éléments finis, analogies, ... 
+          <br />Modèles évolués : avec symbolisation, généralisation, englobement, complexification, simplification, optimisation, récursivité, apprentissage de méthodes, ... 
         </article>
 
         <article id="editions">
@@ -58,7 +58,7 @@
             <br />{{ domainx.title }}
           {% endfor %}
         </article>
-          
+
         <article id="niveaux">
           Niveaux pour un thème donné : 
           <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" class="homephoto" alt="Image de niveaux globaux" />
@@ -75,16 +75,16 @@
         </article>
 
         <article id="modes">
-          <ul>Modes (dimension de l'étendue de recherche, solutions) :
-            <li>* 2 ou plus : évolution en un champ continu.</li>
-            <li>* 1 : évolution linéaire continue.</li>
+          <ul>Etendue de recherche d'éléments de dimension dim positive d'un thème (système pour la forme ou pour le fond), étudié suivant une évolution causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6) de solutions, sans question, dans l'environnement d'étude comprenant lui-même les éléments identifiés du système :
+            <li>* 2 ou plus : champ, espace (états et gradients de multiplicité de 1 jusqu'à dim, implicites ou explicites) de résolutions.</li>
+            <li>* 1 : points (états) et leur direction locale (orientation implicite ou explicite).</li>
           </ul>
-          <ul>Mode (état de l'art) :
-            <li>* 0 : évolution causale discrète (états successifs).</li>
+          <ul>Présentation d'éléments établis (dim = 0) d'un thème (système pour la forme ou pour le fond) étudié suivant une évolution causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6) de positions acquises ou prédites dans l'environnement d'étude comprenant lui-même les éléments identifiés du système : 
+            <li>* 0 : points (états).</li>
           </ul>
-          <ul>Modes (dimension de l'étendue de recherche, au moins une question) :
-            <li>* -1 : évolution linéaire continue.</li></li>
-            <li>* -2 ou moins : évolution en un champ continu. </li>
+          <ul>Etendue de recherche d'éléments de dimension dim négative d'un thème (système pour la forme ou pour le fond), étudié suivant une évolution causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6) comprenant au moins une question et avec d'éventuelles solutions, dans l'environnement d'étude comprenant lui-même les éléments identifiés du système : 
+            <li>* -1 : points (états) et leur direction locale (orientation implicite ou explicite).</li>
+            <li>* -2 ou moins : champ, espace (états et gradients de multiplicité de 1 jusqu'à -dim, implicites ou explicites) de questionnements (au moins un) et d'éventuelles résolutions.</li>
           </ul>
         </article>
 

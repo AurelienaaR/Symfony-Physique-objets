@@ -12,3 +12,12 @@ login_check:
 
 logout:
     path: /logout
+
+logtarget:
+    path: /user
+    defaults:
+        _controller: SitephysUserBundle:Security:homeuser
+
+auth-tokens:
+    type:     rest
+    resource: Sitephys\UserBundle\Controller\AuthTokenController
