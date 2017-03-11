@@ -82,11 +82,6 @@ assetic:
   filters:
     cssrewrite: ~
 
-services:
-    apikey_authenticator:
-        class:  Sitephys\UserBundle\Security\ApiKeyAuthenticator
-        public: false
-
 fos_rest:
     routing_loader:
         include_format: false

@@ -22,7 +22,7 @@
       <span>  {{ form_row(formuseradd.password, {'attr': {'class': 'form-control'}}) }}  </span>
     </div>
 
-    {% if (roleuser == "author") %}
+    {% if (userroles == "author") %}
       <br />
       <div>
         <span>  {{ form_row(formuseradd.interest, {'attr': {'class': 'form-control'}}) }}  </span>

@@ -1,15 +1,16 @@
 # app/config/security.yml
 
 security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        Sitephys\UserBundle\Entity\User: sha512
+        # Sitephys\UserBundle\Entity\User: plaintext
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_AUTHOR, ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
     providers:
-        api_key_user_provider:
-            id: api_key_user_provider
-
-        auth_token_user_provider:
-            id: auth_token_user_provider
-
         in_memory:
             memory:
                 users:
@@ -18,44 +19,24 @@ security:
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
                     superadmin: { password: superadminpass, roles: [ 'ROLE_SUPER_ADMIN' ] }
 
-    role_hierarchy:
-        ROLE_ADMIN:       [ROLE_AUTHOR, ROLE_USER]
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        main:
+            entity:
+                class:    Sitephys\UserBundle\Entity\User
+                property: username
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        secured_area:
-            pattern: ^/api
-            stateless: true
-            simple_preauth:
-                authenticator: apikey_authenticator
-            provider: api_key_user_provider
-
         main:
             pattern: ^/
-            stateless: true
-            simple_preauth:
-                authenticator: auth_token_authenticator
-            provider: auth_token_user_provider
-            anonymous: ~
+            anonymous:    true
+            provider:     main
             form_login:
                 login_path: login
                 check_path: login_check
-                default_target_path: logtarget
             logout:
                 path:       logout
                 target:     /
             remember_me:
                 secret:     %secret%
-
-    encoders:
-        Sitephys\UserBundle\Entity\User:
-            algorithm: bcrypt
-            cost: 12
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

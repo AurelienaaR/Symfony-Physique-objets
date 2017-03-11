@@ -1,34 +1,4 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/service_container.html
-parameters:
-#    parameter_name: value
-
-# services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-
 services:
-    auth_token_user_provider:
-        class: Sitephys\UserBundle\Security\AuthTokenUserProvider
-        arguments: ["@auth_token_repository", "@user_repository"]
-        public:    false
-
-    auth_token_repository:
-        class:   Doctrine\ORM\EntityManager
-        factory: ["@doctrine.orm.entity_manager", "getRepository"]
-        arguments: ["SitephysUserBundle:AuthToken"]
-
-    user_repository:
-        class:   Doctrine\ORM\EntityManager
-        factory: ["@doctrine.orm.entity_manager", "getRepository"]
-        arguments: ["SitephysUserBundle:User"]
-
-    auth_token_authenticator:
-        class:     Sitephys\UserBundle\Security\AuthTokenAuthenticator
-        arguments: ["@security.http_utils"]
-        public:    false
-
-    api_key_user_provider:
-        class: Sitephys\UserBundle\Security\ApiKeyUserProvider
-        
+#    sitephys_user.example:
+#        class: Sitephys\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

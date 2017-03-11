@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block sitephysuser_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;"><span class="italique">Compte de {{ userobject.username }}</span></h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;"><span class="italique">Compte de {{ userconnect }}</span></h2>
 {% endblock %}
 
 {% block sitephysuser_image %}
@@ -29,12 +29,12 @@
     </nav>
     <div id="tabs-container" onload="initTab()">
       <article id="{{ "details" }}">
-        Pseudo : {{ userobject.username }}
-        {# Courriel : {{ userobject.email }} #}
+        Pseudo : {{ userconnect }}
+        <br />Courriel : {{ userobject.email }}
         <br />Role : {{ userroles }}
       </article>
       <article id="{{ "suppression" }}">
-        {#  <a href="{{ path('sitephys_user_delete', {'iduser': userobject.id}) }}">Suppression</a> #}
+        <a href="{{ path('sitephys_user_delete', {'iduser': userobject.id}) }}">Suppression</a>
       </article>
       <article id="{{ "creation" }}">
         <a href="{{ path('sitephys_user_add', {'roleuser': 'user'}) }}">Création d'un compte utilisateur</a><br />
@@ -45,4 +45,5 @@
       </article>
     </div>
   </div>
+  
 {% endblock %}

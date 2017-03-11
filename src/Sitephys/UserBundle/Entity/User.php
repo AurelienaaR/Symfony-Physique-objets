@@ -30,8 +30,8 @@ class User implements UserInterface
    * @ORM\Column(name="username", type="string", length=255, unique=true)
    * @Assert\NotBlank()
    * @Assert\Length(
-   *      min = 3,
-   *      max = 10,
+   *      min = 2,
+   *      max = 20,
    *      minMessage = "Pseudo de longueur minimale {{ limit }} caractères.",
    *      maxMessage = "Pseudo de longueur maximale {{ limit }} caractères."
    * )
@@ -51,8 +51,6 @@ class User implements UserInterface
    */
   protected $password;
 
-  protected $plainPassword;
-
   /**
    * @ORM\Column(name="interest", type="text", nullable=true)
    *
@@ -69,17 +67,12 @@ class User implements UserInterface
    */
   protected $roles;
 
+
   /**
-   * @ORM\Column(name="apikey", type="string", nullable=true)
+   * Get id
+   *
+   * @return int
    */
-  protected $apikey;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
@@ -115,16 +108,6 @@ class User implements UserInterface
         $this->password = $password;
     }
 
-    public function getPlainPassword()
-    {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword($plainPassword)
-    {
-        $this->plainPassword = $plainPassword;
-    }
-
     public function getInterest()
     {
         return $this->interest;
@@ -140,11 +123,6 @@ class User implements UserInterface
         return null;
     }
 
-/*        public function getRoles()
-    {
-        return array(0 => 'ROLE_USER'); // $this->roles;
-    }
-*/
     public function setRoles($roles)
     {
         $this->roles = $roles;
@@ -155,21 +133,8 @@ class User implements UserInterface
         return $this->roles;
     }
 
-    public function getApikey()
-    {
-        return $this->apikey;
-    }
-
-    public function setApikey($apikey)
-    {
-        $this->apikey = $apikey;
-    }
-
     public function eraseCredentials()
     {
-        // Suppression des données sensibles
-      //  $this->plainPassword = null;
     }
 
 }
-

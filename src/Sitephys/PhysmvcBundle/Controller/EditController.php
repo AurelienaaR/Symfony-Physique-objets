@@ -70,11 +70,11 @@ class EditController extends Controller
       throw new NotFoundHttpException("Aucun ajout dans la base.");
     }
 
-    $userconnectx = $this->get('security.token_storage')->getToken();
+    $userconnectx = $this->getUser();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
     } else {
-      $userconnect = $userconnectx->getUser();
+      $userconnect = $userconnectx->getUsername();
     }
 
     return $this->render('SitephysPhysmvcBundle:Edit:homeedit.html.twig', array(
@@ -93,7 +93,7 @@ class EditController extends Controller
   { 
     $em = $this->getDoctrine()->getManager();
 
-    $userconnectx = $this->get('security.token_storage')->getToken();
+    $userconnectx = $this->getUser();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
     } else {
@@ -139,13 +139,13 @@ class EditController extends Controller
 
     $domtopObject = $domainRep->find($iddom);
 
-    $userconnectx = $this->get('security.token_storage')->getToken();
+    $userconnectx = $this->getUser();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
       return $this->redirectToRoute('sitephys_physmvc_edition');
     } else {
-      $userconnect = $userconnectx->getUser();
-      $useremail = $userconnect; // x->getEmail();
+      $userconnect = $userconnectx->getUsername();
+      $useremail = $userconnectx->getEmail();
       $physAddtopic = new Physaddtopic();
       $formAddtopicBuilder = $this->get('form.factory')->createBuilder(PhysaddtopicType::class, $physAddtopic);
       $formAddtopicBuilder
@@ -377,6 +377,6 @@ class EditController extends Controller
       'physaddtopic' => $paddtopic,
       'domtopadded' => $domtopadded,
     ));
-  } 
+  }
 
 }

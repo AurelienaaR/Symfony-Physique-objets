@@ -52,11 +52,11 @@ class PhysController extends Controller
       throw new NotFoundHttpException('Aucun thème dans la base.');
     }
 
-    $userconnectx = $this->get('security.token_storage')->getToken()->getUser();
+    $userconnectx = $this->getUser();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
     } else {
-      $userconnect = $userconnectx;
+      $userconnect = $userconnectx->getUsername();
     }
 
 

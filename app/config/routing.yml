@@ -14,10 +14,6 @@ logout:
     path: /logout
 
 logtarget:
-    path: /user
+    path: /
     defaults:
-        _controller: SitephysUserBundle:Security:homeuser
-
-auth-tokens:
-    type:     rest
-    resource: Sitephys\UserBundle\Controller\AuthTokenController
+        _controller: SitephysPhysmvcBundle:Phys:home
