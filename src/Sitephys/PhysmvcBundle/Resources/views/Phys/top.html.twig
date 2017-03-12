@@ -26,12 +26,12 @@
     </nav>
 
     <div id="tabs-container" onload="initTab()">
-      {% for tti in iddomobject %}
-        {% set ttii = tti["id"] %}
-        <article id={{ "domaintopic" ~ ttii }}>
-          {% for ttid in listtopic[ttii] %}
-            {{ ttid.content }} <br />
-            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': ttid.id}) }}"> {{ ttid.title }} </a><br /> 
+      {% for iddomobjectx in iddomobject %}
+        {% set iddomobjectxi = iddomobjectx["id"] %}
+        <article id={{ "domaintopic" ~ iddomobjectxi }}>
+          {% for iddomobjectxd in listtopic[iddomobjectxi] %}
+            {{ iddomobjectxd.content }} <br />
+            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': iddomobjectxd.id}) }}"> {{ iddomobjectxd.title }} </a><br /> 
           {% endfor %}
         </article>
       {% endfor %}

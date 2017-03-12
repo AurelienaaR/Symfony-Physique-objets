@@ -32,6 +32,16 @@
         Pseudo : {{ userconnect }}
         <br />Courriel : {{ userobject.email }}
         <br />Role : {{ userroles }}
+        {% if (userroles == 'auteur (consultation, modification et ajout)') %}
+          <br />Intérêts : 
+          {% set objinterest = userobject.interest %}
+          {% set lenginterest = objinterest|length %}
+          {% set leng = lenginterest // 100 %}
+          {% for iinterest in 0..leng %}
+            {{ objinterest[100 * iinterest:100] }} 
+            <br />
+          {% endfor %}
+        {% endif %}
       </article>
       <article id="{{ "suppression" }}">
         <a href="{{ path('sitephys_user_delete', {'iduser': userobject.id}) }}">Suppression</a>
@@ -45,5 +55,5 @@
       </article>
     </div>
   </div>
-  
+
 {% endblock %}

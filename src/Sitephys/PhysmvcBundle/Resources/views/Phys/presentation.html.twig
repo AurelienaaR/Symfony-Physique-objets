@@ -32,23 +32,29 @@
       <div id="tabs-container" onload="initTab()">
 
         <article id="modele">
-          Modèles objet pour la forme : méthodes d'évolution de projet, système organisationnel, méthodes de méthodes... 
-           <br />Modèles objet pour le fond : méthodes d'évolution pour un thème de recherche, conception, évaluations, analyses, intéractions, comparaisons, vérifications, ... 
-          <br />Evolutions de projets : méthodes du cycle en V, Agile et MVC. 
-          <br />Modèles de base : empirique, causal discret (états successifs), aléatoire, modélisation aux éléments finis, analogies, ... 
-          <br />Modèles évolués : avec symbolisation, généralisation, englobement, complexification, simplification, optimisation, récursivité, apprentissage de méthodes, ... 
+          Les langages objet reproduisent des réalités, fonctionnalités, valeurs ou évolutions physiques (expérimentales ou théoriques) dans un cadre d'études au sein d'un environnement déterminé, modélisé ou non. Leurs éléments structurels sont les classes, objets d'études au sein de cet environnement, pouvant être défini par héritage, interface, classe abstraite... Situées avec un namespace dans le schéma général du système établi, elles sont constituées de leurs variables propres (attributs) et de leurs fonctionnalités (méthodes). Elles peuvent être en relation avec d'autres classes présentes. Les objets sont des instances de ces classes.  
+          <br />Méthodes du cycle en V : 
+          <br />Méthodes Agile : 
+          <br />Modèles MVC : 
+        </article>
+
+        <article id="appli">
+          Applications pour des évolutions de projets en physique - chimie :
+          <br />Modèles objet pour le fond (méthodes d'évolution pour un thème de recherche donné des systèmes, variables, environnements, référentiels, lois, théories, ...) : 
+          <br />Conceptions, évaluations, analyses, intéractions, comparaisons, vérifications pour des émergences du hasard (pas de contraintes, quantités, systèmes ou objets aléatoires, isolés, possibilités d'études statistiques, ...) ou bien utilisation des nécessités (logiques, de symétrie, de constance, de conservation, d'équilibres, de changement d'état, de propriétés, d'optimisation, ...) selon le cadre d'études (définitions, repères, variables, ensembles, principes, postulats, ...). 
+          <br />Modèles objet pour la forme (adaptation des modèles pour le fond) : 
+          <br />Méthodes d'évolution de projet, systèmes organisationnels, méthodes de méthodes, ... 
+          <br />Types d'analyse de base : empirique, causal discret (états successifs), aléatoire, modélisation aux éléments finis, analogies, ... 
+          <br />Types d'analyse évoluée : avec symbolisation, généralisation, englobement, conversions discret - continu, complexification, simplification, optimisation, récursivité, apprentissage de méthodes, ... 
         </article>
 
         <article id="editions">
           <ul>Edition (accès aux fonctionnalités) :  <br />
-            <li>* Visiteurs : lecture des éléments actuels.</li>
-            <li>* Utilisateurs (users) : gestion de compte, lecture des éléments actuels, éléments modifiés et ajoutés.</li>
-            <li>* Auteurs (authors) : gestion de compte, ajoût de domaine, lecture et modification des éléments actuels, éléments modifiés et ajoutés.</li>
-            <li>* Administrateurs (administrators) : gestion des utilisateurs, ajout de domaine et thèmes, lecture, modificationet ajoût des éléments actuels, éléments modifiés et ajoutés.</li>
+            <li>* Visiteurs : consultation des éléments actuels.</li>
+            <li>* Utilisateurs (users) : gestion de compte, consultation des éléments actuels, éléments modifiés et ajoutés.</li>
+            <li>* Auteurs (authors) : gestion de compte, ajoût de domaine, consultation et modification des éléments actuels, ou consultation des éléments modifiés et ajoutés.</li>
+            <li>* Administrateurs (administrators) : gestion des utilisateurs, ajout de domaine et thèmes, consultation, modification et ajoût des éléments actuels, éléments modifiés et ajoutés.</li>
           </ul>
-        </article>
-
-        <article id="appli">
         </article>
 
         <article id="domaines">
@@ -92,7 +98,7 @@
           Symbolisations disponibles pour l'ensemble des thèmes : 
           <br />
           {% for symbolx in symbol %}
-            <br />{{ symbolx.content }}
+            <br /> {{ symbolx.content }}
           {% endfor %}
         </article>
       </div>

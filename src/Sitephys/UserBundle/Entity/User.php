@@ -46,14 +46,12 @@ class User implements UserInterface
   protected $email;
 
   /**
-   *
    * @ORM\Column(name="password", type="string", length=255)
    */
   protected $password;
 
   /**
    * @ORM\Column(name="interest", type="text", nullable=true)
-   *
    */
   protected $interest;
 

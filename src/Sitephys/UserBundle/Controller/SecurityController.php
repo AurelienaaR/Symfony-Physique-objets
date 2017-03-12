@@ -65,6 +65,7 @@ class SecurityController extends Controller
       $userconnect = 'Connexion';
       $userRoles = 'non connecté';
       // throw new NotFoundHttpException('Non connecté');
+      return $this->redirectToRoute('sitephys_physmvc_home');
     } else {
       $userconnect = $userObject->getUsername();
       $userObjectArray = $userObject->getRoles();
@@ -101,6 +102,13 @@ class SecurityController extends Controller
     $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
     $userRep = $em->getRepository('SitephysUserBundle:User');
 
+    $userconnectx = $this->getUser();
+    if (null === $userconnectx) {
+      $userconnect = 'Connexion';
+    } else {
+      $userconnect = $userconnectx->getUsername();
+    }
+    
     $userAdd = new User();
 
     $formAddUserBuilder = $this->get('form.factory')->createBuilder(UserType::class, $userAdd);
@@ -139,13 +147,18 @@ class SecurityController extends Controller
 
         if ($roleuser == "author") {
           $interest = $formUserAdd->get('interest')->getData();
-          if (strlen($interest) >= 20) {
+          if (strlen($interest) >= 500) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($userAdd);
             $em->flush();
           } else {
-            throw new NotFoundHttpException('Le champ Intérêts doit contenir au moins 20 caractères.');
-          }
+            return $this->render('SitephysUserBundle:Security:adduser.html.twig', 
+              array(
+                'userconnect' => $userconnect,
+                'userroles' => $roleuser,
+                'formuseradd' => $formUserAdd->createView(),
+            ));
+          } 
         } else {
           $em = $this->getDoctrine()->getManager();
           $em->persist($userAdd);
@@ -155,13 +168,6 @@ class SecurityController extends Controller
         return $this->redirectToRoute('sitephys_physmvc_home');            
       }
     }
-
-    $userconnectx = $this->getUser();
-      if (null === $userconnectx) {
-        $userconnect = 'Connexion';
-      } else {
-        $userconnect = $userconnectx->getUsername();
-      }
  
     return $this->render('SitephysUserBundle:Security:adduser.html.twig', 
       array(

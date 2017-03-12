@@ -48,8 +48,9 @@ class PhysController extends Controller
     }
 
     $lastTenTop = $topicRep->findIdTitleLastTopic();
-    if (!$lastTenTop) {
-      throw new NotFoundHttpException('Aucun thème dans la base.');
+    if (null == $lastTenTop) {
+      return $this->redirectToRoute('sitephys_physmvc_home');
+      // throw new NotFoundHttpException('Aucun thème dans la base.');
     }
 
     $userconnectx = $this->getUser();
@@ -58,7 +59,6 @@ class PhysController extends Controller
     } else {
       $userconnect = $userconnectx->getUsername();
     }
-
 
     return $this->render('SitephysPhysmvcBundle:Phys:home.html.twig', array(
       'userconnect' => $userconnect,
@@ -109,8 +109,9 @@ class PhysController extends Controller
       array('date' => 'desc') 
       );
 
-    if (!$listPhys) {
-      throw new NotFoundHttpException('Aucun élément dans la base.');
+    if (null == $listPhys) {
+      return $this->redirectToRoute('sitephys_physmvc_home');
+      // throw new NotFoundHttpException('Aucun élément pour ce thème dans la base.');
     } else {
       $physTopic = $topicRep->find($idTopic);
       $domTopId = $physTopic->getDomainId();
@@ -203,14 +204,18 @@ class PhysController extends Controller
         $symbolizationLevel = $symbolizationRep->findBy(
           array('levelkey' => $levsym)
           );
-        if (null == $symbolizationLevel) {
-          $bsSymbolContent[$intBase][$intSub] = "Aucune symbolisation";
+        if (null == $symbolizationLevel && $intBase <= 3) {
+            $bsSymbolContent[$intBase][$intSub] = "aucune symbolisation";
         } else {
-          $bsSymbolContent[$intBase][$intSub] = "";
-          $symCpt = 0;
-          foreach ($symbolizationLevel as $symbolizationLevelx) {
-            $symCpt ++;
-            $bsSymbolContent[$intBase][$intSub] .= 'Symbol' . $symCpt . ' : ' . $symbolizationLevelx->getContent() . '. ';
+          if ($intBase <= 3) {
+            $bsSymbolContent[$intBase][$intSub] = "";
+            $symCpt = 0;
+            foreach ($symbolizationLevel as $symbolizationLevelx) {
+              $symCpt ++;
+              $bsSymbolContent[$intBase][$intSub] .= 'Symbol' . $symCpt . ' : ' . $symbolizationLevelx->getContent() . '. ';
+            }
+          } else {
+            $bsSymbolContent[$intBase][$intSub] = "Retour - " . $bsSymbolContent[$intBase - 3][$intSub];
           }
         }
       }
@@ -246,8 +251,9 @@ class PhysController extends Controller
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
 
     $topEvalObject = $topicRep->find($idTopic);
-    if (!$topEvalObject) {
-      throw new NotFoundHttpException('Base sans ce thème.');
+    if (null == $topEvalObject) {
+      return $this->redirectToRoute('sitephys_physmvc_home');
+      // throw new NotFoundHttpException('Base sans ce thème.');
     } else {
       $topTitle = $topEvalObject->getTitle();
       for ($ibool=1; $ibool <= 6 ; $ibool++) { 
@@ -450,8 +456,8 @@ class PhysController extends Controller
       ); 
 
     if (null === $physGlobal) {
-      throw new NotFoundHttpException('Aucun élément pour le thème ' . $idTopic . ' et le niveau ' . $strLevel . '.');
-
+      return $this->redirectToRoute('sitephys_physmvc_home');
+      // throw new NotFoundHttpException('Aucun élément pour le thème ' . $idTopic . ' et le niveau ' . $strLevel . '.');
     } else {
       $phys = $physGlobal[0];
       $physLevel = $phys->getLevel();

@@ -16,7 +16,12 @@
 
 {% block sitephysuser_section %}
   {% if (userroles == "author") %}
-    <h2 style = "color:#FFF; text-align:center; margin:10px;">Inscription (nouveau compte Auteur)</h2>
+    <h2 style = "color:#FFF; text-align:center; margin:10px;">
+      Inscription (nouveau compte Auteur)
+    </h2>
+    <h3 style = "color:#FFF; text-align:center; margin:10px;">
+      Pour ce compte, veuillez préciser, s'il vous plait, vos domaines d'intérêts (au moins 500 caractères) en sciences et pour lesquels vous souhaiteriez éventuellement apporter des modifications ou des ajouts en plus des fonctionalités des comptes Utilisateurs.
+    </h3>
   {% else %}
     <h2 style = "color:#FFF; text-align:center; margin:10px;">Inscription (nouveau compte Utilisateur)</h2>
   {% endif %}
