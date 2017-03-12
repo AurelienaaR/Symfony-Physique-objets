@@ -10,7 +10,7 @@
 
 {% block sitephysphysmvc_image %}
   <div class="containertedit">
-    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcmodif.png') }}" class="addphoto" alt="Image de Symbolisation" />
+    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcmodif.png') }}" class="addphoto" alt="Image de Symbolisation" title="Symbolisations par niveau" />
   </div>
 {% endblock %}
 
@@ -33,9 +33,8 @@
                 Niveau {{ intBase }} - {{ intSub }} : {{ bslevel[intBase][intSub] }}
               {% endif %}
               {% if bssymb[intBase][intSub] is defined %}
-                <br />Symbolisation : {{ bssymb[intBase][intSub] }}<br />
+                <br />Symbolisation : {{ bssymb[intBase][intSub] }} <br /><br />
               {% endif %}
-              <br />
             {% endfor %}
           </article>
         {% endfor %}

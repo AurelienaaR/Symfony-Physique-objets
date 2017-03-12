@@ -31,7 +31,7 @@
         <article id={{ "domaintopic" ~ iddomobjectxi }}>
           {% for iddomobjectxd in listtopic[iddomobjectxi] %}
             {{ iddomobjectxd.content }} <br />
-            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': iddomobjectxd.id}) }}"> {{ iddomobjectxd.title }} </a><br /> 
+            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': iddomobjectxd.id}) }}"> {{ iddomobjectxd.title }} </a><br /><br />
           {% endfor %}
         </article>
       {% endfor %}

@@ -14,7 +14,7 @@
 
 {% block sitephysuser_image %}
   <div class="containerthome">
-    <img src="{{ asset('bundles/sitephysuser/images/tabcontrol.jpg') }}" class="homephoto" alt="Image de l'accueil du compte" />
+    <img src="{{ asset('bundles/sitephysuser/images/tabcontrol.jpg') }}" class="homephoto" alt="Image de l'accueil du compte" title="Accueil du compte" />
   </div>
 {% endblock %}
 
@@ -32,15 +32,8 @@
         Pseudo : {{ userconnect }}
         <br />Courriel : {{ userobject.email }}
         <br />Role : {{ userroles }}
-        {% if (userroles == 'auteur (consultation, modification et ajout)') %}
-          <br />Intérêts : 
-          {% set objinterest = userobject.interest %}
-          {% set lenginterest = objinterest|length %}
-          {% set leng = lenginterest // 100 %}
-          {% for iinterest in 0..leng %}
-            {{ objinterest[100 * iinterest:100] }} 
-            <br />
-          {% endfor %}
+        {% if (userobject.roles[0] == 'ROLE_AUTHOR') %}
+          <br />Intérêts : {{ userobject.interest }}
         {% endif %}
       </article>
       <article id="{{ "suppression" }}">

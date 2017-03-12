@@ -10,7 +10,7 @@
 
 {% block sitephysphysmvc_image %}
   <div class="containertedit">
-    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" class="addphoto" alt="Image de Evaluations du thème" />
+    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" class="addphoto" alt="Image de Evaluations du thème" title ="Evaluations du thème" />
   </div>
 {% endblock %}
 
@@ -33,9 +33,9 @@
           {% for intevaljc in 1..6 %}
             {% if (tabbool[intevalic][intevaljc]) %}
               <article id="{{ "eval" ~ intevalic ~ "-" ~ intevaljc }}" >
-                Niveau : {{ tablevel[intevalic][intevaljc] }}
-                <br /> Evaluation : {{ tabeval[intevalic][intevaljc] }}
-                <br />Symbolisation : {{ tabsym[intevalic][intevaljc] }} <br />
+                Niveau : {{ tablevel[intevalic][intevaljc] }} <br />
+                Evaluation : {{ tabeval[intevalic][intevaljc] }} <br />
+                Symbolisation : {{ tabsym[intevalic][intevaljc] }} <br /><br />
               </article>
             {% endif %}
           {% endfor %}

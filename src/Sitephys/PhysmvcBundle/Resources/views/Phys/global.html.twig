@@ -44,7 +44,7 @@
             Domaine : {{ domain.content }} <br />
             Thème : {{ topic.content }} <br />
             Mode du thème : {{ topic.mode }} <br />
-            Titre : {{ phys[iEltLPos].title }} <br />
+            Titre : {{ phys[iEltLPos].title }} <br /><br />
           {% endif %}
         {% endfor %}
       </article>
@@ -52,7 +52,7 @@
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
             Titre : {{ phys[iEltLPos].title }}
-            <br />Contenu : {{ phys[iEltLPos].content }} <br />
+            <br />Contenu : {{ phys[iEltLPos].content }} <br /><br />
           {% endif %}
         {% endfor %}
       </article>
@@ -60,7 +60,7 @@
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
             Titre : {{ phys[iEltLPos].title }}
-            <br />Evaluation : {{ phys[iEltLPos].evaluation }} <br />
+            <br />Evaluation : {{ phys[iEltLPos].evaluation }} <br /><br />
           {% endif %}
         {% endfor %}
       </article>
@@ -68,7 +68,7 @@
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
             Titre : {{ phys[iEltLPos].title }}
-            <br />Symbolisation : {{ symbol[iEltLPos] }} <br />
+            <br />Symbolisation : {{ symbol[iEltLPos] }} <br /><br />
           {% endif %}
         {% endfor %}
       </article>
