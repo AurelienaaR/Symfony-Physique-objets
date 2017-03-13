@@ -340,6 +340,7 @@ class PhysController extends Controller
         1,
         0
         ); 
+
       if (null != $physGlobal) {
         $tabBoolElt[$ielp] = true;
         $physg[$ielp] = $physGlobal[0];
@@ -351,8 +352,9 @@ class PhysController extends Controller
             'levelkey' => $levelId
             ));
         $symbolContent[$ielp] = "";
-        foreach ($symbolizationObject as $key => $symbol) {
-          $symbolContent[$ielp] .= $symbol->getContent();
+        foreach ($symbolizationObject as $key => $symbolx) {
+          $symbolContent[$ielp] .= $symbolx->getContent();
+          $symbolContent[$ielp] .= "  * ";
         }
       }
     }
@@ -405,8 +407,8 @@ class PhysController extends Controller
           'levelkey' => $levelId,
           ));
       $symbolizationContent = [];
-      foreach ($symbolizationObject as $key => $symbol) {
-        $symbolizationContent[] = $symbol->getContent();
+      foreach ($symbolizationObject as $key => $symboly) {
+        $symbolizationContent[] = $symboly->getContent();
       }
 
       $physTopicId = $phys->getTopicId();

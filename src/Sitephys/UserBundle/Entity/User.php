@@ -65,6 +65,11 @@ class User implements UserInterface
    */
   protected $roles;
 
+  /**
+   * @ORM\Column(name="authorized", type="boolean", nullable=true)
+   */
+  protected $authorized = false;
+
 
   /**
    * Get id
@@ -129,6 +134,16 @@ class User implements UserInterface
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    public function setAuthorized($authorized)
+    {
+        $this->authorized = $authorized;
+    }
+
+    public function getAuthorized()
+    {
+        return $this->authorized;
     }
 
     public function eraseCredentials()

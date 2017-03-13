@@ -120,6 +120,7 @@ class SecurityController extends Controller
         ->add('interest',   TextareaType::class)
         ->add('salt',      HiddenType::class)
         ->add('roles',    HiddenType::class, array('data' => 'a:1:{i:0;s:11:"ROLE_AUTHOR";}'))
+        ->add('authorized',    HiddenType::class)
         ->add('save',      SubmitType::class)
         ;
       } else {
@@ -129,6 +130,7 @@ class SecurityController extends Controller
         ->add('password',      PasswordType::class)
         ->add('salt',      HiddenType::class)
         ->add('roles',    HiddenType::class, array('data' => 'a:1:{i:0;s:9:"ROLE_USER";}'))
+        ->add('authorized',    HiddenType::class)
         ->add('save',      SubmitType::class)
         ;
       }
@@ -239,7 +241,7 @@ class SecurityController extends Controller
           ),
         'text/html'
         )
-        /*
+        /* 
         ->addPart(
             $this->renderView(
                 'Emails/registration.txt.twig',
