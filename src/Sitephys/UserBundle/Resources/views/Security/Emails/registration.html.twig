@@ -19,11 +19,7 @@
 {% endblock %}
 
 {% block sitephysuser_body %}
-{{ uemail }}
-<br />Lien de validation de votre compte : <br /><br />
-<a href="{{ path('sitephys_user_authentification', {'uemail': uemail, 'toklink': toklink}) }}">Validation de votre compte</a>
-{#
-<a href="{{ path('sitephys_user_auth', {'authuser': true}) }}">Validation de votre compte</a>
-#}
-<br />
+  <br />Lien de validation de votre compte {{ uemail }} : <br /><br />
+  <a href="{{ 'http://www.physics-object.16mb.com/user/authentification/'~uemail~'/'~toklink }}">Validation de votre compte</a>
+  <br />
 {% endblock %}

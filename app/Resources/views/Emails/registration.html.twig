@@ -1,7 +1,7 @@
 {% extends "SitephysUserBundle::layoutuser.html.twig" %}
 
 {% block title %}
-  Courriel
+  Courriel de validation du compte de {{ uemail }}
 {% endblock %}
 
 {% block menu %}
@@ -19,14 +19,7 @@
 {% endblock %}
 
 {% block sitephysuser_body %}
-  <div>
-    <h2>Envoi de courriel</h2>
-    Hi {{ uemail }}! You're successfully registered.
-  </div>
-  <br />Lien de validation de votre compte : <br /><br />
-    <a href="{{ path('sitephys_user_authentification', {'uemail': uemail, 'toklink': toklink}) }}">Validation de votre compte</a>
-  {#
-  <a href="{{ path('sitephys_user_authentification', {'authuser': true}) }}">Validation de votre compte</a>
-  #}
+  <br />Lien de validation de votre compte {{ uemail }} : <br /><br />
+  <a href="{{ 'http://www.physics-object.16mb.com/user/authentification/'~uemail~'/'~toklink }}">Validation de votre compte</a>
   <br />
 {% endblock %}

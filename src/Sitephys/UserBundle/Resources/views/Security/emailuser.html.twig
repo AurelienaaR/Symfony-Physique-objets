@@ -1,18 +1,26 @@
 {% extends "SitephysUserBundle::layoutuser.html.twig" %}
 
 {% block title %}
-  Compte d'auteur
+  Authentification de la boîte mail
 {% endblock %}
 
 {% block menu %}
   {{ parent() }}
 {% endblock %}
 
-{% block sitephysuser_section %}<br />
+{% block sitephysphysmvc_image %}
+  <div id="containerimghome">
+    <div class="containerthome">
+      <img src="{{ asset('bundles/sitephysuser/images/tabcontrol.jpg') }}" class="homephoto" alt="Image de Accueil" />
+    </div>
+  </div>
+{% endblock %}
+
+{% block sitephysuser_body %}
+  <br />
   <div id="eval-th">
     <div class="button-eval">
-      <a href="{{ asset('../logout') }}">Retour à l'accueil</a>
+      <a href="{{ path('sitephys_physmvc_home') }}">Retour à l'accueil</a>
     </div>
-
   </div>
 {% endblock %}

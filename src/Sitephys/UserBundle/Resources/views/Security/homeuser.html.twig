@@ -35,7 +35,7 @@
         <br />Courriel : {{ userobject.email }}
         <br />Role : {{ userroles }}, avec courriel{% if(userobject.authorized) %} validé. {% else %} non validé. {% endif %} 
         {% if (userobject.roles[0] == 'ROLE_AUTHOR') %}
-          <br />Intérêts : {{ userobject.interest|e }}
+          <br />Intérêts : {{ userobject.interest }}
         {% endif %}
       </article>
       <article id="{{ "suppression" }}">

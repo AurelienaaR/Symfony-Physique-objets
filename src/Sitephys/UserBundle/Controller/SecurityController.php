@@ -146,9 +146,6 @@ class SecurityController extends Controller
         $roleArray = unserialize($formUserAdd->get('roles')->getData());
         $userAdd->setRoles($roleArray);
         $usEmail = $formUserAdd->get('email')->getData();
-        $xx = $this->setCookieAction($usEmail);
-        $toklinked = $this->readCookieAction($xx);
-        $this->emailuserAction($usEmail, $toklinked);
 
         if ($roleuser == "author") {
           $interest = $formUserAdd->get('interest')->getData();
@@ -169,7 +166,16 @@ class SecurityController extends Controller
           $em->persist($userAdd);
           $em->flush();
         }
-        return $this->redirectToRoute('sitephys_physmvc_home');   
+
+        $xx = $this->setCookieAction($usEmail);
+        $toklinked = $this->readCookieAction($xx);
+
+        return $this->render('SitephysUserBundle:Security:expemailuser.html.twig', 
+          array(
+            'userconnect' => $userconnect,
+            'uemail' => $usEmail,
+            'toklink' => $toklinked,
+          ));
       }
     }
 
@@ -188,16 +194,18 @@ class SecurityController extends Controller
     $tok = $this->readCookieAction($yy);
 
     if ((null !== $toklink) && ($tok == $toklink)) {
+      $em = $this->getDoctrine()->getManager();
+      $userRep = $em->getRepository('SitephysUserBundle:User');
+      $userAuth = $userRep->findByEmail($uemail);
+      $userAuth[0]->setAuthorized(true);
+      $em->persist($userAuth[0]);
+      $em->flush();
 
       $userconnectx = $this->getUser();
       if (null === $userconnectx) {
         $userconnect = 'Connexion';
       } else {
         $userconnect = $userconnectx->getUsername();
-        $userconnectx->setAuthorized(true);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($userconnectx);
-        $em->flush();
       }
 
     return $this->render('SitephysUserBundle:Security:authen.html.twig', 
@@ -303,7 +311,7 @@ class SecurityController extends Controller
         ) */
   ;
   $this->get('mailer')->send($message);
-  return $this->render('SitephysUserBundle:Security:authenmail.html.twig', 
+  return $this->render('SitephysUserBundle:Security:emailuser.html.twig', 
     array(
       'uemail' => $uemail,
       'toklink' => $toklink,
