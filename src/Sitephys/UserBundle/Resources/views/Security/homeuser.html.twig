@@ -33,9 +33,9 @@
       <article id="{{ "details" }}">
         Pseudo : {{ userconnect }}
         <br />Courriel : {{ userobject.email }}
-        <br />Role : {{ userroles }}
+        <br />Role : {{ userroles }}, avec courriel{% if(userobject.authorized) %} validé. {% else %} non validé. {% endif %} 
         {% if (userobject.roles[0] == 'ROLE_AUTHOR') %}
-          <br />Intérêts : {{ userobject.interest }}
+          <br />Intérêts : {{ userobject.interest|e }}
         {% endif %}
       </article>
       <article id="{{ "suppression" }}">

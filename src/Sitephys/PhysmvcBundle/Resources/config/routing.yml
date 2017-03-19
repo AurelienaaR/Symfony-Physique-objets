@@ -95,6 +95,16 @@ sitephys_user_add:
     defaults:
         _controller: SitephysUserBundle:Security:adduser
 
+sitephys_user_authentification:
+    path:      /user/authentification/{uemail}/{toklink}
+    defaults:
+        _controller: SitephysUserBundle:Security:authen
+
+sitephys_user_registration:
+    path:      /user/registration/{uemail}/{toklink}
+    defaults:
+        _controller: SitephysUserBundle:Security:registration
+
 sitephys_user_delete:
     path:      /user/delete/{iduser}
     defaults:

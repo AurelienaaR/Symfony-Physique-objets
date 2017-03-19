@@ -5,14 +5,14 @@
 {% endblock %}
 
 {% block menu %}
-  
+  {{ parent() }}
 {% endblock %}
 
-{% block sitephysuser_section %}
+{% block sitephysuser_section %}<br />
   <div id="eval-th">
     <div class="button-eval">
       <a href="{{ asset('../logout') }}">Retour à l'accueil</a>
     </div>
+
   </div>
-   
 {% endblock %}

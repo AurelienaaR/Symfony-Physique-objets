@@ -70,18 +70,6 @@ class Phys
   private $evaluation;
 
   /**
-   * @var string
-   *  
-   * @ORM\Column(name="document", type="string", nullable=true)
-   */
-  private $document;
-
-  /**
-   * @ORM\Column(name="published", type="boolean")
-   */
-  private $published = true;
-
-  /**
    * @ORM\Column(name="updated_at", type="datetime", nullable=true)
    */
   private $updatedAt;
@@ -221,38 +209,6 @@ class Phys
   public function getEvaluation()
   {
     return $this->evaluation;
-  }
-
-  /**
-   * @param string $document
-   */
-  public function setDocument($document = null)
-  {
-    $this->document = $document;
-  }
-
-  /**
-   * @return string
-   */
-  public function getDocument()
-  {
-    return $this->document;
-  }
-
-  /**
-   * @param bool $published
-   */
-  public function setPublished($published)
-  {
-    $this->published = $published;
-  }
-
-  /**
-   * @return bool
-   */
-  public function getPublished()
-  {
-    return $this->published;
   }
 
   /**

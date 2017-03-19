@@ -1,11 +1,11 @@
 {% extends "SitephysUserBundle::layoutuser.html.twig" %}
 
 {% block title %}
-  Courriel
+  Courriel de validation du compte de {{ uemail }}
 {% endblock %}
 
 {% block menu %}
-  {{ parent() }}
+ {{ parent() }}
 {% endblock %}
 
 {% block sitephysuser_section %}
@@ -19,14 +19,11 @@
 {% endblock %}
 
 {% block sitephysuser_body %}
-  <div>
-    <h2>Envoi de courriel</h2>
-    Hi {{ uemail }}! You're successfully registered.
-  </div>
-  <br />Lien de validation de votre compte : <br /><br />
-    <a href="{{ path('sitephys_user_authentification', {'uemail': uemail, 'toklink': toklink}) }}">Validation de votre compte</a>
-  {#
-  <a href="{{ path('sitephys_user_authentification', {'authuser': true}) }}">Validation de votre compte</a>
-  #}
-  <br />
+{{ uemail }}
+<br />Lien de validation de votre compte : <br /><br />
+<a href="{{ path('sitephys_user_authentification', {'uemail': uemail, 'toklink': toklink}) }}">Validation de votre compte</a>
+{#
+<a href="{{ path('sitephys_user_auth', {'authuser': true}) }}">Validation de votre compte</a>
+#}
+<br />
 {% endblock %}

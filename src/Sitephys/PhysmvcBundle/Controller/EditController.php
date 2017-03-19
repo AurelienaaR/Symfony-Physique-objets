@@ -70,15 +70,28 @@ class EditController extends Controller
       throw new NotFoundHttpException("Aucun ajout dans la base.");
     }
 
+  /*
+      $em = $this->getDoctrine()->getManager();
+      $userRep = $em->getRepository('SitephysUserBundle:User');
+      $userAuth = $userRep->findByEmail($uemail);
+      $userAuth[0]->getAuthorized();
+  */
+
     $userconnectx = $this->getUser();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
+      $authorized = false;
     } else {
       $userconnect = $userconnectx->getUsername();
+      $authorized = $userconnectx->getAuthorized();
+      if (null == $authorized) {
+        $authorized = false;
+      }
     }
 
     return $this->render('SitephysPhysmvcBundle:Edit:homeedit.html.twig', array(
       'userconnect' => $userconnect,
+      'authorized' => $authorized,
       'physphyss' => $physPhyss,
       'physupphys' => $physUpPhys,
       'physlevels' => $physLevels,
@@ -359,12 +372,18 @@ class EditController extends Controller
       $paddtopic = $physaddtopic[0];
       $idDom = $paddtopic->getDomainid();
       if (null === $idDom) {
-        throw new NotFoundHttpException('Domaine inconnu.');
+        $domtopadded = 'Domaine non défini.';
+        // throw new NotFoundHttpException('Domaine inconnu.');
       } else {
         $domtopadd = $domainRep->findDomTitleById($idDom);
-        $domtopadded = $domtopadd[0];
+        if (null == $domtopadd) {
+          $domtopadded = $domtopadd[0];
+        } else {
+          $domtopadded = 'Domaine inconnu.';
+        }
       }
     }
+    
     $userconnectx = $this->getUser();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';

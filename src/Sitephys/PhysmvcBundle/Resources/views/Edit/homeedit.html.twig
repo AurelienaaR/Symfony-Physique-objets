@@ -16,36 +16,36 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <h2>Eléments par type d'édition <span class="italique">(accessibilité par rôle)</span></h2><br />
+    <h3>Eléments par type d'édition <span class="italique">(accessibilité par rôle validé)</span></h3><br />
 
     <nav id="tabs-nav" class="clearfix">
       <a href="#consultelt">Eléments</a><span>&nbsp;</span>
-      {% if is_granted('ROLE_AUTHOR') %}
+      {% if is_granted('ROLE_AUTHOR') and authorized %}
         <a href="#modif">Modification d'élément</a><span>&nbsp;</span>
       {% else %}
         <span>Modification d'élément (auteurs)</span><span>&nbsp;</span>
       {% endif %}
-      {% if is_granted('ROLE_USER') or is_granted('ROLE_AUTHOR') %}
+      {% if (is_granted('ROLE_USER') or is_granted('ROLE_AUTHOR')) and authorized %}
         <a href="#consultupd">Eléments modifiés</a><span>&nbsp;</span>
       {% else %}
         <span>Eléments modifiés (utilisateurs)</span><span>&nbsp;</span>
       {% endif %}
-      {% if is_granted('ROLE_AUTHOR') %}
+      {% if is_granted('ROLE_AUTHOR') and authorized %}
         <a href="#add">Ajout de domaine</a><span>&nbsp;</span>
       {% else %}
         <span>Ajout de domaine (auteurs)</span><span>&nbsp;</span>
       {% endif %}
-      {% if is_granted('ROLE_USER') or is_granted('ROLE_AUTHOR') %}
+      {% if (is_granted('ROLE_USER') or is_granted('ROLE_AUTHOR')) and authorized %}
         <a href="#consultadd">Domaines ajoutés</a><span>&nbsp;</span>
       {% else %}
         <span>Domaines ajoutés (utilisateurs)</span><span>&nbsp;</span>
       {% endif %}
-      {% if is_granted('ROLE_AUTHOR') %}
+      {% if is_granted('ROLE_AUTHOR') and authorized %}
         <a href="#addtopic">Ajout de thème</a><span>&nbsp;</span>
       {% else %}
         <span>Ajout de thème (auteurs)</span><span>&nbsp;</span>
       {% endif %}
-      {% if is_granted('ROLE_USER') or is_granted('ROLE_AUTHOR') %}
+      {% if (is_granted('ROLE_USER') or is_granted('ROLE_AUTHOR')) and authorized %}
         <a href="#consultaddtopic">Thèmes ajoutés</a>
       {% else %}
         <span>Thèmes ajoutés (utilisateurs)

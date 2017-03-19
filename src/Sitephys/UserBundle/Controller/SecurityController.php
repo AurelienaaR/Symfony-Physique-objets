@@ -5,6 +5,8 @@ namespace Sitephys\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -25,9 +27,10 @@ use Doctrine\ORM\QueryBuilder;
 
 class SecurityController extends Controller
 {
-  
+
   public function loginAction(Request $request)
   {
+    $em = $this->getDoctrine()->getManager();
     // Si le visiteur est déjà identifié, on le redirige vers l'accueil
     if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) 
     { 
@@ -56,15 +59,11 @@ class SecurityController extends Controller
     $em = $this->getDoctrine()->getManager();
     $userRep = $em->getRepository('SitephysUserBundle:User');
     
-  /*  if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-    }
-  */
-
     $userObject = $this->getUser();
+
     if (null === $userObject) {
       $userconnect = 'Connexion';
       $userRoles = 'non connecté';
-      // throw new NotFoundHttpException('Non connecté');
       return $this->redirectToRoute('sitephys_physmvc_home');
     } else {
       $userconnect = $userObject->getUsername();
@@ -146,6 +145,10 @@ class SecurityController extends Controller
         $userAdd->setPassword($password);
         $roleArray = unserialize($formUserAdd->get('roles')->getData());
         $userAdd->setRoles($roleArray);
+        $usEmail = $formUserAdd->get('email')->getData();
+        $xx = $this->setCookieAction($usEmail);
+        $toklinked = $this->readCookieAction($xx);
+        $this->emailuserAction($usEmail, $toklinked);
 
         if ($roleuser == "author") {
           $interest = $formUserAdd->get('interest')->getData();
@@ -166,17 +169,46 @@ class SecurityController extends Controller
           $em->persist($userAdd);
           $em->flush();
         }
-
-        return $this->redirectToRoute('sitephys_physmvc_home');            
+        return $this->redirectToRoute('sitephys_physmvc_home');   
       }
     }
- 
+
     return $this->render('SitephysUserBundle:Security:adduser.html.twig', 
       array(
         'userconnect' => $userconnect,
         'userroles' => $roleuser,
         'formuseradd' => $formUserAdd->createView(),
     ));
+  }
+
+
+  public function authenAction($uemail, $toklink, Request $request)
+  {
+    $yy = $this->setCookieAction($uemail);
+    $tok = $this->readCookieAction($yy);
+
+    if ((null !== $toklink) && ($tok == $toklink)) {
+
+      $userconnectx = $this->getUser();
+      if (null === $userconnectx) {
+        $userconnect = 'Connexion';
+      } else {
+        $userconnect = $userconnectx->getUsername();
+        $userconnectx->setAuthorized(true);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($userconnectx);
+        $em->flush();
+      }
+
+    return $this->render('SitephysUserBundle:Security:authen.html.twig', 
+      array(
+        'userconnect' => $userconnect,
+        'tok' => $tok,
+        'toklink' => $toklink,
+      ));
+    } else {
+      return $this->redirectToRoute('sitephys_physmvc_home');
+    }
   }
 
 
@@ -228,16 +260,36 @@ class SecurityController extends Controller
   }
 
 
-  public function emailuserAction($name)
+  public function setCookieAction($userEmail)
+    {
+      $hashEmail = hash('sha512', $userEmail, false);
+      $html = '<html><body>test set cookie tokenUser =' . $hashEmail . '</body></html>';
+      $response = new Response();          
+      $response->headers->setCookie(new Cookie('tokenUser', $hashEmail, time() + 3600)); 
+      $response->send();
+      return $response; 
+    }
+
+
+  public function readCookieAction($respons) 
+    {
+      $resp = $respons->headers->getCookies();
+      $respCookie = $resp[0]->getValue('tokenUser');
+      return $respCookie;         
+    }
+
+
+  public function emailuserAction($uemail, $toklink)
   {
     $message = \Swift_Message::newInstance()
-      ->setSubject('Demande de compte auteur')
-      ->setFrom('xxx@xxx.com')
-      ->setTo('yyy@xxx.com')
+      ->setSubject('Confirmation de votre courriel pour la demande de compte')
+      ->setFrom('xxx@yyy.fr')
+      ->setTo($uemail)
       ->setBody(
         $this->renderView(
           'Emails/registration.html.twig',
-          array('name' => $name)
+          array('uemail' => $uemail,
+            'toklink' => $toklink)
           ),
         'text/html'
         )
@@ -249,10 +301,12 @@ class SecurityController extends Controller
             ),
             'text/plain'
         ) */
-    ;
-
-    $this->get('mailer')->send($message);
-    return $this->redirectToRoute('sitephys_physmvc_home');
+  ;
+  $this->get('mailer')->send($message);
+  return $this->render('SitephysUserBundle:Security:authenmail.html.twig', 
+    array(
+      'uemail' => $uemail,
+      'toklink' => $toklink,
+    ));
   }
-
 }

@@ -29,9 +29,9 @@
 
       <div id="tabs-container" onload="initTab()">
         <article id="domaine">
-          Domaine : {{ domain.content }}
+          Domaine : {{ domain.content }} 
           <br />Thème : {{ topic.content }}
-          <br />Mode du thème : {{ topic.mode }} <br />
+          <br />Mode du thème : {{ topic.mode }} 
         </article>
 
         <article id="niveau">  
@@ -45,7 +45,7 @@
           <br /> {{ phys.content }} <br />
           Contenus (proposés à la modification) : 
           {% for physupdx in physupd %}
-            <br />Modification proposée : {{ physupdx.title }}
+            <br /><br />Modification proposée : {{ physupdx.title }}
             <br />Contenu : {{ physupdx.content }}
           {% endfor %}
         </article>
@@ -53,27 +53,27 @@
         <article id="evaluation">
           Evaluation (actuelle) : {{ phys.evaluation }} 
           {% for physupdz in physupd %}
-            <br />Modification proposée : {{ physupdz.evaluation }}
+            <br /><br />Modification proposée : {{ physupdz.evaluation }}
           {% endfor %}
         </article>
 
         <article id="symbolisation">
+          Symbolisations (actuelles) disponibles : <br />
           {% set cptsym = 0 %}
           {% for symbolx in symbol %}
             {% set cptsym = cptsym + 1 %}
-            Symbolisation {{ cptsym }} : {{ symbolx }} <br />
+            <br />Symbolisation {{ cptsym }} : {{ symbolx }}
           {% endfor %}
         </article>
 
         <article id="auteurs">
           Par (actuel) {{ phys.author }}, le {{ phys.date|date('Y-m-d H:i:s') }}. 
           {% for physupdy in physupd %}
-            <br />Modification proposée : {{ physupdy.title }}
+            <br /><br />Modification proposée : {{ physupdy.title }}
             <br />Par {{ physupdy.username }}, le {{ physupdy.date|date('Y-m-d H:i:s') }}. 
           {% endfor %}
         </article>
       </div>
 
   </div>
-
 {% endblock %}
