@@ -43,8 +43,8 @@ public function findTitleRefperDom($idDom)
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT r.title rtitle, r.content rcontent FROM SitephysPhysmvcBundle:Reference r WHERE r.domainId = ' . $idDom
-            )
+                'SELECT r.title rtitle, r.content rcontent FROM SitephysPhysmvcBundle:Reference r WHERE r.domainId = :iddom')
+                ->setParameter('iddom', $idDom)
             ->getResult();
     }
 

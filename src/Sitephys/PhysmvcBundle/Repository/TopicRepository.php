@@ -57,8 +57,28 @@ class TopicRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT t.id, t.content FROM SitephysPhysmvcBundle:Topic t WHERE (t.domainId = ' . $domid . ' AND t.mode = ' . $ktype . ')')
+                'SELECT t.id, t.content FROM SitephysPhysmvcBundle:Topic t WHERE (t.domainId = :domid AND t.mode = :mode)'
+                )
+                ->setParameter('domid', $domid)
+                ->setParameter('mode', $ktype)
             ->getResult();
+
+/*
+ $qb = $this->createQueryBuilder('t');
+
+  $qb->where('a.author = :author')
+       ->setParameter('domid', $domid)
+     ->andWhere('a.date < :year')
+       ->setParameter('year', $year)
+     ->orderBy('a.date', 'DESC')
+  ;
+
+  return $qb
+    ->getQuery()
+    ->getResult()
+  ;
+*/
+
     }
 
 }

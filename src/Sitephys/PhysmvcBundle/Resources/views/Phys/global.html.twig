@@ -43,7 +43,8 @@
           {% if tabboolelt[iEltLPos] %}
             Domaine : {{ domain.content }} <br />
             Thème : {{ topic.content }} <br />
-            Mode du thème : {{ topic.mode }} <br />
+            {% set dimtopic = topic.mode - 2 %}
+            Mode du thème : {{ dimtopic }} <br />
             Titre : {{ phys[iEltLPos].title }} <br /><br />
           {% endif %}
         {% endfor %}

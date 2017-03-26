@@ -29,8 +29,10 @@ public function findPhysLevelContent($physlevel)
         $sub = $physLevelArray[1];
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT l.content, l.levelBase FROM SitephysPhysmvcBundle:Level l WHERE (l.levelBase = ' . $bas . '  AND l.levelSub = ' . $sub . ')'
+                'SELECT l.content, l.levelBase FROM SitephysPhysmvcBundle:Level l WHERE (l.levelBase = :bas AND l.levelSub = :sub)'
             )
+            ->setParameter('bas', $bas)
+            ->setParameter('sub', $sub)
             ->getResult();
     }
 
@@ -41,8 +43,10 @@ public function findPhysLevelIdContent($physlevel)
         $sub = $physLevelArray[1];
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT l.id, l.content, l.levelBase, l.levelSub FROM SitephysPhysmvcBundle:Level l WHERE (l.levelBase = ' . $bas . '  AND l.levelSub = ' . $sub . ')'
+                'SELECT l.id, l.content, l.levelBase, l.levelSub FROM SitephysPhysmvcBundle:Level l WHERE (l.levelBase = :bas AND l.levelSub = :sub)'
             )
+            ->setParameter('bas', $bas)
+            ->setParameter('sub', $sub)
             ->setMaxResults(1)
             ->getResult();
     }
