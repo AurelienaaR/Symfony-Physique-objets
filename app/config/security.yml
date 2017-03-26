@@ -14,10 +14,10 @@ security:
         in_memory:
             memory:
                 users:
-                    user: { password: userpass, roles: [ 'ROLE_USER' ] }
-                    author: { password: authorpass, roles: [ 'ROLE_AUTHOR' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
-                    superadmin: { password: superadminpass, roles: [ 'ROLE_SUPER_ADMIN' ] }
+                    user: { roles: [ 'ROLE_USER' ] }
+                    author: { roles: [ 'ROLE_AUTHOR' ] }
+                    admin: { roles: [ 'ROLE_ADMIN' ] }
+                    superadmin: { roles: [ 'ROLE_SUPER_ADMIN' ] }
 
         main:
             entity:
