@@ -28,6 +28,13 @@ class Physaddtopic
   private $domainid;
 
   /**
+   * @var int
+   *
+   * @ORM\Column(name="mode", type="integer", nullable=true)
+   */
+  private $mode;
+
+  /**
    * @var string
    *
    * @ORM\Column(name="title", type="string")
@@ -144,6 +151,22 @@ class Physaddtopic
   public function getDomainid()
   {
     return $this->domainid;
+  }
+
+  /**
+   * @param int $mode
+   */
+  public function setMode($mode)
+  {
+    $this->mode = $mode;
+  }
+
+  /**
+   * @return int
+   */
+  public function getMode()
+  {
+    return $this->mode;
   }
 
   /**

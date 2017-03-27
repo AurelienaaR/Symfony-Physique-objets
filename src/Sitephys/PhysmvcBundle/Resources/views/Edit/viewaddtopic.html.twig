@@ -10,7 +10,7 @@
 
 {% block sitephysphysmvc_image %}
   <div class="containerthome">
-    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcelement.png') }}" class="homephoto" alt="Image du thème ajouté" />
+    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcelement.jpg') }}" class="homephoto" alt="Image du thème ajouté" />
   </div>
 {% endblock %}
 
@@ -56,6 +56,8 @@
         <article id="auteur">
           Auteur : {{ physaddtopic.username }}, 
           <br />Date : {{ physaddtopic.date|date('d/m/Y H:i:s') }}
+          {% set dimmode = physaddtopic.mode - 2 %}
+          <br />Mode d'évolution : {{ dimmode }}
           <br />Lien Internet : {{ physaddtopic.weblink }}
         </article>
       </div>

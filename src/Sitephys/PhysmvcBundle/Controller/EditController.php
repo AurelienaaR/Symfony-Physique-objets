@@ -162,7 +162,8 @@ class EditController extends Controller
       $physAddtopic = new Physaddtopic();
       $formAddtopicBuilder = $this->get('form.factory')->createBuilder(PhysaddtopicType::class, $physAddtopic);
       $formAddtopicBuilder
-        ->add('domainid',      IntegerType::class)
+        ->add('domainid',      HiddenType::class, array('data' => $iddom))
+        ->add('mode',      IntegerType::class)
         ->add('title',      TextType::class)
         ->add('username',   TextType::class, array('required' => false))
         ->add('email',      EmailType::class, array('data' => $useremail))
@@ -216,7 +217,8 @@ class EditController extends Controller
 
     $physupdate = $physRep->find($id);
     if (null === $physupdate) {
-      throw new NotFoundHttpException('Elément "' . $id . '" pas dans la base.');
+      // throw new NotFoundHttpException('Elément "' . $id . '" pas dans la base.');
+      return $this->redirectToRoute('sitephys_physmvc_edition');
     } else {
       $physupdateLevel = $physupdate->getLevel();
       $physupdatelevelObjec = $levelRep->findPhysLevelIdContent($physupdateLevel);
@@ -288,11 +290,13 @@ class EditController extends Controller
         ));
 
     if (null === $physupdObject) {
-      throw new NotFoundHttpException('Aucun élément modifié dans la base.');
+      // throw new NotFoundHttpException('Aucun élément modifié dans la base.');
+      return $this->redirectToRoute('sitephys_physmvc_edition');
     } else {
       $phys = $physRep->find($idphys); 
       if (null === $phys) {
-        throw new NotFoundHttpException('Elément "' . $idphys . '" pas dans la base.');
+        // throw new NotFoundHttpException('Elément "' . $idphys . '" pas dans la base.');
+        return $this->redirectToRoute('sitephys_physmvc_edition');
       } else {
         $physLevel = $phys->getLevel();
         $physlevelObjec = $levelRep->findPhysLevelIdContent($physLevel);
@@ -340,7 +344,8 @@ class EditController extends Controller
 
     $physadd = $physaddRep->find($idadd); 
     if (null === $physadd) {
-      throw new NotFoundHttpException('Domaine "' . $idadd . '" pas dans la base.');
+      // throw new NotFoundHttpException('Domaine "' . $idadd . '" pas dans la base.');
+      return $this->redirectToRoute('sitephys_physmvc_edition');
     } else {
       $userconnectx = $this->getUser();
       if (null === $userconnectx) {
@@ -366,20 +371,22 @@ class EditController extends Controller
     $physaddtopic = $physaddtopicRep->findobj($idaddtopic); 
     
     if (null === $physaddtopic) {
-      throw new NotFoundHttpException('Thème ' . $idaddtopic . ' pas dans la base.');
+      // throw new NotFoundHttpException('Thème ' . $idaddtopic . ' pas dans la base.');
+      return $this->redirectToRoute('sitephys_physmvc_edition');
     } else {
-      
       $paddtopic = $physaddtopic[0];
       $idDom = $paddtopic->getDomainid();
       if (null === $idDom) {
         $domtopadded = 'Domaine non défini.';
         // throw new NotFoundHttpException('Domaine inconnu.');
+        return $this->redirectToRoute('sitephys_physmvc_edition');
       } else {
         $domtopadd = $domainRep->findDomTitleById($idDom);
         if (null == $domtopadd) {
-          $domtopadded = $domtopadd[0];
-        } else {
           $domtopadded = 'Domaine inconnu.';
+          return $this->redirectToRoute('sitephys_physmvc_edition');
+        } else {
+          $domtopadded = $domtopadd[0];
         }
       }
     }

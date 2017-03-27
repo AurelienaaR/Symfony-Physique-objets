@@ -28,6 +28,13 @@
     </div>
 
     <br />
+    Mode d'évolution (0 : champ de questions, 1 : linéarité de questions, 2 : états, 3 : linéarité de solutions, 4 : champ de solutions) du thème
+    <br />
+    <div> 
+      {{ form_row(formphysaddtopic.mode, {'attr': {'class': 'form-control'}}) }} 
+    </div>
+
+    <br />
     Elément exp in (1) du thème
     <br />
     <div>
@@ -77,13 +84,11 @@
       </div>
     </label>
 
-    <br />
+    <br /><br />
     <div> 
       <span>  {{ form_row(formphysaddtopic.weblink, {'attr': {'class': 'form-control'}}) }}  </span>
     </div>
 
-    <br />
-    Id du domaine du thème
     <br />
     <div>
       <span>  {{ form_row(formphysaddtopic.domainid, {'attr': {'class': 'form-control'}}) }}  </span>
