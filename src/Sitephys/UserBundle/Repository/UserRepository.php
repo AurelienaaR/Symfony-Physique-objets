@@ -2,6 +2,9 @@
 
 namespace Sitephys\UserBundle\Repository;
 
-class UserRepository extends \Doctrine\ORM\EntityRepository
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+
+class UserRepository extends EntityRepository
 {
 }

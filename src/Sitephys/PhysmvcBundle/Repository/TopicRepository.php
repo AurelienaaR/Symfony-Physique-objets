@@ -63,22 +63,6 @@ class TopicRepository extends EntityRepository
                 ->setParameter('mode', $ktype)
             ->getResult();
 
-/*
- $qb = $this->createQueryBuilder('t');
-
-  $qb->where('a.author = :author')
-       ->setParameter('domid', $domid)
-     ->andWhere('a.date < :year')
-       ->setParameter('year', $year)
-     ->orderBy('a.date', 'DESC')
-  ;
-
-  return $qb
-    ->getQuery()
-    ->getResult()
-  ;
-*/
-
     }
 
 }
