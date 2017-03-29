@@ -3,17 +3,17 @@
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
     database_host:     localhost
-    database_port:     ~
+    database_port:     null
     database_name:     physdb
     database_user:     root
-    database_password: ~
+    database_password: null
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
     mailer_transport:  smtp
     mailer_host:       localhost
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_user:       null
+    mailer_password:   null
 
     # A secret key that's used to generate certain security-related tokens
     secret: fd8745dd5495f99e4226f60ed93ebaeaf6e7e262
