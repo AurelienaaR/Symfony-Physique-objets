@@ -201,21 +201,37 @@ class PhysController extends Controller
           );
         $bsLevelContent[$intBase][$intSub] = $bsLevel[0]->getContent();
         $levsym = $bsLevel[0]->getId();
+
+        $rto = "";
+        $levsymMod = $levsym;
+        if ($levsym > 54) {
+          $rto = "Retour - ";
+          if ($levsym > 54 && $levsym < 58) {
+              $levsymMod = $levsym - 51;
+          }
+          if ($levsym > 57 && $levsym < 61) {
+              $levsymMod = $levsym - 42;
+          }
+          if ($levsym > 60 && $levsym < 73) {
+              $levsymMod = $levsym - 18;
+          }
+          if ($levsym > 72 && $levsym < 76) {
+              $levsymMod = $levsym - 72;
+          }
+          $levsym = $levsymMod;
+        }
+
         $symbolizationLevel = $symbolizationRep->findBy(
           array('levelkey' => $levsym)
           );
         if (null == $symbolizationLevel && $intBase <= 3) {
             $bsSymbolContent[$intBase][$intSub] = "aucune symbolisation";
         } else {
-          if ($intBase <= 3) {
-            $bsSymbolContent[$intBase][$intSub] = "";
-            $symCpt = 0;
-            foreach ($symbolizationLevel as $symbolizationLevelx) {
-              $symCpt ++;
-              $bsSymbolContent[$intBase][$intSub] .= 'Symbol' . $symCpt . ' : ' . $symbolizationLevelx->getContent() . '. ';
-            }
-          } else {
-            $bsSymbolContent[$intBase][$intSub] = "Retour - " . $bsSymbolContent[$intBase - 3][$intSub];
+          $bsSymbolContent[$intBase][$intSub] = $rto;
+          $symCpt = 0;
+          foreach ($symbolizationLevel as $symbolizationLevelx) {
+            $symCpt ++;
+            $bsSymbolContent[$intBase][$intSub] .= 'Symbol' . $symCpt . ' : ' . $symbolizationLevelx->getContent() . '. ';
           }
         }
       }
@@ -347,11 +363,29 @@ class PhysController extends Controller
         $physLevel = $physGlobal[0]->getLevel();
         $levelObject = $levelRep->findPhysLevelIdContent($physLevel);
         $levelId = $levelObject[0]["id"];
+        $rto = "";
+        $levelIdMod = $levelId;
+        if ($levelId > 54) {
+          $rto = "Retour - ";
+          if ($levelId > 54 && $levelId < 58) {
+              $levelIdMod = $levelId - 51;
+          }
+          if ($levelId > 57 && $levelId < 61) {
+              $levelIdMod = $levelId - 42;
+          }
+          if ($levelId > 60 && $levelId < 73) {
+              $levelIdMod = $levelId - 18;
+          }
+          if ($levelId > 72 && $levelId < 76) {
+              $levelIdMod = $levelId - 72;
+          }
+          $levelId = $levelIdMod;
+        }
         $symbolizationObject = $symbolizationRep->findBy(
           array (
             'levelkey' => $levelId
             ));
-        $symbolContent[$ielp] = "";
+        $symbolContent[$ielp] = $rto;
         foreach ($symbolizationObject as $key => $symbolx) {
           $symbolContent[$ielp] .= $symbolx->getContent();
           $symbolContent[$ielp] .= "  * ";
@@ -402,13 +436,31 @@ class PhysController extends Controller
       $levelObjec = $levelRep->findPhysLevelIdContent($physLevel);
       $levelObject = $levelObjec[0];
       $levelId = $levelObject["id"];
+      $rto = "";
+      $levelIdMod = $levelId;
+        if ($levelId > 54) {
+          $rto = "Retour - ";
+          if ($levelId > 54 && $levelId < 58) {
+              $levelIdMod = $levelId - 51;
+          }
+          if ($levelId > 57 && $levelId < 61) {
+              $levelIdMod = $levelId - 42;
+          }
+          if ($levelId > 60 && $levelId < 73) {
+              $levelIdMod = $levelId - 18;
+          }
+          if ($levelId > 72 && $levelId < 76) {
+              $levelIdMod = $levelId - 72;
+          }
+          $levelId = $levelIdMod;
+        }
       $symbolizationObject = $symbolizationRep->findBy(
         array (
           'levelkey' => $levelId,
           ));
       $symbolizationContent = [];
       foreach ($symbolizationObject as $key => $symboly) {
-        $symbolizationContent[] = $symboly->getContent();
+        $symbolizationContent[] = $rto . $symboly->getContent();
       }
 
       $physTopicId = $phys->getTopicId();

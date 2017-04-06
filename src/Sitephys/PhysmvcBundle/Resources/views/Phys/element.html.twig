@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Elément simple : {{ physelt.title }} </h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Elément simple : {{ physelt.title }} du niveau {{ level.levelBase }} - {{ level.levelSub }} du thème {{ topic.title }} </h2>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -16,7 +16,7 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-      <h2>Descriptions de {{ physelt.title }}</h2>
+      <h3>Descriptions de {{ physelt.title }}</h3>
       <br />
       <nav id="tabs-nav" class="clearfix">
         <a href="#domaine">Domaine et thème</a><span>&nbsp;</span>
@@ -32,7 +32,8 @@
           Domaine : {{ domain.title }}
           <br />Thème : {{ topic.content }}
           {% set dimtopic = topic.mode - 2 %}
-          <br />Mode du thème : {{ dimtopic }} <br />
+          <br />Dim du thème : {{ dimtopic }} <br />
+          Mode du thème : {{ topic.mode }} <br />
         </article>
         <article id="niveau">
           Niveau de base <i>(global)</i> : {{ level.levelBase }} 

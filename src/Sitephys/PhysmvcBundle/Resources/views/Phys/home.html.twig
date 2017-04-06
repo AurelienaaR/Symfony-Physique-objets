@@ -38,7 +38,7 @@
         <article id="{{ "evol" ~ key }}">
           {% for domcontentx in domcontent %}
             {% for tabtopperdomx in tabtopperdom[key][domcontentx.id] %}
-              <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': tabtopperdomx.id}) }}"><div> {{ domcontentx.content }} - {{ tabtopperdomx.content }} </div></a>
+              {{ domcontentx.content }} - <span><a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': tabtopperdomx.id}) }}"> {{ tabtopperdomx.content }} </a></span><br />
             {% endfor %}  
           {% endfor %}
         </article>

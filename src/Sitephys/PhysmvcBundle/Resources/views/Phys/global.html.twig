@@ -1,11 +1,11 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Lecture de l'élément global du thème - {{ topic.title }}
+  Lecture de l'élément global du niveau de base {{ intlevel }} du thème {{ topic.title }}
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Lecture de l'élément global du thème <strong>{{ topic.title }}</strong></h2>
+  <h2 style = "color:#FFF; text-align:center; margin:10px;">Lecture de l'élément global du niveau de base {{ intlevel }} du thème <strong>{{ topic.title }}</strong></h2>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -44,7 +44,8 @@
             Domaine : {{ domain.content }} <br />
             Thème : {{ topic.content }} <br />
             {% set dimtopic = topic.mode - 2 %}
-            Mode du thème : {{ dimtopic }} <br />
+            Dim du thème : {{ dimtopic }} <br />
+            Mode du thème : {{ topic.mode }} <br />
             Titre : {{ phys[iEltLPos].title }} <br /><br />
           {% endif %}
         {% endfor %}
