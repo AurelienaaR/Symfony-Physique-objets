@@ -5,9 +5,7 @@ namespace Sitephys\PhysmvcBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,21 +14,13 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Doctrine\ORM\EntityRepository;
 use Sitephys\PhysmvcBundle\Entity\Phys;
-use Sitephys\PhysmvcBundle\Entity\Domain;
-use Sitephys\PhysmvcBundle\Entity\Topic;
-use Sitephys\PhysmvcBundle\Entity\Level;
-use Sitephys\PhysmvcBundle\Entity\Symbolization;
-use Sitephys\PhysmvcBundle\Form\TopicType;
-use Sitephys\PhysmvcBundle\Form\PhysType;
 use Sitephys\PhysmvcBundle\Entity\Physupdate;
 use Sitephys\PhysmvcBundle\Entity\Physadd;
 use Sitephys\PhysmvcBundle\Entity\Physaddtopic;
 use Sitephys\PhysmvcBundle\Form\PhysupdateType;
 use Sitephys\PhysmvcBundle\Form\PhysaddType;
 use Sitephys\PhysmvcBundle\Form\PhysaddtopicType;
-use Doctrine\ORM\QueryBuilder;
 
 
 class EditController extends Controller
@@ -70,13 +60,6 @@ class EditController extends Controller
       throw new NotFoundHttpException("Aucun ajout dans la base.");
     }
 
-  /*
-      $em = $this->getDoctrine()->getManager();
-      $userRep = $em->getRepository('SitephysUserBundle:User');
-      $userAuth = $userRep->findByEmail($uemail);
-      $userAuth[0]->getAuthorized();
-  */
-
     $userconnectx = $this->getUser();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
@@ -84,7 +67,7 @@ class EditController extends Controller
     } else {
       $userconnect = $userconnectx->getUsername();
       $authorized = $userconnectx->getAuthorized();
-      if (null == $authorized) {
+      if (null === $authorized) {
         $authorized = false;
       }
     }
@@ -205,7 +188,6 @@ class EditController extends Controller
     $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
     $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
-    $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
 
     $userconnectx = $this->getUser();
     if (null === $userconnectx) {
@@ -217,21 +199,12 @@ class EditController extends Controller
 
     $physupdate = $physRep->find($id);
     if (null === $physupdate) {
-      // throw new NotFoundHttpException('Elément "' . $id . '" pas dans la base.');
       return $this->redirectToRoute('sitephys_physmvc_edition');
     } else {
       $physupdateLevel = $physupdate->getLevel();
       $physupdatelevelObjec = $levelRep->findPhysLevelIdContent($physupdateLevel);
       $physupdatelevelObject = $physupdatelevelObjec[0];
-      $physupdatelevelId = $physupdatelevelObject["id"];
-      $physupdatesymbolizationObject = $symbolizationRep->findBy(
-        array (
-          'levelkey' => $physupdatelevelId,
-          ));
-      $physupdatesymbolizationContent = [];
-      foreach ($physupdatesymbolizationObject as $key => $symbol) {
-        $physupdatesymbolizationContent[] = $symbol->getContent();
-      }
+
     $physupdateTopicId = $physupdate->getTopicId();
     $physupdatetopicObject = $topicRep->find($physupdateTopicId);
     $physupdatetopicDomainId = $physupdatetopicObject->getDomainId();
@@ -290,12 +263,10 @@ class EditController extends Controller
         ));
 
     if (null === $physupdObject) {
-      // throw new NotFoundHttpException('Aucun élément modifié dans la base.');
       return $this->redirectToRoute('sitephys_physmvc_edition');
     } else {
       $phys = $physRep->find($idphys); 
       if (null === $phys) {
-        // throw new NotFoundHttpException('Elément "' . $idphys . '" pas dans la base.');
         return $this->redirectToRoute('sitephys_physmvc_edition');
       } else {
         $physLevel = $phys->getLevel();
@@ -344,7 +315,6 @@ class EditController extends Controller
 
     $physadd = $physaddRep->find($idadd); 
     if (null === $physadd) {
-      // throw new NotFoundHttpException('Domaine "' . $idadd . '" pas dans la base.');
       return $this->redirectToRoute('sitephys_physmvc_edition');
     } else {
       $userconnectx = $this->getUser();
@@ -371,18 +341,16 @@ class EditController extends Controller
     $physaddtopic = $physaddtopicRep->findobj($idaddtopic); 
     
     if (null === $physaddtopic) {
-      // throw new NotFoundHttpException('Thème ' . $idaddtopic . ' pas dans la base.');
       return $this->redirectToRoute('sitephys_physmvc_edition');
     } else {
       $paddtopic = $physaddtopic[0];
       $idDom = $paddtopic->getDomainid();
       if (null === $idDom) {
         $domtopadded = 'Domaine non défini.';
-        // throw new NotFoundHttpException('Domaine inconnu.');
         return $this->redirectToRoute('sitephys_physmvc_edition');
       } else {
         $domtopadd = $domainRep->findDomTitleById($idDom);
-        if (null == $domtopadd) {
+        if (null === $domtopadd) {
           $domtopadded = 'Domaine inconnu.';
           return $this->redirectToRoute('sitephys_physmvc_edition');
         } else {

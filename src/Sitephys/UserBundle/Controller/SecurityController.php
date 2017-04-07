@@ -7,22 +7,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Doctrine\ORM\EntityRepository;
 use Sitephys\UserBundle\Entity\User;
 use Sitephys\UserBundle\Form\UserType;
-use Doctrine\ORM\QueryBuilder;
 
 
 class SecurityController extends Controller
@@ -30,8 +22,6 @@ class SecurityController extends Controller
 
   public function loginAction(Request $request)
   {
-    $em = $this->getDoctrine()->getManager();
-    // Si le visiteur est déjà identifié, on le redirige vers l'accueil
     if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) 
     { 
       return $this->redirectToRoute('sitephys_physmvc_home');
@@ -55,10 +45,7 @@ class SecurityController extends Controller
 
 
   public function homeuserAction(Request $request)
-  {
-    $em = $this->getDoctrine()->getManager();
-    $userRep = $em->getRepository('SitephysUserBundle:User');
-    
+  { 
     $userObject = $this->getUser();
 
     if (null === $userObject) {
@@ -97,10 +84,6 @@ class SecurityController extends Controller
 
   public function adduserAction($roleuser, Request $request)
   {
-    $em = $this->getDoctrine()->getManager();
-    $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
-    $userRep = $em->getRepository('SitephysUserBundle:User');
-
     $userconnectx = $this->getUser();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
@@ -271,7 +254,6 @@ class SecurityController extends Controller
   public function setCookieAction($userEmail)
     {
       $hashEmail = hash('sha512', $userEmail, false);
-      $html = '<html><body>test set cookie tokenUser =' . $hashEmail . '</body></html>';
       $response = new Response();          
       $response->headers->setCookie(new Cookie('tokenUser', $hashEmail, time() + 3600)); 
       $response->send();

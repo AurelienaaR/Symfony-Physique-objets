@@ -5,18 +5,6 @@ namespace Sitephys\PhysmvcBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Doctrine\ORM\EntityRepository;
 use Sitephys\PhysmvcBundle\Entity\Phys;
 use Sitephys\PhysmvcBundle\Entity\Domain;
 use Sitephys\PhysmvcBundle\Entity\Topic;
@@ -33,7 +21,6 @@ class PhysController extends Controller
   public function homeAction(Request $request)
   {
   	$em = $this->getDoctrine()->getManager();
-    $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys');
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
     $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
 
@@ -269,7 +256,6 @@ class PhysController extends Controller
     $topEvalObject = $topicRep->find($idTopic);
     if (null == $topEvalObject) {
       return $this->redirectToRoute('sitephys_physmvc_home');
-      // throw new NotFoundHttpException('Base sans ce thème.');
     } else {
       $topTitle = $topEvalObject->getTitle();
       for ($ibool=1; $ibool <= 6 ; $ibool++) { 
@@ -284,7 +270,6 @@ class PhysController extends Controller
       );
 
       foreach ($physEval as $keyEv => $physEv) {
-        $idEval = $physEv->getId();
         $eva = $physEv->getEvaluation();
         if (null != $eva) {
           $levEv = $physEv->getLevel();
@@ -305,8 +290,6 @@ class PhysController extends Controller
           }
         }
       }
-
-        $dataEval = array("Exp. in", "Theory", "Exp. out", "Return Exp. in", "Return Theory", "Return Exp. out");
 
         $userconnectx = $this->getUser();
         if (null === $userconnectx) {
