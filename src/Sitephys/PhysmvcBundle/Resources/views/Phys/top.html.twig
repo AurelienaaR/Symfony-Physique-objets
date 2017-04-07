@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Thèmes et références de leur domaine</i></h2>
+  <h3 style = "color:#FFF; text-align:center; margin:10px;"><i>Thèmes et références de leur domaine</i></h3>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -20,7 +20,7 @@
 
     <nav id="tabs-nav" class="clearfix">
       {% for tti in iddomobject %}
-        <a href="{{"#" ~ "domaintopic" ~ tti["id"] }}"> {{ tti["title"] }} </a><span>&nbsp;</span>
+        <a href="{{"#" ~ "domaintopic" ~ tti["id"] }}"> {{ tti["title"] }} </a><span style = "margin:10px;">&nbsp;</span>
       {% endfor %}
       <a href="#reference"> Références </a>
     </nav>
@@ -31,14 +31,14 @@
         <article id={{ "domaintopic" ~ iddomobjectxi }}>
           {% for iddomobjectxd in listtopic[iddomobjectxi] %}
             {{ iddomobjectxd.content }} <br />
-            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': iddomobjectxd.id}) }}"> {{ iddomobjectxd.title }} </a><br /><br />
+            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': iddomobjectxd.id}) }}"> {{ iddomobjectxd.title }} </a><br />
           {% endfor %}
         </article>
       {% endfor %}
       <article id="reference">
         {% for titlecontrefx in titlecontref %}
           Domaine : {{titlecontrefx.dtitle }}. Référence : {{ titlecontrefx.rtitle }} <br />
-          Contenu : {{ titlecontrefx.rcontent }} <br /><br />
+          Contenu : {{ titlecontrefx.rcontent }} <br />
         {% endfor %}
       </article>
     </div>

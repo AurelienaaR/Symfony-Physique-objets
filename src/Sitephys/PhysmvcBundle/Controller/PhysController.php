@@ -518,13 +518,31 @@ class PhysController extends Controller
       $levelObjec = $levelRep->findPhysLevelIdContent($physLevel);
       $levelObject = $levelObjec[0];
       $levelId = $levelObject["id"];
+      $rto = "";
+      $levelIdMod = $levelId;
+        if ($levelId > 54) {
+          $rto = "Retour - ";
+          if ($levelId > 54 && $levelId < 58) {
+              $levelIdMod = $levelId - 51;
+          }
+          if ($levelId > 57 && $levelId < 61) {
+              $levelIdMod = $levelId - 42;
+          }
+          if ($levelId > 60 && $levelId < 73) {
+              $levelIdMod = $levelId - 18;
+          }
+          if ($levelId > 72 && $levelId < 76) {
+              $levelIdMod = $levelId - 72;
+          }
+          $levelId = $levelIdMod;
+        }
       $symbolizationObject = $symbolizationRep->findBy(
         array (
           'levelkey' => $levelId,
           ));
       $symbolizationContent = [];
       foreach ($symbolizationObject as $key => $symbol) {
-        $symbolizationContent[] = $symbol->getContent();
+        $symbolizationContent[] = $rto . $symbol->getContent();
       }
 
       $physTopicId = $phys->getTopicId();

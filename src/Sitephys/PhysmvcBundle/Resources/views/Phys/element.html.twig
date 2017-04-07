@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Elément simple : {{ physelt.title }} du niveau {{ level.levelBase }} - {{ level.levelSub }} du thème {{ topic.title }} </h2>
+  <h3 style = "color:#FFF; text-align:center; margin:10px;">Elément simple : {{ physelt.title }} du niveau {{ level.levelBase }} - {{ level.levelSub }} du thème {{ topic.title }} </h3>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -32,19 +32,19 @@
           Domaine : {{ domain.title }}
           <br />Thème : {{ topic.content }}
           {% set dimtopic = topic.mode - 2 %}
-          <br />Dim du thème : {{ dimtopic }} <br />
-          Mode du thème : {{ topic.mode }} <br />
+          <br />Dim du thème : {{ dimtopic }} 
+          <br />Mode du thème : {{ topic.mode }}
         </article>
         <article id="niveau">
           Niveau de base <i>(global)</i> : {{ level.levelBase }} 
           <br />Niveau de précision <i>(élément)</i> : {{ level.levelSub }} 
-          <br />Description du niveau : {{ level.content }} <br />
+          <br />Description du niveau : {{ level.content }} 
         </article>
         <article id="contenu">
-          {{ physelt.content }} <br />
+          {{ physelt.content }} 
         </article>
         <article id="evaluation">
-          Evaluation : {{ physelt.evaluation }} <br />
+          Evaluation : {{ physelt.evaluation }} 
         </article>
         <article id="symbolisation">
           {% set cptsym = 0 %}

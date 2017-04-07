@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Niveaux et symbolisations des éléments de physique</h2>
+  <h3 style = "color:#FFF; text-align:center; margin:10px;">Niveaux et symbolisations des éléments de physique</h3>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -17,7 +17,7 @@
 {% block sitephysphysmvc_body %}
   <div class="well">
 
-    <h2>Description de niveaux et symbolisations par niveau de base</h2><br />
+    <h3>Description de niveaux et symbolisations par niveau de base</h3><br />
       <nav id="tabs-nav" class="clearfix">
         {% for intBase in 1..6 %}
           <a href="{{ "#symbol" ~ intBase }}"> {{ datalevel[intBase - 1] }} </a><span>&nbsp;</span>

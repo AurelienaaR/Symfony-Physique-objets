@@ -10,13 +10,10 @@
       {% endblock %}
     </title>
     {% block stylesheets %}
-      {% stylesheets filter='cssrewrite' 'bundles/sitephysuser/css/styleuser.css' %}
+      {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/main.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
       {% endstylesheets %}
-      {% stylesheets filter='cssrewrite' 'bundles/sitephysuser/css/mainuser.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
-      {% endstylesheets %}
-      {% stylesheets filter='cssrewrite' 'bundles/sitephysuser/css/bootstrap.css' %}
+      {% stylesheets filter='cssrewrite' 'bundles/sitephysphysmvc/css/bootstrap.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css">
       {% endstylesheets %}
     {% endblock %}

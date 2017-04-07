@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Lecture de l'élément global du niveau de base {{ intlevel }} du thème <strong>{{ topic.title }}</strong></h2>
+  <h3 style = "color:#FFF; text-align:center; margin:10px;">Lecture de l'élément global du niveau de base {{ intlevel }} du thème <strong>{{ topic.title }}</strong></h3>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -28,49 +28,62 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <h2>Descriptions</h2>
-    <h3>Pour le niveau de base (global) : {{ intlevel }}, soit : {{ physiniglobalcontent }}.</h3>
+    <h3>Descriptions</h3>
+    <h3>Pour le niveau de base (global) {{ intlevel }}, soit {{ physiniglobalcontent }}.</h3>
     <br />
     <nav id="tabs-nav" class="clearfix">
-      <a href="#titre">Titre(s) du thème</a><span>&nbsp;</span>
+      <a href="#titre">Titres des éléments</a><span>&nbsp;</span>
       <a href="#contenu">Contenu(s)</a><span>&nbsp;</span>
       <a href="#evaluation">Evaluation(s)</a><span>&nbsp;</span>
       <a href="#symbolisation">Symbolisation(s)</a><span>&nbsp;</span>
     </nav>
     <div id="tabs-container" onload="initTab()">      
       <article id="titre">
+        Domaine : {{ domain.title }} 
+        <br />Thème : {{ topic.title }} 
+        {% set dimtopic = topic.mode - 2 %}
+        <br />Dim du thème : {{ dimtopic }} 
+        <br />Mode du thème : {{ topic.mode }} 
+        <br />Niveau de base (global) : {{ intlevel }} <br />
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
-            Domaine : {{ domain.content }} <br />
-            Thème : {{ topic.content }} <br />
-            {% set dimtopic = topic.mode - 2 %}
-            Dim du thème : {{ dimtopic }} <br />
-            Mode du thème : {{ topic.mode }} <br />
-            Titre : {{ phys[iEltLPos].title }} <br /><br />
+            <br />Titre élément {{ iEltLPos }} : {{ phys[iEltLPos].title }} 
           {% endif %}
         {% endfor %}
       </article>
       <article id="contenu">
+        Domaine : {{ domain.title }} 
+        <br />Thème : {{ topic.title }}
+        <br />Contenu du thème : {{ topic.content }} 
+        <br />Niveau de base (global) : {{ intlevel }} <br />
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
-            Titre : {{ phys[iEltLPos].title }}
-            <br />Contenu : {{ phys[iEltLPos].content }} <br /><br />
+            <br />Titre : {{ phys[iEltLPos].title }}
+            <br />Contenu : {{ phys[iEltLPos].content }} <br />
           {% endif %}
         {% endfor %}
       </article>
       <article id="evaluation">
+        Domaine : {{ domain.title }} 
+        <br />Thème : {{ topic.title }}
+        <br />Contenu du thème : {{ topic.content }} 
+        <br />Niveau de base (global) : {{ intlevel }} <br />
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
-            Titre : {{ phys[iEltLPos].title }}
-            <br />Evaluation : {{ phys[iEltLPos].evaluation }} <br /><br />
+            <br />Titre : {{ phys[iEltLPos].title }}
+            <br />Evaluation : {{ phys[iEltLPos].evaluation }} <br />
           {% endif %}
         {% endfor %}
       </article>
       <article id="symbolisation">
+        Domaine : {{ domain.title }} 
+        <br />Thème : {{ topic.title }}
+        <br />Contenu du thème : {{ topic.content }} 
+        <br />Niveau de base (global) : {{ intlevel }} <br />
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
-            Titre : {{ phys[iEltLPos].title }}
-            <br />Symbolisation : {{ symbol[iEltLPos] }} <br /><br />
+            <br />Titre : {{ phys[iEltLPos].title }}
+            <br />Symbolisation : {{ symbol[iEltLPos] }} <br />
           {% endif %}
         {% endfor %}
       </article>
