@@ -3,7 +3,6 @@
 namespace Sitephys\PhysmvcBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -334,9 +333,6 @@ class PhysController extends Controller
     $physGlobal = [];
     $symbolContent = [];
 
-    $physGal = $levelRep->findBy(
-      array('levelBase' => $intLevel, 'levelSub' => 0)
-    );
     for ($iElt=1; $iElt <= 6; $iElt++) {
           $tabBoolElt[$iElt] = false;
         }
@@ -503,8 +499,8 @@ class PhysController extends Controller
     if (null === $physGlobal) {
       return $this->redirectToRoute('sitephys_physmvc_home');
     } else {
-      $phys = $physGlobal[0];
-      $physLevel = $phys->getLevel();
+      $physe = $physGlobal[0];
+      $physLevel = $physe->getLevel();
       $levelObjec = $levelRep->findPhysLevelIdContent($physLevel);
       $levelObject = $levelObjec[0];
       $lId = $levelObject["id"];
@@ -533,8 +529,7 @@ class PhysController extends Controller
       foreach ($symbolizationObject as $key => $symbol) {
         $symbolizationContent[] = $rtw . $symbol->getContent();
       }
-
-      $physTopicId = $phys->getTopicId();
+      $physTopicId = $physe->getTopicId();
       $topicObject = $topicRep->find($physTopicId);
       $topicDomainId = $topicObject->getDomainId();
       $domainObject = $domainRep->find($topicDomainId);
@@ -550,7 +545,7 @@ class PhysController extends Controller
       }
       return $this->render('SitephysPhysmvcBundle:Phys:element.html.twig', array(
         'userconnect' => $userconnect,
-        'physelt' => $phys,
+        'physelt' => $physe,
         'domain' => $domainObject,
         'topic' => $topicObject,
         'level' => $levelObject,

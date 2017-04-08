@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% block errortitle %}
+         Erreur - Eléments de physique en méthodes et langages objet 
+      {% endblock %}
+    </title>
+  </head>
+
+  <body>
+    <br />
+    <div id="ho">Erreur - Méthodes et langage objet pour la physique</div>
+    <br />
+    <br /><br />
+    {% block sitephysphysmvcerror_body %}
+      <a href="{{ path('sitephys_physmvc_home') }}">Retour à l'accueil du site</a>
+    {% endblock %}
+    <br />
+  </body>
+  
+</html>
