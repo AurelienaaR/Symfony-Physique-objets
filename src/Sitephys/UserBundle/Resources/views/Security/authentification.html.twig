@@ -24,7 +24,7 @@
   <br /><br />
 
   <div class="well">
-    <h3 style="text-align:center; color:#000">Connexion à votre compte : </h3>
+    <div id="hb">Connexion à votre compte : </div>
     <form action="{{ path('login_check') }}" method="POST">
       <span style="text-align:center; color:#000"><label for="username"> Pseudo : </label></span><br />
       <span style="text-align:center; color:#000"><input type="text" id="username" name="_username" value="{{ last_username }}" /></span><br /><br />
@@ -33,7 +33,7 @@
       <span style="text-align:center; color:#000"><input type="submit" value="Connexion" /></span><br />
     </form>
     <br />
-    <div style="text-align:center; color:#000;">
+    <div id="hb">
       <br />
       Ou : <br />
       <a href="{{ path('sitephys_user_add', {'roleuser': 'user'}) }}">Création d'un nouveau compte utilisateur</a><br />

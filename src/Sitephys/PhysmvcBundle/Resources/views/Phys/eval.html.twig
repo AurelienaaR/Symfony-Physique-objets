@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;"><i>Evaluations du thème {{ toptitle }}</i></h2>
+  <div id="hw">Evaluations du thème {{ toptitle }} </div>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -15,10 +15,8 @@
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
-  <div style="float: left; margin-right: 1em;"></div>
-  <h2></h2>
   <div class="well">
-      <h3>Description par niveau des évaluations du thème {{ toptitle }}</h3><br />
+      <div id="hb">Description par niveau des évaluations du thème {{ toptitle }} </div><br />
       <nav id="tabs-nav" class="clearfix">
         {% for intevali in 1..6 %}
           {% for intevalj in 1..6 %}

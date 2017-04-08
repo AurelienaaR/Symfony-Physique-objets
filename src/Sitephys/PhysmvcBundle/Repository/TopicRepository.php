@@ -52,11 +52,11 @@ class TopicRepository extends EntityRepository
             ->getResult();
     }
 
-    public function findIdContentTopic($ktype, $domid)
+    public function findIdTitleTopic($ktype, $domid)
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT t.id, t.content FROM SitephysPhysmvcBundle:Topic t WHERE (t.domainId = :domid AND t.mode = :mode)'
+                'SELECT t.id, t.title FROM SitephysPhysmvcBundle:Topic t WHERE (t.domainId = :domid AND t.mode = :mode)'
                 )
                 ->setParameter('domid', $domid)
                 ->setParameter('mode', $ktype)

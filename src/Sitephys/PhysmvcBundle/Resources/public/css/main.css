@@ -29,6 +29,35 @@ a {
     color: #555;
 }
 
+#ho {
+    margin: 10px;
+    font-size: 30px;
+    color:#FA7; 
+    text-align:center; 
+    font-style:italic;
+}
+
+#hw {
+    font-size: 26px;
+    color:#FFF; 
+    text-align:center; 
+    margin:10px;
+}
+
+#hb {
+    font-size: 22px;
+    color:#000; 
+    text-align:center; 
+    margin:10px;
+}
+
+#hx {
+    font-size: 20px;
+    color:#BBB; 
+    text-align:center; 
+    margin:10px;
+}
+
 #taglines {
     text-align: center;
 }

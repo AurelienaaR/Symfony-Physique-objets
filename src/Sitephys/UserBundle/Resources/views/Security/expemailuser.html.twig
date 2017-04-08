@@ -12,13 +12,12 @@
 {% endblock %}
 
 {% block sitephysuser_body %}
-  <h2 style = "color:#FFF; text-align:center; margin:10px;">Envoi de courriel</h2>
+  <div id="hw">Envoi de courriel</div>
   <br /><br />
-  <h3 style = "color:#FFF; text-align:center; margin:10px;">
-    Lien de validation de votre compte  {{ uemail }} : <br /><br />
+  <div id="hw">Lien de validation de votre compte  {{ uemail }} : <br /><br />
     <a href="{{ path('sitephys_user_email', {'uemail': uemail, 'toklink': toklink}) }}">Cliquer sur ce lien afin de valider votre adresse courriel</a>. 
-    <br /><br />Un courriel vous sera envoyé vers celle-ci avec un lien token valide durant une heure.
-  </h3>
+    <br /><br />Un courriel vous sera alors envoyé vers celle-ci avec un lien token valide durant une heure.
+  </div>
   <br /><br /><br />
     <div id="eval-th">
     <div class="button-eval">

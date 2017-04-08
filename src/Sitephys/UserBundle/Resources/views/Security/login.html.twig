@@ -8,6 +8,10 @@
   {{ parent() }}
 {% endblock %}
 
+{% block sitephysuser_section %}
+  <div id="hw">Connexion ou création de compte</div>
+{% endblock %}
+
 {% block sitephysphysmvc_image %}
   <div id="containerimghome">
     <div class="containerthome">
@@ -24,7 +28,7 @@
   <br /><br />
 
   <div class="well">
-    <h3 style="text-align:center; color:#000">Connexion à votre compte : </h3>
+    <div id="hb">Connexion à votre compte : </div><br />
     <form action="{{ path('login_check') }}" method="POST">
       <span style="text-align:center; color:#000"><label for="username"> Pseudo : </label></span><br />
       <span style="text-align:center; color:#000"><input type="text" id="username" name="_username" value="{{ last_username }}" /></span><br /><br />

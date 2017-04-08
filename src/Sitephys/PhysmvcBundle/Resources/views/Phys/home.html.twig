@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h3 style = "color:#FFF; text-align:center; margin:10px;">Accueil</h3>
+  <div id="hw">Accueil</div>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -24,7 +24,7 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <h3>Domaines - thèmes enregistrés pour chaque type d'évolution</h3><br />
+    <div id="hb">Domaines - thèmes enregistrés pour chaque type d'évolution</div><br />
     
     <nav id="tabs-nav" class="clearfix">
       {% for kex, typex in evol %}
@@ -36,9 +36,9 @@
     <div id="tabs-container" onload="initTab()">
       {% for key, typey in evol %}
         <article id="{{ "evol" ~ key }}">
-          {% for domcontentx in domcontent %}
-            {% for tabtopperdomx in tabtopperdom[key][domcontentx.id] %}
-              {{ domcontentx.content }} - <span><a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': tabtopperdomx.id}) }}"> {{ tabtopperdomx.content }} </a></span><br />
+          {% for domtitlex in domtitle %}
+            {% for tabtopperdomx in tabtopperdom[key][domtitlex.id] %}
+              {{ domtitlex.title }} - <span><a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': tabtopperdomx.id}) }}"> {{ tabtopperdomx.title }} </a></span><br />
             {% endfor %}  
           {% endfor %}
         </article>

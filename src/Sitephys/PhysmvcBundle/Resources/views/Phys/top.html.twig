@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h3 style = "color:#FFF; text-align:center; margin:10px;"><i>Thèmes et références de leur domaine</i></h3>
+  <div id="hw">Thèmes et références de leur domaine</div>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -16,7 +16,7 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <h3>Descriptions, liens et références par domaine</h3><br />
+    <div id="hb">Descriptions, liens et références par domaine</div><br />
 
     <nav id="tabs-nav" class="clearfix">
       {% for tti in iddomobject %}
@@ -30,7 +30,6 @@
         {% set iddomobjectxi = iddomobjectx["id"] %}
         <article id={{ "domaintopic" ~ iddomobjectxi }}>
           {% for iddomobjectxd in listtopic[iddomobjectxi] %}
-            {{ iddomobjectxd.content }} <br />
             <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': iddomobjectxd.id}) }}"> {{ iddomobjectxd.title }} </a><br />
           {% endfor %}
         </article>

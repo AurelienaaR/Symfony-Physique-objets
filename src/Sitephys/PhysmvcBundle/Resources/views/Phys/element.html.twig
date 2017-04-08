@@ -1,11 +1,11 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Lecture de l'élément du thème {{ physelt.title }} et du niveau {{ level.levelBase }} - {{ level.levelSub }}
+  Lecture de l'élément du thème {{ topic.title }} et du niveau {{ level.levelBase }} - {{ level.levelSub }}
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h3 style = "color:#FFF; text-align:center; margin:10px;">Elément simple : {{ physelt.title }} du niveau {{ level.levelBase }} - {{ level.levelSub }} du thème {{ topic.title }} </h3>
+  <div id="hw">Elément simple du niveau {{ level.levelBase }} - {{ level.levelSub }} du thème {{ topic.title }} </div>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -16,7 +16,7 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-      <h3>Descriptions de {{ physelt.title }}</h3>
+      <div id="hb">Descriptions de {{ physelt.title }} </div>
       <br />
       <nav id="tabs-nav" class="clearfix">
         <a href="#domaine">Domaine et thème</a><span>&nbsp;</span>
@@ -41,7 +41,8 @@
           <br />Description du niveau : {{ level.content }} 
         </article>
         <article id="contenu">
-          {{ physelt.content }} 
+          Titre : {{ physelt.title }} <br />
+          Contenu : {{ physelt.content }}
         </article>
         <article id="evaluation">
           Evaluation : {{ physelt.evaluation }} 

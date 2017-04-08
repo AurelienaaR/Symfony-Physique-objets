@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
-  <h3 style = "color:#FFF; text-align:center; margin:10px;">Lecture de l'élément global du niveau de base {{ intlevel }} du thème <strong>{{ topic.title }}</strong></h3>
+  <div id="hw">Lecture de l'élément global du niveau de base {{ intlevel }} du thème <strong> {{ topic.title }} </strong></div>
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
@@ -28,8 +28,7 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <h3>Descriptions</h3>
-    <h3>Pour le niveau de base (global) {{ intlevel }}, soit {{ physiniglobalcontent }}.</h3>
+    <div id="hb">Descriptions du niveau de base (global) {{ intlevel }} du thème {{ topic.title }} </div>
     <br />
     <nav id="tabs-nav" class="clearfix">
       <a href="#titre">Titres des éléments</a><span>&nbsp;</span>

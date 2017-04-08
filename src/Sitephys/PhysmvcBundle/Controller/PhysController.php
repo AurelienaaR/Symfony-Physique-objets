@@ -5,14 +5,6 @@ namespace Sitephys\PhysmvcBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
-use Sitephys\PhysmvcBundle\Entity\Phys;
-use Sitephys\PhysmvcBundle\Entity\Domain;
-use Sitephys\PhysmvcBundle\Entity\Topic;
-use Sitephys\PhysmvcBundle\Entity\Level;
-use Sitephys\PhysmvcBundle\Entity\Symbolization;
-use Sitephys\PhysmvcBundle\Form\TopicType;
-use Sitephys\PhysmvcBundle\Form\PhysType;
-use Doctrine\ORM\QueryBuilder;
 
 
 class PhysController extends Controller
@@ -24,20 +16,19 @@ class PhysController extends Controller
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
     $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
 
-    $evolutionBy = ['Questions (dim > 1)','Questions (dim = 1)', 'Etats (dim = 0)', 'Solutions (dim = 1)', 'Solutions (dim > 1)'];
+    $evolutionBy = ['Questions (-dim > 1)','Questions (-dim = 1)', 'Etats (dim = 0)', 'Solutions (dim = 1)', 'Solutions (dim > 1)'];
     $domId = $domainRep->findDomId();
-    $domContent = $domainRep->findIdContentDomain();
+    $domTitle = $domainRep->findIdTitleDomain();
 
     foreach ($evolutionBy as $keyType => $typeTop) {
       foreach ($domId as $kex => $domIdx) {
-        $tabTopPerDom[$keyType][$domIdx["id"]] = $topicRep->findIdContentTopic($keyType, $domIdx["id"]);
+        $tabTopPerDom[$keyType][$domIdx["id"]] = $topicRep->findIdTitleTopic($keyType, $domIdx["id"]);
       }
     }
 
     $lastTenTop = $topicRep->findIdTitleLastTopic();
-    if (null == $lastTenTop) {
+    if (null === $lastTenTop) {
       return $this->redirectToRoute('sitephys_physmvc_home');
-      // throw new NotFoundHttpException('Aucun thème dans la base.');
     }
 
     $userconnectx = $this->getUser();
@@ -49,7 +40,7 @@ class PhysController extends Controller
 
     return $this->render('SitephysPhysmvcBundle:Phys:home.html.twig', array(
       'userconnect' => $userconnect,
-      'domcontent' => $domContent,
+      'domtitle' => $domTitle,
       'tabtopperdom' => $tabTopPerDom,
       'evol' => $evolutionBy,
       'lasttentop' => $lastTenTop,
@@ -98,7 +89,6 @@ class PhysController extends Controller
 
     if (null == $listPhys) {
       return $this->redirectToRoute('sitephys_physmvc_home');
-      // throw new NotFoundHttpException('Aucun élément pour ce thème dans la base.');
     } else {
       $physTopic = $topicRep->find($idTopic);
       $domTopId = $physTopic->getDomainId();
@@ -211,7 +201,7 @@ class PhysController extends Controller
         $symbolizationLevel = $symbolizationRep->findBy(
           array('levelkey' => $levsym)
           );
-        if (null == $symbolizationLevel && $intBase <= 3) {
+        if (null === $symbolizationLevel && $intBase <= 3) {
             $bsSymbolContent[$intBase][$intSub] = "aucune symbolisation";
         } else {
           $bsSymbolContent[$intBase][$intSub] = $rto;
@@ -254,7 +244,7 @@ class PhysController extends Controller
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
 
     $topEvalObject = $topicRep->find($idTopic);
-    if (null == $topEvalObject) {
+    if (null === $topEvalObject) {
       return $this->redirectToRoute('sitephys_physmvc_home');
     } else {
       $topTitle = $topEvalObject->getTitle();
@@ -271,19 +261,40 @@ class PhysController extends Controller
 
       foreach ($physEval as $keyEv => $physEv) {
         $eva = $physEv->getEvaluation();
-        if (null != $eva) {
+        if (null !== $eva) {
           $levEv = $physEv->getLevel();
-          if (null != $levEv) {
+          if (null !== $levEv) {
             $levObj = $levelRep->findPhysLevelIdContent($levEv);
             $levObject = $levObj[0];
+            $lesym = $levObject["id"];
+
+        $rty = "";
+        $lesymMod = $lesym;
+        if ($lesym > 54) {
+          $rty = "Retour - ";
+          if ($lesym > 54 && $lesym < 58) {
+              $lesymMod = $lesym - 51;
+          }
+          if ($lesym > 57 && $lesym < 61) {
+              $lesymMod = $lesym - 42;
+          }
+          if ($lesym > 60 && $lesym < 73) {
+              $lesymMod = $lesym - 18;
+          }
+          if ($lesym > 72 && $lesym < 76) {
+              $lesymMod = $lesym - 72;
+          }
+          $lesym = $lesymMod;
+        }
+
             $symObject = $symbolizationRep->findBy(
               array (
-                'levelkey' => $levObject["id"]
+                'levelkey' => $lesym
               )
             );
             $levb = $levObject["levelBase"];
             $levs = $levObject["levelSub"];
-            $tabSym[$levb][$levs] = $symObject[0]->getContent();
+            $tabSym[$levb][$levs] = $rty . $symObject[0]->getContent();
             $tabBool[$levb][$levs] = true;
             $tabEval[$levb][$levs] = $eva;
             $tabLevel[$levb][$levs] = $levObject["content"];
@@ -326,8 +337,6 @@ class PhysController extends Controller
     $physGal = $levelRep->findBy(
       array('levelBase' => $intLevel, 'levelSub' => 0)
     );
-    $physIniGlobal = $physGal[0];
-    $physIniGlobalContent = $physIniGlobal->getContent();
     for ($iElt=1; $iElt <= 6; $iElt++) {
           $tabBoolElt[$iElt] = false;
         }
@@ -391,7 +400,6 @@ class PhysController extends Controller
         'userconnect' => $userconnect,
         'idtop' => $idTopic,
         'intlevel' => $intLevel,
-        'physiniglobalcontent' => $physIniGlobalContent,
         'tabboolelt' => $tabBoolElt,
         'phys' => $physg,
         'domain' => $physDomain,
@@ -413,7 +421,7 @@ class PhysController extends Controller
 
     $phys = $physRep->find($id); 
     if (null === $phys) {
-      throw new NotFoundHttpException('Elément "' . $id . '" pas dans la base.');
+      return $this->redirectToRoute('sitephys_physmvc_home');
     } else {
       $physLevel = $phys->getLevel();
       $levelObjec = $levelRep->findPhysLevelIdContent($physLevel);
@@ -494,38 +502,36 @@ class PhysController extends Controller
 
     if (null === $physGlobal) {
       return $this->redirectToRoute('sitephys_physmvc_home');
-      // throw new NotFoundHttpException('Aucun élément pour le thème ' . $idTopic . ' et le niveau ' . $strLevel . '.');
     } else {
       $phys = $physGlobal[0];
       $physLevel = $phys->getLevel();
       $levelObjec = $levelRep->findPhysLevelIdContent($physLevel);
       $levelObject = $levelObjec[0];
-      $levelId = $levelObject["id"];
-      $rto = "";
-      $levelIdMod = $levelId;
-        if ($levelId > 54) {
-          $rto = "Retour - ";
-          if ($levelId > 54 && $levelId < 58) {
-              $levelIdMod = $levelId - 51;
+      $lId = $levelObject["id"];
+      $rtw = "";
+      $lIdMod = $lId;
+        if ($lId > 54) {
+          $rtw = "Retour - ";
+          if ($lId > 54 && $lId < 58) {
+              $lIdMod = $lId - 51;
           }
-          if ($levelId > 57 && $levelId < 61) {
-              $levelIdMod = $levelId - 42;
+          if ($lId > 57 && $lId < 61) {
+              $lIdMod = $lId - 42;
           }
-          if ($levelId > 60 && $levelId < 73) {
-              $levelIdMod = $levelId - 18;
+          if ($lId > 60 && $lId < 73) {
+              $lIdMod = $lId - 18;
           }
-          if ($levelId > 72 && $levelId < 76) {
-              $levelIdMod = $levelId - 72;
+          if ($lId > 72 && $lId < 76) {
+              $lIdMod = $lId - 72;
           }
-          $levelId = $levelIdMod;
         }
       $symbolizationObject = $symbolizationRep->findBy(
         array (
-          'levelkey' => $levelId,
+          'levelkey' => $lIdMod,
           ));
       $symbolizationContent = [];
       foreach ($symbolizationObject as $key => $symbol) {
-        $symbolizationContent[] = $rto . $symbol->getContent();
+        $symbolizationContent[] = $rtw . $symbol->getContent();
       }
 
       $physTopicId = $phys->getTopicId();
