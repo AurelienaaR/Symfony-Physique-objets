@@ -77,10 +77,13 @@ twig:
 
 # app/config/config.yml
 assetic:
-  debug:          '%kernel.debug%'
-  use_controller: '%kernel.debug%'
-  filters:
-    cssrewrite: ~
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+        jsqueeze:   ~
+        scssphp:
+            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
 
 fos_rest:
     routing_loader:
