@@ -20,9 +20,13 @@
 
     <nav id="tabs-nav" class="clearfix">
       {% for tti in iddomobject %}
-        <a href="{{"#" ~ "domaintopic" ~ tti["id"] }}"> {{ tti["title"] }} </a><span style = "margin:10px;">&nbsp;</span>
+        <span style = "margin:8px; float:left;">
+          <a href="{{"#" ~ "domaintopic" ~ tti["id"] }}"> {{ tti["title"] }} </a>&nbsp;
+        </span>
       {% endfor %}
-      <a href="#reference"> Références </a>
+      <span style = "margin:8px; float:left;">
+        <a href="#reference"> Références </a>
+      </span>
     </nav>
 
     <div id="tabs-container" onload="initTab()">

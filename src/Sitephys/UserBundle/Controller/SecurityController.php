@@ -230,8 +230,8 @@ class SecurityController extends Controller
 
     }
 
-    if (!$userObject) {
-      throw new NotFoundHttpException('Utilisateur "' . $iduser . '" pas dans la base.');
+    if (null === $userObject) {
+      return $this->redirectToRoute('sitephys_physmvc_home');
     } else {
       $em->remove($userObject);
       $em->flush();

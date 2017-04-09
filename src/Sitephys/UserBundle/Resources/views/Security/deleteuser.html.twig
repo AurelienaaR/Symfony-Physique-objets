@@ -17,12 +17,15 @@
 {% block sitephysuser_body %}
 
   <div class="well">
+    <br /><br />
+    <a href="{{ asset('../logout') }}">Déconnexion</a>
+    <br /><br />
     <div id="hw">Le compte {{ roledeletedaccount }} de {{ usernamedeletedaccount }} a bien été supprimé.
     </div>
     <br /><br />
     <div>
       <div class="button-eval">
-        <a href="{{ asset('../logout') }}">Retour à l'accueil</a>
+        <a href="{{ path('sitephys_physmvc_home') }}">Retour à l'accueil</a>
       </div>
     </div>
   </div>

@@ -14,7 +14,7 @@
 {% block sitephysuser_body %}
   <div id="hw">Envoi de courriel</div>
   <br /><br />
-  <div id="hw">Lien de validation de votre compte  {{ uemail }} : <br /><br />
+  <div id="hx">Lien de validation de votre compte  {{ uemail }} : <br /><br />
     <a href="{{ path('sitephys_user_email', {'uemail': uemail, 'toklink': toklink}) }}">Cliquer sur ce lien afin de valider votre adresse courriel</a>. 
     <br /><br />Un courriel vous sera alors envoyé vers celle-ci avec un lien token valide durant une heure.
   </div>
