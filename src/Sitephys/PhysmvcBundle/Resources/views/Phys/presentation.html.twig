@@ -1,7 +1,7 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Présentation 
+  Présentation du site Etudes des thèmes et domaines de physique 
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
@@ -9,15 +9,17 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-  <div class="containerthome">
-    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcelement.jpg') }}" class="homephoto" alt="Image de niveaux basiques" title="Schéma Elément simple avec les niveaux" /><br />
+  <div id="containerimghome">
+    <div class="containerthome">
+      <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcelement.jpg') }}" class="homephoto" alt="Image de niveaux basiques" title="Schéma Elément simple avec les niveaux" />
+	</div>	
   </div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
   <div class="well">
 
-      <div id="hb">Attributs et propriétés des éléments de physique</div><br />
+    <div id="hb">Etudes des attributs et fonctionnalités des éléments de physique</div><br />
       <nav id="tabs-nav" class="clearfix">
         <a href="#modele">Modèles objets</a><span>&nbsp;</span>
         <a href="#editions">Editions (fonctionnalités)</a><span>&nbsp;</span>
@@ -28,48 +30,51 @@
         <a href="#symbolisation">Symbolisations</a><span>&nbsp;</span>
       </nav>
 
-      <div id="tabs-container" onload="initTab()">
+
+    <div id="tabs-container" onload="initTab()">
 
         <article id="modele">
-          <ul>Les langages objet reproduisent des réalités, fonctionnalités, valeurs et évolutions physiques (expérimentales ou théoriques) dans un cadre d'études au sein d'un environnement déterminé, modélisé ou non. Leurs éléments structurels sont les classes, elles-mêmes objets d'études au sein de cet environnement, pouvant être définies par héritage, interface, classe abstraite... Situées par un namespace dans le schéma général du système, elles sont constituées de leurs variables (attributs) et de leurs fonctionnalités (méthodes) propres. Elles peuvent être en relation avec d'autres classes présentes. Les objets sont des instances de ces classes. Les relations (binaires exp. - th., forme - fond) entre classes et objets (dont l'aspect th. est sa classe, comme l'aspect th. d'une classe est son objet) font du langage objet une autocomplétion de la description des éléments physiques et de leurs interactions pour un environnement défini. <br />
-            <br /><li> Modèle du cycle en V : méthode de gestion de projet avec l'évolution suivante : 
+          <ul>Les <strong>langages orientés objet</strong> reproduisent des réalités physiques : valeurs (expérimentales ou théoriques) et fonctionnalités, avec leurs évolutions (logiques ou chronologiques, erratiques ou astreintes) dans un cadre d'études au sein d'un environnement déterminé (modélisé ou non). Leurs éléments structurels sont les classes, elles-mêmes objets d'études au sein de cet environnement, pouvant être définies par héritage, interface, classe abstraite... Situées dans un namespace du schéma général du système, elles sont constituées de leurs variables (attributs) et de leurs fonctionnalités (méthodes) propres. Elles peuvent être en relation avec d'autres classes présentes. Les objets sont des instances de ces classes. Les relations (binaires exp. - th., forme - fond, classes - objets, attributs - méthodes, ...) au sein et entre classes et objets font du langage objet une autocomplétion de la description des éléments physiques et de leurs interactions pour un environnement défini. <br />
+            <br /><li> Modèle du <strong>cycle en V</strong> : méthode de gestion de projet avec l'évolution suivante : 
             théorie (conception, spécifications) -> expérimentale (codage, détails du développement) -> théorie (fonctionnalités du produit, recette) décrivant un V (augmentation puis diminution du détail) avec les comparaisons horizontales (mêmes niveaux entre les deux branches du V) du projet.</li><br />
-            <li> Méthodes Agile pour un projet de site Web : évolutions en cycles adaptatifs avec des échanges (description, analyses, propositions, corrections, améliorations, ...) entre clients et intégrateurs/développeurs ou entre intégrateurs/développeurs, qui sont définies et fréquentes.</li><br />
-            <li> Modèles MVC (avec les analogies) : Modèle (exp. in) - Vue (exp. out) - Controlleur (th.). Séparation des fonctionnalités d'un système développé (logiciel, site, API, ...) permettant une conformité, une réalisation, une maintenance et une évolution plus aisées et performantes.</li>
+            <li> Méthodes <strong>Agile</strong> pour un projet de site Web : évolutions en cycles adaptatifs avec des échanges (description, analyses, propositions, corrections, améliorations, ...) entre clients et intégrateurs/développeurs ou entre intégrateurs/développeurs, qui sont définis, adaptés et fréquents.</li><br />
+            <li> Modèles <strong>MVC</strong> avec (analogies) : Modèle (exp. in) - Vue (exp. out) - Contrôleur (th.). Séparation des fonctionnalités d'un système développé (logiciel, site, API, ...) permettant une conformité, une réalisation, une maintenance et une évolution efficaces et plus aisées.</li>
           </ul>
         </article>
 
         <article id="appli">
-          <ul>Applications pour des évolutions de projets en physique - chimie : modèles objet pour le fond (méthodes d'évolution pour un thème de recherche donné des systèmes, variables, environnements, référentiels, lois, théories, ...) : <br />
-            <br /><li> Conceptions, évaluations, analyses, intéractions, comparaisons, vérifications pour des émergences du hasard (pas de contraintes, quantités, systèmes ou objets aléatoires, isolés, possibilités d'études statistiques, ...) ou bien utilisation des nécessités (logiques, de symétrie, de constance, de conservation, d'équilibres, de changement d'état, de propriétés, d'optimisation, ...) selon le cadre d'études (définitions, repères, variables, ensembles, principes, postulats, ...). </li><br />
-            <li> Modèles objet pour la forme (adaptation des modèles pour le fond) : méthodes d'évolution de projet, systèmes organisationnels, méthodes de méthodes, ... </li><br />
-            <li> Types d'analyse de base : empirique, causal discret (états successifs), aléatoire, modélisation aux éléments finis, analogies, ... </li><br />
-            <li> Types d'analyse évoluée : avec symbolisation, généralisation, englobement, conversions discret - continu, complexification, simplification, optimisation, récursivité, apprentissage de méthodes, ... </li>
+			<ul><strong>Applications</strong> concernant les évolutions de projets en physique - chimie : modèles orientés objet sur le fond (méthodes d'évolution pour un thème donné des systèmes, éléments quantifiés ou qualifiés, variables, environnements, référentiels, lois, théories, ...) : <br />
+            <br /><li> Conceptions, évaluations, analyses, interactions, comparaisons, vérifications pour des émergences du hasard (systèmes sans contraintes, aléatoires, isolés, induisant la possibilité d'études statistiques, ...) ou bien utilisation des nécessités (logiques, de symétrie, de symétrie de jauge, de constance, de conservation, d'équilibres, de changement d'état, de propriétés, de minimalisation de variables, d'optimisation, ...) selon le cadre d'études (définitions, environnements, référentiels, repères, variables, ensembles, principes, postulats, ...). </li>
+            <br /><li> Modèles objet pour la forme (avec par exemple adaptation des modèles sur le fond) : méthodes d'évolution de projet, systèmes organisationnels, méthodes de production de méthodes, ... </li>
+            <br /><li> Types d'analyses de base sur des sujets expérimentaux ou théoriques (environnements, cadres, systèmes ou variables d'études et modèles, lois, entités physiques, ...) par : mesures, évaluations (empiriques), causalités discrètes (états successifs), considérations d'espèces aléatoires, modélisation aux éléments finis, analogies, ... </li>
+            <br /><li> Types d'analyses évoluées sur des sujets expérimentaux ou théoriques (environnements, cadres, systèmes ou variables d'études et modèles, lois, entités physiques, ...) par : symbolisation, généralisation, englobement, conversions discret - continu, complexification, simplification, optimisation, récursivité, apprentissage de méthodes, ... </li>
           </ul>
         </article>
 
         <article id="editions">
-          <ul>Edition (accès aux fonctionnalités) : <br />
-            <br /><li> Visiteurs : consultation des éléments actuels.</li><br />
-            <li> Utilisateurs (users) : gestion de compte, consultation des éléments actuels, éléments modifiés et ajoutés.</li><br />
-            <li> Auteurs (authors) : gestion de compte, ajoût de domaine, consultation et modification des éléments actuels, ou consultation des éléments modifiés et ajoutés.</li><br />
+          <ul><strong>Editions</strong> (accès aux fonctionnalités) : <br />
+            <br /><li> Visiteurs : consultation des éléments actuels.</li>
+            <li> Utilisateurs (users) : gestion de compte, consultation des éléments actuels, éléments modifiés et ajoutés.</li>
+            <li> Auteurs (authors) : gestion de compte, ajoût de domaine, consultation et modification des éléments actuels, ou consultation des éléments modifiés et ajoutés.</li>
             <li> Administrateurs (administrators) : gestion des utilisateurs, ajout de domaine et thèmes, consultation, modification et ajoût des éléments actuels, éléments modifiés et ajoutés.</li>
           </ul>
         </article>
 
         <article id="domaines">
-          <ul>Domaines disponibles : <br />
-          {% for domainx in domain %}
-            <br /><li> {{ domainx.title }} </li>
-          {% endfor %}
+          <ul><strong>Domaines</strong> disponibles : <br /><br />
+            {% for domainx in domain %}
+              <li> {{ domainx.title }} </li>
+            {% endfor %}
+		  </ul>
         </article>
 
         <article id="niveaux">
-          <br />
-          <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" class="homephoto" alt="Image de niveaux globaux" title="Schéma global" /><br />
-          <ul>Niveaux pour le thème : <br />
-            <br /><li> Niveau de base <i>(global, nb de 1 à 6)</i> : </li><br />
-            <li> Niveau de précision np = 0 : niveau global du niveau de base. </li><br /> 
+		  <strong>Schéma général</strong> à deux types de niveaux :<br /><br />
+          <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" id="containerimghome" alt="Image de niveaux globaux" title="Schéma global" /><br />
+          <ul><strong>Niveaux</strong> des éléments pour chaque thème : <br />
+            <br /><li> Niveau de base (global, nb de 1 à 6, cf. schéma ci-dessus pour les éléments globaux). </li><br />
+			<li> Niveau de précision (np de 1 à 6 : niveau d'élément dans un élément global, cf. schéma ci-dessus pour les éléments simples de chacun des éléments globaux). </li><br /> 
+            <li> Niveau de précision np = 0 : niveau global de l'élément d'un niveau de base nb. </li><br /> 
             <li> Description formelle des niveaux de précision np (1 : "exp. in" et Action = "Observation", 2 : "th." et Action = "Formalisation" ou bien 3 : "exp. out" et Action = "Analyse, application") de la chaîne d'entrée : <br />
             Action (niveau de précision « np ») dans le cadre utilisé de la chaîne d'entrée du niveau de base  « nb » des sorties établies au niveau nb – (np - 1) ou bien si np = 1, (nb - 1) – 3 (si nb > 1, sinon "Entrées générales") et nb – 6. Cette action produit des sorties, entrées du niveau nb – (np + 1) (et (nb + 1) – 1 si np = 3). </li><br />
             <li> Description formelle des niveaux de précision np (4 : "exp. in" et Action = "Observation", 5 : "th." et Action = "Formalisation" ou bien 6 : "exp. out" et Action = "Analyse, application") de la chaîne de retour : <br />
@@ -78,28 +83,27 @@
         </article>
 
         <article id="modes">
-          <ul>Etendue de recherche d'éléments de dimension dim positive du thème (système pour la forme ou pour le fond), étudié suivant une évolution causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6) de solutions, sans question, dans l'environnement d'étude comprenant lui-même les éléments identifiés du système : <br />
+          <ul><strong>Etendue d'évolution</strong> d'éléments, d'une dimension <strong>dim</strong> positive pour le thème défini, étudié suivant une évolution elle-même causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6), de résolutions, sans question, dans l'environnement et cadre d'études, comprenant également les éléments identifiés du système. On note mode = dim + 2. Pour dim = ... <br />
             <li> 2 ou plus : champ, espace (états et gradients de multiplicité de 1 jusqu'à dim, implicites ou explicites) de résolutions.</li>
             <li> 1 : points (états) et leur direction locale (orientation implicite ou explicite).</li>
           </ul>
           <ul>Présentation d'éléments établis (dim = 0) du thème (système pour la forme ou pour le fond) étudié suivant une évolution causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6) de positions acquises ou prédites dans l'environnement d'étude comprenant lui-même les éléments identifiés du système : <br />
             <li> 0 : points (états).</li>
           </ul>
-          <ul>Etendue de recherche d'éléments de dimension dim négative du thème (système pour la forme ou pour le fond), étudié suivant une évolution causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6) comprenant au moins une question et avec d'éventuelles solutions, dans l'environnement d'étude comprenant lui-même les éléments identifiés du système : <br />
+          <ul>Etendue de recherche d'éléments de dimension dim négative pour le thème défini, étudié suivant une évolution elle-même causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6) comprenant au moins une question et avec d'éventuelles résolutions, dans l'environnement et cadre d'études, comprenant également les éléments identifiés du système. On note mode = dim + 2. Pour dim = ... <br />
             <li> -1 : points (états) et leur direction locale (orientation implicite ou explicite).</li>
             <li> -2 ou moins : champ, espace (états et gradients de multiplicité de 1 jusqu'à -dim, implicites ou explicites) de questionnements (au moins un) et d'éventuelles résolutions.</li>
           </ul>
-          <br /><i>dim = mode - 2.</i>
         </article>
 
         <article id="symbolisation">
-          <ul>Symbolisations disponibles pour l'ensemble des thèmes : <br /><br />
+			<ul><strong>Symbolisations</strong> (De l'expérimentation : moyens, protocoles de sélection, de mise en oeuvre, d'utilisation, de précision, de tests, ... et de la théorie : outils de recueil, utilisation et analyse des références théoriques existantes, outils de formulations et de conformités de théories inexistantes, apprentissages informatiques, ...) disponibles suivant l'ensemble des thèmes : <br /><br />
           {% for symbolx in symbol %}
             <li> {{ symbolx.content }} </li>
           {% endfor %}
           </ul>
         </article>
       </div>
+    </div>
 
-  </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Thèmes et références de leur domaine 
+  Thèmes de physique et formulaires
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
@@ -9,8 +9,10 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-  <div class="containertedit">
-    <img src="{{ asset('bundles/sitephysphysmvc/images/physics-schema.jpg') }}" class="addphoto" alt="Image de thèmes" />
+  <div id="containerimghome">
+    <div class="containerthome">
+      <img src="{{ asset('bundles/sitephysphysmvc/images/physics-schema.jpg') }}" class="homephoto" alt="Image de thèmes" />
+    </div>
   </div>
 {% endblock %}
 
@@ -41,7 +43,7 @@
       <article id="reference">
         {% for titlecontrefx in titlecontref %}
           Domaine : {{titlecontrefx.dtitle }}. Référence : {{ titlecontrefx.rtitle }} <br />
-          Contenu : {{ titlecontrefx.rcontent }} <br />
+          Contenu : {{ titlecontrefx.rcontent }} <br /><br />
         {% endfor %}
       </article>
     </div>

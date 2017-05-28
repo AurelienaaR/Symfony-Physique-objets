@@ -3,6 +3,7 @@
 namespace Sitephys\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -81,6 +82,25 @@ class SecurityController extends Controller
   }
 
 
+  public function expemailuserAction($uemail, $toklink, Request $request)
+  {
+    
+    $userconnectx = $this->getUser();
+    if (null === $userconnectx) {
+      $userconnect = 'Connexion';
+    } else {
+      $userconnect = $userconnectx->getUsername();
+    }
+
+    return $this->render('SitephysUserBundle:Security:expemailuser.html.twig', 
+      array(
+        'userconnect' => $userconnect,
+        'uemail' => $uemail,
+        'toklink' => $toklink,
+      ));
+  }
+
+
   public function adduserAction($roleuser, Request $request)
   {
     $userconnectx = $this->getUser();
@@ -150,9 +170,9 @@ class SecurityController extends Controller
         }
 
         $xx = $this->setCookieAction($usEmail);
-        $toklinked = $this->readCookieAction($xx);
+        $toklinked = $this->readCookieAction($xx, $usEmail);
 
-        return $this->render('SitephysUserBundle:Security:expemailuser.html.twig', 
+        return $this->redirectToRoute('sitephys_user_expemail', 
           array(
             'userconnect' => $userconnect,
             'uemail' => $usEmail,
@@ -173,9 +193,25 @@ class SecurityController extends Controller
   public function authenAction($uemail, $toklink, Request $request)
   {
     $yy = $this->setCookieAction($uemail);
-    $tok = $this->readCookieAction($yy);
-
-    if ((null !== $toklink) && ($tok == $toklink)) {
+	/*
+	  $kvl = false;
+	$cookis = $request->cookies->all(); 
+	  
+	if ($cookis == null) {return $this->redirectToRoute('sitephys_physmvc_presentation');}
+	  
+	foreach ($cookis as $cookisx) {
+		$tok = $cookisx->getValue();
+		if ((null !== $toklink) && ($tok == $toklink)) {
+			$uemail = $cookisx->getName();
+			$kvl = true;
+		}
+	}
+    */
+	$tok = $this->readCookieAction($yy, $uemail);
+/*
+    if ($kvl) { 
+	*/
+	if ((null !== $toklink) && ($tok == $toklink)) {
       $em = $this->getDoctrine()->getManager();
       $userRep = $em->getRepository('SitephysUserBundle:User');
       $userAuth = $userRep->findByEmail($uemail);
@@ -202,7 +238,7 @@ class SecurityController extends Controller
   }
 
 
-  public function deleteuserAction($iduser)
+  public function deleteuserAction($iduser, Request $request)
   {
     $em = $this->getDoctrine()->getManager();
     $userRep = $em->getRepository('SitephysUserBundle:User');
@@ -213,7 +249,6 @@ class SecurityController extends Controller
     $roleDeletedAccountX = $tabRolesDeletedAccount[0];
 
     switch ($roleDeletedAccountX) {
-
       case 'ROLE_USER':
         $roleDeletedAccount = 'utilisateur (consultation)';
         break;
@@ -226,7 +261,6 @@ class SecurityController extends Controller
       default:
         $roleDeletedAccount = 'non connecté';
         break;
-
     }
 
     if (null === $userObject) {
@@ -250,52 +284,50 @@ class SecurityController extends Controller
   }
 
 
-  public function setCookieAction($userEmail)
+  public function setCookieAction($usermail)
     {
-      $hashEmail = hash('sha512', $userEmail, false);
-      $response = new Response();          
-      $response->headers->setCookie(new Cookie('tokenUser', $hashEmail, time() + 3600)); 
-      $response->send();
+      $hashEmail = hash('sha512', $usermail, false);
+      $response = new Response(); 
+      $cook = new Cookie($usermail, $hashEmail, time() + 3600);
+      $response->headers->setCookie($cook); 
+      // $response->send();
       return $response; 
     }
 
 
-  public function readCookieAction($respons) 
+  public function readCookieAction($respons, $usermail) 
     {
-      $resp = $respons->headers->getCookies();
-      $respCookie = $resp[0]->getValue('tokenUser');
-      return $respCookie;         
+	  $resp = $respons->headers->getCookies();
+      $respCookie = $resp[0]->getValue($usermail);
+      return $respCookie;
+	  
+	  /*
+	  $request = $this->getRequest();
+	  $cookies = $request->cookies->all();	  
+	  $cooky = $cookies[$usermail];
+      $respCookie = $cooky->getValue();
+	  // $respCookie = $this->getRequest()->cookies->get('xusermail');
+	  return $respCookie;
+	  */
     }
 
-
-  public function emailuserAction($uemail, $toklink)
+	
+  public function emailuserAction($uemail, $toklink, Request $request)
   {
     $message = \Swift_Message::newInstance()
-      ->setSubject('Confirmation de votre courriel pour la demande de compte')
-      ->setFrom('xxx@yyy.fr')
+      ->setSubject('Confirmation de votre courriel pour la demande de compte de physics-object.fr')
+      ->setFrom('aurelienaa@physics-object.fr')
       ->setTo($uemail)
       ->setBody(
-        $this->renderView(
-          'Emails/registration.html.twig',
-          array('uemail' => $uemail,
-            'toklink' => $toklink)
-          ),
+	  $this->renderView(
+			'Emails/registration.html.twig',
+			array('uemail' => $uemail, 'toklink' => $toklink)
+          ), 
         'text/html'
-        )
-        /* 
-        ->addPart(
-            $this->renderView(
-                'Emails/registration.txt.twig',
-                array('name' => $name)
-            ),
-            'text/plain'
-        ) */
-  ;
+        ); 
+
   $this->get('mailer')->send($message);
-  return $this->render('SitephysUserBundle:Security:emailuser.html.twig', 
-    array(
-      'uemail' => $uemail,
-      'toklink' => $toklink,
-    ));
+  return $this->render('SitephysUserBundle:Security:emailuser.html.twig');
   }
+  
 }

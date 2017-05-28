@@ -1,27 +1,25 @@
 {% extends "SitephysUserBundle::layoutuser.html.twig" %}
 
 {% block title %}
-  Connexion au compte
+  Formulaire d'inscription utilisateur
 {% endblock %}
 
 {% block menu %}
   {{ parent() }}
 {% endblock %}
 
+{% block sitephysuser_section %}
+{% endblock %}
+
 {% block sitephysphysmvc_image %}
   <div id="containerimghome">
     <div class="containerthome">
-      <img src="{{ asset('bundles/sitephysuser/images/tabcontrol.jpg') }}" class="homephoto" alt="Image de Accueil" />
+      <img src="{{ asset('bundles/sitephysuser/images/code-object.jpg') }}" class="homephoto" alt="Image de Accueil" />
     </div>
   </div>
 {% endblock %}
 
 {% block sitephysuser_body %}
-
-  {% if error %}
-    <div class="alert alert-danger"> {{ error.message }} </div>
-  {% endif %}
-  <br /><br />
 
   <div class="well">
     <div id="hb">Connexion à votre compte : </div>

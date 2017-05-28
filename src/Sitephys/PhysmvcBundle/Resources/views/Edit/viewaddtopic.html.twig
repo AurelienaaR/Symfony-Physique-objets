@@ -1,7 +1,7 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Lecture du thème ajouté {{ physaddtopic.title }} par {{ physaddtopic.username }}. 
+  Lecture de thème ajouté 
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
@@ -9,14 +9,16 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-  <div class="containerthome">
-    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcelement.jpg') }}" class="homephoto" alt="Image du thème ajouté" />
+  <div id="containerimghome">
+    <div class="containerthome">
+      <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcelement.jpg') }}" class="homephoto" alt="Image du thème ajouté" />
+    </div>
   </div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-      <div id="hb">Description du thème ajouté {{ physaddtopic.title }} du domaine {{ domtopadded.title }} </div><br />
+      <div id="hb">Description des éléments globaux du thème ajouté {{ physaddtopic.title }} du domaine {{ domtopadded.title }} </div><br />
 
       <nav id="tabs-nav" class="clearfix">
         <a href="#contenuexpin">Exp in (1)</a><span>&nbsp;</span>
@@ -57,7 +59,7 @@
           Auteur : {{ physaddtopic.username }}, 
           <br />Date : {{ physaddtopic.date|date('d/m/Y H:i:s') }}
           {% set dimmode = physaddtopic.mode - 2 %}
-          <br />Mode d'évolution : {{ dimmode }}
+          <br />Dimension d'évolution : {{ dimmode }}
           <br />Lien Internet : {{ physaddtopic.weblink }}
         </article>
       </div>

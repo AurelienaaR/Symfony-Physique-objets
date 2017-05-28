@@ -1,7 +1,7 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Evaluations du thème {{ toptitle }}
+  Evaluations du thème physique
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
@@ -9,8 +9,10 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-  <div class="containertedit">
-    <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" class="addphoto" alt="Image de Evaluations du thème" title ="Evaluations du thème" />
+  <div id="containerimghome">
+    <div class="containerthome">
+      <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" class="homephoto" alt="Image de Evaluations du thème" title ="Evaluations du thème" />
+	</div>
   </div>
 {% endblock %}
 

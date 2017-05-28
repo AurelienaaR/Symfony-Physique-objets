@@ -1,7 +1,7 @@
 {% extends "SitephysPhysmvcBundle::layout.html.twig" %}
 
 {% block title %}
-  Edition
+  Edition - Accueil
 {% endblock %}
 
 {% block sitephysphysmvc_section %}
@@ -9,8 +9,10 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-  <div class="containerthome">
-    <img src="{{ asset('bundles/sitephysphysmvc/images/BoseEinsteincondensation.jpg') }}" class="homephoto" alt="Image de Accueil - Edition" />
+  <div id="containerimghome">
+    <div class="containerthome">
+      <img src="{{ asset('bundles/sitephysphysmvc/images/BoseEinsteincondensation.jpg') }}" class="homephoto" alt="Image de Accueil - Edition" />
+	</div>
   </div>
 {% endblock %}
 

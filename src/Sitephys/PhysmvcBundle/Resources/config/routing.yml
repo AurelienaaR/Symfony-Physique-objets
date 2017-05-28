@@ -80,13 +80,18 @@ sitephys_physmvc_edition_viewupd:
     defaults:
         _controller: SitephysPhysmvcBundle:Edit:viewupd
 
+sitephys_physmvc_links:
+    path:      /links/
+    defaults:
+        _controller: SitephysPhysmvcBundle:Phys:links
+
 sitephys_user_login:
-    path:      /login
+    path:      /login/
     defaults:
         _controller: SitephysUserBundle:Security:login
 
 sitephys_user_account:
-    path:      /user
+    path:      /user/
     defaults:
         _controller: SitephysUserBundle:Security:homeuser
 
@@ -100,11 +105,6 @@ sitephys_user_authentification:
     defaults:
         _controller: SitephysUserBundle:Security:authen
 
-sitephys_user_registration:
-    path:      /user/registration/{uemail}/{toklink}
-    defaults:
-        _controller: SitephysUserBundle:Security:registration
-
 sitephys_user_delete:
     path:      /user/delete/{iduser}
     defaults:
@@ -114,3 +114,8 @@ sitephys_user_email:
     path:      /user/email/{uemail}/{toklink}
     defaults:
         _controller: SitephysUserBundle:Security:emailuser
+
+sitephys_user_expemail:
+    path:      /user/expemail/{uemail}/{toklink}
+    defaults:
+        _controller: SitephysUserBundle:Security:expemailuser

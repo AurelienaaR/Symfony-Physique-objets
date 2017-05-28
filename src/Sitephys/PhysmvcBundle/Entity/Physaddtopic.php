@@ -111,13 +111,6 @@ class Physaddtopic
 
   /**
    * @var string
-   *  
-   * @ORM\Column(name="document", type="string", nullable=true)
-   */
-  private $document;
-
-  /**
-   * @var string
    *
    * @ORM\Column(name="weblink", type="string", nullable=true)
    */
@@ -321,22 +314,6 @@ class Physaddtopic
   public function getContentretexpout()
   {
     return $this->contentretexpout;
-  }
-
-  /**
-   * @param string $document
-   */
-  public function setDocument($document = null)
-  {
-    $this->document = $document;
-  }
-
-  /**
-   * @return string
-   */
-  public function getDocument()
-  {
-    return $this->document;
   }
 
   /**

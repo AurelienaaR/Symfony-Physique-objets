@@ -105,7 +105,6 @@ class EditController extends Controller
       ->add('email',      EmailType::class, array('data' => $useremail,))
       ->add('date',      DateType::class)
       ->add('content',      TextareaType::class)
-      ->add('document',     FileType::class, array('required' => false))
       ->add('weblink',     UrlType::class, array('required' => false))
       ->add('save',      SubmitType::class);
 
@@ -157,7 +156,6 @@ class EditController extends Controller
         ->add('contentretexpin',      TextareaType::class)
         ->add('contentretth',      TextareaType::class)
         ->add('contentretexpout',      TextareaType::class)
-        ->add('document',     FileType::class, array('required' => false))
         ->add('weblink',     UrlType::class, array('required' => false))
         ->add('save',      SubmitType::class);
 
@@ -220,7 +218,6 @@ class EditController extends Controller
       ->add('date',      DateType::class)
       ->add('content',      TextareaType::class)
       ->add('evaluation',     TextareaType::class, array('required' => false))
-      ->add('document',     FileType::class, array('required' => false))
       ->add('save',      SubmitType::class)
     ;
     $formPhysUpdate = $formUpdateBuilder->getForm();

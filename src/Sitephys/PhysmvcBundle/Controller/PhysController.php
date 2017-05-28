@@ -555,4 +555,9 @@ class PhysController extends Controller
     }
   }
 
+  public function linksAction()
+  {
+	  return $this->render('SitephysPhysmvcBundle:Phys:links.html.twig');
+  }
+	
 }
