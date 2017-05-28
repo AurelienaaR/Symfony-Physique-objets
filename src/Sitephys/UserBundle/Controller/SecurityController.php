@@ -315,8 +315,8 @@ class SecurityController extends Controller
   public function emailuserAction($uemail, $toklink, Request $request)
   {
     $message = \Swift_Message::newInstance()
-      ->setSubject('Confirmation de votre courriel pour la demande de compte de physics-object.fr')
-      ->setFrom('aurelienaa@physics-object.fr')
+      ->setSubject('Confirmation de votre courriel pour la demande de compte de physicstopics.fr')
+      ->setFrom('aurelienaa@physicstopics.fr')
       ->setTo($uemail)
       ->setBody(
 	  $this->renderView(
