@@ -36,7 +36,11 @@
         {% set iddomobjectxi = iddomobjectx["id"] %}
         <article id={{ "domaintopic" ~ iddomobjectxi }}>
           {% for iddomobjectxd in listtopic[iddomobjectxi] %}
-            <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': iddomobjectxd.id}) }}"> {{ iddomobjectxd.title }} </a><br />
+            {% if iddomobjectxd.mode < 5 %}
+              <a href="{{ path('sitephys_physmvc_phys_hometopic', {'idTopic': iddomobjectxd.id}) }}"> {{ iddomobjectxd.title }} (niveaux doubles)</a><br />
+            {% else %}
+              <a href="{{ path('sitephys_physmvc_phys_sample', {'idTopic': iddomobjectxd.id}) }}"> {{ iddomobjectxd.title }} (niveaux simples)</a><br />
+            {% endif %}
           {% endfor %}
         </article>
       {% endfor %}

@@ -16,16 +16,25 @@ class PhysController extends Controller
     $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
 
     $evolutionBy = ['Questions (-dim > 1)','Questions (-dim = 1)', 'Etats (dim = 0)', 'Solutions (dim = 1)', 'Solutions (dim > 1)'];
+    $evolutionsampleBy = ['Questions (simple)', 'Etats (simple)', 'Solutions (simple)'];
     $domId = $domainRep->findDomId();
     $domTitle = $domainRep->findIdTitleDomain();
 
     foreach ($evolutionBy as $keyType => $typeTop) {
       foreach ($domId as $kex => $domIdx) {
-        $tabTopPerDom[$keyType][$domIdx["id"]] = $topicRep->findIdTitleTopic($keyType, $domIdx["id"]);
+      	$tabDom = $topicRep->findIdTitleTopic($keyType, $domIdx["id"]);
+      	$tabTopPerDom[$keyType][$domIdx["id"]] = $tabDom;
       }
     }
 
-    $lastTenTop = $topicRep->findIdTitleLastTopic();
+    foreach ($evolutionsampleBy as $keyTypesa => $typeTopsa) {
+      foreach ($domId as $kexsa => $domIdxsa) {
+      	$tabDomsa = $topicRep->findIdTitleTopic($keyTypesa + 5, $domIdxsa["id"]);
+      	$tabTopPerDomSample[$keyTypesa][$domIdxsa["id"]] = $tabDomsa;
+      }
+    }
+
+    $lastTenTop = $topicRep->findIdTitleModeLastTopic();
     if (null === $lastTenTop) {
       return $this->redirectToRoute('sitephys_physmvc_home');
     }
@@ -41,7 +50,9 @@ class PhysController extends Controller
       'userconnect' => $userconnect,
       'domtitle' => $domTitle,
       'tabtopperdom' => $tabTopPerDom,
+      'tabtopperdomsa' => $tabTopPerDomSample,
       'evol' => $evolutionBy,
+      'evolsample' => $evolutionsampleBy,
       'lasttentop' => $lastTenTop,
       )
     );
@@ -142,7 +153,7 @@ class PhysController extends Controller
             'domainId' => $idDo
           ));
     }
-
+    
     $titleContRef = $referenceRep->findTitleContentRefDom();
 
     $userconnectx = $this->getUser();
@@ -554,6 +565,88 @@ class PhysController extends Controller
         ));
     }
   }
+
+
+  public function sampleAction($idTopic)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $physRep = $em->getRepository('SitephysPhysmvcBundle:Phys'); 
+    $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
+    $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
+    $topicRep = $em->getRepository('SitephysPhysmvcBundle:Topic');
+    $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
+    $referenceRep = $em->getRepository('SitephysPhysmvcBundle:Reference');
+
+    // $physGlob = [];
+    $topicObject = $topicRep->find($idTopic);
+    $topicDomainId = $topicObject->getDomainId();
+    $domainObject = $domainRep->find($topicDomainId);
+    $domTopicId = $domainObject->getId();
+    $titleContRef = $referenceRep->findTitleRefperDom($domTopicId);
+    $indkey = [];
+
+    for ($intLev = 1; $intLev <= 6; $intLev++) {
+    	$tabBoolElt[$intLev] = false;
+    	$strLevel = 'a:2:{i:0;s:1:"' . $intLev . '";i:1;s:1:"0";}';
+    	$physsampleTop = $physRep->findBy(
+    		array('topicId' => $idTopic, 'level' => $strLevel), 
+    		array('date' => 'asc'),
+    		1,
+    		0
+    		);
+    	if (null != $physsampleTop) {
+    		$physesa[$intLev] = $physsampleTop[0];
+    		$tabBoolElt[$intLev] = true;
+    		$indkey[] = $intLev;
+    	}
+    }
+
+    if (null == $physesa) {
+        return $this->redirectToRoute('sitephys_physmvc_home');
+    } else {
+    	for ($intLevsa = 1; $intLevsa <= 6; $intLevsa++) {
+    		$rtw = "";
+    		if ($intLevsa >= 1 && $intLevsa <= 3) {
+    			$intLevsaMod = $intLevsa;
+    		}
+    		if ($intLevsa >= 4 && $intLevsa <=6) {
+    			$rtw = "Retour - ";
+    			$intLevsaMod = $intLevsa + 69;
+    		}
+    		if ($tabBoolElt[$intLevsa]) {
+    			$physLevel = $physesa[$intLevsa]->getLevel();
+    			$levelObjec = $levelRep->findPhysLevelIdContent($physLevel);
+    			$levelObject[$intLevsa] = $levelObjec[0];
+    			$symbolizationObject[$intLevsa] = $symbolizationRep->findBy(
+    				array (
+    					'levelkey' => $intLevsa,
+    					));
+    			foreach ($symbolizationObject[$intLevsa] as $key => $symbol) {
+    				$symbolizationContent[$intLevsa][] = $rtw . $symbol->getContent();
+    			}
+    		}
+    	}
+    }
+
+      $userconnectx = $this->getUser();
+      if (null === $userconnectx) {
+        $userconnect = 'Connexion';
+      } else {
+        $userconnect = $userconnectx->getUsername();
+      }
+      return $this->render('SitephysPhysmvcBundle:Phys:sample.html.twig', array(
+        'userconnect' => $userconnect,
+        'physelt' => $physesa,
+        'indkey' => $indkey,
+        'domain' => $domainObject,
+        'topic' => $topicObject,
+        'level' => $levelObject,
+        'tabboolelt' => $tabBoolElt,
+        'symcontent' => $symbolizationContent,
+        'titlecontref' => $titleContRef,
+      ));
+    }
+
 
   public function linksAction()
   {

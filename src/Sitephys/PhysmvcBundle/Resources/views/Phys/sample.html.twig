@@ -1,0 +1,98 @@
+{% extends "SitephysPhysmvcBundle::layout.html.twig" %}
+
+{% block title %}
+  Eléments des niveaux simples du thème physique
+{% endblock %}
+
+{% block sitephysphysmvc_section %}
+  <div id="hw">Eléments des niveaux simples du thème {{ topic.title }} </div>
+{% endblock %}
+
+{% block sitephysphysmvc_image %}
+  <div id="containerimghome">
+    <div class="containerthome">
+      <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcelement.jpg') }}" class="homephoto" alt="Image de niveaux basiques" title="Schéma Elément simple avec les niveaux simples" />
+    </div>  
+  </div>
+{% endblock %}
+
+{% block sitephysphysmvc_body %}
+    <div class="well">
+      <div id="hb">Descriptions de  
+        {% for levt in indkey %}
+          <span> {{ physelt[levt].title }}, </span> 
+        {% endfor %}
+      </div>
+      <br />
+      <nav id="tabs-nav" class="clearfix">
+        <a href="#domaine">Domaine et thème</a><span>&nbsp;</span>
+        <a href="#niveau">Niveau</a><span>&nbsp;</span>
+        <a href="#contenu">Contenu</a><span>&nbsp;</span>
+        <a href="#evaluation">Evaluation</a><span>&nbsp;</span>
+        <a href="#symbolisation">Symbolisation</a><span>&nbsp;</span>
+        <a href="#reference">Références</a>
+        <a href="#author">Création</a>
+      </nav>
+      <div id="tabs-container" onload="initTab()">
+        <article id="domaine">
+          Domaine : {{ domain.title }}
+          <br />Thème : {{ topic.content }}
+          {% set dimtopic = topic.mode - 6 %}
+          <br />Evolution (logique ou chronologique) dans le thème par 
+          {% if dimtopic == -1 %} questionnements. {% endif %}
+          {% if dimtopic == 0 %} connaissances établies. {% endif %}
+          {% if dimtopic == 1 %} résolutions. {% endif %} 
+          <br />Mode du thème : {{ topic.mode }}
+        </article>
+        <article id="niveau">
+          {% for levx in indkey %}
+            Niveau {{ levx }} : <br />
+            Niveau de base <i>(global)</i> : {{ level[levx].levelBase }} 
+            <br />Niveau de précision <i>(élément)</i> : 0 
+            <br />Description du niveau : {{ level[levx].content }} <br /><br />
+          {% endfor %}
+        </article>
+        <article id="contenu">
+          {% for levy in indkey %}
+            Niveau {{ levy }} : <br />
+            Titre : {{ physelt[levy].title }} <br />
+            Contenu : {{ physelt[levy].content }} <br /><br />
+          {% endfor %}
+        </article>
+        <article id="evaluation">
+          {% for levz in indkey %}
+            Niveau {{ levz }} : <br />
+            Evaluation : {{ physelt[levz].evaluation }} <br /><br />
+          {% endfor %}
+        </article>
+        <article id="symbolisation">
+          {% for levw in indkey %}
+            Niveau {{ levw }} : <br />
+            {% set cptsym = 0 %}
+            {% for symcontentx in symcontent[levw] %}
+              {% set cptsym = cptsym + 1 %}
+              Symbolisation {{ cptsym }} : {{ symcontentx }} <br />
+            {% endfor %}
+            <br /><br />
+          {% endfor %}
+        </article>
+        <article id="reference">
+          {% for titlecontrefx in titlecontref %}
+            Référence : {{ titlecontrefx.rtitle }} <br />
+            {{ titlecontrefx.rcontent }} <br /><br />
+          {% endfor %}
+          {% for levv in indkey %}
+            Niveau {{ levv }} : <br />
+            Lien : <a href ="{{ physelt[levv].webLinks }}">{{ physelt[levv].webLinks }}</a><br />
+          {% endfor %}
+        </article>
+        <article id="author"> 
+          {% for levu in indkey %}
+            Niveau {{ levu }} : <br />
+            Auteur : {{ physelt[levu].author }} <br />
+            Date : {{ physelt[levu].date|date('d/m/Y H:i:s') }} <br /><br />
+          {% endfor %}
+        </article>
+      </div>
+  </div>
+{% endblock %}

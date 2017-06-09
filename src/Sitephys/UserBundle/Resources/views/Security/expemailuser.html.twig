@@ -23,7 +23,7 @@
   <div id="hw">Envoi de courriel</div>
   <br /><br />
   <div id="hx">Lien de validation de votre compte du courriel {{ uemail }} : <br /><br />
-    <a href="{{ path('sitephys_user_email', {'uemail': uemail, 'toklink': toklink}) }}">Validez votre adresse courriel</a>. 
+    <a href="{{ 'https://physicstopics.fr/user/email/'~uemail~'/'~toklink }}">Validez votre adresse courriel</a>. 
     <br /><br />Un courriel vous y sera alors envoyé avec un lien token valide durant une heure.
   </div>
   <br /><br /><br />

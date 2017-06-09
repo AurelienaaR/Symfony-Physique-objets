@@ -42,11 +42,11 @@ class TopicRepository extends EntityRepository
             ->getResult();
     }
 
-    public function findIdTitleLastTopic()
+    public function findIdTitleModeLastTopic()
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT t.id, t.title FROM SitephysPhysmvcBundle:Topic t ORDER BY t.date DESC'
+                'SELECT t.id, t.title, t.mode FROM SitephysPhysmvcBundle:Topic t ORDER BY t.date DESC'
             )
             ->setMaxResults(10)
             ->getResult();
@@ -63,5 +63,17 @@ class TopicRepository extends EntityRepository
             ->getResult();
 
     }
+
+    public function findModeTopic($domid)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT t.id, t.title, t.mode FROM SitephysPhysmvcBundle:Topic t WHERE (t.domainId = :domid)'
+                )
+                ->setParameter('domid', $domid)
+            ->getResult();
+
+    }
+
 
 }

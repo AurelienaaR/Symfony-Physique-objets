@@ -314,20 +314,38 @@ class SecurityController extends Controller
 	
   public function emailuserAction($uemail, $toklink, Request $request)
   {
+
     $message = \Swift_Message::newInstance()
       ->setSubject('Confirmation de votre courriel pour la demande de compte de physicstopics.fr')
       ->setFrom('aurelienaa@physicstopics.fr')
       ->setTo($uemail)
       ->setBody(
-	  $this->renderView(
-			'Emails/registration.html.twig',
-			array('uemail' => $uemail, 'toklink' => $toklink)
+    $this->renderView(
+      'Emails/registration.html.twig',
+      array('uemail' => $uemail, 'toklink' => $toklink)
           ), 
         'text/html'
         ); 
+    $this->get('mailer')->send($message);
+    return $this->render('SitephysUserBundle:Security:emailuser.html.twig');
 
-  $this->get('mailer')->send($message);
-  return $this->render('SitephysUserBundle:Security:emailuser.html.twig');
+/*
+    $transport = new Swift_SmtpTransport('mail.firstheberg.net', 587, 'ssl');
+    $mailer = new Swift_Mailer($transport);
+    $message = \Swift_Message::newInstance()
+      ->setSubject('Confirmation de votre courriel pour la demande de compte de physicstopics.fr')
+      ->setFrom('aurelienaa@physicstopics.fr')
+      ->setTo($uemail)
+      ->setBody(
+    $this->renderView(
+      'Emails/registration.html.twig',
+      array('uemail' => $uemail, 'toklink' => $toklink)
+          ), 
+        'text/html'
+        ); 
+    $result = $mailer->send($message);
+    return $this->render('SitephysUserBundle:Security:emailuser.html.twig');
+*/
   }
-  
+
 }
