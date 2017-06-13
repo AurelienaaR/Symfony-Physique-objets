@@ -64,9 +64,31 @@ class PhysController extends Controller
     $em = $this->getDoctrine()->getManager();
     $domainRep = $em->getRepository('SitephysPhysmvcBundle:Domain');
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
+    $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
 
     $presDomain = $domainRep->findAll();
-    $presSymbol = $symbolizationRep->findAll();
+
+        $tabL[1] = array(1,4,5,6);
+    	$tabL[2] = array(43,44,45);
+    	$tabL[3] = array(49,50,51);
+    	$tabL[4] = array(16,17,18,73);
+    	$tabL[5] = array(46,47,48,74);
+    	$tabL[6] = array(52,53,54,75);
+    	for ($intLevp = 1; $intLevp <= 6; $intLevp++) {
+    		$tabIL = $tabL[$intLevp];
+    		$intLevpMod = $intLevp + ($intLevp > 3) * 69;
+    		$levelObjec = $levelRep->find($intLevpMod);
+    		$levelObject[$intLevp] = $levelObjec;
+    		foreach ($tabIL as $idL) {
+    			$symbolizationObject[$intLevp] = $symbolizationRep->findBy(
+    				array (
+    					'levelkey' => $idL,
+    				));
+    			foreach ($symbolizationObject[$intLevp] as $key => $symbol) {
+    				$symbolizationContent[$intLevp][] = $symbol->getContent();
+    			}
+    		}
+    	}
 
     $userconnectx = $this->getUser();
     if (null === $userconnectx) {
@@ -78,7 +100,8 @@ class PhysController extends Controller
     return $this->render('SitephysPhysmvcBundle:Phys:presentation.html.twig', array(
       'userconnect' => $userconnect,
       'domain' => $presDomain,
-      'symbol' => $presSymbol,
+      'level' => $levelObject,
+      'symcontent' => $symbolizationContent,
       )
     );
   }
@@ -604,25 +627,26 @@ class PhysController extends Controller
     if (null == $physesa) {
         return $this->redirectToRoute('sitephys_physmvc_home');
     } else {
+    	$tabL[1] = array(1,4,5,6);
+    	$tabL[2] = array(43,44,45);
+    	$tabL[3] = array(49,50,51);
+    	$tabL[4] = array(16,17,18,73);
+    	$tabL[5] = array(46,47,48,74);
+    	$tabL[6] = array(52,53,54,75);
     	for ($intLevsa = 1; $intLevsa <= 6; $intLevsa++) {
-    		$rtw = "";
-    		if ($intLevsa >= 1 && $intLevsa <= 3) {
-    			$intLevsaMod = $intLevsa;
-    		}
-    		if ($intLevsa >= 4 && $intLevsa <=6) {
-    			$rtw = "Retour - ";
-    			$intLevsaMod = $intLevsa + 69;
-    		}
+    		$tabIL = $tabL[$intLevsa];
     		if ($tabBoolElt[$intLevsa]) {
-    			$physLevel = $physesa[$intLevsa]->getLevel();
-    			$levelObjec = $levelRep->findPhysLevelIdContent($physLevel);
-    			$levelObject[$intLevsa] = $levelObjec[0];
-    			$symbolizationObject[$intLevsa] = $symbolizationRep->findBy(
+    			$intLevsaMod = $intLevsa + ($intLevsa > 3) * 69;
+    			$levelObjec = $levelRep->find($intLevsaMod);
+    			$levelObject[$intLevsa] = $levelObjec;
+    			foreach ($tabIL as $idL) {
+    				$symbolizationObject[$intLevsa] = $symbolizationRep->findBy(
     				array (
-    					'levelkey' => $intLevsa,
+    					'levelkey' => $idL,
     					));
-    			foreach ($symbolizationObject[$intLevsa] as $key => $symbol) {
-    				$symbolizationContent[$intLevsa][] = $rtw . $symbol->getContent();
+    			    foreach ($symbolizationObject[$intLevsa] as $key => $symbol) {
+    				    $symbolizationContent[$intLevsa][] = $symbol->getContent();
+    				}
     			}
     		}
     	}

@@ -98,11 +98,18 @@
         </article>
 
         <article id="symbolisation">
-			<ul><strong>Symbolisations</strong> (De l'expérimentation : moyens, protocoles de sélection, de mise en oeuvre, d'utilisation, de précision, de tests, ... et de la théorie : outils de recueil, utilisation et analyse des références théoriques existantes, outils de formulations et de conformités de théories inexistantes, apprentissages informatiques, ...) disponibles suivant l'ensemble des thèmes : <br /><br />
-          {% for symbolx in symbol %}
-            <li> {{ symbolx.content }} </li>
+			    <strong>Symbolisations</strong> (De l'expérimentation : moyens, protocoles de sélection, de mise en oeuvre, d'utilisation, de précision, de tests, ... et de la théorie : outils de recueil, utilisation et analyse des références théoriques existantes, outils de formulations et de conformités de théories inexistantes, apprentissages informatiques, ...) disponibles suivant l'ensemble des thèmes : <br /><br />
+
+          {% for levp in 1..6 %}
+            Niveau {{ levp }} : <br />
+            {{ level[levp].content }} <br />
+            {% set cptsym = 0 %}
+            {% for symcontentx in symcontent[levp] %}
+              {% set cptsym = cptsym + 1 %}
+              <br />Symbolisation {{ cptsym }} : {{ symcontentx }} 
+            {% endfor %}
+            <br /><br />
           {% endfor %}
-          </ul>
         </article>
       </div>
     </div>
