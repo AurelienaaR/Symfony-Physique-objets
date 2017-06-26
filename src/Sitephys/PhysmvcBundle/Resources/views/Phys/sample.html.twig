@@ -18,9 +18,9 @@
 
 {% block sitephysphysmvc_body %}
     <div class="well">
-      <div id="hb">Descriptions de :  
+      <div id="hb"><strong>Descriptions</strong> de :  
         {% for levt in indkey %}
-          <span> {{ physelt[levt].title }}, </span> 
+          <span> {{ physelt[levt].title }} - </span> 
         {% endfor %}
       </div>
       <br />
@@ -35,62 +35,68 @@
       </nav>
       <div id="tabs-container" onload="initTab()">
         <article id="domaine">
-          Domaine : {{ domain.title }}
-          <br />Thème : {{ topic.content }}
+          <strong>Domaine : {{ domain.title }} </strong>
+          <br /><strong>Thème : {{ topic.content }} </strong>
           {% set dimtopic = topic.mode - 6 %}
-          <br />Evolution (logique ou chronologique) dans le thème par 
-          {% if dimtopic == -1 %} questionnements. {% endif %}
-          {% if dimtopic == 0 %} connaissances établies. {% endif %}
-          {% if dimtopic == 1 %} résolutions. {% endif %} 
-          <br />Mode du thème : {{ topic.mode }}
+          <br /><strong>Evolution (logique ou chronologique)</strong> dans le thème par 
+          {% if dimtopic == -1 %} <strong>questionnements</strong>. {% endif %}
+          {% if dimtopic == 0 %} <strong>connaissances établies</strong>. {% endif %}
+          {% if dimtopic == 1 %} <strong>résolutions</strong>. {% endif %} 
+          <br /><strong>Mode</strong> du thème : <strong> {{ topic.mode }} </strong>
         </article>
         <article id="niveau">
+          <strong>Niveaux des éléments enregistrés du thème</strong> : 
           {% for levx in indkey %}
-            Niveau {{ levx }} : <br />
-            Niveau de base <i>(global)</i> : {{ level[levx].levelBase }} 
-            <br />Niveau de précision <i>(élément)</i> : 0 
-            <br />Description du niveau : {{ level[levx].content }} <br /><br />
+            <br /><br /><strong>Niveau {{ levx }}</strong> : 
+            <br /><strong>Niveau de base <i>(global)</i></strong> : {{ level[levx].levelBase }} 
+            <br /><strong>Niveau de précision <i>(élément)</i></strong> : 0 
+            <br /><strong>Description du niveau</strong> : {{ level[levx].content }} 
           {% endfor %}
         </article>
         <article id="contenu">
-          {% for levy in indkey %}
-            Niveau {{ levy }} : <br />
-            Titre : {{ physelt[levy].title }} <br />
-            Contenu : {{ physelt[levy].content }} <br /><br />
+        <strong>Contenus pour chaque niveau simple des éléments enregistrés</strong> : 
+          {% for levy in indkey %}  
+            <br /><br /><strong>Niveau {{ levy }}</strong> : 
+            <br /><strong>Titre</strong> : <strong>{{ physelt[levy].title }} </strong>
+            <br /><strong>Contenu</strong> : {{ physelt[levy].content }} 
           {% endfor %}
         </article>
         <article id="evaluation">
+          <strong>Evaluations pour chaque niveau simple des éléments enregistrés</strong> : 
           {% for levz in indkey %}
-            Niveau {{ levz }} : <br />
-            Evaluation : {{ physelt[levz].evaluation }} <br /><br />
+            <br /><br /><strong>Niveau {{ levz }}</strong> : 
+            <br /><strong>Evaluation</strong> : {{ physelt[levz].evaluation }} 
           {% endfor %}
         </article>
         <article id="symbolisation">
+          <strong>Symbolisations pour chaque niveau simple des éléments enregistrés</strong> : 
           {% for levw in indkey %}
-            Niveau {{ levw }} : <br />
+            <br /><br /><strong>Niveau {{ levw }}</strong> :
             {% set cptsym = 0 %}
             {% for symcontentx in symcontent[levw] %}
               {% set cptsym = cptsym + 1 %}
-              Symbolisation {{ cptsym }} : {{ symcontentx }} <br />
+              <br /><strong>Symbolisation {{ cptsym }}</strong> : {{ symcontentx }} 
             {% endfor %}
-            <br /><br />
           {% endfor %}
         </article>
         <article id="reference">
+          <strong>Références du domaine du thème</strong> : 
           {% for titlecontrefx in titlecontref %}
-            Référence : {{ titlecontrefx.rtitle }} <br />
-            {{ titlecontrefx.rcontent }} <br /><br />
+            <br /><br /><strong>Référence : {{ titlecontrefx.rtitle }}</strong>
+            <br />{{ titlecontrefx.rcontent }} 
           {% endfor %}
+          <br /><br /><strong>Liens du thème par niveau</strong> : 
           {% for levv in indkey %}
-            Niveau {{ levv }} : <br />
-            Lien : <a href ="{{ physelt[levv].webLinks }}">{{ physelt[levv].webLinks }}</a><br />
+            <br /><br /><strong>Niveau {{ levv }}</strong> : 
+            <br /><strong>Lien</strong> : <a href ="{{ physelt[levv].webLinks }}">{{ physelt[levv].webLinks }}</a>
           {% endfor %}
         </article>
         <article id="author"> 
+          <strong>Auteurs pour chaque niveau simple des éléments enregistrés</strong> : 
           {% for levu in indkey %}
-            Niveau {{ levu }} : <br />
-            Auteur : {{ physelt[levu].author }} <br />
-            Date : {{ physelt[levu].date|date('d/m/Y H:i:s') }} <br /><br />
+            <br /><br /><strong>Niveau {{ levu }}</strong> : 
+            <br /><strong>Auteur</strong> : {{ physelt[levu].author }} 
+            <br /><strong>Date</strong> : {{ physelt[levu].date|date('d/m/Y H:i:s') }} 
           {% endfor %}
         </article>
       </div>

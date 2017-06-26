@@ -31,41 +31,48 @@
       </nav>
       <div id="tabs-container" onload="initTab()">
         <article id="domaine">
-          Domaine : {{ domain.title }}
-          <br />Thème : {{ topic.content }}
+          <strong>Attributs de l'élément</strong> :
+          <br /><br /><strong>Domaine</strong> : {{ domain.title }}
+          <br /><strong>Thème</strong> : {{ topic.content }}
           {% set dimtopic = topic.mode - 2 %}
-          <br />Dim du thème : {{ dimtopic }} 
-          <br />Mode du thème : {{ topic.mode }}
+          <br /><strong>Dim. du thème</strong> : {{ dimtopic }} 
+          <br /><strong>Mode du thème</strong> : {{ topic.mode }}
         </article>
         <article id="niveau">
-          Niveau de base <i>(global)</i> : {{ level.levelBase }} 
-          <br />Niveau de précision <i>(élément)</i> : {{ level.levelSub }} 
-          <br />Description du niveau : {{ level.content }} 
+          <strong>Niveaux de l'élément</strong> :
+          <br /><br /><strong>Niveau de base <i>(global)</i></strong> : {{ level.levelBase }} 
+          <br /><strong>Niveau de précision <i>(élément)</i></strong> : {{ level.levelSub }} 
+          <br /><strong>Description du niveau</strong> : {{ level.content }} 
         </article>
         <article id="contenu">
-          Titre : {{ physelt.title }} <br />
-          Contenu : {{ physelt.content }}
+          <strong>Contenu de l'élément</strong> :
+          <br /><br /><strong>Titre</strong> : <strong>{{ physelt.title }}</strong>
+          <br /><strong>Contenu</strong> : {{ physelt.content }}
         </article>
         <article id="evaluation">
-          Evaluation : {{ physelt.evaluation }} 
+          <strong>Evaluation de l'élément</strong> :
+          <br /><br /><strong>Evaluation</strong> : {{ physelt.evaluation }} 
         </article>
         <article id="symbolisation">
+          <strong>Symbolisations du niveau de l'élément</strong> : <br />
           {% set cptsym = 0 %}
           {% for symcontentx in symcontent %}
             {% set cptsym = cptsym + 1 %}
-            Symbolisation {{ cptsym }} : {{ symcontentx }} <br />
+            <br /><strong>Symbolisation {{ cptsym }}</strong> : {{ symcontentx }} 
           {% endfor %}
         </article>
         <article id="reference">
+          <strong>Références du domaine de l'élément</strong> : 
           {% for titlecontrefx in titlecontref %}
-            Référence : {{ titlecontrefx.rtitle }} <br />
-            {{ titlecontrefx.rcontent }} <br /><br />
+             <br /><br /><strong>Référence : {{ titlecontrefx.rtitle }} </strong>
+             <br />{{ titlecontrefx.rcontent }} 
           {% endfor %}
-          Lien : <a href ="{{ physelt.webLinks }}">{{ physelt.webLinks }}</a>
+           <br /><br /><strong>Lien</strong> : <a href ="{{ physelt.webLinks }}">{{ physelt.webLinks }}</a>
         </article>
         <article id="author"> 
-          Auteur : {{ physelt.author }} <br />
-          Date : {{ physelt.date|date('d/m/Y H:i:s') }}
+          <strong>Rédaction de l'élément</strong> :
+          <br /><br /><strong>Auteur</strong> : {{ physelt.author }} 
+          <br /><strong>Date</strong> : {{ physelt.date|date('d/m/Y H:i:s') }}
         </article>
       </div>
   </div>

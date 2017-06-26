@@ -57,8 +57,13 @@
     <div id="tabs-container" onload="initTab()">
       <article id="consultelt">
         {% for physphyssx in physphyss %}
-          <a href="{{ path('sitephys_physmvc_phys_view', {'id': physphyssx.id}) }}">
-          {{ physphyssx.title }} </a><span>&nbsp;</span>
+          {% if 'i:1;s:1:"0"' in physphyssx.level %}
+            <a href="{{ path('sitephys_physmvc_phys_sample', {'idTopic': physphyssx.tid}) }}">
+            {{ physphyssx.title }} </a><span>&nbsp;</span>
+          {% else %}
+            <a href="{{ path('sitephys_physmvc_phys_view', {'id': physphyssx.id}) }}">
+            {{ physphyssx.title }} </a><span>&nbsp;</span>
+          {% endif %}
         {% endfor %}
       </article>
       <article id="modif">

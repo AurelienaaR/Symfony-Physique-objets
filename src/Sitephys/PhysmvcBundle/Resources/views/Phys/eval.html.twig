@@ -33,9 +33,10 @@
           {% for intevaljc in 1..6 %}
             {% if (tabbool[intevalic][intevaljc]) %}
               <article id="{{ "eval" ~ intevalic ~ "-" ~ intevaljc }}" >
-                Niveau : {{ tablevel[intevalic][intevaljc] }} <br />
-                Evaluation : {{ tabeval[intevalic][intevaljc] }} <br />
-                Symbolisation : {{ tabsym[intevalic][intevaljc] }} <br /><br />
+                <strong>Evaluations et symbolisations de l'élément simple enregistré du niveau {{ intevalic ~ "-" ~ intevaljc }}</strong> :
+                <br /><br /><strong>Niveau</strong> : {{ tablevel[intevalic][intevaljc] }} 
+                <br /><strong>Evaluation</strong> : {{ tabeval[intevalic][intevaljc] }} 
+                <br /><strong>Symbolisation</strong> : {{ tabsym[intevalic][intevaljc] }} 
               </article>
             {% endif %}
           {% endfor %}

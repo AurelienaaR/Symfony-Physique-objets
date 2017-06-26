@@ -40,51 +40,55 @@
     </nav>
     <div id="tabs-container" onload="initTab()">      
       <article id="titre">
-        Domaine : {{ domain.title }} 
-        <br />Thème : {{ topic.title }} 
+        <strong>Attributs de l'élément global</strong> :
+        <br /><br /><strong>Domaine</strong> : {{ domain.title }} 
+        <br /><strong>Thème</strong> : {{ topic.title }} 
         {% set dimtopic = topic.mode - 2 %}
-        <br />Dim du thème : {{ dimtopic }} 
-        <br />Mode du thème : {{ topic.mode }} 
-        <br />Niveau de base (global) : {{ intlevel }} <br />
+        <br /><strong>Dim du thème</strong> : {{ dimtopic }} 
+        <br /><strong>Mode du thème</strong> : {{ topic.mode }} 
+        <br /><strong>Niveau de base (global)</strong> : {{ intlevel }} <br />
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
-            <br />Titre élément {{ iEltLPos }} : {{ phys[iEltLPos].title }} 
+            <br /><strong>Titre élément {{ iEltLPos }}</strong> : {{ phys[iEltLPos].title }} 
           {% endif %}
         {% endfor %}
       </article>
       <article id="contenu">
-        Domaine : {{ domain.title }} 
-        <br />Thème : {{ topic.title }}
-        <br />Contenu du thème : {{ topic.content }} 
-        <br />Niveau de base (global) : {{ intlevel }} <br />
+        <strong>Contenus de l'élément global et éléments simples enregistrés</strong> :
+        <br /><br /><strong>Domaine</strong> : {{ domain.title }} 
+        <br /><strong>Thème</strong> : {{ topic.title }}
+        <br /><strong>Contenu du thème</strong> : {{ topic.content }} 
+        <br /><strong>Niveau de base (global)</strong> : {{ intlevel }} 
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
-            <br />Titre : {{ phys[iEltLPos].title }}
-            <br />Contenu : {{ phys[iEltLPos].content }} <br />
+            <br /><br /><strong>Titre</strong> : {{ phys[iEltLPos].title }}
+            <br /><strong>Contenu</strong> : {{ phys[iEltLPos].content }} 
           {% endif %}
         {% endfor %}
       </article>
       <article id="evaluation">
-        Domaine : {{ domain.title }} 
-        <br />Thème : {{ topic.title }}
-        <br />Contenu du thème : {{ topic.content }} 
-        <br />Niveau de base (global) : {{ intlevel }} <br />
+        <strong>Evaluations des éléments simples enregistrés</strong> :
+        <br /><br /><strong>Domaine</strong> : {{ domain.title }} 
+        <br /><strong>Thème</strong> : {{ topic.title }}
+        <br /><strong>Contenu du thème</strong> : {{ topic.content }} 
+        <br /><strong>Niveau de base (global)</strong> : {{ intlevel }} 
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
-            <br />Titre : {{ phys[iEltLPos].title }}
-            <br />Evaluation : {{ phys[iEltLPos].evaluation }} <br />
+            <br /><br /><strong>Titre</strong> : {{ phys[iEltLPos].title }}
+            <br /><strong>Evaluation</strong> : {{ phys[iEltLPos].evaluation }} 
           {% endif %}
         {% endfor %}
       </article>
       <article id="symbolisation">
-        Domaine : {{ domain.title }} 
-        <br />Thème : {{ topic.title }}
-        <br />Contenu du thème : {{ topic.content }} 
-        <br />Niveau de base (global) : {{ intlevel }} <br />
+        <strong>Symbolisations des éléments simples enregistrés</strong> :
+        <br /><br /><strong>Domaine</strong> : {{ domain.title }} 
+        <br /><strong>Thème</strong> : {{ topic.title }}
+        <br /><strong>Contenu du thème</strong> : {{ topic.content }} 
+        <br /><strong>Niveau de base (global)</strong> : {{ intlevel }} 
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
-            <br />Titre : {{ phys[iEltLPos].title }}
-            <br />Symbolisation : {{ symbol[iEltLPos] }} <br />
+            <br /><strong>Titre</strong> : {{ phys[iEltLPos].title }}
+            <br /><strong>Symbolisation</strong> : {{ symbol[iEltLPos] }} 
           {% endif %}
         {% endfor %}
       </article>

@@ -69,8 +69,8 @@
         </article>
 
         <article id="niveaux">
-          <strong>Schéma général</strong> à simples niveaux : seuls éléments de 1 à 6.
-          <br /> <strong>Schéma général</strong> à doubles niveaux :<br /><br />
+          <strong>Schéma général</strong> à <strong>simples niveaux</strong> : seuls éléments de <strong>1</strong> à <strong>6</strong> (Cf. schéma ci-dessus.). 
+          <br /><br /> <strong>Schéma général</strong> à <strong>doubles niveaux</strong> de <strong>1</strong> à <strong>6</strong> (Cf. schéma ci-dessous.) :<br /><br />
           <img src="{{ asset('bundles/sitephysphysmvc/images/schemaphysmvcglobal.png') }}" id="containerimghome" alt="Image de niveaux globaux" title="Schéma global" /><br />
           <ul><strong>Niveaux</strong> des éléments pour chaque thème : <br />
             <br /><li> Niveau de base (global, nb de 1 à 6, cf. schéma ci-dessus pour les éléments globaux). </li><br />
@@ -84,8 +84,13 @@
         </article>
 
         <article id="modes">
-          <ul><strong>Etendue d'évolution</strong> d'éléments, d'une dimension <strong>dim</strong> positive pour le thème défini, étudié suivant une évolution elle-même causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6), de résolutions, sans question, dans l'environnement et cadre d'études, comprenant également les éléments identifiés du système. On note mode = dim + 2. Pour dim = ... <br />
-            <li> 2 ou plus : champ, espace (états et gradients de multiplicité de 1 jusqu'à dim, implicites ou explicites) de résolutions.</li>
+           <ul><strong>Etendue d'évolution</strong> d'éléments à <strong>simples niveaux</strong>, pour le thème défini, étudié suivant une évolution elle-même causale discrète (par niveau : 1, 2, ..., 6). On note mode = dim + 2. Evolution pour mode = ... <br />
+            <li> 7 : champ, espace (états et gradients, implicites ou explicites) de résolutions.</li>
+            <li> 6 : points (états).</li>
+            <li> 5 : champ, espace (états et gradients, implicites ou explicites) de  questionnements.</li>
+          </ul><br />
+          <ul><strong>Etendue d'évolution</strong> d'éléments à doubles niveaux, d'une dimension <strong>dim</strong> positive pour le thème défini, étudié suivant une évolution elle-même causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6), de résolutions, sans question, dans l'environnement et cadre d'études, comprenant également les éléments identifiés du système. On note mode = dim + 2. Pour dim = ... <br />
+            <li> 2 ou plus : champ, espace (états et gradients de multiplicité de 2 jusqu'à dim, implicites ou explicites) de résolutions.</li>
             <li> 1 : points (états) et leur direction locale (orientation implicite ou explicite).</li>
           </ul>
           <ul>Présentation d'éléments établis (dim = 0) du thème (système pour la forme ou pour le fond) étudié suivant une évolution causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6) de positions acquises ou prédites dans l'environnement d'étude comprenant lui-même les éléments identifiés du système : <br />
@@ -93,22 +98,21 @@
           </ul>
           <ul>Etendue de recherche d'éléments de dimension dim négative pour le thème défini, étudié suivant une évolution elle-même causale discrète (par niveau : 1 - 1, 1 - 2, ..., 6 - 5, 6 - 6) comprenant au moins une question et avec d'éventuelles résolutions, dans l'environnement et cadre d'études, comprenant également les éléments identifiés du système. On note mode = dim + 2. Pour dim = ... <br />
             <li> -1 : points (états) et leur direction locale (orientation implicite ou explicite).</li>
-            <li> -2 ou moins : champ, espace (états et gradients de multiplicité de 1 jusqu'à -dim, implicites ou explicites) de questionnements (au moins un) et d'éventuelles résolutions.</li>
+            <li> -2 ou moins : champ, espace (états et gradients de multiplicité de 2 jusqu'à -dim, implicites ou explicites) de questionnements (au moins un) et d'éventuelles résolutions.</li>
           </ul>
         </article>
 
         <article id="symbolisation">
-			    <strong>Symbolisations</strong> (De l'expérimentation : moyens, protocoles de sélection, de mise en oeuvre, d'utilisation, de précision, de tests, ... et de la théorie : outils de recueil, utilisation et analyse des références théoriques existantes, outils de formulations et de conformités de théories inexistantes, apprentissages informatiques, ...) disponibles suivant l'ensemble des thèmes : <br /><br />
+			    <strong>Symbolisations</strong> (De l'expérimentation : moyens, protocoles de sélection, de mise en oeuvre, d'utilisation, de précision, de tests, ... et de la théorie : outils de recueil, utilisation et analyse des références théoriques existantes, outils de formulations et de conformités de théories inexistantes, apprentissages informatiques, ...) disponibles suivant l'ensemble des thèmes : 
 
           {% for levp in 1..6 %}
-            Niveau {{ levp }} : <br />
-            {{ level[levp].content }} <br />
+            <br /><br /><strong>Niveau {{ levp }}</strong> : 
+            <br /> {{ level[levp].content }} 
             {% set cptsym = 0 %}
             {% for symcontentx in symcontent[levp] %}
               {% set cptsym = cptsym + 1 %}
               <br />Symbolisation {{ cptsym }} : {{ symcontentx }} 
             {% endfor %}
-            <br /><br />
           {% endfor %}
         </article>
       </div>

@@ -28,12 +28,12 @@
     
     <nav id="tabs-nav" class="clearfix">
       {% for kex, typex in evol %}
-        <span><a href="{{ "#evol" ~ kex }}"> {{ typex }} </a>&nbsp;</span>
+        <a href="{{ "#evol" ~ kex }}"> {{ typex }} </a><span>&nbsp;</span>
       {% endfor %}
       {% for kez, typez in evolsample %}
-        <span><a href="{{ "#evolsample" ~ kez }}"> {{ typez }} </a>&nbsp;</span>
+        <a href="{{ "#evolsample" ~ kez }}"> {{ typez }} </a><span>&nbsp;</span>
       {% endfor %}
-      <span><a href="{{ "#lasttentop" }}">Dix derniers thèmes</a>&nbsp;</span>
+      <a href="{{ "#lasttentop" }}">Dix derniers thèmes</a><span>&nbsp;</span>
     </nav>
 
     <div id="tabs-container" onload="initTab()">

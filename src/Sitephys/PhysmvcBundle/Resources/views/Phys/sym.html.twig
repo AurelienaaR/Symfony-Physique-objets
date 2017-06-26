@@ -30,20 +30,23 @@
       <div id="tabs-container" onload="initTab()">
         {% for intBase in 1..6 %}
           <article id="{{ "symbol" ~ intBase }}" >
+            <strong>Symbolisations pour chaque niveau de précision des éléments simples</strong> : 
             {% for intSub in 0..6 %}
               {% if bslevel[intBase][intSub] is defined %}
-                Niveau {{ intBase }} - {{ intSub }} : {{ bslevel[intBase][intSub] }}
+                <br /><br /><strong>Niveau {{ intBase }} - {{ intSub }}</strong> : {{ bslevel[intBase][intSub] }}
               {% endif %}
               {% if bssymb[intBase][intSub] is defined %}
-                <br />Symbolisation : {{ bssymb[intBase][intSub] }} <br /><br />
+                <br /><strong>Symbolisation</strong> : {{ bssymb[intBase][intSub] }} 
               {% endif %}
             {% endfor %}
           </article>
         {% endfor %}
         <article id="reference">
+          <strong>Références pour le domaine du thème des éléments</strong> : 
           {% for titlerefdomx in titlerefdom %}
-            Domaine : {{ titlerefdomx.dtitle }}. Référence : {{ titlerefdomx.rtitle }} <br />
-            Contenu : {{ titlerefdomx.rcontent }} <br /><br />
+            <br /><br /><strong>Domaine</strong> : {{ titlerefdomx.dtitle }}
+            <br /><strong>Référence</strong> : {{ titlerefdomx.rtitle }} 
+            <br /><strong>Contenu</strong> : {{ titlerefdomx.rcontent }} 
           {% endfor %}
         </article>
       </div>
