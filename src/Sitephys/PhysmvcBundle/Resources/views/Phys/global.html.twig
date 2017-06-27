@@ -30,14 +30,15 @@
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-    <div id="hb">Descriptions du niveau de base (global) {{ intlevel }} du thème {{ topic.title }} </div>
-    <br />
+    <div id="hb">Descriptions du niveau de base (global) {{ intlevel }} du thème {{ topic.title }} </div><br />
+
     <nav id="tabs-nav" class="clearfix">
       <a href="#titre">Titres des éléments</a><span>&nbsp;</span>
       <a href="#contenu">Contenu(s)</a><span>&nbsp;</span>
       <a href="#evaluation">Evaluation(s)</a><span>&nbsp;</span>
       <a href="#symbolisation">Symbolisation(s)</a><span>&nbsp;</span>
     </nav>
+
     <div id="tabs-container" onload="initTab()">      
       <article id="titre">
         <strong>Attributs de l'élément global</strong> :
@@ -55,8 +56,8 @@
       </article>
       <article id="contenu">
         <strong>Contenus de l'élément global et éléments simples enregistrés</strong> :
-        <br /><br /><strong>Domaine</strong> : {{ domain.title }} 
-        <br /><strong>Thème</strong> : {{ topic.title }}
+        <br /><br /><strong>Domaine</strong> : <strong>{{ domain.title }}</strong> 
+        <br /><strong>Thème</strong> : <strong>{{ topic.title }}</strong>
         <br /><strong>Contenu du thème</strong> : {{ topic.content }} 
         <br /><strong>Niveau de base (global)</strong> : {{ intlevel }} 
         {% for iEltLPos in 1..6 %}
@@ -68,26 +69,26 @@
       </article>
       <article id="evaluation">
         <strong>Evaluations des éléments simples enregistrés</strong> :
-        <br /><br /><strong>Domaine</strong> : {{ domain.title }} 
-        <br /><strong>Thème</strong> : {{ topic.title }}
+        <br /><br /><strong>Domaine</strong> : <strong>{{ domain.title }}</strong> 
+        <br /><strong>Thème</strong> : <strong>{{ topic.title }}</strong>
         <br /><strong>Contenu du thème</strong> : {{ topic.content }} 
         <br /><strong>Niveau de base (global)</strong> : {{ intlevel }} 
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
-            <br /><br /><strong>Titre</strong> : {{ phys[iEltLPos].title }}
+            <br /><br /><strong>Titre : {{ phys[iEltLPos].title }} </strong>
             <br /><strong>Evaluation</strong> : {{ phys[iEltLPos].evaluation }} 
           {% endif %}
         {% endfor %}
       </article>
       <article id="symbolisation">
         <strong>Symbolisations des éléments simples enregistrés</strong> :
-        <br /><br /><strong>Domaine</strong> : {{ domain.title }} 
-        <br /><strong>Thème</strong> : {{ topic.title }}
+        <br /><br /><strong>Domaine</strong> : <strong>{{ domain.title }}</strong> 
+        <br /><strong>Thème</strong> : <strong>{{ topic.title }}</strong>
         <br /><strong>Contenu du thème</strong> : {{ topic.content }} 
-        <br /><strong>Niveau de base (global)</strong> : {{ intlevel }} 
+        <br /><strong>Niveau de base (global)</strong> : {{ intlevel }} <br />
         {% for iEltLPos in 1..6 %}
           {% if tabboolelt[iEltLPos] %}
-            <br /><strong>Titre</strong> : {{ phys[iEltLPos].title }}
+            <br /><strong>Titre</strong> : <strong>{{ phys[iEltLPos].title }}</strong>
             <br /><strong>Symbolisation</strong> : {{ symbol[iEltLPos] }} 
           {% endif %}
         {% endfor %}

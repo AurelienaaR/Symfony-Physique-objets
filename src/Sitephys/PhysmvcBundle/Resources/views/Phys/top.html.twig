@@ -47,8 +47,8 @@
       <article id="reference">
         <strong>Références pour chaque domaine</strong> : 
         {% for titlecontrefx in titlecontref %}
-          <br /><br /><strong>Domaine</strong> : {{titlecontrefx.dtitle }}
-          <br /><strong>Référence</strong> : {{ titlecontrefx.rtitle }} 
+          <br /><br /><strong>Domaine</strong> : <strong>{{titlecontrefx.dtitle }}</strong>
+          <br /><strong>Référence</strong> : <strong>{{ titlecontrefx.rtitle }}</strong> 
           <br /><strong>Contenu</strong> : {{ titlecontrefx.rcontent }} 
         {% endfor %}
       </article>

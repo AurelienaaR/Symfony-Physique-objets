@@ -26,7 +26,7 @@ public function findIdTitlePhys()
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT p.id, p.title, p.level, t.id AS tid FROM SitephysPhysmvcBundle:Phys p, SitephysPhysmvcBundle:Topic t WHERE p.topicId = t.id'
+                'SELECT p.id, p.title, p.level, t.id AS tid FROM SitephysPhysmvcBundle:Phys p, SitephysPhysmvcBundle:Topic t WHERE p.topicId = t.id ORDER BY p.id'
             )
             ->getResult();
     }

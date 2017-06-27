@@ -48,7 +48,7 @@ class TopicRepository extends EntityRepository
             ->createQuery(
                 'SELECT t.id, t.title, t.mode FROM SitephysPhysmvcBundle:Topic t ORDER BY t.date DESC'
             )
-            ->setMaxResults(10)
+            ->setMaxResults(20)
             ->getResult();
     }
 

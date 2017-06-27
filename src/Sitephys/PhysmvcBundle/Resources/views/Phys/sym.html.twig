@@ -19,7 +19,7 @@
 {% block sitephysphysmvc_body %}
   <div class="well">
 
-    <div id="hb">Description de niveaux et symbolisations par niveau de base</div><br />
+    <div id="hb">Description de niveaux et symbolisations par niveau de base et références par domaine</div><br />
       <nav id="tabs-nav" class="clearfix">
         {% for intBase in 1..6 %}
           <a href="{{ "#symbol" ~ intBase }}"> {{ datalevel[intBase - 1] }} </a><span>&nbsp;</span>
@@ -44,8 +44,8 @@
         <article id="reference">
           <strong>Références pour le domaine du thème des éléments</strong> : 
           {% for titlerefdomx in titlerefdom %}
-            <br /><br /><strong>Domaine</strong> : {{ titlerefdomx.dtitle }}
-            <br /><strong>Référence</strong> : {{ titlerefdomx.rtitle }} 
+            <br /><br /><strong>Domaine</strong> : <strong>{{ titlerefdomx.dtitle }}</strong>
+            <br /><strong>Référence</strong> : <strong>{{ titlerefdomx.rtitle }}</strong> 
             <br /><strong>Contenu</strong> : {{ titlerefdomx.rcontent }} 
           {% endfor %}
         </article>
