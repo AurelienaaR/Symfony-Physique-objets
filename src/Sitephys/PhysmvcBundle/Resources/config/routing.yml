@@ -128,3 +128,8 @@ sitephys_user_expemail:
     path:      /user/expemail/{uemail}/{toklink}
     defaults:
         _controller: SitephysUserBundle:Security:expemailuser
+
+sitephys_physmvc_legal:
+    path:      /legal/
+    defaults:
+        _controller: SitephysPhysmvcBundle:Phys:legal

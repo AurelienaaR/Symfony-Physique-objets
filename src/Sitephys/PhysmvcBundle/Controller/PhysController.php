@@ -676,5 +676,10 @@ class PhysController extends Controller
   {
 	  return $this->render('SitephysPhysmvcBundle:Phys:links.html.twig');
   }
-	
+
+  public function legalAction()
+  {
+    return $this->render('SitephysPhysmvcBundle:Phys:legal.html.twig');
+  }
+
 }

@@ -13,12 +13,17 @@
 {% endblock %}
 
 {% block sitephysphysmvc_image %}
-  <div id="containerimghome">
+  <div itemscope itemtype="http://schema.org/Article" id="containerimghome">
     <div class="containerthome">
       <a href="{{ path('sitephys_physmvc_presentation') }}">
         <img src="{{ asset('bundles/sitephysphysmvc/images/home-fond.jpg') }}" class="homephoto" alt="Lien vers la présentation du site" title="Présentation du site Etudes des thèmes et domaines de physique" />
-      </a>
+      <meta itemprop="name" content="Lien vers la présentation du site"></a>
     </div>
+    <meta itemprop="articleBody" content="Présentation">
+    <meta itemprop="url" content="https://physicstopics.fr/presentation">
+    <meta itemprop="datePublished" content="2017-06-27">
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Aurélien Roudier"></span>
   </div>
 {% endblock %}
 
