@@ -419,6 +419,25 @@ class PhysController extends Controller
     $physDomainId = $physTopic->getDomainId();
     $physDomain = $domainRep->find($physDomainId);
 
+    $tabgNull = [];
+    for ($iEgl=1; $iEgl <= 6; $iEgl++) {
+          $tabgNull[$iEgl] = false;
+        }
+    for ($ielg = 1; $ielg <= 6; $ielg++) {
+      for ($ielsub = 1; $ielsub <= 6; $ielsub++) {
+      	$strLevel = 'a:2:{i:0;s:1:"' . $ielg . '";i:1;s:1:"' . $ielsub . '";}';
+      	$physgOther = $physRep->findBy(
+      	  array('topicId' => $idTopic, 'level' => $strLevel), 
+          array('date' => 'asc'),        
+          1,
+          0
+        ); 
+        if (null != $physgOther) {
+          $tabgNull[$ielg] = true;
+        }
+      }
+    }
+
     $userconnectx = $this->getUser();
     if (null === $userconnectx) {
       $userconnect = 'Connexion';
@@ -435,6 +454,7 @@ class PhysController extends Controller
         'domain' => $physDomain,
         'topic' => $physTopic,
         'symbol' => $symbolContent,
+        'tabgnull' => $tabgNull,
         ));
     }
 
@@ -454,6 +474,8 @@ class PhysController extends Controller
       return $this->redirectToRoute('sitephys_physmvc_home');
     } else {
       $physLevel = $phys->getLevel();
+      $intLevel = substr($physLevel, 14, 1);
+      $intEltLevel = substr($physLevel, 26, 1);
       $levelObjec = $levelRep->findPhysLevelIdContent($physLevel);
       $levelObject = $levelObjec[0];
       $levelId = $levelObject["id"];
@@ -492,6 +514,23 @@ class PhysController extends Controller
       $domTopicId = $domainObject->getId();
       $titleContRef = $referenceRep->findTitleRefperDom($domTopicId);
 
+    $tabVNull = [];
+    for ($iEl=1; $iEl <= 6; $iEl++) {
+          $tabVNull[$iEl] = NULL;
+        }
+    for ($iel = 1; $iel <= 6; $iel++) {
+      $strLevel = 'a:2:{i:0;s:1:"' . $intLevel . '";i:1;s:1:"' . $iel . '";}';
+      $physVOther = $physRep->findBy(
+        array('topicId' => $physTopicId, 'level' => $strLevel), 
+        array('date' => 'asc'),        
+        1,
+        0
+        ); 
+      if (null != $physVOther) {
+        $tabVNull[$iel] = $physVOther[0];
+      }
+    }
+
       $userconnectx = $this->getUser();
       if (null === $userconnectx) {
         $userconnect = 'Connexion';
@@ -505,6 +544,9 @@ class PhysController extends Controller
         'domain' => $domainObject,
         'topic' => $topicObject,
         'level' => $levelObject,
+        'intlevel' => $intLevel,
+        'inteltlevel' => $intEltLevel,
+        'tabnull' => $tabVNull,
         'symcontent' => $symbolizationContent,
         'titlecontref' => $titleContRef,
         ));
@@ -529,6 +571,23 @@ class PhysController extends Controller
       1,
       0
       ); 
+
+    $tabNull = [];
+    for ($iEl=1; $iEl <= 6; $iEl++) {
+          $tabNull[$iEl] = NULL;
+        }
+    for ($iel = 1; $iel <= 6; $iel++) {
+      $strLevel = 'a:2:{i:0;s:1:"' . $intLevel . '";i:1;s:1:"' . $iel . '";}';
+      $physOther = $physRep->findBy(
+        array('topicId' => $idTopic, 'level' => $strLevel), 
+        array('date' => 'asc'),        
+        1,
+        0
+        ); 
+      if (null != $physOther) {
+        $tabNull[$iel] = $physOther[0];
+      }
+    }
 
     if (null === $physGlobal) {
       return $this->redirectToRoute('sitephys_physmvc_home');
@@ -583,6 +642,9 @@ class PhysController extends Controller
         'domain' => $domainObject,
         'topic' => $topicObject,
         'level' => $levelObject,
+        'intlevel' => $intLevel,
+        'inteltlevel' => $intEltLevel,
+        'tabnull' => $tabNull,
         'symcontent' => $symbolizationContent,
         'titlecontref' => $titleContRef,
         ));

@@ -28,25 +28,26 @@
         <a href="#symbolisation">Symbolisation</a><span>&nbsp;</span>
         <a href="#reference">Références</a>
         <a href="#author">Création</a>
+        <a href="#others">Autres niveaux</a>
       </nav>
       <div id="tabs-container" onload="initTab()">
         <article id="domaine">
           <strong>Attributs de l'élément</strong> :
-          <br /><br /><strong>Domaine</strong> : {{ domain.title }}
-          <br /><strong>Thème</strong> : {{ topic.content }}
+          <br /><br /><strong>Domaine : {{ domain.title }} </strong>
+          <br /><strong>Thème : {{ topic.content }} </strong>
           {% set dimtopic = topic.mode - 2 %}
-          <br /><strong>Dim. du thème</strong> : {{ dimtopic }} 
+          <br /><br /><strong>Dim. du thème</strong> : {{ dimtopic }} 
           <br /><strong>Mode du thème</strong> : {{ topic.mode }}
         </article>
         <article id="niveau">
           <strong>Niveaux de l'élément</strong> :
-          <br /><br /><strong>Niveau de base <i>(global)</i></strong> : {{ level.levelBase }} 
-          <br /><strong>Niveau de précision <i>(élément)</i></strong> : {{ level.levelSub }} 
+          <br /><br /><strong>Niveau de base <i>(global)</i> : {{ level.levelBase }} </strong>
+          <br /><strong>Niveau de précision <i>(élément)</i> : {{ level.levelSub }} </strong>
           <br /><strong>Description du niveau</strong> : {{ level.content }} 
         </article>
         <article id="contenu">
           <strong>Contenu de l'élément</strong> :
-          <br /><br /><strong>Titre</strong> : <strong>{{ physelt.title }}</strong>
+          <br /><br /><strong>Titre : {{ physelt.title }}</strong>
           <br /><strong>Contenu</strong> : {{ physelt.content }}
         </article>
         <article id="evaluation">
@@ -74,6 +75,18 @@
           <br /><br /><strong>Auteur</strong> : {{ physelt.author }} 
           <br /><strong>Date</strong> : {{ physelt.date|date('d/m/Y H:i:s') }}
         </article>
+        <article id="others">
+        <strong>Redirection vers l'élément global ou les autres éléments simples enregistrés</strong> :
+        <br /><strong>Domaine</strong> : <strong>{{ domain.title }}</strong> 
+        <br /><strong>Thème</strong> : <strong>{{ topic.title }}</strong>
+        <br /><br />
+        <a href="{{ path('sitephys_physmvc_phys_global', {'idTopic': topic.id, 'intLevel': intlevel}) }}"><div> {{ 'Niveau ' ~ intlevel ~ ' - 0 : élément global' }} </div></a>
+        {% for iLPos in 1..6 %}
+          {% if tabnull[iLPos] and inteltlevel != iLPos %}
+            <a href="{{ path('sitephys_physmvc_phys_element', {'idTopic': topic.id, 'intLevel': intlevel, 'intEltLevel': iLPos}) }}"><div> {{ 'Niveau ' ~ intlevel ~ ' - ' ~ iLPos ~ ' : ' ~ tabnull[iLPos].title }} </div></a> 
+          {% endif %}
+        {% endfor %}
+      </article>
       </div>
   </div>
 {% endblock %}
