@@ -11,29 +11,23 @@
 {% block sitephysphysmvc_image %}
   <div id="containerimghome">
     <div class="containerthome">
-	    <img src="{{ asset('bundles/sitephysphysmvc/images/legal.jpg') }}" class="homephoto" alt="Image de Legal" title="Legal" />
+	    <img src="{{ asset('bundles/sitephysphysmvc/images/legal.jpg') }}" class="homephoto" alt="Image de Mentions légales" title="Legal" />
 	  </div>
   </div>
 {% endblock %}
 
 {% block sitephysphysmvc_body %}
   <div class="well">
-      <div id="hb">Sites de physique</div>
+      <div id="hb">Mentions légales</div>
       <br />
       <nav id="tabs-nav" class="clearfix">
-        <a href="#licence">Utilisations</a><span>&nbsp;</span>
         <a href="#hebergement">Hébergeur</a><span>&nbsp;</span>
         <a href="#responsabilities">Responsabilités</a><span>&nbsp;</span>
         <a href="#authors">Auteurs</a><span>&nbsp;</span>
-        <a href="#links">Liens</a><span>&nbsp;</span>
         <a href="#administration">Administration</a><span>&nbsp;</span>
       </nav>
 
       <div id="tabs-container" onload="initTab()">
-        <article id="licence">
-          <strong>Titre</strong> : <strong>Licence d'utilisation</strong>
-          <br />L'accès au site https://physicstopics.fr implique de la part de l'utilisateur l'acceptation d'une licence dans les conditions définies sur cette page.
-        </article>
         <article id="hebergement">
           <strong>Titre</strong> : <strong>Hébergement</strong>
           <br />Techcrea Solutions SARL
@@ -48,21 +42,15 @@
           <br />En dépit du soin de vérification des éléments, références et schémas, des erreurs peuvent persister dans chaque page du site. 
           <br />Les contenus du site https://physicstopics.fr ne sont présents qu’à but informatif : l'administrateur qui valide les contenus des auteurs ne saurait être tenu responsable d'éventuelles conséquences des erreurs ou problèmes liés à la consultation, l’utilisation ou l’interprétation de ces contenus. 
           <br />Aucune garantie n'est donnée par l'administrateur quant à l'exhaustivité et la validité des contenus du site. 
-          <br />Conformément aux dispositions de la loi n°78-17 du 6 janvier 1978, les utilisateurs disposent d'un droit d'accès et de rectification des données les concernant auprès de aurelienaa@physicstopics.fr. 
         </article>
         <article id="authors">
           <strong>Titre</strong> : <strong>Auteurs</strong>
           <br />Les éléments (textes, images, scripts ...) mis en ligne sur le site https://physicstopics.fr restent la propriété intellectuelle et légale de leurs auteurs.
         </article>
-        <article id="links">
-          <strong>Titre</strong> : <strong>Liens hypertextes et partenaires</strong>
-          <br />Les liens qui sont présents sur le site https://physicstopics.fr sont susceptibles de diriger chaque utilisateur vers des sites extérieurs pour lesquels aucun contrôle n'est exercé et dont les contenus ne peuvent en aucun cas engager la responsabilité de l'administrateur de https://physicstopics.fr dans l'hypothèse où ceux-ci contreviendraient aux lois en vigueur ou produiraient des conséquences dommageables directes ou indirectes pour l'utilisateur. 
-        </article>
         <article id="administration">
           <strong>Titre</strong> : <strong>Administration du site</strong>
           <br />L'administrateur du site https://physicstopics.fr n'est pas responsable des modifications et ajouts proposés par les auteurs.
-          <br />L'administrateur peut supprimer tout élément contraire a la loi ou ne correspondant pas aux thèmes du site : sciences physiques, chimiques et technologiques. 
-          <br />Seul l'administrateur peut supprimer les propositions des auteurs et se réserve le droit de modifier les conditions d'utilisation du site. 
+          <br />L'administrateur peut supprimer tout élément ne correspondant pas aux thèmes du site : sciences physiques, chimiques et technologiques.  
         </article>
       </div>
 

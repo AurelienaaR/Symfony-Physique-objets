@@ -66,7 +66,7 @@ class PhysController extends Controller
     $symbolizationRep = $em->getRepository('SitephysPhysmvcBundle:Symbolization');
     $levelRep = $em->getRepository('SitephysPhysmvcBundle:Level');
 
-    $presDomain = $domainRep->findAll();
+    $presDomain = $domainRep->findAllAlpha();
 
         $tabL[1] = array(1,4,5,6);
     	$tabL[2] = array(43,44,45);
@@ -474,8 +474,9 @@ class PhysController extends Controller
       return $this->redirectToRoute('sitephys_physmvc_home');
     } else {
       $physLevel = $phys->getLevel();
-      $intLevel = substr($physLevel, 14, 1);
-      $intEltLevel = substr($physLevel, 26, 1);
+      $totLevel = unserialize($physLevel);
+      $intLevel = $totLevel[0];
+      $intEltLevel = $totLevel[1];
       $levelObjec = $levelRep->findPhysLevelIdContent($physLevel);
       $levelObject = $levelObjec[0];
       $levelId = $levelObject["id"];

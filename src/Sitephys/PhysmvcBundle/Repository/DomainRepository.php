@@ -11,7 +11,7 @@ class DomainRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT d.id FROM SitephysPhysmvcBundle:Domain d ORDER BY d.id ASC'
+                'SELECT d.id FROM SitephysPhysmvcBundle:Domain d ORDER BY d.title ASC'
             )
             ->getResult();
     }
@@ -29,7 +29,7 @@ public function findDomIdTitle()
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT d.id, d.title FROM SitephysPhysmvcBundle:Domain d ORDER BY d.id ASC'
+                'SELECT d.id, d.title FROM SitephysPhysmvcBundle:Domain d ORDER BY d.title ASC'
             )
             ->getResult();
     }
@@ -57,7 +57,7 @@ public function findIdTitleDomain()
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT d.id, d.title FROM SitephysPhysmvcBundle:Domain d ORDER BY d.id ASC'
+                'SELECT d.id, d.title FROM SitephysPhysmvcBundle:Domain d ORDER BY d.title ASC'
             )
             ->getResult();
     }
@@ -66,8 +66,17 @@ public function findIdContentDomain()
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT d.id, d.content FROM SitephysPhysmvcBundle:Domain d ORDER BY d.id ASC'
+                'SELECT d.id, d.content FROM SitephysPhysmvcBundle:Domain d ORDER BY d.title ASC'
             )
             ->getResult();
     }
+public function findAllAlpha()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT d FROM SitephysPhysmvcBundle:Domain d ORDER BY d.title ASC'
+            )
+            ->getResult();
+    }
+
 }
